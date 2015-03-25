@@ -1,0 +1,34 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+QUOI ?
+
+Ce dépôt fournit un script APL qui définit des fonctions
+pour convertir des dates grégoriennes vers le calendrier
+républicain ou dans l'autre sens. Exemples :
+
+     ⍝ convertir 18 Brumaire VIII
+     fr2gr 8 2 18
+  1799 11 9
+     ⍝ dans l'autre sens, 9 November 1799
+     gr2fr 1799 11 9
+  8 2 18
+     ⍝ Affichage en clair de la date
+     prtfr 8 2 18
+  18 Brumaire 8, jour de la dentelaire
+
+POURQUOI ?
+
+Parce que le calendrier républicain en tant que sujet de programmation
+m'a toujours intéressé.
+
+Les programmes de ce dépôt sont distribués avec la même licence que
+Perl : GPL version 1.0 ou supérieure et Artistic License. Ces deux
+licences sont fournies dans le fichier LICENSE de ce dépôt.
+
+QUI ?
+
+Moi-même, Jean Forget
+
+Si vous voulez me contacter, sachez que j'ai un code sur CPAN et que
+ce code est "jforget". Cela vous permet de trouver mon adresse de
+messagerie.
