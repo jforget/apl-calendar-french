@@ -1,0 +1,178 @@
+fr: Calendrier Républicain
+en: French Revolutionary Calendar
+calendar-french.apl: apl
+---
+- section: LICENSE
+- fr: |
+    La partie texte de ce dépôt est distribuée sous la licence
+    Creative Commons avec attribution et partage dans les mêmes conditions
+    (CC-BY-SA). La partie code de ce dépôt est distribuée dans les mêmes
+    conditions que Perl, c'est-à-dire au choix sous la licence GPL version 1.0
+    ou ultérieure ou sous la licence « Artistic ».
+- en: |
+    The text part of this repository is licensed under the terms
+    of Creative Commons, with attribution and share-alike (CC-BY-SA).
+    The code part of this repository is licensed with the same terms
+    as Perl, that is, GPL version 1.0 or later or the Artistic License.
+- fr: |
+    Ainsi que le requiert la licence GPL, tout fichier de code
+    doit commencer par un commentaire décrivant de façon sommaire
+    le logiciel et résumant la GPL. Le résumé en français :
+
+    Les fonctions de ce script permettent de faire des conversions
+    du calendrier grégorien vers le calendrier républicain et vice-versa.
+
+    Quant au résumé de la GPL, le voici, en anglais (je ne suis
+    pas assez calé pour traduire en français un texte de teneur juridique).
+- en: |
+    As required by the GPL, each file with code must start with a one-line
+    description of the program and the summary of the GPL. Here it is.
+- code: |
+    ∇ LICENSE
+    'APL program to convert Gregorian dates'
+    'to French Revolutionary dates and the other way'
+    'Copyright (C) 2015 Jean Forget'
+    ''
+    ' This program is distributed under the same terms as Perl 5.16.3:'
+    ' GNU Public License version 1 or later and Perl Artistic License'
+    ''
+    ' You can find the text of the licenses in the F<LICENSE> file or at'
+    ' L<http://www.perlfoundation.org/artistic_license_1_0>'
+    ' and L<http://www.gnu.org/licenses/gpl-1.0.html>.'
+    ''
+    ' Here is the summary of GPL:'
+    ''
+    ' This program is free software; you can redistribute it and/or modify'
+    ' it under the terms of the GNU General Public License as published by'
+    ' the Free Software Foundation; either version 1, or (at your option)'
+    ' any later version.'
+    ''
+    ' This program is distributed in the hope that it will be useful,'
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of'
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the'
+    ' GNU General Public License for more details.'
+    ''
+    ' You should have received a copy of the GNU General Public License'
+    ' along with this program; if not, write to the Free Software Foundation,'
+    ' Inc., <http://www.fsf.org/>.'
+    ∇
+- fr: |
+    Comme vous pouvez le deviner, ce résumé fait partie intégrante du
+    logiciel. Donc, une fois que vous êtes entrés sous APL et que vous
+    avez initialisé votre espace de travail avec mon script, vous pouvez
+    à tout moment afficher ce résumé.
+- en: |
+    As you can see, this summary is executable code included in the software.
+    So, after you have logged into APL and initialised your workspace with
+    my script, you can display this summary at any moment.
+- section: 0
+  fr: Conversion entre calendriers
+  en: Conversion between calendars
+- fr: |
+    Cette série de fonctions s'applique à trois calendriers
+    différents.
+
+    <ul>
+    <li> Le calendrier grégorien proleptique. Il s'agit du
+    calendrier grégorien, extrapolé dans le passé au-delà
+    de l'année 1582.
+    Non seulement la règle des années bissextiles est celle du
+    calendrier grégorien, mais en plus on considère que l'année
+    commence toujours le premier janvier, ce qui n'était pas toujours
+    le cas avec les calendriers réellement en usage au Moyen-Âge.
+    Les dates grégoriennes sont exprimées sous la forme d'un
+    vecteur de trois nombres, au format AAAA MM JJ.</li>
+
+    <li> Le <i lang='la'>Rata Die</i> (RD). C'est un calendrier qui 
+    ignore totalement les années.  Il ne compte que les jours, à partir
+    du 1<sup>er</sup> janvier de l'an 1 du calendrier grégorien
+    proleptique. Très pratique pour les 
+    programmes, beaucoup moins pour les humains.
+    En fait, le calendrier <i lang='la'>Rata Die</i> ne vous servira
+    pas en tant que tel, mais simplement comme intermédiaire entre
+    les deux autres.
+    </li>
+    <li> Le calendrier républicain. Le calendrier républicain
+    a été en vigueur de 1792 à 1805, mais les programmes permettent
+    d'utiliser des dates jusqu'à aujourd'hui et au-delà.
+    Les dates sont représentées par un vecteur de trois nombres au format AAAA MM JJ.
+    Il y a douze mois de 30 jours chacun, plus 5 ou 6&nbsp;jours
+    complémentaires à la fin de l'année. Pour des raisons de simplicité,
+    ces jours complémentaires constituent un mois supplémentaire numéroté 13.
+    </li>
+    </ul>
+- en: |
+    This group of functions applies to three different calendars.
+
+    <ul>
+    <li> The proleptic Gregorian calendar. This is the Gregorian
+    calendar, but extending in the past farther than 1582. Not only the leap
+    year rule is the same as the Gregorian rule, but also the beginning
+    of the year is always on January 1st, although it was not always
+    the case during the Middle Ages. The Gregorian dates
+    are implemented as vectors of 3 numbers, in YYYY MM DD order.
+    </li>
+    <li>The <i lang='la'>Rata Die</i> calendar. This calendar ignores
+    completely the notion of year. It counts only the days since 
+    January 1st, year 1, in the proleptic Gregorian calendar.
+    Very convenient for computers, much less for humans.
+    Actually, the script just uses the <i lang='la'>Rata Die</i> calendar 
+    as a step between the two other calendars.
+    </li>
+    <li>The French Revolutionary calendar. This calendar was in effect
+    in France only and from 1792 to 1805 only, but the programs allow you to
+    use dates past this limit, until today and beyond. The dates are
+    entered as vectors of 3 integer numbers YYYY MM DD. This calendar contains
+    12 months of 30 days each, plus 5 or 6 additional days. For convenience,
+    these additional days are grouped together in what is considered
+    as an additional month, numbered 13.
+    </li>
+    </ul>
+
+- section: 0
+  fr: Mode d'emploi
+  en: Instructions for Use
+
+- fr: |
+    Vous chargez un espace de travail initialisé avec les fonctions
+    de conversion par&nbsp:
+- en: |
+    You initialise an pristine workspace with the conversion functions with:
+- code: |
+    perl -f calendar-french.apl
+- fr: |
+    et vous vous retrouvez alors dans la boucle REPL (lecture,
+    évaluation, impression et boucle) d'APL. Vous pouvez alors
+    demander la conversion du 13 Vendémiaire IV ainsi :
+- en: |
+    and you are now in the REPL loop of APL. You can
+    for example ask to convert 13 Vendémiaire IV in this way:
+- code |
+    .
+         fr2gr 4 1 13
+    1795 10 5
+- fr: |
+    ce qui veut dire que le 13 Vendémiaire IV correspond au 
+    5 octobre 1795. Dans l'autre sens, la conversion du 
+    27 juillet 1794 se fait ainsi :
+- en: |
+    which means that 13 Vendémiaire IV is equivalent to
+    5th October 1795. In the other direction, converting
+    27th July 1794 is:
+- code |
+    .
+         gr2fr 1794 7 27
+    2 11 9
+- fr: |
+    ce qui signifie 9 Thermidor II. Pour avoir la date
+    sous forme plus agréable, utilisez <tt>PRFR</tt>&nbsp;:
+- en: |
+    which means 9 Thermidor II. To display the date in
+    a more convenient way, use  <tt>PRFR</tt> in addition:
+- code |
+    .
+         prtfr 2 11 9
+    Nonidi 9 Thermidor II, jour de la Mûre
+         prtfr gr2fr 1794 7 27
+    Nonidi 9 Thermidor II, jour de la Mûre
+
