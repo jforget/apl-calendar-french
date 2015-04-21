@@ -72,8 +72,19 @@ calendar-french.apl: apl
     Cette série de fonctions s'applique à trois calendriers
     différents.
 
-    <ul>
-    <li> Le calendrier grégorien proleptique. Il s'agit du
+    <dl>
+    <dt> Le calendrier républicain</dt>
+    <dd> Le calendrier républicain
+    a été en vigueur de 1792 à 1805, mais les programmes permettent
+    d'utiliser des dates jusqu'à aujourd'hui et au-delà.
+    Les dates sont représentées par un vecteur de trois nombres au format AAAA MM JJ.
+    Il y a douze mois de 30 jours chacun, plus 5 ou 6&nbsp;jours
+    complémentaires à la fin de l'année. Pour des raisons de simplicité,
+    ces jours complémentaires constituent un mois supplémentaire numéroté 13.
+    </dd>
+
+    <dt> Le calendrier grégorien proleptique</dt>
+    <dd> Il s'agit du
     calendrier grégorien, extrapolé dans le passé au-delà
     de l'année 1582.
     Non seulement la règle des années bissextiles est celle du
@@ -81,53 +92,54 @@ calendar-french.apl: apl
     commence toujours le premier janvier, ce qui n'était pas toujours
     le cas avec les calendriers réellement en usage au Moyen-Âge.
     Les dates grégoriennes sont exprimées sous la forme d'un
-    vecteur de trois nombres, au format AAAA MM JJ.</li>
+    vecteur de trois nombres, au format AAAA MM JJ.</dd>
 
-    <li> Le <i lang='la'>Rata Die</i> (RD). C'est un calendrier qui 
+    <dt> Le <i lang='la'>Rata Die</i> (RD)</dt>
+    <dd> C'est un calendrier qui 
     ignore totalement les années.  Il ne compte que les jours, à partir
     du 1<sup>er</sup> janvier de l'an 1 du calendrier grégorien
     proleptique. Très pratique pour les 
     programmes, beaucoup moins pour les humains.
     En fait, le calendrier <i lang='la'>Rata Die</i> ne vous servira
-    pas en tant que tel, mais simplement comme intermédiaire entre
-    les deux autres.
-    </li>
-    <li> Le calendrier républicain. Le calendrier républicain
-    a été en vigueur de 1792 à 1805, mais les programmes permettent
-    d'utiliser des dates jusqu'à aujourd'hui et au-delà.
-    Les dates sont représentées par un vecteur de trois nombres au format AAAA MM JJ.
-    Il y a douze mois de 30 jours chacun, plus 5 ou 6&nbsp;jours
-    complémentaires à la fin de l'année. Pour des raisons de simplicité,
-    ces jours complémentaires constituent un mois supplémentaire numéroté 13.
-    </li>
-    </ul>
+    pas en tant que tel, c'est simplement un intermédiaire entre
+    les deux autres. Vous pouvez en avoir besoin quand même par
+    exemple pour calculer le nombre de jours entre deux dates.
+    </dd>
+    </dl>
 - en: |
     This group of functions applies to three different calendars.
 
-    <ul>
-    <li> The proleptic Gregorian calendar. This is the Gregorian
-    calendar, but extending in the past farther than 1582. Not only the leap
-    year rule is the same as the Gregorian rule, but also the beginning
-    of the year is always on January 1st, although it was not always
-    the case during the Middle Ages. The Gregorian dates
-    are implemented as vectors of 3 numbers, in YYYY MM DD order.
-    </li>
-    <li>The <i lang='la'>Rata Die</i> calendar. This calendar ignores
-    completely the notion of year. It counts only the days since 
-    January 1st, year 1, in the proleptic Gregorian calendar.
-    Very convenient for computers, much less for humans.
-    Actually, the script just uses the <i lang='la'>Rata Die</i> calendar 
-    as a step between the two other calendars.
-    </li>
-    <li>The French Revolutionary calendar. This calendar was in effect
+    <dl>
+    <dt>The French Revolutionary calendar</dt>
+    <dd> This calendar was in effect
     in France only and from 1792 to 1805 only, but the programs allow you to
     use dates past this limit, until today and beyond. The dates are
     entered as vectors of 3 integer numbers YYYY MM DD. This calendar contains
     12 months of 30 days each, plus 5 or 6 additional days. For convenience,
     these additional days are grouped together in what is considered
     as an additional month, numbered 13.
-    </li>
-    </ul>
+    </dd>
+
+    <dt> The proleptic Gregorian calendar</dt>
+    <dd> This is the Gregorian
+    calendar, but extending in the past farther than 1582. Not only the leap
+    year rule is the same as the Gregorian rule, but also the beginning
+    of the year is always on January 1st, although it was not always
+    the case during the Middle Ages. The Gregorian dates
+    are implemented as vectors of 3 numbers, in YYYY MM DD order.
+    </dd>
+
+    <dt>The <i lang='la'>Rata Die</i> calendar</dt>
+    <dd> This calendar ignores
+    completely the notion of year. It counts only the days since 
+    January 1st, year 1, in the proleptic Gregorian calendar.
+    Very convenient for computers, much less for humans.
+    Actually, the script just uses the <i lang='la'>Rata Die</i> calendar 
+    as a step between the two other calendars.
+    You can still find some use with it, for example to compute how many
+    days lie between two given dates.
+    </dd>
+    </dl>
 
 - section: 0
   fr: Mode d'emploi
@@ -139,7 +151,7 @@ calendar-french.apl: apl
 - en: |
     You initialise an pristine workspace with the conversion functions with:
 - code: |
-    perl -f calendar-french.apl
+    apl -f calendar-french.apl
 - fr: |
     et vous vous retrouvez alors dans la boucle REPL (lecture,
     évaluation, impression et boucle) d'APL. Vous pouvez alors
@@ -147,7 +159,7 @@ calendar-french.apl: apl
 - en: |
     and you are now in the REPL loop of APL. You can
     for example ask to convert 13 Vendémiaire IV in this way:
-- code |
+- code: |
     .
          fr2gr 4 1 13
     1795 10 5
@@ -159,7 +171,7 @@ calendar-french.apl: apl
     which means that 13 Vendémiaire IV is equivalent to
     5th October 1795. In the other direction, converting
     27th July 1794 is:
-- code |
+- code: |
     .
          gr2fr 1794 7 27
     2 11 9
@@ -169,7 +181,7 @@ calendar-french.apl: apl
 - en: |
     which means 9 Thermidor II. To display the date in
     a more convenient way, use  <tt>PRFR</tt> in addition:
-- code |
+- code: |
     .
          prtfr 2 11 9
     Nonidi 9 Thermidor II, jour de la Mûre
