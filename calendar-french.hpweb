@@ -3,6 +3,7 @@ en: French Revolutionary Calendar
 calendar-french.apl: apl
 ---
 - section: LICENSE
+  calendar-french.apl: 1
 - fr: |
     La partie texte de ce dépôt est distribuée sous la licence
     Creative Commons avec attribution et partage dans les mêmes conditions
@@ -28,7 +29,7 @@ calendar-french.apl: apl
     As required by the GPL, each file with code must start with a one-line
     description of the program and the summary of the GPL. Here it is.
 - code: |
-    ∇ LICENSE
+    ∇ license
     'APL program to convert Gregorian dates'
     'to French Revolutionary dates and the other way'
     'Copyright (C) 2015 Jean Forget'
@@ -187,4 +188,73 @@ calendar-french.apl: apl
     Nonidi 9 Thermidor II, jour de la Mûre
          prtfr gr2fr 1794 7 27
     Nonidi 9 Thermidor II, jour de la Mûre
+- fr: |
+    Si vous voulez calculer le nombre de jours entre deux
+    dates, utilisez le <i lang='la'>Rata Die</i>. Par
+    exemple, vous voulez savoir combien de jours séparent
+    le coup d'état du neveu (2 décembre 1851) du coup d'état
+    de l'oncle (18 Brumaire VIII). Il suffit de taper&nbsp;:
+- en: |
+    If you want to compute the number of days between two
+    dates, use the <i lang='la'>Rata Die</i> calendar. For example,
+    if you want to know how many days elapsed from the 
+    uncle's coup (18 Brumaire VIII) and the nephew's coup
+    (2nd December 1851), just type:
+- code: |
+    .
+         (gr2rd 1851 12 2) - fr2rd 8 2 18
+    19015
+- section: 0
+  level: 3
+  fr: Ordres supérieurs
+  en: Higher Orders
+- fr: |
+    Une date est représentée par un vecteur de 3 nombres. On peut
+    organiser les dates en un vecteur de dates, qui sera en réalité
+    un tableau de nombres. Ainsi, un vecteur de 5 dates sera un tableau de dimension <tt>5 3</tt>.
 
+    Ainsi, le vecteur de dates&nbsp;:
+- en: |
+    A date is implemented as a vector of 3 numbers. Several dates can
+    be gathered into a date-vector, which will actually be an array
+    of numbers. Thus, a 5-date vector will be an array with a <tt>5 3</tt> dimension.
+
+    For example, the date vector:
+- fr: |
+    <table border='1' cellpadding='2'><tr>
+    <td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
+    </tr></table>
+- en: |
+    <table border='1' cellpadding='2'><tr>
+    <td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
+    </tr></table>
+- fr: |
+    sera représenté par&nbsp;:
+- en: |
+    will be implemented by:
+- code: |
+    .
+         DATEVEC 
+    1794  1 21
+    1795 10  5
+    1799 11  9
+    1851 12  2
+         ⍴ DATEVEC 
+    4 3
+- fr: |
+    De la même manière, un tableau <tt>4 5</tt> de dates sera représenté
+    par un bloc <tt>4 5 3</tt> de nombres, un bloc <tt>2 2 6</tt> de dates
+    sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
+    de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
+    avec toutes ces structures, sauf lorsque l'on arrive au rang maximal.
+    Par exemple, le rang maximal en GNU APL est 15, donc les fonctions commencent
+    à provoquer des erreurs avec une structure de rang 13.
+- en: |
+    Likewise, a <tt>4 5</tt> array of dates will be entered as a <tt>4 5 3</tt>
+    block of numbers, and a <tt>2 2 6</tt> block of dates will be entered
+    as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>gr2fr</tt>
+    and <tt>fr2gr</tt> functions can deal with these structures, except when
+    using a rank nearly equal to the maximum allowed value. For example,
+    GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2ge</tt>
+    functions are limited to rank 13.
+    
