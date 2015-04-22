@@ -246,15 +246,43 @@ calendar-french.apl: apl
     par un bloc <tt>4 5 3</tt> de nombres, un bloc <tt>2 2 6</tt> de dates
     sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
     de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
-    avec toutes ces structures, sauf lorsque l'on arrive au rang maximal.
+    avec toutes ces structures, sauf lorsque l'on arrive au voisinage du rang maximal.
     Par exemple, le rang maximal en GNU APL est 15, donc les fonctions commencent
     à provoquer des erreurs avec une structure de rang 13.
+
+    Par exemple, la conversion du vecteur ci-dessus se fait par&nbsp;:
 - en: |
     Likewise, a <tt>4 5</tt> array of dates will be entered as a <tt>4 5 3</tt>
     block of numbers, and a <tt>2 2 6</tt> block of dates will be entered
     as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>gr2fr</tt>
     and <tt>fr2gr</tt> functions can deal with these structures, except when
     using a rank nearly equal to the maximum allowed value. For example,
-    GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2ge</tt>
+    GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
     functions are limited to rank 13.
-    
+
+    For example, converting the vector above is done with:
+- code: |
+    .
+         gr2fr DATEVEC 
+     2  5  2
+     4  1 13
+     8  2 18
+    60  3 11
+- fr: |
+    Par contre, la fonction <tt>prtfr</tt> n'est pas compatible avec les vecteurs
+    de dates ou les tableaux de dates. Elle accepte seulement les dates scalaires.
+- en: |
+    On the other hand, the <tt>prtfr</tt> function is not compatible with date vectors
+    or date arrays. It works only with scalar dates.
+- fr: |
+    Remarque&nbsp;: je sais que APL permet d'inclure des objets dans d'autres, avec
+    les opérateurs <tt>⊂</tt> et <tt>⊃</tt>. Mais cela n'existait pas lorsque j'ai appris APL
+    il y a plus de trente ans. Dans un premier temps, j'écris le présent script qui s'en
+    passera. Peut-être que dans un deuxième temps j'écrirai un nouveau script utilisant
+    les nouveautés d'APL sur les objets inclus.
+- en: |
+    Remark: I knowx that APL allow to embed objects into others, using the
+    <tt>⊂</tt> and <tt>⊃</tt> operators. But when I learnt APL more than thirty
+    years ago, these operators did not exist. So, the first step will be writing
+    a script with pure vectors without embedded objects. Maybe there will be a second
+    step where I will write another script with a more modern APL and embedded objects.
