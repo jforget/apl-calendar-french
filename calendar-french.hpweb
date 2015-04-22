@@ -286,3 +286,37 @@ calendar-french.apl: apl
     years ago, these operators did not exist. So, the first step will be writing
     a script with pure vectors without embedded objects. Maybe there will be a second
     step where I will write another script with a more modern APL and embedded objects.
+- section: 0
+  fr: Implémentation
+  en: Implementation
+- section: ELEMENTS
+  fr: Éléments de date
+  en: Date Elements
+  calendar-french.apl: 1
+  level: 3
+- fr: |
+    Pour extraire l'année d'une date <tt>DATE</tt>, il suffit d'écrire <tt>DATE[1]</tt>.
+    Pour en extraire le jour, il suffit d'écrire <tt>DATE[3]</tt>.
+    Mais cela ne fonctionne pas avec les vecteurs de date pour lesquels il faut
+    écrire <tt>DATEVEC[;1]</tt> et <tt>DATEVEC[;3]</tt>,
+    ni avec les tableaux de date pour lesquel il faut écrire
+    <tt>DATEARRAY[;;1]</tt> et <tt>DATEARRAY[;;3]</tt>.
+    Il y a plusieurs façons de s'en tirer. La plus simple consiste à écrire&nbsp;:
+- en: |
+    To extract the year from a date <tt>DATE</tt>, you juste have to write <tt>DATE[1]</tt>.
+    To extract the day, just write <tt>DATE[3]</tt>.
+    But this does not work with date vectors, for which you need to write
+    <tt>DATEVEC[;1]</tt> and <tt>DATEVEC[;3]</tt>,
+    which in turn does not work with date arrays, for which you write
+    <tt>DATEARRAY[;;1]</tt> and <tt>DATEARRAY[;;3]</tt>.
+    There are several ways to use the same functions for all. The simplest way is as follows:
+- code: |
+    ∇ R ← year D
+    R ← D +.× 1 0 0
+    ∇
+    ∇ R ← month D
+    R ← D +.× 0 1 0
+    ∇
+    ∇ R ← day D
+    R ← D +.× 0 0 1
+    ∇
