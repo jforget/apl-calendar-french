@@ -1,7 +1,7 @@
 ;;; config.el --- inserting APL chars into a buffer
 ; -*- encoding: utf-8; indent-tabs-mode: nil -*-
 
-;;     Emacs configuration script to help write APL scripts
+;;     Emacs configuration script to help write APL scripts and HTML sequences in hpweb files
 ;;     Copyright (C) 2015 Jean Forget
 ;;
 ;;     This program is distributed under the same terms as Perl 5.16.3:
@@ -52,4 +52,53 @@
      (insert ch1))
 )
 (global-set-key '[f6] 'apl-insert)
+(defun html-plus-grand   () (interactive) (insert "&gt;"))
+(defun html-plus-petit   () (interactive) (insert "&lt;"))
+(defun html-espace-insec () (interactive) (insert "&nbsp;"))
+(defun html-laquo        () (interactive) (insert "«&nbsp;"))
+(defun html-raquo        () (interactive) (insert "&nbsp;»"))
+(defun html-latex        () (interactive) (insert "L<sup>A</sup>T<sub>E</sub>X"))
+(defun html-oelig        () (interactive) (insert "&oelig;"))
+(defun html-list-item    () (interactive) (insert "
+<li>
+
+</li>
+") (next-line -2) (end-of-line))
+(defun html-pre-tt       () (interactive) (insert "
+<pre type='tt'>
+
+</pre>
+") (next-line -2) (end-of-line))
+
+(defun subs-chaine (chaine avant apres lgav)
+  "Dans une chaîne principale, substituer une sous-chaîne par une autre, la longueur n'étant pas nécessairement la même"
+  (cond
+     ((< (length chaine) lgav)  chaine) ; fin de la récursion, la chaîne ne contient assurément pas la chaîne-avant
+     ((equal (substring chaine 0 lgav) avant)
+        (concat apres                  (subs-chaine (substring chaine lgav) avant apres lgav))) ; remplacement et récursion
+     (t (concat (substring chaine 0 1) (subs-chaine (substring chaine    1) avant apres lgav))) ; récursion sans remplacement
+  )
+)
+
+(defun html-langage (lang) (interactive "slangage ? ") 
+	(insert "<i lang='" lang "'></i>")
+	(backward-char 4))
+
+(defun html-href-anchor (address) (interactive "sadresse ? ") 
+	(insert "<a href='" address "'></a>")
+	(backward-char 4))
+
+(defun completer-html-table () (interactive)
+  (define-key html-mode-map "\C-c>"      'html-plus-grand)
+  (define-key html-mode-map "\C-c<"      'html-plus-petit)
+  (define-key html-mode-map "\C-c "      'html-espace-insec)
+  (define-key html-mode-map "\C-c\C-c>"  'html-raquo)
+  (define-key html-mode-map "\C-c\C-c<"  'html-laquo)
+  (define-key html-mode-map "\C-cl"      'html-latex)
+  (define-key html-mode-map "\C-co"      'html-oelig)
+  (define-key html-mode-map "\C-cp"      'html-pre-tt)
+  (define-key html-mode-map "\C-ci"      'html-langage))
+(completer-html-table)
+(global-font-lock-mode -1)
+(mouse-avoidance-mode "proteus")
 )
