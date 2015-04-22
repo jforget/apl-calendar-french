@@ -28,6 +28,8 @@
 ;;     Inc., L<http://www.fsf.org/>.
 ;;
 (progn
+(find-file "calendar-french.hpweb")
+(html-mode)
 (defun apl-insert ()
        "Inserting an APL char"
        (interactive)
