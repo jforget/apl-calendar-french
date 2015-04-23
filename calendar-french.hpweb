@@ -510,3 +510,36 @@ calendar-french.apl: apl
     R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
     R ← R + YEAR ∈ 3 7 11 15
     ∇
+- section: 0
+  fr: Tests internes
+  en: Built-in Tests
+- section: testdata
+  level: 3
+  fr: Données pour les tests
+  en: Test Data
+  calendar-french.apl: 1
+- fr: |
+    Cette fonction renvoie un tableau de <var>n</var> lignes et 7 colonnes,
+    contenant les données pour tester les fonctions de conversion.
+    Chaque ligne contient la date grégorienne, au format AAAA MM JJ, 
+    la date républicaine au format AAAA MM JJ et la valeur <i lang='la'>Rata Die</i>.
+- en: |
+    This function gives an array of <var>n</var> lines and 7 columns, holding
+    the data to test the conversion functions.
+    Each line contains the Gregorian date in YYYY MM DD format, then the
+    French Revolutionary date in YYYY MM DD format and lastly the <i lang='la'>Rata Die</i> value.
+- code: |
+    ∇ R ← testdata; V; L
+    ⍝ include here the contents of testapl
+    L ← (⍴ V) ÷ 7
+    R ← (L, 7) ⍴ V
+    ∇
+- section: testfr2rd
+  level: 3
+  calendar-french.apl: 1
+- code: |
+    ∇ testfr2rd
+    'Erreurs:'
+    +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
+    ∇
+
