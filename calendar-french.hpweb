@@ -327,6 +327,25 @@ calendar-french.apl: apl
     ∇ R ← day D
     R ← D +.× 0 0 1
     ∇
+- section: 0
+  fr: Notion de «&nbsp;jour zéro&nbsp;»
+  en: Concept of "zeroth day"
+  level: 3
+- fr: |
+    Pour comprendre comment les algorithmes de conversion fonctionnent, il est
+    utile d'utiliser la notion de «&nbsp;jour zéro&nbsp;» pour un mois donné.
+    Le jour zéro est un jour virtuel situé avant le premier jour du mois et
+    après le dernier jour du mois précédent. Ainsi, le 0 mars 2015 se situe
+    après le 28 février 2015 et avant le 1<sup>er</sup> mars 2015.
+    Le fait que son <i lang='la'>Rata Die</i> soit identique à celui du 28 février
+    ne change rien au fait qu'il est censé se situer après le 28 février.
+- en: |
+    To help the description of the conversion algorithms, it is convenient to use
+    the "zeroth day" of a given month. The zeroth day is a virtual day, before
+    the first day of the month and after the last day of the previous month.
+    For example, 0th March 2015 occurs before 1st March 2015 and after 28th February 2015.
+    The fact that 0th March 2015 and 28th February 2015 share the same <i lang='la'>Rata Die</i>
+    is irrelevant, 0th March is <em>after</em> 28th February.
 - section: fr2rd
   fr: Conversion du calendrier républicain vers <i lang='la'>Rata Die</i>
   en: Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i>
