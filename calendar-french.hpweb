@@ -286,10 +286,9 @@ calendar-french.apl: apl
 - section: 0
   fr: Implémentation
   en: Implementation
-- section: ELEMENTS
+- section: 0
   fr: Éléments de date
   en: Date Elements
-  calendar-french.apl: 1
   level: 3
 - fr: |
     Pour extraire l'année d'une date <tt>DATE</tt>, il suffit d'écrire <tt>DATE[1]</tt>.
@@ -307,13 +306,24 @@ calendar-french.apl: apl
     which in turn does not work with date arrays, for which you write
     <tt>DATEARRAY[;;1]</tt> and <tt>DATEARRAY[;;3]</tt>.
     There are several ways to use the same functions for all. The simplest way is as follows:
+- section: year
+  calendar-french.apl: 1
+  level: 4
 - code: |
     ∇ R ← year D
     R ← D +.× 1 0 0
     ∇
+- section: month
+  calendar-french.apl: 1
+  level: 4
+- code: |
     ∇ R ← month D
     R ← D +.× 0 1 0
     ∇
+- section: day
+  calendar-french.apl: 1
+  level: 4
+- code: |
     ∇ R ← day D
     R ← D +.× 0 0 1
     ∇
@@ -367,7 +377,7 @@ calendar-french.apl: apl
     </ul>
 - code: |
     ∇ R ← fr2rd DATE
-    R ← 654019 + (frbis year DATE) + DATE +.× 365 30 1
+    R ← 654019 + (@frbis@ @year@ DATE) + DATE +.× 365 30 1
     ∇
 - section: frbis
   fr: Nombre d'années bissextiles avant l'année N
