@@ -220,11 +220,8 @@ calendar-french.apl: apl
     of numbers. Thus, a 5-date vector will be an array with a <tt>5 3</tt> dimension.
 
     For example, the date vector:
-- fr: |
-    <table border='1' cellpadding='2'><tr>
-    <td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
-    </tr></table>
-- en: |
+- 
+  'en,fr': |
     <table border='1' cellpadding='2'><tr>
     <td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
     </tr></table>
@@ -319,4 +316,168 @@ calendar-french.apl: apl
     ∇
     ∇ R ← day D
     R ← D +.× 0 0 1
+    ∇
+- section: fr2rd
+  fr: Conversion du calendrier républicain vers <i lang='la'>Rata Die</i>
+  en: Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i>
+  calendar-french.apl: 1
+  level: 3
+- fr: |
+    Commençons par calculer le <i lang='la'>Rata Die</i> d'une date du calendrier républicain.
+    Il faut ajouter les termes suivants&nbsp;:
+
+    <ul>
+    <li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
+    <li>(annee - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
+    en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
+    <li>frbis(annee), qui compte combien d'années bissextiles ont précédé l'année courante,</li>
+    <li>(mois - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
+    <li>jour, pour arriver finalement au jour demandé.</li>
+    </ul>
+- en: |
+    Let us start by computing the <i lang='la'>Rata Die</i> for a given date in the French Revolutionary calendar.
+    This number is the result of the addition of:
+    <ul>
+    <li>654414, which is the <i lang='la'>Rata Die</i> for zeroth Vendémiaire I,</li>
+    <li>(year - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
+    leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»,</li>
+    <li>frbis(year), which gives the number of leap years before the target year,</li>
+    <li>(month - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
+    <li>day, to reach the target day.</li>
+    </ul>
+- fr: |
+    En fait, on rassemble toutes les constantes additives en une seule, ce qui donne le calcul suivant&nbsp;:
+
+    <ul>
+    <li>annee × 365,</li>
+    <li>frbis(annee),</li>
+    <li>mois × 30,</li>
+    <li>jour,</li>
+    <li>constante additive.</li>
+    </ul>
+- en: |
+    Actually, we reorder the terms to have a single additive constant, which gives the following terms:
+
+    <ul>
+    <li>year × 365,</li>
+    <li>frbis(year),</li>
+    <li>month × 30,</li>
+    <li>day,</li>
+    <li>additive constant.</li>
+    </ul>
+- code: |
+    ∇ R ← fr2rd DATE
+    R ← 654019 + (frbis year DATE) + DATE +.× 365 30 1
+    ∇
+- section: frbis
+  fr: Nombre d'années bissextiles avant l'année N
+  en: Number of leap years before year N
+  level: 3
+  calendar-french.apl: 1
+- fr: |
+    Cette fonction donne le nombre d'années bissextiles
+    qui ont eu lieu avant l'année courante. Elle permet
+    d'affiner le calcul de la date, par rapport à l'estimation
+    obtenue en prenant des années à 365&nbsp;jours.
+
+    La règle pour les années bissextiles était une règle astronomique
+    jusqu'en l'an XX, le premier Vendémiaire devant coïncider avec
+    l'équinoxe d'automne. Ensuite, la réforme de Gilbert Romme
+    aurait fait appliquer une règle arithmétique analogue à 
+    celle du calendrier grégorien.
+
+    La règle de Romme indique qu'une année est bissextile si elle est divisible par 4, sauf
+    si elle est divisible par 100, mais elle l'est quand même si
+    elle est divisible par 400, sauf si elle est divisible par 4000.
+- en: |
+    This subroutine gives the number of leap years preceding
+    the current year. It allows refining
+    the date computation, initialised with a computation using only
+    365-day years.
+
+    Until year XX, the leap year rule is an astronomical rule,
+    considering the 1st Vendémiaire should happen on the 
+    fall equinox. Then from year XX on, there would have
+    been an arithmetical rule, similar to the Gregorian Calendar
+    rule, introduced by Gilbert Romme's reform.
+
+    The Romme rule states that a year is a leap year if it is a multiple
+    of 4, except if it is a multiple of 100, but is nevertheless leap if
+    it is a multiple of 400, except if it is a multiple of 4000.
+- fr: |
+    Voici la comparaison des deux règles pour le début de l'ère
+    républicaine. Les deux colonnes «&nbsp;arithmétique&nbsp;»
+    simulent l'hypothèse où la règle arithmétique aurait été
+    en vigueur dès le début. Les deux colonnnes «&nbsp;astronomique&nbsp;»
+    présentent le cas réel&nbsp;: règle astronomique au début
+    et règle arithmétique ensuite. Les colonnes «&nbsp;Bis&nbsp;?&nbsp;»
+    indiquent par un «&nbsp;X&nbsp;» si l'année est bissextile
+    en fonction de la règle utilisée. Les colonnes «&nbsp;frbis&nbsp;»
+    indiquent le résultat du calcul de la fonction.
+- en: |
+    See below the comparison between both rules for the beginning
+    of the Republican Era. The two "arithmetic" columns simulate
+    the hypothesis of applying the arithmetic rule from the beginning
+    of the era. The "Astronomical" columns show the actual case, 
+    with the astronomical rule at first and the arithmetic rule
+    after. The columns "Leap?" indicates leap years with an "X".
+    The columns "frbis" show the result of the computation.
+- fr: |
+    <table border='1'>
+    <tr align='center'><td>     </td><td colspan='2'>Arithmétique</td><td colspan='2'>Astronomique</td></tr>
+    <tr align='center'><td>Année</td><td>Bis ?</td><td>frbis </td><td>Bis ?</td><td>frbis </td></tr>
+- en: |
+    <table border='1'>
+    <tr align='center'><td>     </td><td colspan='2'> Arithmetic </td><td colspan='2'>Astronomical</td></tr>
+    <tr align='center'><td>Year </td><td>Leap?</td><td>frbis </td><td>Leap?</td><td>frbis </td></tr>
+
+- 
+  'en,fr': |
+    <tr align='center'><td>  1  </td><td>&nbsp;</td><td>  0   </td><td>&nbsp;</td><td>  0   </td></tr>
+    <tr align='center'><td>  2  </td><td>&nbsp;</td><td>  0   </td><td>&nbsp;</td><td>  0   </td></tr>
+    <tr align='center'><td>  3  </td><td>&nbsp;</td><td>  0   </td><td>  x   </td><td>  0   </td></tr>
+    <tr align='center'><td>  4  </td><td>  x   </td><td>  0   </td><td>&nbsp;</td><td>  1   </td></tr>
+    <tr align='center'><td>  5  </td><td>&nbsp;</td><td>  1   </td><td>&nbsp;</td><td>  1   </td></tr>
+    <tr align='center'><td>  6  </td><td>&nbsp;</td><td>  1   </td><td>&nbsp;</td><td>  1   </td></tr>
+    <tr align='center'><td>  7  </td><td>&nbsp;</td><td>  1   </td><td>  x   </td><td>  1   </td></tr>
+    <tr align='center'><td>  8  </td><td>  x   </td><td>  1   </td><td>&nbsp;</td><td>  2   </td></tr>
+    <tr align='center'><td>  9  </td><td>&nbsp;</td><td>  2   </td><td>&nbsp;</td><td>  2   </td></tr>
+    <tr align='center'><td> 10  </td><td>&nbsp;</td><td>  2   </td><td>&nbsp;</td><td>  2   </td></tr>
+    <tr align='center'><td> 11  </td><td>&nbsp;</td><td>  2   </td><td>  x   </td><td>  2   </td></tr>
+    <tr align='center'><td> 12  </td><td>  x   </td><td>  2   </td><td>&nbsp;</td><td>  3   </td></tr>
+    <tr align='center'><td> 13  </td><td>&nbsp;</td><td>  3   </td><td>&nbsp;</td><td>  3   </td></tr>
+    <tr align='center'><td> 14  </td><td>&nbsp;</td><td>  3   </td><td>&nbsp;</td><td>  3   </td></tr>
+    <tr align='center'><td> 15  </td><td>&nbsp;</td><td>  3   </td><td>  x   </td><td>  3   </td></tr>
+    <tr align='center'><td> 16  </td><td>  x   </td><td>  3   </td><td>&nbsp;</td><td>  4   </td></tr>
+    <tr align='center'><td> 17  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+    <tr align='center'><td> 18  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+    <tr align='center'><td> 19  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+    <tr align='center'><td> 20  </td><td>  x   </td><td>  4   </td><td>  x   </td><td>  4   </td></tr>
+    <tr align='center'><td> 21  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+    <tr align='center'><td> 22  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+    <tr align='center'><td> 23  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+    <tr align='center'><td> 24  </td><td>  x   </td><td>  5   </td><td>  x   </td><td>  5   </td></tr>
+    <tr align='center'><td> 25  </td><td>&nbsp;</td><td>  6   </td><td>&nbsp;</td><td>  6   </td></tr>
+    </table>
+
+- fr: |
+    En fait, les deux règles n'engendrent une différence que pour
+    les années IV, VIII, XII et XVI. Donc le sous-programme effectue
+    le calcul avec la règle arithmétique dès l'an I, puis rectifie le résultat
+    si l'on a l'une de ces quatre années. N'oubliez pas que le sous-programme
+    commence par soustraire 1 à l'année, c'est pour cela qu'il teste
+    les valeurs 3, 7, 11 et 15.
+- en: |
+    Actually, the two rules differ only for years IV, VIII, XII
+    and XVI. So the subroutine applies the arithmetical rule
+    starting from year I
+    and then checks the year, tweaking the result is the year
+    is one of the four exceptions. Remember that the subroutine begins
+    with subtracting 1 from the year, therefore the values to 
+    check are 3, 7, 11 and 15.
+- code: |
+    ∇ R ← frbis YEAR
+    YEAR ← YEAR - 1
+    R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
+    R ← R + YEAR ∈ 3 7 11 15
     ∇
