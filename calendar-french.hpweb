@@ -2,7 +2,7 @@ fr: Calendrier Républicain
 en: French Revolutionary Calendar
 calendar-french.apl-1: apl
 ---
-- section: LICENSE
+- section: license
   calendar-french.apl-1: 1
 - fr: |
     La partie texte de ce dépôt est distribuée sous la licence
@@ -399,8 +399,8 @@ calendar-french.apl-1: apl
     R ← 654019 + (@frbis@ @year@ DATE) + DATE +.× 365 30 1
     ∇
 - section: frbis
-  fr: Nombre d'années bissextiles avant l'année N
-  en: Number of leap years before year N
+  fr: Nombre d'années bissextiles avant l'année N (calendrier républicain)
+  en: Number of leap years before year N (French Revolutionary calendar)
   level: 3
   calendar-french.apl-1: 1
 - fr: |
@@ -523,11 +523,21 @@ calendar-french.apl-1: apl
     contenant les données pour tester les fonctions de conversion.
     Chaque ligne contient la date grégorienne, au format AAAA MM JJ, 
     la date républicaine au format AAAA MM JJ et la valeur <i lang='la'>Rata Die</i>.
+
+    Les valeurs adoptées sont les valeurs utilisées dans les tests de
+    <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
+    Le programme qui les formatte avec la syntaxe APL est disponible sur
+    <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
 - en: |
     This function gives an array of <var>n</var> lines and 7 columns, holding
     the data to test the conversion functions.
     Each line contains the Gregorian date in YYYY MM DD format, then the
     French Revolutionary date in YYYY MM DD format and lastly the <i lang='la'>Rata Die</i> value.
+
+    The values used in these built-in tests come from the Perl module
+    <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
+    The program which turns these datese into an APL code chunk is available on
+    <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
 - code: |
     ∇ R ← testdata; V; L
     ⍝ include here the contents of testapl
@@ -540,6 +550,6 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testfr2rd
     'Erreurs:'
-    +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
+    +/ @testdata@[;7] ≠ @fr2rd@ @testdata@[;4 5 6]
     ∇
 
