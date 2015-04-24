@@ -1,9 +1,9 @@
 fr: Calendrier Républicain
 en: French Revolutionary Calendar
-calendar-french.apl: apl
+calendar-french.apl-1: apl
 ---
 - section: LICENSE
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
 - fr: |
     La partie texte de ce dépôt est distribuée sous la licence
     Creative Commons avec attribution et partage dans les mêmes conditions
@@ -307,21 +307,21 @@ calendar-french.apl: apl
     <tt>DATEARRAY[;;1]</tt> and <tt>DATEARRAY[;;3]</tt>.
     There are several ways to use the same functions for all. The simplest way is as follows:
 - section: year
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
   level: 4
 - code: |
     ∇ R ← year D
     R ← D +.× 1 0 0
     ∇
 - section: month
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
   level: 4
 - code: |
     ∇ R ← month D
     R ← D +.× 0 1 0
     ∇
 - section: day
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
   level: 4
 - code: |
     ∇ R ← day D
@@ -349,7 +349,7 @@ calendar-french.apl: apl
 - section: fr2rd
   fr: Conversion du calendrier républicain vers <i lang='la'>Rata Die</i>
   en: Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i>
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
   level: 3
 - fr: |
     Commençons par calculer le <i lang='la'>Rata Die</i> d'une date du calendrier républicain.
@@ -402,7 +402,7 @@ calendar-french.apl: apl
   fr: Nombre d'années bissextiles avant l'année N
   en: Number of leap years before year N
   level: 3
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
 - fr: |
     Cette fonction donne le nombre d'années bissextiles
     qui ont eu lieu avant l'année courante. Elle permet
@@ -517,7 +517,7 @@ calendar-french.apl: apl
   level: 3
   fr: Données pour les tests
   en: Test Data
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
 - fr: |
     Cette fonction renvoie un tableau de <var>n</var> lignes et 7 colonnes,
     contenant les données pour tester les fonctions de conversion.
@@ -536,7 +536,7 @@ calendar-french.apl: apl
     ∇
 - section: testfr2rd
   level: 3
-  calendar-french.apl: 1
+  calendar-french.apl-1: 1
 - code: |
     ∇ testfr2rd
     'Erreurs:'
