@@ -510,6 +510,44 @@ calendar-french.apl-1: apl
     R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
     R ← R + YEAR ∈ 3 7 11 15
     ∇
+- section: gr2rd
+  fr: Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i>
+  en: Converting from the Gregorian calendar to <i lang='la'>Rata Die</i>
+  calendar-french.apl-1: 7
+  level: 3
+- fr: |
+    Malgré les critères pour les années bissextiles, la conversion du calendrier
+    républicain vers le <i lang='la'>Rata Die</i> est simple. En effet, la période
+    bouche-trou (jours complémentaires) est à la fin de l'année donc sa longueur variable
+    et plus faible que les mois normaux n'ont pas d'influence sur les calculs.
+    En revanche, dans le calendrier grégorien, le mois bouche-trou, février, apparaît
+    au début de l'année et complique le calcul pour les mois suivants.
+    De plus, la longueur des autres mois est variable&nbsp;: 30 ou 31 jours.
+- en: |
+    Although the leap year criteria for the French Revolutionary calendar are a bit
+    complicated, converting from this calendar to <i lang='la'>Rata Die</i>
+    is simple. The filler period (additional days) is at the end of the year,
+    so its shorter and variable duration has no impact on the computation.
+    On the other hand, in the Gregorian calendar, the filler period is Feburary,
+    near the beginning of the year, so its influence spans over the main part of
+    the year. In addition, the duration of the other months is variable: 30 or 31 days.
+- fr: |
+    C'est pourquoi nous introduisons un nouveau calendrier, le «&nbsp;calendrier grégorien
+    décalé&nbsp;». Dans ce calendrier, les mois de janvier et février sont transférés
+    à la fin de l'année précédente et l'année commence au 1<sup>er</sup> mars.
+    De plus, pour les raisons exposées ci-dessous, les mois sont numérotés de 4 (mars)
+    à 15 (février), pour la raison exposée ci-dessous.
+
+    Donc le 28 février 2015 devient <tt>2014&nbsp;15&nbsp;28</tt> et le premier mars 2015
+    devient <tt>2015&nbsp;4&nbsp;1</tt>.
+- en :|
+    This is why we use yet another calendar, the "shifted Gregorian calendar".
+    In this calendar, the January and February months are assigned to the previous year
+    so the year will begin on the First of March. In addition, for reasons explained
+    below, the months are numbered from 4 (March) to 15 (February).
+
+    So, 28th February 2015 becomes <tt>2014&nbsp;15&nbsp;28</tt> and 1st March 2015
+    becomes <tt>2015&nbsp;4&nbsp;1</tt>.
 - section: 0
   fr: Tests internes
   en: Built-in Tests
@@ -517,7 +555,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Données pour les tests
   en: Test Data
-  calendar-french.apl-1: 7
+  calendar-french.apl-1: 20
 - fr: |
     Cette fonction renvoie un tableau de <var>n</var> lignes et 7 colonnes,
     contenant les données pour tester les fonctions de conversion.
