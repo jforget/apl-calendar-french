@@ -18,7 +18,7 @@ calendar-french.apl-1: apl
 - fr: |
     Ainsi que le requiert la licence GPL, tout fichier de code
     doit commencer par un commentaire décrivant de façon sommaire
-    le logiciel et résumant la GPL. Le résumé en français :
+    le logiciel et résumant la GPL. La description sommaire en français&nbsp;:
 
     Les fonctions de ce script permettent de faire des conversions
     du calendrier grégorien vers le calendrier républicain et vice-versa.
@@ -75,8 +75,8 @@ calendar-french.apl-1: apl
 
     <dl>
     <dt> Le calendrier républicain</dt>
-    <dd> Le calendrier républicain
-    a été en vigueur de 1792 à 1805, mais les programmes permettent
+    <dd> Le calendrier républicain a été en vigueur en France
+    de 1792 à 1805, mais les fonctions de ce script permettent
     d'utiliser des dates jusqu'à aujourd'hui et au-delà.
     Les dates sont représentées par un vecteur de trois nombres au format AAAA MM JJ.
     Il y a douze mois de 30 jours chacun, plus 5 ou 6&nbsp;jours
@@ -113,7 +113,7 @@ calendar-french.apl-1: apl
     <dl>
     <dt>The French Revolutionary calendar</dt>
     <dd> This calendar was in effect
-    in France only and from 1792 to 1805 only, but the programs allow you to
+    only in France and only from 1792 to 1805, but the programs allow you to
     use dates past this limit, until today and beyond. The dates are
     entered as vectors of 3 integer numbers YYYY MM DD. This calendar contains
     12 months of 30 days each, plus 5 or 6 additional days. For convenience,
@@ -156,7 +156,7 @@ calendar-french.apl-1: apl
 - fr: |
     et vous vous retrouvez alors dans la boucle REPL (lecture,
     évaluation, impression et boucle) d'APL. Vous pouvez alors
-    demander la conversion du 13 Vendémiaire IV ainsi :
+    demander la conversion du 13 Vendémiaire IV ainsi&nbsp;:
 - en: |
     and you are now in the REPL loop of APL. You can
     for example ask to convert 13 Vendémiaire IV in this way:
@@ -167,7 +167,7 @@ calendar-french.apl-1: apl
 - fr: |
     ce qui veut dire que le 13 Vendémiaire IV correspond au 
     5 octobre 1795. Dans l'autre sens, la conversion du 
-    27 juillet 1794 se fait ainsi :
+    27 juillet 1794 se fait ainsi&nbsp;:
 - en: |
     which means that 13 Vendémiaire IV is equivalent to
     5th October 1795. In the other direction, converting
@@ -178,10 +178,10 @@ calendar-french.apl-1: apl
     2 11 9
 - fr: |
     ce qui signifie 9 Thermidor II. Pour avoir la date
-    sous forme plus agréable, utilisez <tt>PRFR</tt>&nbsp;:
+    sous forme plus agréable, utilisez <tt>prtfr</tt>&nbsp;:
 - en: |
     which means 9 Thermidor II. To display the date in
-    a more convenient way, use  <tt>PRFR</tt> in addition:
+    a more convenient way, use  <tt>prtfr</tt> in addition:
 - code: |
     .
          prtfr 2 11 9
@@ -213,7 +213,7 @@ calendar-french.apl-1: apl
     organiser les dates en un vecteur de dates, qui sera en réalité
     un tableau de nombres. Ainsi, un vecteur de 5 dates sera un tableau de dimension <tt>5 3</tt>.
 
-    Ainsi, le vecteur de dates&nbsp;:
+    Par exemple, le vecteur de dates&nbsp;:
 - en: |
     A date is implemented as a vector of 3 numbers. Several dates can
     be gathered into a date-vector, which will actually be an array
@@ -278,7 +278,7 @@ calendar-french.apl-1: apl
     passera. Peut-être que dans un deuxième temps j'écrirai un nouveau script utilisant
     les nouveautés d'APL sur les objets inclus.
 - en: |
-    Remark: I knowx that APL allow to embed objects into others, using the
+    Remark: I know that APL allow to embed objects into others, using the
     <tt>⊂</tt> and <tt>⊃</tt> operators. But when I learnt APL more than thirty
     years ago, these operators did not exist. So, the first step will be writing
     a script with pure vectors without embedded objects. Maybe there will be a second
@@ -293,9 +293,9 @@ calendar-french.apl-1: apl
 - fr: |
     Pour extraire l'année d'une date <tt>DATE</tt>, il suffit d'écrire <tt>DATE[1]</tt>.
     Pour en extraire le jour, il suffit d'écrire <tt>DATE[3]</tt>.
-    Mais cela ne fonctionne pas avec les vecteurs de date pour lesquels il faut
+    Mais cela ne fonctionne pas avec les vecteurs de dates pour lesquels il faut
     écrire <tt>DATEVEC[;1]</tt> et <tt>DATEVEC[;3]</tt>,
-    ni avec les tableaux de date pour lesquel il faut écrire
+    ni avec les tableaux de dates pour lesquel il faut écrire
     <tt>DATEARRAY[;;1]</tt> et <tt>DATEARRAY[;;3]</tt>.
     Il y a plusieurs façons de s'en tirer. La plus simple consiste à écrire&nbsp;:
 - en: |
@@ -442,15 +442,17 @@ calendar-french.apl-1: apl
     et règle arithmétique ensuite. Les colonnes «&nbsp;Bis&nbsp;?&nbsp;»
     indiquent par un «&nbsp;X&nbsp;» si l'année est bissextile
     en fonction de la règle utilisée. Les colonnes «&nbsp;frbis&nbsp;»
-    indiquent le résultat du calcul de la fonction.
+    indiquent le nombre d'années bissextiles avant l'année considérée,
+    ce qui correspond au résultat de la fonction <tt>frbis</tt>.
 - en: |
     See below the comparison between both rules for the beginning
-    of the Republican Era. The two "arithmetic" columns simulate
+    of the Republican Era. The two "Arithmetic" columns simulate
     the hypothesis of applying the arithmetic rule from the beginning
     of the era. The "Astronomical" columns show the actual case, 
     with the astronomical rule at first and the arithmetic rule
     after. The columns "Leap?" indicates leap years with an "X".
-    The columns "frbis" show the result of the computation.
+    The columns "frbis" show the number of leap years before the current
+    year, which should be the result of the <tt>frbis</tt> function.
 - fr: |
     <table border='1'>
     <tr align='center'><td>     </td><td colspan='2'>Arithmétique</td><td colspan='2'>Astronomique</td></tr>
@@ -519,7 +521,7 @@ calendar-french.apl-1: apl
     Malgré les critères pour les années bissextiles, la conversion du calendrier
     républicain vers le <i lang='la'>Rata Die</i> est simple. En effet, la période
     bouche-trou (jours complémentaires) est à la fin de l'année donc sa longueur variable
-    et plus faible que les mois normaux n'ont pas d'influence sur les calculs.
+    et plus faible que les mois normaux n'a pas d'influence sur les calculs.
     En revanche, dans le calendrier grégorien, le mois bouche-trou, février, apparaît
     au début de l'année et complique le calcul pour les mois suivants.
     De plus, la longueur des autres mois est variable&nbsp;: 30 ou 31 jours.
@@ -538,9 +540,9 @@ calendar-french.apl-1: apl
     De plus, pour les raisons exposées ci-dessous, les mois sont numérotés de 4 (mars)
     à 15 (février), pour la raison exposée ci-dessous.
 
-    Donc le 28 février 2015 devient <tt>2014&nbsp;15&nbsp;28</tt> et le premier mars 2015
+    Par exemple le 28 février 2015 devient <tt>2014&nbsp;15&nbsp;28</tt> et le premier mars 2015
     devient <tt>2015&nbsp;4&nbsp;1</tt>.
-- en :|
+- en: |
     This is why we use yet another calendar, the "shifted Gregorian calendar".
     In this calendar, the January and February months are assigned to the previous year
     so the year will begin on the First of March. In addition, for reasons explained
@@ -561,21 +563,41 @@ calendar-french.apl-1: apl
     contenant les données pour tester les fonctions de conversion.
     Chaque ligne contient la date grégorienne, au format AAAA MM JJ, 
     la date républicaine au format AAAA MM JJ et la valeur <i lang='la'>Rata Die</i>.
-
-    Les valeurs adoptées sont les valeurs utilisées dans les tests de
-    <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
-    Le programme qui les formatte avec la syntaxe APL est disponible sur
-    <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
+    Exemple&nbsp;:
 - en: |
     This function gives an array of <var>n</var> lines and 7 columns, holding
     the data to test the conversion functions.
     Each line contains the Gregorian date in YYYY MM DD format, then the
     French Revolutionary date in YYYY MM DD format and lastly the <i lang='la'>Rata Die</i> value.
+    For example
+-
+  'fr,en': |
+    <pre>
+          2 7↑testdata
+    1792  9 22 1  1  1 654415
+    1793 10 23 2  2  2 654811
+    <pre>
+- fr: |
+    Les premières lignes montrent que le 22 septembre 1792 correspond au 1<sup>er</sup> Vendémiaire I
+    avec une valeur <i lang='la'>Rata Die</i> 654415. De même, le 23 octobre 1973 correspond au
+    2 Brumaire II, <i lang='la'>Rata Die</i> 654811.
+
+    Les valeurs adoptées sont les valeurs utilisées dans les tests de
+    <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
+    Le programme qui les formatte avec la syntaxe APL est disponible sur
+    <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
+    Et un utilitaire est fourni dans le présent projet pour insérer les valeurs dans le script final.
+- en: |
+    The first lines of the test data show that the 22nd September 1792 converts to 1st Vendémiaire I,
+    with a <i lang='la'>Rata Die</i> value of 654415. Likewise, the 23rd October 1793 converts to 
+    2 Brumaire II, that is, <i lang='la'>Rata Die</i> 654811.
 
     The values used in these built-in tests come from the Perl module
     <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
     The program which turns these datese into an APL code chunk is available on
     <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
+    And a utility script (in Perl) in this project inserts the contents of <tt>testapl</tt>
+    in the final script.
 - code: |
     ∇ R ← testdata; V; L
     ⍝ include here the contents of testapl
