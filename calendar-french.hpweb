@@ -586,7 +586,62 @@ calendar-french.apl-1: apl
     DATE←(DIM ⍴0 1 0) + DATE + (2≥@month@ DATE) ∘.× ¯1 12 0
     R ← ¯428 + (-/ ⌊ (@year@ DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
     ∇
-
+- section: rd2fr
+  fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain 
+  en: Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar
+  calendar-french.apl-1: 8
+  level: 3
+- fr: |
+    Principe&nbsp;: en partant de la valeur <i lang='la'>Rata Die</i>, la fonction évalue
+    une fourchette pour l'année, qui peut donc s'étaler de <tt>YL</tt> à <tt>YH</tt>
+    Supposons que l'on parte de la valeur <i lang='la'>Rata Die</i> 672800,
+    avec une fourchette de 50 à 53.
+    Puis le sous-programme construit la liste <tt>YC</tt> des années de la fourchette, soit dans
+    l'exemple un vecteur <tt>YC</tt> valant <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
+    Puis le sous-programme transforme ce vecteur d'années en vecteurs de dates <tt>DC</tt>,
+    correspondant au zéro Vendémiaire de chaque année, ce qui donnerait&nbsp;:
+- en: |
+    Here is how it is done. Starting from the <i lang='la'>Rata Die</i> value, the function
+    computes a <tt>YL</tt>-to-<tt>YH</tt> interval of candidate years.
+    Suppose we start with <i lang='la'>Rata Die</i> value 672800 and that the
+    candidate years are 50 to 53 inclusive.
+    The program computes the full list of candidate years <tt>YC</tt>, that is,
+    in this example, the vector <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
+    Then the program turns this year vector into a date vector <tt>DC</tt>, consisting of
+    the zeroth Vendémiaire for each year.
+-
+  'fr,en': |
+    <pre>
+        DC
+    50 1 0
+    51 1 0
+    52 1 0
+    53 1 0  
+    </pre>
+- fr: |
+    La fonction convertit cela en <i lang='la'>Rata Die</i>
+- en: |
+    The function computes the <i lang='la'>Rata Die</i> of these dates
+-
+  'fr,en': |
+    <pre>
+        NC
+    672311 672676 673041 673407
+    </pre>
+- fr: |
+    et compare avec les valeurs initiales, ce qui permet d'avoir l'année de la date
+    en prenant l'année la plus élevée pour laquelle la valeur dans <tt>NC</tt> est inférieure
+    à la valeur du paramètre d'entrée <tt>N</tt>.
+    Dans l'exemple ci-dessus, on en déduit que l'année est 51. En faisant la différence
+    des deux valeurs <i lang='la'>Rata Die</i>, on obtient 124, ce qui est facilement
+    converti en 4 Pluviôse (<tt>5 4</tt>) avec de simples divisions par 30.
+- en: |
+    and compares with the initial value. The proper year is the highest year for which
+    the zeroth Vendémiaire has a <i lang='la'>Rata Die</i> value less than the value
+    given as a parameter. In the example above, this would give year 51. By subtracting
+    the <i lang='la'>Rata Die</i> of the zeroth Vendémiaire from the parameter, we get
+    124, which can easily yield "4 Pluviôse" (<tt>5 4</tt>) with simple divisions by 30.
+    
 
 - section: 0
   fr: Tests internes
