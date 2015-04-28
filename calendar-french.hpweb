@@ -675,6 +675,21 @@ calendar-french.apl-1: apl
     range for the candidate years and another one yields a 4-value range. In this case,
     the shorter range is extended to 4 values, so the <tt>YC</tt> variable will be
     properly rectangular.
+- code: |
+    ∇ R ← rd2fr N; N1
+    N1 ← N - 654414
+    YH ← ⌈ N1 ÷ 365.24
+    YL ← ⌈ N1 ÷ 365.34
+    YC ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+    DC ← @zerojanvnd@ YC
+    NC ← @fr2rd@ DC
+    CM ← NC < ⍉(⍴⍉NC) ⍴ N
+    Y ← ⌈/YC×CM
+    D ← N - ⌈/NC×CM
+    M ← ⌈D÷30
+    D ← D - 30 × M - 1
+    R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+    ∇
 
 - section: 0
   fr: Tests internes
@@ -735,8 +750,7 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 21
 - code: |
     ∇ testfr2rd
-    'Erreurs:'
-    +/ @testdata@[;7] ≠ @fr2rd@ @testdata@[;4 5 6]
+    'Erreurs: ', ⍕ +/ @testdata@[;7] ≠ @fr2rd@ @testdata@[;4 5 6]
     ∇
 
 - section: testgr2rd
@@ -744,7 +758,13 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 22
 - code: |
     ∇ testgr2rd
-    'Erreurs:' 
-    +/ @testdata@[;7] ≠ @gr2rd@ @testdata@[;1 2 3]
+    'Erreurs: ', ⍕ +/ @testdata@[;7] ≠ @gr2rd@ @testdata@[;1 2 3]
+    ∇
+- section: testrd2fr
+  level: 4
+  calendar-french.apl-1: 23
+- code: |
+    ∇ testrd2fr
+    'Erreurs: ', ⍕ +/∨/ @testdata@[;4 5 6] ≠ @rd2fr@ @testdata@[;7]
     ∇
 
