@@ -327,9 +327,10 @@ calendar-french.apl-1: apl
     ∇ R ← day D
     R ← D +.× 0 0 1
     ∇
-- section: 0
+- section: zerojanvnd
   fr: Notion de «&nbsp;jour zéro&nbsp;»
   en: Concept of "zeroth day"
+  calendar-french.apl-1: 5
   level: 3
 - fr: |
     Pour comprendre comment les algorithmes de conversion fonctionnent, il est
@@ -346,10 +347,20 @@ calendar-french.apl-1: apl
     For example, 0th March 2015 occurs before 1st March 2015 and after 28th February 2015.
     The fact that 0th March 2015 and 28th February 2015 share the same <i lang='la'>Rata Die</i>
     is irrelevant, 0th March is <em>after</em> 28th February.
+- fr: |
+    Voici une fonction qui permet de construire le 0 janvier d'une année ou le 0 Vendémiaire
+    d'une année&nbsp;:
+- en: |
+    Here is a function which builds a 0th January or a 0th Vendémiaire for a given year:
+- code: |
+    ∇ R ← zerojanvnd Y
+    R ← Y ∘.× 1 0 0
+    R ← R + (⍴R) ⍴ 0 1 0
+    ∇
 - section: fr2rd
   fr: Conversion du calendrier républicain vers <i lang='la'>Rata Die</i>
   en: Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i>
-  calendar-french.apl-1: 5
+  calendar-french.apl-1: 6
   level: 3
 - fr: |
     Commençons par calculer le <i lang='la'>Rata Die</i> d'une date du calendrier républicain.
@@ -641,7 +652,29 @@ calendar-french.apl-1: apl
     given as a parameter. In the example above, this would give year 51. By subtracting
     the <i lang='la'>Rata Die</i> of the zeroth Vendémiaire from the parameter, we get
     124, which can easily yield "4 Pluviôse" (<tt>5 4</tt>) with simple divisions by 30.
-    
+- fr: |
+    Remarque&nbsp;: dans l'exemple ci-dessus, la plage d'années avait 4&nbsp;valeurs.
+    Dans la réalité, la plage n'aura qu'une seule valeur, parfois deux au voisinage
+    des changements d'année. Le choix de 4&nbsp;valeurs avait un rôle pédagogique.
+- en: |
+    Remark: in the example above, the interval of candidate years has 4 values. Actually,
+    in most cases there will be only one candidate year and there will be two around
+    the years' ends. Using 4 values instead of just 1 or 2 has a pedagogical purpose.
+- fr: |
+    Autre remarque&nbsp;: lorsque le paramètre en entrée n'est pas un scalaire, mais un
+    vecteur, un tableau ou une structure d'ordre plus élevé, les variables intermédiaires
+    ont également un ordre plus élevé. Le seul point délicat est de savoir ce qui
+    se passe lorsque l'une des valeurs <i lang='la'>Rata Die</i> donne une plage
+    de 3&nbsp;valeurs et l'autre une plage de 4&nbsp;valeurs (par exemple). Dans ce cas,
+    la plage de valeurs du premier <i lang='la'>Rata Die</i> est allongée à 4&nbsp;valeurs
+    pour conserver la rectangularité de la variable <tt>YC</tt>.
+- en: |
+    Other remark: when the input parameter is not a scalar, but a vector, array or higher
+    ranked structure, the various variables also have a higher rank. The only question
+    is what happens if a first <i lang='la'>Rata Die</i> value yields a 3-value 
+    range for the candidate years and another one yields a 4-value range. In this case,
+    the shorter range is extended to 4 values, so the <tt>YC</tt> variable will be
+    properly rectangular.
 
 - section: 0
   fr: Tests internes
