@@ -1,0 +1,645 @@
+<html>
+<head>
+<meta http-equiv='content-type' content='Text/html; charset=utf-8' />
+<title>French Revolutionary Calendar</title>
+<style>
+<!--
+.insert    { background-color: skyblue}
+.call      { background-color: yellow}
+.condcode  { background-color: lightgrey }
+.condition { font-size-adjust: .5 }
+-->
+</style>
+</head>
+<body>
+<a href='#French Revolutionary Calendar'>French Revolutionary Calendar</a>
+<br /><a href='#license'><tt>license</tt></a>
+<br /><a href='#Conversion between calendars'>Conversion between calendars</a>
+<br /><a href='#Instructions for Use'>Instructions for Use</a>
+<br /><a href='#Higher Orders'>Higher Orders</a>
+<br /><a href='#Implementation'>Implementation</a>
+<br /><a href='#Date Elements'>Date Elements</a>
+<br /><a href='#year'><tt>year</tt></a>
+<br /><a href='#month'><tt>month</tt></a>
+<br /><a href='#day'><tt>day</tt></a>
+<br /><a href='#zerojanvnd'><tt>zerojanvnd</tt> - Concept of "zeroth day"</a>
+<br /><a href='#fr2rd'><tt>fr2rd</tt> - Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i></a>
+<br /><a href='#frbis'><tt>frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a>
+<br /><a href='#gr2rd'><tt>gr2rd</tt> - Converting from the Gregorian calendar to <i lang='la'>Rata Die</i></a>
+<br /><a href='#rd2fr'><tt>rd2fr</tt> - Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar</a>
+<br /><a href='#Built-in Tests'>Built-in Tests</a>
+<br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
+<br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
+<br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
+<br /><a href='#testrd2fr'><tt>testrd2fr</tt></a>
+<hr /><h1><a name='French Revolutionary Calendar'>French Revolutionary Calendar</a></h1>
+<h2><a name='license'><tt>license</tt></a></h2>
+<p>
+The text part of this repository is licensed under the terms
+of Creative Commons, with attribution and share-alike (CC-BY-SA).
+The code part of this repository is licensed with the same terms
+as Perl, that is, GPL version 1.0 or later or the Artistic License.
+</p>
+
+<p>
+As required by the GPL, each file with code must start with a one-line
+description of the program and the summary of the GPL. Here it is.
+</p>
+
+<pre>
+∇ license
+'APL program to convert Gregorian dates'
+'to French Revolutionary dates and the other way'
+'Copyright (C) 2015 Jean Forget'
+''
+' This program is distributed under the same terms as Perl 5.16.3:'
+' GNU Public License version 1 or later and Perl Artistic License'
+''
+' You can find the text of the licenses in the F&lt;LICENSE&gt; file or at'
+' L&lt;http://www.perlfoundation.org/artistic_license_1_0&gt;'
+' and L&lt;http://www.gnu.org/licenses/gpl-1.0.html&gt;.'
+''
+' Here is the summary of GPL:'
+''
+' This program is free software; you can redistribute it and/or modify'
+' it under the terms of the GNU General Public License as published by'
+' the Free Software Foundation; either version 1, or (at your option)'
+' any later version.'
+''
+' This program is distributed in the hope that it will be useful,'
+' but WITHOUT ANY WARRANTY; without even the implied warranty of'
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the'
+' GNU General Public License for more details.'
+''
+' You should have received a copy of the GNU General Public License'
+' along with this program; if not, write to the Free Software Foundation,'
+' Inc., &lt;http://www.fsf.org/&gt;.'
+∇
+</pre>
+<p>
+As you can see, this summary is executable code included in the software.
+So, after you have logged into APL and initialised your workspace with
+my script, you can display this summary at any moment.
+</p>
+
+<h2><a name='Conversion between calendars'>Conversion between calendars</a></h2>
+<p>
+This group of functions applies to three different calendars.</p>
+
+<dl>
+<dt>The French Revolutionary calendar</dt>
+<dd> This calendar was in effect
+only in France and only from 1792 to 1805, but the programs allow you to
+use dates past this limit, until today and beyond. The dates are
+entered as vectors of 3 integer numbers YYYY MM DD. This calendar contains
+12 months of 30 days each, plus 5 or 6 additional days. For convenience,
+these additional days are grouped together in what is considered
+as an additional month, numbered 13.
+</dd>
+<dt> The proleptic Gregorian calendar</dt>
+<dd> This is the Gregorian
+calendar, but extending in the past farther than 1582. Not only the leap
+year rule is the same as the Gregorian rule, but also the beginning
+of the year is always on January 1st, although it was not always
+the case during the Middle Ages. The Gregorian dates
+are implemented as vectors of 3 numbers, in YYYY MM DD order.
+</dd>
+<dt>The <i lang='la'>Rata Die</i> calendar</dt>
+<dd> This calendar ignores
+completely the notion of year. It counts only the days since 
+January 1st, year 1, in the proleptic Gregorian calendar.
+Very convenient for computers, much less for humans.
+Actually, the script just uses the <i lang='la'>Rata Die</i> calendar 
+as a step between the two other calendars.
+You can still find some use with it, for example to compute how many
+days lie between two given dates.
+</dd>
+</dl>
+
+<h2><a name='Instructions for Use'>Instructions for Use</a></h2>
+<p>
+You initialise an pristine workspace with the conversion functions with:
+</p>
+
+<pre>
+apl -f calendar-french.apl
+</pre>
+<p>
+and you are now in the REPL loop of APL. You can
+for example ask to convert 13 Vendémiaire IV in this way:
+</p>
+
+<pre>
+     fr2gr 4 1 13
+1795 10 5
+</pre>
+<p>
+which means that 13 Vendémiaire IV is equivalent to
+5th October 1795. In the other direction, converting
+27th July 1794 is:
+</p>
+
+<pre>
+     gr2fr 1794 7 27
+2 11 9
+</pre>
+<p>
+which means 9 Thermidor II. To display the date in
+a more convenient way, use  <tt>prtfr</tt> in addition:
+</p>
+
+<pre>
+     prtfr 2 11 9
+Nonidi 9 Thermidor II, jour de la Mûre
+     prtfr gr2fr 1794 7 27
+Nonidi 9 Thermidor II, jour de la Mûre
+</pre>
+<p>
+If you want to compute the number of days between two
+dates, use the <i lang='la'>Rata Die</i> calendar. For example,
+if you want to know how many days elapsed from the 
+uncle's coup (18 Brumaire VIII) and the nephew's coup
+(2nd December 1851), just type:
+</p>
+
+<pre>
+     (gr2rd 1851 12 2) - fr2rd 8 2 18
+19015
+</pre>
+<h3><a name='Higher Orders'>Higher Orders</a></h3>
+<p>
+A date is implemented as a vector of 3 numbers. Several dates can
+be gathered into a date-vector, which will actually be an array
+of numbers. Thus, a 5-date vector will be an array with a <tt>5 3</tt> dimension.</p>
+
+<p>
+For example, the date vector:
+</p>
+
+<table border='1' cellpadding='2'><tr>
+<td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
+</tr></table>
+
+<p>
+will be implemented by:
+</p>
+
+<pre>
+     DATEVEC 
+1794  1 21
+1795 10  5
+1799 11  9
+1851 12  2
+     ⍴ DATEVEC 
+4 3
+</pre>
+<p>
+Likewise, a <tt>4 5</tt> array of dates will be entered as a <tt>4 5 3</tt>
+block of numbers, and a <tt>2 2 6</tt> block of dates will be entered
+as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>gr2fr</tt>
+and <tt>fr2gr</tt> functions can deal with these structures, except when
+using a rank nearly equal to the maximum allowed value. For example,
+GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
+functions are limited to rank 13.</p>
+
+<p>
+For example, converting the vector above is done with:
+</p>
+
+<pre>
+     gr2fr DATEVEC 
+ 2  5  2
+ 4  1 13
+ 8  2 18
+60  3 11
+</pre>
+<p>
+On the other hand, the <tt>prtfr</tt> function is not compatible with date vectors
+or date arrays. It works only with scalar dates.
+</p>
+
+<p>
+Remark: I know that APL allow to embed objects into others, using the
+<tt>⊂</tt> and <tt>⊃</tt> operators. But when I learnt APL more than thirty
+years ago, these operators did not exist. So, the first step will be writing
+a script with pure vectors without embedded objects. Maybe there will be a second
+step where I will write another script with a more modern APL and embedded objects.
+</p>
+
+<h2><a name='Implementation'>Implementation</a></h2>
+<h3><a name='Date Elements'>Date Elements</a></h3>
+<p>
+To extract the year from a date <tt>DATE</tt>, you juste have to write <tt>DATE[1]</tt>.
+To extract the day, just write <tt>DATE[3]</tt>.
+But this does not work with date vectors, for which you need to write
+<tt>DATEVEC[;1]</tt> and <tt>DATEVEC[;3]</tt>,
+which in turn does not work with date arrays, for which you write
+<tt>DATEARRAY[;;1]</tt> and <tt>DATEARRAY[;;3]</tt>.
+There are several ways to use the same functions for all. The simplest way is as follows:
+</p>
+
+<h4><a name='year'><tt>year</tt></a></h4>
+<pre>
+∇ R ← year D
+R ← D +.× 1 0 0
+∇
+</pre>
+<h4><a name='month'><tt>month</tt></a></h4>
+<pre>
+∇ R ← month D
+R ← D +.× 0 1 0
+∇
+</pre>
+<h4><a name='day'><tt>day</tt></a></h4>
+<pre>
+∇ R ← day D
+R ← D +.× 0 0 1
+∇
+</pre>
+<h3><a name='zerojanvnd'><tt>zerojanvnd</tt> - Concept of "zeroth day"</a></h3>
+<p>
+To help the description of the conversion algorithms, it is convenient to use
+the "zeroth day" of a given month. The zeroth day is a virtual day, before
+the first day of the month and after the last day of the previous month.
+For example, 0th March 2015 occurs before 1st March 2015 and after 28th February 2015.
+The fact that 0th March 2015 and 28th February 2015 share the same <i lang='la'>Rata Die</i>
+is irrelevant, 0th March is <em>after</em> 28th February.
+</p>
+
+<p>
+Here is a function which builds a 0th January or a 0th Vendémiaire for a given year:
+</p>
+
+<pre>
+∇ R ← zerojanvnd Y
+R ← Y ∘.× 1 0 0
+R ← R + (⍴R) ⍴ 0 1 0
+∇
+</pre>
+<h3><a name='fr2rd'><tt>fr2rd</tt> - Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i></a></h3>
+<p>
+Let us start by computing the <i lang='la'>Rata Die</i> for a given date in the French Revolutionary calendar.
+This number is the result of the addition of:
+<ul>
+<li>654414, which is the <i lang='la'>Rata Die</i> for zeroth Vendémiaire I,</li>
+<li>(year - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
+leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»,</li>
+<li>frbis(year), which gives the number of leap years before the target year,</li>
+<li>(month - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
+<li>day, to reach the target day.</li>
+</ul>
+</p>
+
+<p>
+Actually, we reorder the terms to have a single additive constant, which gives the following terms:</p>
+
+<ul>
+<li>year × 365,</li>
+<li>frbis(year),</li>
+<li>month × 30,</li>
+<li>day,</li>
+<li>additive constant.</li>
+</ul>
+
+<pre>
+∇ R ← fr2rd DATE
+R ← 654019 + (<a href='#frbis' class='call'>frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
+∇
+</pre>
+<h3><a name='frbis'><tt>frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a></h3>
+<p>
+This subroutine gives the number of leap years preceding
+the current year. It allows refining
+the date computation, initialised with a computation using only
+365-day years.</p>
+
+<p>
+Until year XX, the leap year rule is an astronomical rule,
+considering the 1st Vendémiaire should happen on the 
+fall equinox. Then from year XX on, there would have
+been an arithmetical rule, similar to the Gregorian Calendar
+rule, introduced by Gilbert Romme's reform.</p>
+
+<p>
+The Romme rule states that a year is a leap year if it is a multiple
+of 4, except if it is a multiple of 100, but is nevertheless leap if
+it is a multiple of 400, except if it is a multiple of 4000.
+</p>
+
+<p>
+See below the comparison between both rules for the beginning
+of the Republican Era. The two "Arithmetic" columns simulate
+the hypothesis of applying the arithmetic rule from the beginning
+of the era. The "Astronomical" columns show the actual case, 
+with the astronomical rule at first and the arithmetic rule
+after. The columns "Leap?" indicates leap years with an "X".
+The columns "frbis" show the number of leap years before the current
+year, which should be the result of the <tt>frbis</tt> function.
+</p>
+
+<table border='1'>
+<tr align='center'><td>     </td><td colspan='2'> Arithmetic </td><td colspan='2'>Astronomical</td></tr>
+<tr align='center'><td>Year </td><td>Leap?</td><td>frbis </td><td>Leap?</td><td>frbis </td></tr>
+
+<tr align='center'><td>  1  </td><td>&nbsp;</td><td>  0   </td><td>&nbsp;</td><td>  0   </td></tr>
+<tr align='center'><td>  2  </td><td>&nbsp;</td><td>  0   </td><td>&nbsp;</td><td>  0   </td></tr>
+<tr align='center'><td>  3  </td><td>&nbsp;</td><td>  0   </td><td>  x   </td><td>  0   </td></tr>
+<tr align='center'><td>  4  </td><td>  x   </td><td>  0   </td><td>&nbsp;</td><td>  1   </td></tr>
+<tr align='center'><td>  5  </td><td>&nbsp;</td><td>  1   </td><td>&nbsp;</td><td>  1   </td></tr>
+<tr align='center'><td>  6  </td><td>&nbsp;</td><td>  1   </td><td>&nbsp;</td><td>  1   </td></tr>
+<tr align='center'><td>  7  </td><td>&nbsp;</td><td>  1   </td><td>  x   </td><td>  1   </td></tr>
+<tr align='center'><td>  8  </td><td>  x   </td><td>  1   </td><td>&nbsp;</td><td>  2   </td></tr>
+<tr align='center'><td>  9  </td><td>&nbsp;</td><td>  2   </td><td>&nbsp;</td><td>  2   </td></tr>
+<tr align='center'><td> 10  </td><td>&nbsp;</td><td>  2   </td><td>&nbsp;</td><td>  2   </td></tr>
+<tr align='center'><td> 11  </td><td>&nbsp;</td><td>  2   </td><td>  x   </td><td>  2   </td></tr>
+<tr align='center'><td> 12  </td><td>  x   </td><td>  2   </td><td>&nbsp;</td><td>  3   </td></tr>
+<tr align='center'><td> 13  </td><td>&nbsp;</td><td>  3   </td><td>&nbsp;</td><td>  3   </td></tr>
+<tr align='center'><td> 14  </td><td>&nbsp;</td><td>  3   </td><td>&nbsp;</td><td>  3   </td></tr>
+<tr align='center'><td> 15  </td><td>&nbsp;</td><td>  3   </td><td>  x   </td><td>  3   </td></tr>
+<tr align='center'><td> 16  </td><td>  x   </td><td>  3   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 17  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 18  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 19  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 20  </td><td>  x   </td><td>  4   </td><td>  x   </td><td>  4   </td></tr>
+<tr align='center'><td> 21  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+<tr align='center'><td> 22  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+<tr align='center'><td> 23  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+<tr align='center'><td> 24  </td><td>  x   </td><td>  5   </td><td>  x   </td><td>  5   </td></tr>
+<tr align='center'><td> 25  </td><td>&nbsp;</td><td>  6   </td><td>&nbsp;</td><td>  6   </td></tr>
+</table>
+
+<p>
+Actually, the two rules differ only for years IV, VIII, XII
+and XVI. So the subroutine applies the arithmetical rule
+starting from year I
+and then checks the year, tweaking the result is the year
+is one of the four exceptions. Remember that the subroutine begins
+with subtracting 1 from the year, therefore the values to 
+check are 3, 7, 11 and 15.
+</p>
+
+<pre>
+∇ R ← frbis YEAR
+YEAR ← YEAR - 1
+R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
+R ← R + YEAR ∈ 3 7 11 15
+∇
+</pre>
+<h3><a name='gr2rd'><tt>gr2rd</tt> - Converting from the Gregorian calendar to <i lang='la'>Rata Die</i></a></h3>
+<p>
+Although the leap year criteria for the French Revolutionary calendar are a bit
+complicated, converting from this calendar to <i lang='la'>Rata Die</i>
+is simple. The filler period (additional days) is at the end of the year,
+so its shorter and variable duration has no impact on the computation.
+On the other hand, in the Gregorian calendar, the filler period is Feburary,
+near the beginning of the year, so its influence spans over the main part of
+the year. In addition, the duration of the other months is variable: 30 or 31 days.
+</p>
+
+<p>
+This is why we use yet another calendar, the "shifted Gregorian calendar".
+In this calendar, the January and February months are assigned to the previous year
+so the year will begin on the First of March. In addition, for reasons explained
+below, the months are numbered from 4 (March) to 15 (February).</p>
+
+<p>
+So, 28th February 2015 becomes <tt>2014&nbsp;15&nbsp;28</tt> and 1st March 2015
+becomes <tt>2015&nbsp;4&nbsp;1</tt>.
+</p>
+
+<p>
+In the table below, the left side show how to count the number of 31-day months
+before the current month and since the beginning of the shifted year.
+And the right side shows how to compute the number of days from 0th March to the
+zeroth day of the current month.
+</p>
+
+<table border='1'>
+<tr align='center'><th>M</th><th>nb31</th><th> M</th><th>0.6 × M</th><th>¯2 + ⌊ 0.6 × M</th><th>M</th><th> nb</th><th>30.6 × M</th><th>¯122 + ⌊ 30.6 × M</th></tr>
+<tr align='right'> <td>M</td><td>  0 </td><td> 4</td><td>  2.4  </td><td>      0       </td><td>M</td><td>  0</td><td>   122.4</td><td>        0        </td></tr>
+<tr align='right'> <td>A</td><td>  1 </td><td> 5</td><td>  3.0  </td><td>      1       </td><td>A</td><td> 31</td><td>   153.0</td><td>       31        </td></tr>
+<tr align='right'> <td>M</td><td>  1 </td><td> 6</td><td>  3.6  </td><td>      1       </td><td>M</td><td> 61</td><td>   183.6</td><td>       61        </td></tr>
+<tr align='right'> <td>J</td><td>  2 </td><td> 7</td><td>  4.2  </td><td>      2       </td><td>J</td><td> 92</td><td>   214.2</td><td>       92        </td></tr>
+<tr align='right'> <td>J</td><td>  2 </td><td> 8</td><td>  4.8  </td><td>      2       </td><td>J</td><td>122</td><td>   244.8</td><td>      122        </td></tr>
+<tr align='right'> <td>A</td><td>  3 </td><td> 9</td><td>  5.4  </td><td>      3       </td><td>A</td><td>153</td><td>   275.4</td><td>      153        </td></tr>
+<tr align='right'> <td>S</td><td>  4 </td><td>10</td><td>  6.0  </td><td>      4       </td><td>S</td><td>184</td><td>   306.0</td><td>      184        </td></tr>
+<tr align='right'> <td>O</td><td>  4 </td><td>11</td><td>  6.6  </td><td>      4       </td><td>O</td><td>214</td><td>   336.6</td><td>      214        </td></tr>
+<tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>245</td><td>   367.2</td><td>      245        </td></tr>
+<tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>275</td><td>   397.8</td><td>      275        </td></tr>
+<tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>306</td><td>   428.4</td><td>      306        </td></tr>
+<tr align='right'> <td>F</td><td>  7 </td><td>14</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
+</table>
+
+<p>
+So here is the function:
+</p>
+
+<pre>
+∇ R ← gr2rd DATE; DIM
+DIM ← ⍴ DATE
+DATE←(DIM ⍴0 1 0) + DATE + (2≥<a href='#month' class='call'>month</a> DATE) ∘.× ¯1 12 0
+R ← ¯428 + (-/ ⌊ (<a href='#year' class='call'>year</a> DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
+∇
+</pre>
+<h3><a name='rd2fr'><tt>rd2fr</tt> - Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar</a></h3>
+<p>
+Here is how it is done. Starting from the <i lang='la'>Rata Die</i> value, the function
+computes a <tt>YL</tt>-to-<tt>YH</tt> interval of candidate years.
+Suppose we start with <i lang='la'>Rata Die</i> value 672800 and that the
+candidate years are 50 to 53 inclusive.
+The program computes the full list of candidate years <tt>YR</tt>, that is,
+in this example, the vector <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
+Then the program turns this year vector into a date vector <tt>DR</tt>, consisting of
+the zeroth Vendémiaire for each year.
+</p>
+
+<pre>
+    DR
+50 1 0
+51 1 0
+52 1 0
+53 1 0  
+</pre>
+
+<p>
+The function computes the <i lang='la'>Rata Die</i> of these dates
+</p>
+
+<pre>
+    NR
+672311 672676 673041 673407
+</pre>
+
+<p>
+and compares with the initial value. The proper year is the highest year for which
+the zeroth Vendémiaire has a <i lang='la'>Rata Die</i> value less than the value
+given as a parameter. In the example above, this would give year 51. By subtracting
+the <i lang='la'>Rata Die</i> of the zeroth Vendémiaire from the parameter, we get
+124, which can easily yield "4 Pluviôse" (<tt>5 4</tt>) with simple divisions by 30.
+</p>
+
+<p>
+Remark: in the example above, the interval of candidate years has 4 values. Actually,
+in most cases there will be only one candidate year and there will be two around
+the years' ends. Using 4 values instead of just 1 or 2 has a pedagogical purpose.
+</p>
+
+<p>
+Other remark: when the input parameter is not a scalar, but a vector, array or higher
+ranked structure, the various variables also have a higher rank. The only question
+is what happens if a first <i lang='la'>Rata Die</i> value yields a 3-value 
+range for the candidate years and another one yields a 4-value range. In this case,
+the shorter range is extended to 4 values, so the <tt>YR</tt> variable will be
+properly rectangular.
+</p>
+
+<pre>
+∇ R ← rd2fr N; N1
+N1 ← N - 654414
+YH ← ⌈ N1 ÷ 365.24
+YL ← ⌈ N1 ÷ 365.34
+YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
+NR ← <a href='#fr2rd' class='call'>fr2rd</a> DR
+CM ← NR &lt; ⍉(⍴⍉NR) ⍴ N
+Y ← ⌈/YR×CM
+D ← N - ⌈/NR×CM
+M ← ⌈D÷30
+D ← D - 30 × M - 1
+R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+∇
+</pre>
+<p>
+Summary of the local variables:</p>
+
+<table>
+<tr><td>YH</td><td>year (high)                              </td></tr>
+<tr><td>YL</td><td>year (low)                               </td></tr>
+<tr><td>YR</td><td>year range                               </td></tr>
+<tr><td>DR</td><td>date range (0 Vendémiaire)               </td></tr>
+<tr><td>NR</td><td>number range (<i lang='la'>Rata Die</i>) </td></tr>
+<tr><td>CM</td><td>comparison                               </td></tr>
+<tr><td>Y </td><td>year final value                         </td></tr>
+<tr><td>D </td><td>day final value                          </td></tr>
+<tr><td>M </td><td>month final value                        </td></tr>
+</table>
+
+<p>
+Here is an example using a vector, not a scalar, as the input parameter.
+Note that for the first value, the year range should include one year only,
+but because of the fourth value, this range was extended to three years.
+</p>
+
+<p>
+<pre>
+      V←800505 800511 800879 2115019
+      rd2fr V
+ 400 12 30
+ 400 13  6
+ 402  1  3
+4000  1  1
+      YH
+400 401 402 4000
+      YL
+400 400 401 3998
+      YR
+ 400  401  402
+ 400  401  402
+ 401  402  403
+3998 3999 4000
+      DR
+ 400 1 0
+ 401 1 0
+ 402 1 0</p>
+
+<p>
+ 400 1 0
+ 401 1 0
+ 402 1 0</p>
+
+<p>
+ 401 1 0
+ 402 1 0
+ 403 1 0</p>
+
+<p>
+3998 1 0
+3999 1 0
+4000 1 0
+      NR
+ 800145  800511  800876
+ 800145  800511  800876
+ 800511  800876  801241
+2114288 2114653 2115018
+      CM
+1 0 0
+1 0 0
+1 1 0
+1 1 1
+      Y
+400 400 402 4000
+      M
+12 13 1 1
+      D
+30 6 3 1
+</pre>
+  
+</p>
+
+<h2><a name='Built-in Tests'>Built-in Tests</a></h2>
+<h3><a name='testdata'><tt>testdata</tt> - Test Data</a></h3>
+<p>
+This function gives an array of <var>n</var> lines and 7 columns, holding
+the data to test the conversion functions.
+Each line contains the Gregorian date in YYYY MM DD format, then the
+French Revolutionary date in YYYY MM DD format and lastly the <i lang='la'>Rata Die</i> value.
+For example
+</p>
+
+<pre>
+      2 7↑testdata
+1792  9 22 1  1  1 654415
+1793 10 23 2  2  2 654811
+</pre>
+
+<p>
+The first lines of the test data show that the 22nd September 1792 converts to 1st Vendémiaire I,
+with a <i lang='la'>Rata Die</i> value of 654415. Likewise, the 23rd October 1793 converts to 
+2 Brumaire II, that is, <i lang='la'>Rata Die</i> 654811.</p>
+
+<p>
+The values used in these built-in tests come from the Perl module
+<a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
+The program which turns these datese into an APL code chunk is available on
+<a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
+And a utility script (in Perl) in this project inserts the contents of <tt>testapl</tt>
+in the final script.
+</p>
+
+<pre>
+∇ R ← testdata; V; L
+⍝ include here the contents of testapl
+L ← (⍴ V) ÷ 7
+R ← (L, 7) ⍴ V
+∇
+</pre>
+<h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
+<pre>
+∇ testfr2rd
+'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+∇
+</pre>
+<h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
+<pre>
+∇ testgr2rd
+'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+∇
+</pre>
+<h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
+<pre>
+∇ testrd2fr
+'Erreurs: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
+∇
+</pre>
+</body>
+</html>

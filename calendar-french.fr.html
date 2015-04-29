@@ -1,0 +1,667 @@
+<html>
+<head>
+<meta http-equiv='content-type' content='Text/html; charset=utf-8' />
+<title>Calendrier Républicain</title>
+<style>
+<!--
+.insert    { background-color: skyblue}
+.call      { background-color: yellow}
+.condcode  { background-color: lightgrey }
+.condition { font-size-adjust: .5 }
+-->
+</style>
+</head>
+<body>
+<a href='#Calendrier Républicain'>Calendrier Républicain</a>
+<br /><a href='#license'><tt>license</tt></a>
+<br /><a href='#Conversion entre calendriers'>Conversion entre calendriers</a>
+<br /><a href='#Mode d_emploi'>Mode d'emploi</a>
+<br /><a href='#Ordres supérieurs'>Ordres supérieurs</a>
+<br /><a href='#Implémentation'>Implémentation</a>
+<br /><a href='#Éléments de date'>Éléments de date</a>
+<br /><a href='#year'><tt>year</tt></a>
+<br /><a href='#month'><tt>month</tt></a>
+<br /><a href='#day'><tt>day</tt></a>
+<br /><a href='#zerojanvnd'><tt>zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a>
+<br /><a href='#fr2rd'><tt>fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a>
+<br /><a href='#frbis'><tt>frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a>
+<br /><a href='#gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
+<br /><a href='#rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
+<br /><a href='#Tests internes'>Tests internes</a>
+<br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
+<br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
+<br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
+<br /><a href='#testrd2fr'><tt>testrd2fr</tt></a>
+<hr /><h1><a name='Calendrier Républicain'>Calendrier Républicain</a></h1>
+<h2><a name='license'><tt>license</tt></a></h2>
+<p>
+La partie texte de ce dépôt est distribuée sous la licence
+Creative Commons avec attribution et partage dans les mêmes conditions
+(CC-BY-SA). La partie code de ce dépôt est distribuée dans les mêmes
+conditions que Perl, c'est-à-dire au choix sous la licence GPL version 1.0
+ou ultérieure ou sous la licence « Artistic ».
+</p>
+
+<p>
+Ainsi que le requiert la licence GPL, tout fichier de code
+doit commencer par un commentaire décrivant de façon sommaire
+le logiciel et résumant la GPL. La description sommaire en français&nbsp;:</p>
+
+<p>
+Les fonctions de ce script permettent de faire des conversions
+du calendrier grégorien vers le calendrier républicain et vice-versa.</p>
+
+<p>
+Quant au résumé de la GPL, le voici, en anglais (je ne suis
+pas assez calé pour traduire en français un texte de teneur juridique).
+</p>
+
+<pre>
+∇ license
+'APL program to convert Gregorian dates'
+'to French Revolutionary dates and the other way'
+'Copyright (C) 2015 Jean Forget'
+''
+' This program is distributed under the same terms as Perl 5.16.3:'
+' GNU Public License version 1 or later and Perl Artistic License'
+''
+' You can find the text of the licenses in the F&lt;LICENSE&gt; file or at'
+' L&lt;http://www.perlfoundation.org/artistic_license_1_0&gt;'
+' and L&lt;http://www.gnu.org/licenses/gpl-1.0.html&gt;.'
+''
+' Here is the summary of GPL:'
+''
+' This program is free software; you can redistribute it and/or modify'
+' it under the terms of the GNU General Public License as published by'
+' the Free Software Foundation; either version 1, or (at your option)'
+' any later version.'
+''
+' This program is distributed in the hope that it will be useful,'
+' but WITHOUT ANY WARRANTY; without even the implied warranty of'
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the'
+' GNU General Public License for more details.'
+''
+' You should have received a copy of the GNU General Public License'
+' along with this program; if not, write to the Free Software Foundation,'
+' Inc., &lt;http://www.fsf.org/&gt;.'
+∇
+</pre>
+<p>
+Comme vous pouvez le deviner, ce résumé fait partie intégrante du
+logiciel. Donc, une fois que vous êtes entrés sous APL et que vous
+avez initialisé votre espace de travail avec mon script, vous pouvez
+à tout moment afficher ce résumé.
+</p>
+
+<h2><a name='Conversion entre calendriers'>Conversion entre calendriers</a></h2>
+<p>
+Cette série de fonctions s'applique à trois calendriers
+différents.</p>
+
+<dl>
+<dt> Le calendrier républicain</dt>
+<dd> Le calendrier républicain a été en vigueur en France
+de 1792 à 1805, mais les fonctions de ce script permettent
+d'utiliser des dates jusqu'à aujourd'hui et au-delà.
+Les dates sont représentées par un vecteur de trois nombres au format AAAA MM JJ.
+Il y a douze mois de 30 jours chacun, plus 5 ou 6&nbsp;jours
+complémentaires à la fin de l'année. Pour des raisons de simplicité,
+ces jours complémentaires constituent un mois supplémentaire numéroté 13.
+</dd>
+<dt> Le calendrier grégorien proleptique</dt>
+<dd> Il s'agit du
+calendrier grégorien, extrapolé dans le passé au-delà
+de l'année 1582.
+Non seulement la règle des années bissextiles est celle du
+calendrier grégorien, mais en plus on considère que l'année
+commence toujours le premier janvier, ce qui n'était pas toujours
+le cas avec les calendriers réellement en usage au Moyen-Âge.
+Les dates grégoriennes sont exprimées sous la forme d'un
+vecteur de trois nombres, au format AAAA MM JJ.</dd>
+<dt> Le <i lang='la'>Rata Die</i> (RD)</dt>
+<dd> C'est un calendrier qui 
+ignore totalement les années.  Il ne compte que les jours, à partir
+du 1<sup>er</sup> janvier de l'an 1 du calendrier grégorien
+proleptique. Très pratique pour les 
+programmes, beaucoup moins pour les humains.
+En fait, le calendrier <i lang='la'>Rata Die</i> ne vous servira
+pas en tant que tel, c'est simplement un intermédiaire entre
+les deux autres. Vous pouvez en avoir besoin quand même par
+exemple pour calculer le nombre de jours entre deux dates.
+</dd>
+</dl>
+
+<h2><a name='Mode d_emploi'>Mode d'emploi</a></h2>
+<p>
+Vous chargez un espace de travail initialisé avec les fonctions
+de conversion par&nbsp:
+</p>
+
+<pre>
+apl -f calendar-french.apl
+</pre>
+<p>
+et vous vous retrouvez alors dans la boucle REPL (lecture,
+évaluation, impression et boucle) d'APL. Vous pouvez alors
+demander la conversion du 13 Vendémiaire IV ainsi&nbsp;:
+</p>
+
+<pre>
+     fr2gr 4 1 13
+1795 10 5
+</pre>
+<p>
+ce qui veut dire que le 13 Vendémiaire IV correspond au 
+5 octobre 1795. Dans l'autre sens, la conversion du 
+27 juillet 1794 se fait ainsi&nbsp;:
+</p>
+
+<pre>
+     gr2fr 1794 7 27
+2 11 9
+</pre>
+<p>
+ce qui signifie 9 Thermidor II. Pour avoir la date
+sous forme plus agréable, utilisez <tt>prtfr</tt>&nbsp;:
+</p>
+
+<pre>
+     prtfr 2 11 9
+Nonidi 9 Thermidor II, jour de la Mûre
+     prtfr gr2fr 1794 7 27
+Nonidi 9 Thermidor II, jour de la Mûre
+</pre>
+<p>
+Si vous voulez calculer le nombre de jours entre deux
+dates, utilisez le <i lang='la'>Rata Die</i>. Par
+exemple, vous voulez savoir combien de jours séparent
+le coup d'état du neveu (2 décembre 1851) du coup d'état
+de l'oncle (18 Brumaire VIII). Il suffit de taper&nbsp;:
+</p>
+
+<pre>
+     (gr2rd 1851 12 2) - fr2rd 8 2 18
+19015
+</pre>
+<h3><a name='Ordres supérieurs'>Ordres supérieurs</a></h3>
+<p>
+Une date est représentée par un vecteur de 3 nombres. On peut
+organiser les dates en un vecteur de dates, qui sera en réalité
+un tableau de nombres. Ainsi, un vecteur de 5 dates sera un tableau de dimension <tt>5 3</tt>.</p>
+
+<p>
+Par exemple, le vecteur de dates&nbsp;:
+</p>
+
+<table border='1' cellpadding='2'><tr>
+<td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
+</tr></table>
+
+<p>
+sera représenté par&nbsp;:
+</p>
+
+<pre>
+     DATEVEC 
+1794  1 21
+1795 10  5
+1799 11  9
+1851 12  2
+     ⍴ DATEVEC 
+4 3
+</pre>
+<p>
+De la même manière, un tableau <tt>4 5</tt> de dates sera représenté
+par un bloc <tt>4 5 3</tt> de nombres, un bloc <tt>2 2 6</tt> de dates
+sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
+de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
+avec toutes ces structures, sauf lorsque l'on arrive au voisinage du rang maximal.
+Par exemple, le rang maximal en GNU APL est 15, donc les fonctions commencent
+à provoquer des erreurs avec une structure de rang 13.</p>
+
+<p>
+Par exemple, la conversion du vecteur ci-dessus se fait par&nbsp;:
+</p>
+
+<pre>
+     gr2fr DATEVEC 
+ 2  5  2
+ 4  1 13
+ 8  2 18
+60  3 11
+</pre>
+<p>
+Par contre, la fonction <tt>prtfr</tt> n'est pas compatible avec les vecteurs
+de dates ou les tableaux de dates. Elle accepte seulement les dates scalaires.
+</p>
+
+<p>
+Remarque&nbsp;: je sais que APL permet d'inclure des objets dans d'autres, avec
+les opérateurs <tt>⊂</tt> et <tt>⊃</tt>. Mais cela n'existait pas lorsque j'ai appris APL
+il y a plus de trente ans. Dans un premier temps, j'écris le présent script qui s'en
+passera. Peut-être que dans un deuxième temps j'écrirai un nouveau script utilisant
+les nouveautés d'APL sur les objets inclus.
+</p>
+
+<h2><a name='Implémentation'>Implémentation</a></h2>
+<h3><a name='Éléments de date'>Éléments de date</a></h3>
+<p>
+Pour extraire l'année d'une date <tt>DATE</tt>, il suffit d'écrire <tt>DATE[1]</tt>.
+Pour en extraire le jour, il suffit d'écrire <tt>DATE[3]</tt>.
+Mais cela ne fonctionne pas avec les vecteurs de dates pour lesquels il faut
+écrire <tt>DATEVEC[;1]</tt> et <tt>DATEVEC[;3]</tt>,
+ni avec les tableaux de dates pour lesquel il faut écrire
+<tt>DATEARRAY[;;1]</tt> et <tt>DATEARRAY[;;3]</tt>.
+Il y a plusieurs façons de s'en tirer. La plus simple consiste à écrire&nbsp;:
+</p>
+
+<h4><a name='year'><tt>year</tt></a></h4>
+<pre>
+∇ R ← year D
+R ← D +.× 1 0 0
+∇
+</pre>
+<h4><a name='month'><tt>month</tt></a></h4>
+<pre>
+∇ R ← month D
+R ← D +.× 0 1 0
+∇
+</pre>
+<h4><a name='day'><tt>day</tt></a></h4>
+<pre>
+∇ R ← day D
+R ← D +.× 0 0 1
+∇
+</pre>
+<h3><a name='zerojanvnd'><tt>zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a></h3>
+<p>
+Pour comprendre comment les algorithmes de conversion fonctionnent, il est
+utile d'utiliser la notion de «&nbsp;jour zéro&nbsp;» pour un mois donné.
+Le jour zéro est un jour virtuel situé avant le premier jour du mois et
+après le dernier jour du mois précédent. Ainsi, le 0 mars 2015 se situe
+après le 28 février 2015 et avant le 1<sup>er</sup> mars 2015.
+Le fait que son <i lang='la'>Rata Die</i> soit identique à celui du 28 février
+ne change rien au fait qu'il est censé se situer après le 28 février.
+</p>
+
+<p>
+Voici une fonction qui permet de construire le 0 janvier d'une année ou le 0 Vendémiaire
+d'une année&nbsp;:
+</p>
+
+<pre>
+∇ R ← zerojanvnd Y
+R ← Y ∘.× 1 0 0
+R ← R + (⍴R) ⍴ 0 1 0
+∇
+</pre>
+<h3><a name='fr2rd'><tt>fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a></h3>
+<p>
+Commençons par calculer le <i lang='la'>Rata Die</i> d'une date du calendrier républicain.
+Il faut ajouter les termes suivants&nbsp;:</p>
+
+<ul>
+<li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
+<li>(annee - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
+en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
+<li>frbis(annee), qui compte combien d'années bissextiles ont précédé l'année courante,</li>
+<li>(mois - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
+<li>jour, pour arriver finalement au jour demandé.</li>
+</ul>
+
+<p>
+En fait, on rassemble toutes les constantes additives en une seule, ce qui donne le calcul suivant&nbsp;:</p>
+
+<ul>
+<li>annee × 365,</li>
+<li>frbis(annee),</li>
+<li>mois × 30,</li>
+<li>jour,</li>
+<li>constante additive.</li>
+</ul>
+
+<pre>
+∇ R ← fr2rd DATE
+R ← 654019 + (<a href='#frbis' class='call'>frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
+∇
+</pre>
+<h3><a name='frbis'><tt>frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a></h3>
+<p>
+Cette fonction donne le nombre d'années bissextiles
+qui ont eu lieu avant l'année courante. Elle permet
+d'affiner le calcul de la date, par rapport à l'estimation
+obtenue en prenant des années à 365&nbsp;jours.</p>
+
+<p>
+La règle pour les années bissextiles était une règle astronomique
+jusqu'en l'an XX, le premier Vendémiaire devant coïncider avec
+l'équinoxe d'automne. Ensuite, la réforme de Gilbert Romme
+aurait fait appliquer une règle arithmétique analogue à 
+celle du calendrier grégorien.</p>
+
+<p>
+La règle de Romme indique qu'une année est bissextile si elle est divisible par 4, sauf
+si elle est divisible par 100, mais elle l'est quand même si
+elle est divisible par 400, sauf si elle est divisible par 4000.
+</p>
+
+<p>
+Voici la comparaison des deux règles pour le début de l'ère
+républicaine. Les deux colonnes «&nbsp;arithmétique&nbsp;»
+simulent l'hypothèse où la règle arithmétique aurait été
+en vigueur dès le début. Les deux colonnnes «&nbsp;astronomique&nbsp;»
+présentent le cas réel&nbsp;: règle astronomique au début
+et règle arithmétique ensuite. Les colonnes «&nbsp;Bis&nbsp;?&nbsp;»
+indiquent par un «&nbsp;X&nbsp;» si l'année est bissextile
+en fonction de la règle utilisée. Les colonnes «&nbsp;frbis&nbsp;»
+indiquent le nombre d'années bissextiles avant l'année considérée,
+ce qui correspond au résultat de la fonction <tt>frbis</tt>.
+</p>
+
+<table border='1'>
+<tr align='center'><td>     </td><td colspan='2'>Arithmétique</td><td colspan='2'>Astronomique</td></tr>
+<tr align='center'><td>Année</td><td>Bis ?</td><td>frbis </td><td>Bis ?</td><td>frbis </td></tr>
+
+<tr align='center'><td>  1  </td><td>&nbsp;</td><td>  0   </td><td>&nbsp;</td><td>  0   </td></tr>
+<tr align='center'><td>  2  </td><td>&nbsp;</td><td>  0   </td><td>&nbsp;</td><td>  0   </td></tr>
+<tr align='center'><td>  3  </td><td>&nbsp;</td><td>  0   </td><td>  x   </td><td>  0   </td></tr>
+<tr align='center'><td>  4  </td><td>  x   </td><td>  0   </td><td>&nbsp;</td><td>  1   </td></tr>
+<tr align='center'><td>  5  </td><td>&nbsp;</td><td>  1   </td><td>&nbsp;</td><td>  1   </td></tr>
+<tr align='center'><td>  6  </td><td>&nbsp;</td><td>  1   </td><td>&nbsp;</td><td>  1   </td></tr>
+<tr align='center'><td>  7  </td><td>&nbsp;</td><td>  1   </td><td>  x   </td><td>  1   </td></tr>
+<tr align='center'><td>  8  </td><td>  x   </td><td>  1   </td><td>&nbsp;</td><td>  2   </td></tr>
+<tr align='center'><td>  9  </td><td>&nbsp;</td><td>  2   </td><td>&nbsp;</td><td>  2   </td></tr>
+<tr align='center'><td> 10  </td><td>&nbsp;</td><td>  2   </td><td>&nbsp;</td><td>  2   </td></tr>
+<tr align='center'><td> 11  </td><td>&nbsp;</td><td>  2   </td><td>  x   </td><td>  2   </td></tr>
+<tr align='center'><td> 12  </td><td>  x   </td><td>  2   </td><td>&nbsp;</td><td>  3   </td></tr>
+<tr align='center'><td> 13  </td><td>&nbsp;</td><td>  3   </td><td>&nbsp;</td><td>  3   </td></tr>
+<tr align='center'><td> 14  </td><td>&nbsp;</td><td>  3   </td><td>&nbsp;</td><td>  3   </td></tr>
+<tr align='center'><td> 15  </td><td>&nbsp;</td><td>  3   </td><td>  x   </td><td>  3   </td></tr>
+<tr align='center'><td> 16  </td><td>  x   </td><td>  3   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 17  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 18  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 19  </td><td>&nbsp;</td><td>  4   </td><td>&nbsp;</td><td>  4   </td></tr>
+<tr align='center'><td> 20  </td><td>  x   </td><td>  4   </td><td>  x   </td><td>  4   </td></tr>
+<tr align='center'><td> 21  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+<tr align='center'><td> 22  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+<tr align='center'><td> 23  </td><td>&nbsp;</td><td>  5   </td><td>&nbsp;</td><td>  5   </td></tr>
+<tr align='center'><td> 24  </td><td>  x   </td><td>  5   </td><td>  x   </td><td>  5   </td></tr>
+<tr align='center'><td> 25  </td><td>&nbsp;</td><td>  6   </td><td>&nbsp;</td><td>  6   </td></tr>
+</table>
+
+<p>
+En fait, les deux règles n'engendrent une différence que pour
+les années IV, VIII, XII et XVI. Donc le sous-programme effectue
+le calcul avec la règle arithmétique dès l'an I, puis rectifie le résultat
+si l'on a l'une de ces quatre années. N'oubliez pas que le sous-programme
+commence par soustraire 1 à l'année, c'est pour cela qu'il teste
+les valeurs 3, 7, 11 et 15.
+</p>
+
+<pre>
+∇ R ← frbis YEAR
+YEAR ← YEAR - 1
+R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
+R ← R + YEAR ∈ 3 7 11 15
+∇
+</pre>
+<h3><a name='gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a></h3>
+<p>
+Malgré les critères pour les années bissextiles, la conversion du calendrier
+républicain vers le <i lang='la'>Rata Die</i> est simple. En effet, la période
+bouche-trou (jours complémentaires) est à la fin de l'année donc sa longueur variable
+et plus faible que les mois normaux n'a pas d'influence sur les calculs.
+En revanche, dans le calendrier grégorien, le mois bouche-trou, février, apparaît
+au début de l'année et complique le calcul pour les mois suivants.
+De plus, la longueur des autres mois est variable&nbsp;: 30 ou 31 jours.
+</p>
+
+<p>
+C'est pourquoi nous introduisons un nouveau calendrier, le «&nbsp;calendrier grégorien
+décalé&nbsp;». Dans ce calendrier, les mois de janvier et février sont transférés
+à la fin de l'année précédente et l'année commence au 1<sup>er</sup> mars.
+De plus, pour les raisons exposées ci-dessous, les mois sont numérotés de 4 (mars)
+à 15 (février), pour la raison exposée ci-dessous.</p>
+
+<p>
+Par exemple le 28 février 2015 devient <tt>2014&nbsp;15&nbsp;28</tt> et le premier mars 2015
+devient <tt>2015&nbsp;4&nbsp;1</tt>.
+</p>
+
+<p>
+Dans le tableau ci-dessous, la partie gauche s'intéresse au nombre de mois à 31&nbsp;jours
+qui précèdent le mois courant dans l'année décalée. La partie droite explique le calcul du nombre de jours
+depuis le zéro mars jusqu'au jour zéro du mois courant.
+</p>
+
+<table border='1'>
+<tr align='center'><th>M</th><th>nb31</th><th> M</th><th>0.6 × M</th><th>¯2 + ⌊ 0.6 × M</th><th>M</th><th> nb</th><th>30.6 × M</th><th>¯122 + ⌊ 30.6 × M</th></tr>
+<tr align='right'> <td>M</td><td>  0 </td><td> 4</td><td>  2.4  </td><td>      0       </td><td>M</td><td>  0</td><td>   122.4</td><td>        0        </td></tr>
+<tr align='right'> <td>A</td><td>  1 </td><td> 5</td><td>  3.0  </td><td>      1       </td><td>A</td><td> 31</td><td>   153.0</td><td>       31        </td></tr>
+<tr align='right'> <td>M</td><td>  1 </td><td> 6</td><td>  3.6  </td><td>      1       </td><td>M</td><td> 61</td><td>   183.6</td><td>       61        </td></tr>
+<tr align='right'> <td>J</td><td>  2 </td><td> 7</td><td>  4.2  </td><td>      2       </td><td>J</td><td> 92</td><td>   214.2</td><td>       92        </td></tr>
+<tr align='right'> <td>J</td><td>  2 </td><td> 8</td><td>  4.8  </td><td>      2       </td><td>J</td><td>122</td><td>   244.8</td><td>      122        </td></tr>
+<tr align='right'> <td>A</td><td>  3 </td><td> 9</td><td>  5.4  </td><td>      3       </td><td>A</td><td>153</td><td>   275.4</td><td>      153        </td></tr>
+<tr align='right'> <td>S</td><td>  4 </td><td>10</td><td>  6.0  </td><td>      4       </td><td>S</td><td>184</td><td>   306.0</td><td>      184        </td></tr>
+<tr align='right'> <td>O</td><td>  4 </td><td>11</td><td>  6.6  </td><td>      4       </td><td>O</td><td>214</td><td>   336.6</td><td>      214        </td></tr>
+<tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>245</td><td>   367.2</td><td>      245        </td></tr>
+<tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>275</td><td>   397.8</td><td>      275        </td></tr>
+<tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>306</td><td>   428.4</td><td>      306        </td></tr>
+<tr align='right'> <td>F</td><td>  7 </td><td>14</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
+</table>
+
+<p>
+Voici donc la fonction&nbsp;:
+</p>
+
+<pre>
+∇ R ← gr2rd DATE; DIM
+DIM ← ⍴ DATE
+DATE←(DIM ⍴0 1 0) + DATE + (2≥<a href='#month' class='call'>month</a> DATE) ∘.× ¯1 12 0
+R ← ¯428 + (-/ ⌊ (<a href='#year' class='call'>year</a> DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
+∇
+</pre>
+<h3><a name='rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a></h3>
+<p>
+Principe&nbsp;: en partant de la valeur <i lang='la'>Rata Die</i>, la fonction évalue
+une fourchette pour l'année, qui peut donc s'étaler de <tt>YL</tt> à <tt>YH</tt>
+Supposons que l'on parte de la valeur <i lang='la'>Rata Die</i> 672800,
+avec une fourchette de 50 à 53.
+Puis le sous-programme construit la liste <tt>YR</tt> des années de la fourchette, soit dans
+l'exemple un vecteur <tt>YR</tt> valant <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
+Puis le sous-programme transforme ce vecteur d'années en vecteurs de dates <tt>DR</tt>,
+correspondant au zéro Vendémiaire de chaque année, ce qui donnerait&nbsp;:
+</p>
+
+<pre>
+    DR
+50 1 0
+51 1 0
+52 1 0
+53 1 0  
+</pre>
+
+<p>
+La fonction convertit cela en <i lang='la'>Rata Die</i>
+</p>
+
+<pre>
+    NR
+672311 672676 673041 673407
+</pre>
+
+<p>
+et compare avec les valeurs initiales, ce qui permet d'avoir l'année de la date
+en prenant l'année la plus élevée pour laquelle la valeur dans <tt>NR</tt> est inférieure
+à la valeur du paramètre d'entrée <tt>N</tt>.
+Dans l'exemple ci-dessus, on en déduit que l'année est 51. En faisant la différence
+des deux valeurs <i lang='la'>Rata Die</i>, on obtient 124, ce qui est facilement
+converti en 4 Pluviôse (<tt>5 4</tt>) avec de simples divisions par 30.
+</p>
+
+<p>
+Remarque&nbsp;: dans l'exemple ci-dessus, la plage d'années avait 4&nbsp;valeurs.
+Dans la réalité, la plage n'aura qu'une seule valeur, parfois deux au voisinage
+des changements d'année. Le choix de 4&nbsp;valeurs avait un rôle pédagogique.
+</p>
+
+<p>
+Autre remarque&nbsp;: lorsque le paramètre en entrée n'est pas un scalaire, mais un
+vecteur, un tableau ou une structure d'ordre plus élevé, les variables intermédiaires
+ont également un ordre plus élevé. Le seul point délicat est de savoir ce qui
+se passe lorsque l'une des valeurs <i lang='la'>Rata Die</i> donne une plage
+de 3&nbsp;valeurs et l'autre une plage de 4&nbsp;valeurs (par exemple). Dans ce cas,
+la plage de valeurs du premier <i lang='la'>Rata Die</i> est allongée à 4&nbsp;valeurs
+pour conserver la rectangularité de la variable <tt>YR</tt>.
+</p>
+
+<pre>
+∇ R ← rd2fr N; N1
+N1 ← N - 654414
+YH ← ⌈ N1 ÷ 365.24
+YL ← ⌈ N1 ÷ 365.34
+YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
+NR ← <a href='#fr2rd' class='call'>fr2rd</a> DR
+CM ← NR &lt; ⍉(⍴⍉NR) ⍴ N
+Y ← ⌈/YR×CM
+D ← N - ⌈/NR×CM
+M ← ⌈D÷30
+D ← D - 30 × M - 1
+R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+∇
+</pre>
+<p>
+Résumé des variables locales&nbsp;:</p>
+
+<table>
+<tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       </td></tr> 
+<tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       </td></tr> 
+<tr><td>YR</td><td>year range       </td><td>plage d'années                              </td></tr> 
+<tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              </td></tr> 
+<tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)</td></tr> 
+<tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  </td></tr> 
+<tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    </td></tr> 
+<tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       </td></tr> 
+<tr><td>M </td><td>month final value</td><td>valeur finale du mois                       </td></tr> 
+</table>
+
+<p>
+Voici un exemple d'exécution avec un vecteur en entrée. Notons que pour le premier
+nombre, la plage de valeurs de la date comportait une seule année, l'année 400. 
+Mais par «&nbsp;contamination&nbsp;» de la dernière valeur, cette plage a été
+étendue à trois années.
+</p>
+
+<p>
+<pre>
+      V←800505 800511 800879 2115019
+      rd2fr V
+ 400 12 30
+ 400 13  6
+ 402  1  3
+4000  1  1
+      YH
+400 401 402 4000
+      YL
+400 400 401 3998
+      YR
+ 400  401  402
+ 400  401  402
+ 401  402  403
+3998 3999 4000
+      DR
+ 400 1 0
+ 401 1 0
+ 402 1 0</p>
+
+<p>
+ 400 1 0
+ 401 1 0
+ 402 1 0</p>
+
+<p>
+ 401 1 0
+ 402 1 0
+ 403 1 0</p>
+
+<p>
+3998 1 0
+3999 1 0
+4000 1 0
+      NR
+ 800145  800511  800876
+ 800145  800511  800876
+ 800511  800876  801241
+2114288 2114653 2115018
+      CM
+1 0 0
+1 0 0
+1 1 0
+1 1 1
+      Y
+400 400 402 4000
+      M
+12 13 1 1
+      D
+30 6 3 1
+</pre>
+  
+</p>
+
+<h2><a name='Tests internes'>Tests internes</a></h2>
+<h3><a name='testdata'><tt>testdata</tt> - Données pour les tests</a></h3>
+<p>
+Cette fonction renvoie un tableau de <var>n</var> lignes et 7 colonnes,
+contenant les données pour tester les fonctions de conversion.
+Chaque ligne contient la date grégorienne, au format AAAA MM JJ, 
+la date républicaine au format AAAA MM JJ et la valeur <i lang='la'>Rata Die</i>.
+Exemple&nbsp;:
+</p>
+
+<pre>
+      2 7↑testdata
+1792  9 22 1  1  1 654415
+1793 10 23 2  2  2 654811
+</pre>
+
+<p>
+Les premières lignes montrent que le 22 septembre 1792 correspond au 1<sup>er</sup> Vendémiaire I
+avec une valeur <i lang='la'>Rata Die</i> 654415. De même, le 23 octobre 1973 correspond au
+2 Brumaire II, <i lang='la'>Rata Die</i> 654811.</p>
+
+<p>
+Les valeurs adoptées sont les valeurs utilisées dans les tests de
+<a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
+Le programme qui les formatte avec la syntaxe APL est disponible sur
+<a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
+Et un utilitaire est fourni dans le présent projet pour insérer les valeurs dans le script final.
+</p>
+
+<pre>
+∇ R ← testdata; V; L
+⍝ include here the contents of testapl
+L ← (⍴ V) ÷ 7
+R ← (L, 7) ⍴ V
+∇
+</pre>
+<h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
+<pre>
+∇ testfr2rd
+'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+∇
+</pre>
+<h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
+<pre>
+∇ testgr2rd
+'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+∇
+</pre>
+<h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
+<pre>
+∇ testrd2fr
+'Erreurs: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
+∇
+</pre>
+</body>
+</html>
