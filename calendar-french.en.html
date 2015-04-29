@@ -498,10 +498,11 @@ properly rectangular.
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
-YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+YI ← 0 , ⍳ ⌈/,YH-YL
+YR ← YL ∘.+ YI
 DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
 NR ← <a href='#fr2rd' class='call'>fr2rd</a> DR
-CM ← NR &lt; ⍉(⍴⍉NR) ⍴ N
+CM ← NR &lt; N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
 M ← ⌈D÷30
@@ -515,6 +516,7 @@ Summary of the local variables:</p>
 <table>
 <tr><td>YH</td><td>year (high)                              </td></tr>
 <tr><td>YL</td><td>year (low)                               </td></tr>
+<tr><td>YI</td><td>year increments, to build the year range </td></tr>
 <tr><td>YR</td><td>year range                               </td></tr>
 <tr><td>DR</td><td>date range (0 Vendémiaire)               </td></tr>
 <tr><td>NR</td><td>number range (<i lang='la'>Rata Die</i>) </td></tr>
@@ -542,6 +544,8 @@ but because of the fourth value, this range was extended to three years.
 400 401 402 4000
       YL
 400 400 401 3998
+      YI
+0 1 2
       YR
  400  401  402
  400  401  402

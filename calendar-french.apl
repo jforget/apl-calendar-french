@@ -56,10 +56,11 @@ R ← ¯428 + (-/ ⌊ (year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
-YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+YI ← 0 , ⍳ ⌈/,YH-YL
+YR ← YL ∘.+ YI
 DR ← zerojanvnd YR
 NR ← fr2rd DR
-CM ← NR < ⍉(⍴⍉NR) ⍴ N
+CM ← NR < N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
 M ← ⌈D÷30

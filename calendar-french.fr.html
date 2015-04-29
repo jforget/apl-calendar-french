@@ -520,10 +520,11 @@ pour conserver la rectangularité de la variable <tt>YR</tt>.
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
-YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+YI ← 0 , ⍳ ⌈/,YH-YL
+YR ← YL ∘.+ YI
 DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
 NR ← <a href='#fr2rd' class='call'>fr2rd</a> DR
-CM ← NR &lt; ⍉(⍴⍉NR) ⍴ N
+CM ← NR &lt; N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
 M ← ⌈D÷30
@@ -535,15 +536,16 @@ R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 Résumé des variables locales&nbsp;:</p>
 
 <table>
-<tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       </td></tr> 
-<tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       </td></tr> 
-<tr><td>YR</td><td>year range       </td><td>plage d'années                              </td></tr> 
-<tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              </td></tr> 
-<tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)</td></tr> 
-<tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  </td></tr> 
-<tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    </td></tr> 
-<tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       </td></tr> 
-<tr><td>M </td><td>month final value</td><td>valeur finale du mois                       </td></tr> 
+<tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       	       </td></tr> 
+<tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       	       </td></tr> 
+<tr><td>YI</td><td>year increments  </td><td>vecteur d'incréments pour construire la plage d'années</td></tr> 
+<tr><td>YR</td><td>year range       </td><td>plage d'années                              	       </td></tr> 
+<tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              	       </td></tr> 
+<tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)	       </td></tr> 
+<tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  	       </td></tr> 
+<tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    	       </td></tr> 
+<tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       	       </td></tr> 
+<tr><td>M </td><td>month final value</td><td>valeur finale du mois                       	       </td></tr> 
 </table>
 
 <p>
@@ -565,6 +567,8 @@ Mais par «&nbsp;contamination&nbsp;» de la dernière valeur, cette plage a ét
 400 401 402 4000
       YL
 400 400 401 3998
+      YI
+0 1 2
       YR
  400  401  402
  400  401  402

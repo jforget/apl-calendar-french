@@ -680,10 +680,11 @@ calendar-french.apl-1: apl
     N1 ← N - 654414
     YH ← ⌈ N1 ÷ 365.24
     YL ← ⌈ N1 ÷ 365.34
-    YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+    YI ← 0 , ⍳ ⌈/,YH-YL
+    YR ← YL ∘.+ YI
     DR ← @zerojanvnd@ YR
     NR ← @fr2rd@ DR
-    CM ← NR < ⍉(⍴⍉NR) ⍴ N
+    CM ← NR < N ∘.+ (⍴YI)⍴0
     Y ← ⌈/YR×CM
     D ← N - ⌈/NR×CM
     M ← ⌈D÷30
@@ -694,15 +695,16 @@ calendar-french.apl-1: apl
     Résumé des variables locales&nbsp;:
 
     <table>
-    <tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       </td></tr> 
-    <tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       </td></tr> 
-    <tr><td>YR</td><td>year range       </td><td>plage d'années                              </td></tr> 
-    <tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              </td></tr> 
-    <tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)</td></tr> 
-    <tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  </td></tr> 
-    <tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    </td></tr> 
-    <tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       </td></tr> 
-    <tr><td>M </td><td>month final value</td><td>valeur finale du mois                       </td></tr> 
+    <tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       	       </td></tr> 
+    <tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       	       </td></tr> 
+    <tr><td>YI</td><td>year increments  </td><td>vecteur d'incréments pour construire la plage d'années</td></tr> 
+    <tr><td>YR</td><td>year range       </td><td>plage d'années                              	       </td></tr> 
+    <tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              	       </td></tr> 
+    <tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)	       </td></tr> 
+    <tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  	       </td></tr> 
+    <tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    	       </td></tr> 
+    <tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       	       </td></tr> 
+    <tr><td>M </td><td>month final value</td><td>valeur finale du mois                       	       </td></tr> 
     </table>
 - en: |
     Summary of the local variables:
@@ -710,6 +712,7 @@ calendar-french.apl-1: apl
     <table>
     <tr><td>YH</td><td>year (high)                              </td></tr>
     <tr><td>YL</td><td>year (low)                               </td></tr>
+    <tr><td>YI</td><td>year increments, to build the year range </td></tr>
     <tr><td>YR</td><td>year range                               </td></tr>
     <tr><td>DR</td><td>date range (0 Vendémiaire)               </td></tr>
     <tr><td>NR</td><td>number range (<i lang='la'>Rata Die</i>) </td></tr>
@@ -741,6 +744,8 @@ calendar-french.apl-1: apl
     400 401 402 4000
           YL
     400 400 401 3998
+          YI
+    0 1 2
           YR
      400  401  402
      400  401  402
