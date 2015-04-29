@@ -607,23 +607,23 @@ calendar-french.apl-1: apl
     une fourchette pour l'année, qui peut donc s'étaler de <tt>YL</tt> à <tt>YH</tt>
     Supposons que l'on parte de la valeur <i lang='la'>Rata Die</i> 672800,
     avec une fourchette de 50 à 53.
-    Puis le sous-programme construit la liste <tt>YC</tt> des années de la fourchette, soit dans
-    l'exemple un vecteur <tt>YC</tt> valant <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
-    Puis le sous-programme transforme ce vecteur d'années en vecteurs de dates <tt>DC</tt>,
+    Puis le sous-programme construit la liste <tt>YR</tt> des années de la fourchette, soit dans
+    l'exemple un vecteur <tt>YR</tt> valant <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
+    Puis le sous-programme transforme ce vecteur d'années en vecteurs de dates <tt>DR</tt>,
     correspondant au zéro Vendémiaire de chaque année, ce qui donnerait&nbsp;:
 - en: |
     Here is how it is done. Starting from the <i lang='la'>Rata Die</i> value, the function
     computes a <tt>YL</tt>-to-<tt>YH</tt> interval of candidate years.
     Suppose we start with <i lang='la'>Rata Die</i> value 672800 and that the
     candidate years are 50 to 53 inclusive.
-    The program computes the full list of candidate years <tt>YC</tt>, that is,
+    The program computes the full list of candidate years <tt>YR</tt>, that is,
     in this example, the vector <tt>50&nbsp;51&nbsp;52&nbsp;53</tt>.
-    Then the program turns this year vector into a date vector <tt>DC</tt>, consisting of
+    Then the program turns this year vector into a date vector <tt>DR</tt>, consisting of
     the zeroth Vendémiaire for each year.
 -
   'fr,en': |
     <pre>
-        DC
+        DR
     50 1 0
     51 1 0
     52 1 0
@@ -636,12 +636,12 @@ calendar-french.apl-1: apl
 -
   'fr,en': |
     <pre>
-        NC
+        NR
     672311 672676 673041 673407
     </pre>
 - fr: |
     et compare avec les valeurs initiales, ce qui permet d'avoir l'année de la date
-    en prenant l'année la plus élevée pour laquelle la valeur dans <tt>NC</tt> est inférieure
+    en prenant l'année la plus élevée pour laquelle la valeur dans <tt>NR</tt> est inférieure
     à la valeur du paramètre d'entrée <tt>N</tt>.
     Dans l'exemple ci-dessus, on en déduit que l'année est 51. En faisant la différence
     des deux valeurs <i lang='la'>Rata Die</i>, on obtient 124, ce qui est facilement
@@ -667,30 +667,119 @@ calendar-french.apl-1: apl
     se passe lorsque l'une des valeurs <i lang='la'>Rata Die</i> donne une plage
     de 3&nbsp;valeurs et l'autre une plage de 4&nbsp;valeurs (par exemple). Dans ce cas,
     la plage de valeurs du premier <i lang='la'>Rata Die</i> est allongée à 4&nbsp;valeurs
-    pour conserver la rectangularité de la variable <tt>YC</tt>.
+    pour conserver la rectangularité de la variable <tt>YR</tt>.
 - en: |
     Other remark: when the input parameter is not a scalar, but a vector, array or higher
     ranked structure, the various variables also have a higher rank. The only question
     is what happens if a first <i lang='la'>Rata Die</i> value yields a 3-value 
     range for the candidate years and another one yields a 4-value range. In this case,
-    the shorter range is extended to 4 values, so the <tt>YC</tt> variable will be
+    the shorter range is extended to 4 values, so the <tt>YR</tt> variable will be
     properly rectangular.
 - code: |
     ∇ R ← rd2fr N; N1
     N1 ← N - 654414
     YH ← ⌈ N1 ÷ 365.24
     YL ← ⌈ N1 ÷ 365.34
-    YC ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
-    DC ← @zerojanvnd@ YC
-    NC ← @fr2rd@ DC
-    CM ← NC < ⍉(⍴⍉NC) ⍴ N
-    Y ← ⌈/YC×CM
-    D ← N - ⌈/NC×CM
+    YR ← YL ∘.+ 0 , ⍳ ⌈/,YH-YL
+    DR ← @zerojanvnd@ YR
+    NR ← @fr2rd@ DR
+    CM ← NR < ⍉(⍴⍉NR) ⍴ N
+    Y ← ⌈/YR×CM
+    D ← N - ⌈/NR×CM
     M ← ⌈D÷30
     D ← D - 30 × M - 1
     R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
     ∇
+- fr: |
+    Résumé des variables locales&nbsp;:
 
+    <table>
+    <tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       </td></tr> 
+    <tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       </td></tr> 
+    <tr><td>YR</td><td>year range       </td><td>plage d'années                              </td></tr> 
+    <tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              </td></tr> 
+    <tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)</td></tr> 
+    <tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  </td></tr> 
+    <tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    </td></tr> 
+    <tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       </td></tr> 
+    <tr><td>M </td><td>month final value</td><td>valeur finale du mois                       </td></tr> 
+    </table>
+- en: |
+    Summary of the local variables:
+
+    <table>
+    <tr><td>YH</td><td>year (high)                              </td></tr>
+    <tr><td>YL</td><td>year (low)                               </td></tr>
+    <tr><td>YR</td><td>year range                               </td></tr>
+    <tr><td>DR</td><td>date range (0 Vendémiaire)               </td></tr>
+    <tr><td>NR</td><td>number range (<i lang='la'>Rata Die</i>) </td></tr>
+    <tr><td>CM</td><td>comparison                               </td></tr>
+    <tr><td>Y </td><td>year final value                         </td></tr>
+    <tr><td>D </td><td>day final value                          </td></tr>
+    <tr><td>M </td><td>month final value                        </td></tr>
+    </table>
+
+- fr: |
+    Voici un exemple d'exécution avec un vecteur en entrée. Notons que pour le premier
+    nombre, la plage de valeurs de la date comportait une seule année, l'année 400. 
+    Mais par «&nbsp;contamination&nbsp;» de la dernière valeur, cette plage a été
+    étendue à trois années.
+- en: |
+    Here is an example using a vector, not a scalar, as the input parameter.
+    Note that for the first value, the year range should include one year only,
+    but because of the fourth value, this range was extended to three years.
+-
+  'fr,en': |
+    <pre>
+          V←800505 800511 800879 2115019
+          rd2fr V
+     400 12 30
+     400 13  6
+     402  1  3
+    4000  1  1
+          YH
+    400 401 402 4000
+          YL
+    400 400 401 3998
+          YR
+     400  401  402
+     400  401  402
+     401  402  403
+    3998 3999 4000
+          DR
+     400 1 0
+     401 1 0
+     402 1 0
+
+     400 1 0
+     401 1 0
+     402 1 0
+
+     401 1 0
+     402 1 0
+     403 1 0
+
+    3998 1 0
+    3999 1 0
+    4000 1 0
+          NR
+     800145  800511  800876
+     800145  800511  800876
+     800511  800876  801241
+    2114288 2114653 2115018
+          CM
+    1 0 0
+    1 0 0
+    1 1 0
+    1 1 1
+          Y
+    400 400 402 4000
+          M
+    12 13 1 1
+          D
+    30 6 3 1
+    </pre>
+      
 - section: 0
   fr: Tests internes
   en: Built-in Tests
