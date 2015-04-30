@@ -30,7 +30,9 @@
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
+<br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
 <br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
+<br /><a href='#test1gr2rd'><tt>test1gr2rd</tt></a>
 <br /><a href='#testrd2fr'><tt>testrd2fr</tt></a>
 <br /><a href='#test1rd2fr'><tt>test1rd2fr</tt></a>
 <hr /><h1><a name='Calendrier Républicain'>Calendrier Républicain</a></h1>
@@ -654,12 +656,52 @@ R ← (L, 7) ⍴ V
 <pre>
 ∇ testfr2rd
 'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+<a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 5
+<a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 3 3
+<a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 2 2 2
+∇
+</pre>
+<h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
+<pre>
+∇ test1fr2rd DIM
+'Checking with dimension ', ⍕ DIM
+EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+GOT ← fr2rd (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
 ∇
 </pre>
 <h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
 <pre>
 ∇ testgr2rd
 'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+<a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 5
+<a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 3 3
+<a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 2 2 2
+∇
+</pre>
+<h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
+<pre>
+∇ test1gr2rd DIM
+'Checking with dimension ', ⍕ DIM
+EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+GOT ← gr2rd (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
 ∇
 </pre>
 <h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
@@ -675,8 +717,8 @@ R ← (L, 7) ⍴ V
 <pre>
 ∇ test1rd2fr DIM
 'Checking with dimension ', ⍕ DIM
-EXP ← (DIM, 3) ⍴ testdata[;4 5 6]
-GOT ← rd2fr DIM ⍴ testdata[;7]
+EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+GOT ← rd2fr DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0

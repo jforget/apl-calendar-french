@@ -39,13 +39,13 @@ R ← D +.× 0 0 1
 R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
 ∇
+∇ R ← fr2rd DATE
+R ← 654019 + (frbis year DATE) + DATE +.× 365 30 1
+∇
 ∇ R ← frbis YEAR
 YEAR ← YEAR - 1
 R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15
-∇
-∇ R ← fr2rd DATE
-R ← 654019 + (frbis year DATE) + DATE +.× 365 30 1
 ∇
 ∇ R ← gr2rd DATE; DIM
 DIM ← ⍴ DATE
@@ -154,9 +154,43 @@ R ← (L, 7) ⍴ V
 ∇
 ∇ testfr2rd
 'Erreurs: ', ⍕ +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
+test1fr2rd 5 5
+test1fr2rd 5 3 3
+test1fr2rd 5 2 2 2
+∇
+∇ test1fr2rd DIM
+'Checking with dimension ', ⍕ DIM
+EXP ← DIM ⍴ testdata[;7]
+GOT ← fr2rd (DIM, 3) ⍴ testdata[;4 5 6]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
 ∇
 ∇ testgr2rd
 'Erreurs: ', ⍕ +/ testdata[;7] ≠ gr2rd testdata[;1 2 3]
+test1gr2rd 5 5
+test1gr2rd 5 3 3
+test1gr2rd 5 2 2 2
+∇
+∇ test1gr2rd DIM
+'Checking with dimension ', ⍕ DIM
+EXP ← DIM ⍴ testdata[;7]
+GOT ← gr2rd (DIM, 3) ⍴ testdata[;1 2 3]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
 ∇
 ∇ testrd2fr
 'Checking the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
