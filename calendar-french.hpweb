@@ -865,7 +865,7 @@ calendar-french.apl-1: apl
     'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
     → 0
     CHKDATA:
-    'Data errors: ', ⍕ +/,∨/EXP≠GOT
+    'Data errors: ', ⍕ +/,EXP≠GOT
     ∇
 
 - section: testgr2rd
@@ -894,7 +894,7 @@ calendar-french.apl-1: apl
     'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
     → 0
     CHKDATA:
-    'Data errors: ', ⍕ +/,∨/EXP≠GOT
+    'Data errors: ', ⍕ +/,EXP≠GOT
     ∇
 - section: testrd2fr
   level: 4
@@ -924,4 +924,3 @@ calendar-french.apl-1: apl
     CHKDATA:
     'Data errors: ', ⍕ +/,∨/EXP≠GOT
     ∇
-

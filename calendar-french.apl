@@ -170,7 +170,7 @@ CHKDIM:
 'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,∨/EXP≠GOT
+'Data errors: ', ⍕ +/,EXP≠GOT
 ∇
 ∇ testgr2rd
 'Erreurs: ', ⍕ +/ testdata[;7] ≠ gr2rd testdata[;1 2 3]
@@ -190,7 +190,7 @@ CHKDIM:
 'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,∨/EXP≠GOT
+'Data errors: ', ⍕ +/,EXP≠GOT
 ∇
 ∇ testrd2fr
 'Checking the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
