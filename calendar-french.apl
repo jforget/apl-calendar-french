@@ -159,5 +159,22 @@ R ← (L, 7) ⍴ V
 'Erreurs: ', ⍕ +/ testdata[;7] ≠ gr2rd testdata[;1 2 3]
 ∇
 ∇ testrd2fr
-'Erreurs: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
+'Checking the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
+test1rd2fr 3 3
+test1rd2fr 15 3
+test1rd2fr 2 3 3
+∇
+∇ test1rd2fr DIM
+'Checking with dimension ', ⍕ DIM
+EXP ← (DIM, 3) ⍴ testdata[;4 5 6]
+GOT ← rd2fr DIM ⍴ testdata[;7]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
 ∇
