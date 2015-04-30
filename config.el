@@ -46,6 +46,8 @@
                      ("neq"    . "≠") ("transp" . "⍉")
                      ("leq"    . "≤")
                      ("geq"    . "≥")
+                     ("or"     . "∨")
+                     ("and"    . "∧")
                      ))
           (ch1 (cdr (assoc (completing-read "Car ? "
                                             (mapcar 'car apl-conv)
