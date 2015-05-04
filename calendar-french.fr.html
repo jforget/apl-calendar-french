@@ -28,6 +28,9 @@
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
 <br /><a href='#rd2gr'><tt>rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a>
+<br /><a href='#Les fonctions de conversion'>Les fonctions de conversion</a>
+<br /><a href='#gr2fr'><tt>gr2fr</tt> - Conversion du calendrier grégorien vers le calendrier républicain</a>
+<br /><a href='#fr2gr'><tt>fr2gr</tt> - Conversion du calendrier républicain vers le calendrier grégorien</a>
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -671,6 +674,28 @@ CM ← NR &lt; N ∘.+ 0 0
 M ← ⌈/MR×CM
 D ← N - ⌈/NR×CM
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+∇
+</pre>
+<h2><a name='Les fonctions de conversion'>Les fonctions de conversion</a></h2>
+<h3><a name='gr2fr'><tt>gr2fr</tt> - Conversion du calendrier grégorien vers le calendrier républicain</a></h3>
+<p>
+Après tous ces calculs compliqués, la fonction de conversion est simplissime,
+un peu décevante.
+</p>
+
+<pre>
+∇ R ← gr2fr D
+R ← <a href='#rd2fr' class='call'>rd2fr</a> <a href='#gr2rd' class='call'>gr2rd</a> D
+∇
+</pre>
+<h3><a name='fr2gr'><tt>fr2gr</tt> - Conversion du calendrier républicain vers le calendrier grégorien</a></h3>
+<p>
+Idem pour l'autre fonction de conversion.
+</p>
+
+<pre>
+∇ R ← fr2gr D
+R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2rd</a> D
 ∇
 </pre>
 <h2><a name='Tests internes'>Tests internes</a></h2>

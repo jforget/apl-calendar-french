@@ -28,6 +28,9 @@
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Converting from the Gregorian calendar to <i lang='la'>Rata Die</i></a>
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar</a>
 <br /><a href='#rd2gr'><tt>rd2gr</tt> - Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar</a>
+<br /><a href='#The Conversion Functions'>The Conversion Functions</a>
+<br /><a href='#gr2fr'><tt>gr2fr</tt> - Conversion from the Gregorian calendar to the French Revolutionary calendar</a>
+<br /><a href='#fr2gr'><tt>fr2gr</tt> - Conversion from the French Revolutionary calendar to the Gregorian calendar</a>
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -646,6 +649,28 @@ CM ← NR &lt; N ∘.+ 0 0
 M ← ⌈/MR×CM
 D ← N - ⌈/NR×CM
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+∇
+</pre>
+<h2><a name='The Conversion Functions'>The Conversion Functions</a></h2>
+<h3><a name='gr2fr'><tt>gr2fr</tt> - Conversion from the Gregorian calendar to the French Revolutionary calendar</a></h3>
+<p>
+After all theses complicated computations, the final conversion function is
+a bit of an anti-climax.
+</p>
+
+<pre>
+∇ R ← gr2fr D
+R ← <a href='#rd2fr' class='call'>rd2fr</a> <a href='#gr2rd' class='call'>gr2rd</a> D
+∇
+</pre>
+<h3><a name='fr2gr'><tt>fr2gr</tt> - Conversion from the French Revolutionary calendar to the Gregorian calendar</a></h3>
+<p>
+Same thing for the other conversion function.
+</p>
+
+<pre>
+∇ R ← fr2gr D
+R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2rd</a> D
 ∇
 </pre>
 <h2><a name='Built-in Tests'>Built-in Tests</a></h2>

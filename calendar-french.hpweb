@@ -856,6 +856,37 @@ calendar-french.apl-1: apl
     R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
     ∇
 - section: 0
+  fr: Les fonctions de conversion
+  en: The Conversion Functions
+- section: gr2fr
+  level: 3
+  fr: Conversion du calendrier grégorien vers le calendrier républicain
+  en: Conversion from the Gregorian calendar to the French Revolutionary calendar
+  calendar-french.apl-1: 12
+- fr: |
+    Après tous ces calculs compliqués, la fonction de conversion est simplissime,
+    un peu décevante.
+- en: |
+    After all theses complicated computations, the final conversion function is
+    a bit of an anti-climax.
+- code: |
+    ∇ R ← gr2fr D
+    R ← @rd2fr@ @gr2rd@ D
+    ∇
+- section: fr2gr
+  level: 3
+  fr: Conversion du calendrier républicain vers le calendrier grégorien
+  en: Conversion from the French Revolutionary calendar to the Gregorian calendar
+  calendar-french.apl-1: 12
+- fr: |
+    Idem pour l'autre fonction de conversion.
+- en: |
+    Same thing for the other conversion function.
+- code: |
+    ∇ R ← fr2gr D
+    R ← @rd2gr@ @fr2rd@ D
+    ∇
+- section: 0
   fr: Tests internes
   en: Built-in Tests
 - section: testdata
@@ -1016,7 +1047,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1rd2gr
   level: 4
-  calendar-french.apl-1: 27
+  calendar-french.apl-1: 29
 - code: |
     ∇ test1rd2gr DIM
     'Checking rd2gr with dimension ', ⍕ DIM
