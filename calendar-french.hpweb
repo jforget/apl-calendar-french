@@ -802,6 +802,26 @@ calendar-french.apl-1: apl
           D
     30 6 3 1
     </pre>
+- section: rd2gr
+  fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien 
+  en: Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar
+  calendar-french.apl-1: 10
+  level: 3
+- fr: |
+    Pour cette fonction, il y a deux possibilités. La première consiste à
+    convertir le <i lang='la'>Rata Die</i> en grégorien décalé, puis le
+    grégorien décalé en grégorien. Ou alors, convertir directement en
+    grégorien en utilisant deux fois le mécanisme de plage
+    de valeurs possibles utilisé dans <a href='#rd2fr'>rd2fr</a>, une première
+    fois pour calculer l'année, la seconde fois pour calculer le mois.
+    C'est cette deuxième possibilité que j'ai choisie.
+- en: |
+    For this function, there are two options. The first consists in converting
+    <i lang='la'>Rata Die</i> to shifted Gregorian and then converting from 
+    shifted Gregorian to standard Gregorian. The second possibility consists
+    in using twice the "possible value range", the first time to compute the 
+    year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
+    to compute the month. I use this second way.
       
 - section: 0
   fr: Tests internes

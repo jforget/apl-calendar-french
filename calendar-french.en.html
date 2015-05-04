@@ -27,6 +27,7 @@
 <br /><a href='#frbis'><tt>frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a>
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Converting from the Gregorian calendar to <i lang='la'>Rata Die</i></a>
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar</a>
+<br /><a href='#rd2gr'><tt>rd2gr</tt> - Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar</a>
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -605,6 +606,16 @@ but because of the fourth value, this range was extended to three years.
       D
 30 6 3 1
 </pre>
+</p>
+
+<h3><a name='rd2gr'><tt>rd2gr</tt> - Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar</a></h3>
+<p>
+For this function, there are two options. The first consists in converting
+<i lang='la'>Rata Die</i> to shifted Gregorian and then converting from 
+shifted Gregorian to standard Gregorian. The second possibility consists
+in using twice the "possible value range", the first time to compute the 
+year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
+to compute the month. I use this second way.
   
 </p>
 

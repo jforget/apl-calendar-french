@@ -27,6 +27,7 @@
 <br /><a href='#frbis'><tt>frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a>
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
+<br /><a href='#rd2gr'><tt>rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a>
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -628,7 +629,17 @@ Mais par «&nbsp;contamination&nbsp;» de la dernière valeur, cette plage a ét
       D
 30 6 3 1
 </pre>
-  
+</p>
+
+<h3><a name='rd2gr'><tt>rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a></h3>
+<p>
+Pour cette fonction, il y a deux possibilités. La première consiste à
+convertir le <i lang='la'>Rata Die</i> en grégorien décalé, puis le
+grégorien décalé en grégorien. Ou alors, convertir directement en
+grégorien en utilisant deux fois le mécanisme de plage
+de valeurs possibles utilisé dans <a href='#rd2fr'>rd2fr</a>, une première
+fois pour calculer l'année, la seconde fois pour calculer le mois.
+C'est cette deuxième possibilité que j'ai choisie.
 </p>
 
 <h2><a name='Tests internes'>Tests internes</a></h2>
