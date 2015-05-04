@@ -67,6 +67,25 @@ M ← ⌈D÷30
 D ← D - 30 × M - 1
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
+∇ R ← rd2gr N
+YH ← ⌈ N ÷ 365.24
+YL ← ⌈ N ÷ 365.25
+YI ← 0 , ⍳ ⌈/,YH-YL
+YR ← YL ∘.+ YI
+DR ← zerojanvnd YR
+NR ← gr2rd DR
+CM ← NR < N ∘.+ (⍴YI)⍴0
+Y ← ⌈/YR×CM
+D ← N - ⌈/NR×CM
+ML ← ⌈D÷31
+MR ← ML ∘.+ 0 1
+DR ← (Y ∘.× 2 3 ⍴ 1 0 0) + (MR ∘.× 0 1 0)
+NR ← gr2rd DR
+CM ← NR < N ∘.+ 0 0
+M ← ⌈/MR×CM
+D ← N - ⌈/NR×CM
+R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+∇
 ∇ R ← testdata; V; L
 ⍝ include here the contents of testapl
 V ← ⍳0
@@ -156,6 +175,7 @@ R ← (L, 7) ⍴ V
 testfr2rd
 testgr2rd
 testrd2fr
+testrd2gr
 ∇
 ∇ testfr2rd
 'Checking fr2rd with the full vector, errors: ', ⍕ +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
@@ -203,6 +223,20 @@ test1rd2fr 3 3
 test1rd2fr 15 3
 test1rd2fr 2 3 3
 ∇
+∇ test1rd2gr DIM
+'Checking rd2gr with dimension ', ⍕ DIM
+EXP ← (DIM, 3) ⍴ testdata[;1 2 3]
+GOT ← rd2gr DIM ⍴ testdata[;7]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
+∇
 ∇ test1rd2fr DIM
 'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ testdata[;4 5 6]
@@ -216,4 +250,10 @@ CHKDIM:
 → 0
 CHKDATA:
 'Data errors: ', ⍕ +/,∨/EXP≠GOT
+∇
+∇ testrd2gr
+'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ testdata[;1 2 3] ≠ rd2gr testdata[;7]
+test1rd2gr 3 3
+test1rd2gr 15 3
+test1rd2gr 2 3 3
 ∇

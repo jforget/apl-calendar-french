@@ -815,6 +815,13 @@ calendar-french.apl-1: apl
     de valeurs possibles utilisé dans <a href='#rd2fr'>rd2fr</a>, une première
     fois pour calculer l'année, la seconde fois pour calculer le mois.
     C'est cette deuxième possibilité que j'ai choisie.
+
+    Même si l'estimation du mois est beaucoup moins précise que l'estimation
+    de l'année, on sait que le nombre de jours ne dépassera pas 366 et
+    que le numéro du mois ne dépassera pas 12 et dans ces conditions,
+    la plage aura au maximum deux valeurs. Donc on ne s'embête pas, on prend
+    toujours une plage à deux valeurs pour calculer le mois, même si l'estimation
+    avait donné une plage à une seule valeur.
 - en: |
     For this function, there are two options. The first consists in converting
     <i lang='la'>Rata Die</i> to shifted Gregorian and then converting from 
@@ -822,7 +829,32 @@ calendar-french.apl-1: apl
     in using twice the "possible value range", the first time to compute the 
     year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
     to compute the month. I use this second way.
-      
+
+    Even if the guesstimate of the month is coarser than the estimated value of
+    the year, we know that the computation will never exceed 366 days and 12 months,
+    so the range will have at most two values. So we do not bother refining the
+    estimation and we always use a two-value range for the month, even if the
+    guesstimate would give a single-value range.
+- code: |
+    ∇ R ← rd2gr N
+    YH ← ⌈ N ÷ 365.24
+    YL ← ⌈ N ÷ 365.25
+    YI ← 0 , ⍳ ⌈/,YH-YL
+    YR ← YL ∘.+ YI
+    DR ← @zerojanvnd@ YR
+    NR ← @gr2rd@ DR
+    CM ← NR < N ∘.+ (⍴YI)⍴0
+    Y ← ⌈/YR×CM
+    D ← N - ⌈/NR×CM
+    ML ← ⌈D÷31
+    MR ← ML ∘.+ 0 1
+    DR ← (Y ∘.× 2 3 ⍴ 1 0 0) + (MR ∘.× 0 1 0)
+    NR ← @gr2rd@ DR
+    CM ← NR < N ∘.+ 0 0
+    M ← ⌈/MR×CM
+    D ← N - ⌈/NR×CM
+    R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+    ∇
 - section: 0
   fr: Tests internes
   en: Built-in Tests
@@ -885,6 +917,7 @@ calendar-french.apl-1: apl
     @testfr2rd@
     @testgr2rd@
     @testrd2fr@
+    @testrd2gr@
     ∇
 - section: testfr2rd
   level: 3
@@ -961,6 +994,34 @@ calendar-french.apl-1: apl
     'Checking rd2fr with dimension ', ⍕ DIM
     EXP ← (DIM, 3) ⍴ @testdata@[;4 5 6]
     GOT ← @rd2fr@ DIM ⍴ @testdata@[;7]
+    → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+    'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    → 0
+    CHKDIM:
+    → (∧/(⍴EXP)=⍴GOT)/CHKDATA
+    'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+    → 0
+    CHKDATA:
+    'Data errors: ', ⍕ +/,∨/EXP≠GOT
+    ∇
+- section: testrd2gr
+  level: 4
+  calendar-french.apl-1: 28
+- code: |
+    ∇ testrd2gr
+    'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ @testdata@[;1 2 3] ≠ @rd2gr@ @testdata@[;7]
+    @test1rd2gr@ 3 3
+    @test1rd2gr@ 15 3
+    @test1rd2gr@ 2 3 3
+    ∇
+- section: test1rd2gr
+  level: 4
+  calendar-french.apl-1: 27
+- code: |
+    ∇ test1rd2gr DIM
+    'Checking rd2gr with dimension ', ⍕ DIM
+    EXP ← (DIM, 3) ⍴ @testdata@[;1 2 3]
+    GOT ← @rd2gr@ DIM ⍴ @testdata@[;7]
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     → 0

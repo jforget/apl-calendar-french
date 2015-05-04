@@ -37,6 +37,8 @@
 <br /><a href='#test1gr2rd'><tt>test1gr2rd</tt></a>
 <br /><a href='#testrd2fr'><tt>testrd2fr</tt></a>
 <br /><a href='#test1rd2fr'><tt>test1rd2fr</tt></a>
+<br /><a href='#testrd2gr'><tt>testrd2gr</tt></a>
+<br /><a href='#test1rd2gr'><tt>test1rd2gr</tt></a>
 <hr /><h1><a name='French Revolutionary Calendar'>French Revolutionary Calendar</a></h1>
 <h2><a name='license'><tt>license</tt></a></h2>
 <p>
@@ -615,10 +617,37 @@ For this function, there are two options. The first consists in converting
 shifted Gregorian to standard Gregorian. The second possibility consists
 in using twice the "possible value range", the first time to compute the 
 year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
-to compute the month. I use this second way.
-  
+to compute the month. I use this second way.</p>
+
+<p>
+Even if the guesstimate of the month is coarser than the estimated value of
+the year, we know that the computation will never exceed 366 days and 12 months,
+so the range will have at most two values. So we do not bother refining the
+estimation and we always use a two-value range for the month, even if the
+guesstimate would give a single-value range.
 </p>
 
+<pre>
+∇ R ← rd2gr N
+YH ← ⌈ N ÷ 365.24
+YL ← ⌈ N ÷ 365.25
+YI ← 0 , ⍳ ⌈/,YH-YL
+YR ← YL ∘.+ YI
+DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
+NR ← <a href='#gr2rd' class='call'>gr2rd</a> DR
+CM ← NR &lt; N ∘.+ (⍴YI)⍴0
+Y ← ⌈/YR×CM
+D ← N - ⌈/NR×CM
+ML ← ⌈D÷31
+MR ← ML ∘.+ 0 1
+DR ← (Y ∘.× 2 3 ⍴ 1 0 0) + (MR ∘.× 0 1 0)
+NR ← <a href='#gr2rd' class='call'>gr2rd</a> DR
+CM ← NR &lt; N ∘.+ 0 0
+M ← ⌈/MR×CM
+D ← N - ⌈/NR×CM
+R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
+∇
+</pre>
 <h2><a name='Built-in Tests'>Built-in Tests</a></h2>
 <h3><a name='testdata'><tt>testdata</tt> - Test Data</a></h3>
 <p>
@@ -662,6 +691,7 @@ R ← (L, 7) ⍴ V
 <a href='#testfr2rd' class='call'>testfr2rd</a>
 <a href='#testgr2rd' class='call'>testgr2rd</a>
 <a href='#testrd2fr' class='call'>testrd2fr</a>
+<a href='#testrd2gr' class='call'>testrd2gr</a>
 ∇
 </pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
@@ -731,6 +761,32 @@ CHKDATA:
 'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
 GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+→ 0
+CHKDATA:
+'Data errors: ', ⍕ +/,∨/EXP≠GOT
+∇
+</pre>
+<h4><a name='testrd2gr'><tt>testrd2gr</tt></a></h4>
+<pre>
+∇ testrd2gr
+'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;1 2 3] ≠ <a href='#rd2gr' class='call'>rd2gr</a> <a href='#testdata' class='call'>testdata</a>[;7]
+<a href='#test1rd2gr' class='call'>test1rd2gr</a> 3 3
+<a href='#test1rd2gr' class='call'>test1rd2gr</a> 15 3
+<a href='#test1rd2gr' class='call'>test1rd2gr</a> 2 3 3
+∇
+</pre>
+<h4><a name='test1rd2gr'><tt>test1rd2gr</tt></a></h4>
+<pre>
+∇ test1rd2gr DIM
+'Checking rd2gr with dimension ', ⍕ DIM
+EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+GOT ← <a href='#rd2gr' class='call'>rd2gr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0
