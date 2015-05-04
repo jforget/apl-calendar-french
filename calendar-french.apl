@@ -6,9 +6,9 @@
 ' This program is distributed under the same terms as Perl 5.16.3:'
 ' GNU Public License version 1 or later and Perl Artistic License'
 ''
-' You can find the text of the licenses in the F<LICENSE> file or at'
-' L<http://www.perlfoundation.org/artistic_license_1_0>'
-' and L<http://www.gnu.org/licenses/gpl-1.0.html>.'
+' You can find the text of the licenses in the LICENSE file or at'
+' http://www.perlfoundation.org/artistic_license_1_0'
+' and http://www.gnu.org/licenses/gpl-1.0.html.'
 ''
 ' Here is the summary of GPL:'
 ''
@@ -152,14 +152,19 @@ V ← V, 7792  9 21 6001  1  1 2845869
 L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
+∇ alltests
+testfr2rd
+testgr2rd
+testrd2fr
+∇
 ∇ testfr2rd
-'Erreurs: ', ⍕ +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
+'Checking fr2rd with the full vector, errors: ', ⍕ +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
 test1fr2rd 5 5
 test1fr2rd 5 3 3
 test1fr2rd 5 2 2 2
 ∇
 ∇ test1fr2rd DIM
-'Checking with dimension ', ⍕ DIM
+'Checking fr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ testdata[;7]
 GOT ← fr2rd (DIM, 3) ⍴ testdata[;4 5 6]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
@@ -173,13 +178,13 @@ CHKDATA:
 'Data errors: ', ⍕ +/,EXP≠GOT
 ∇
 ∇ testgr2rd
-'Erreurs: ', ⍕ +/ testdata[;7] ≠ gr2rd testdata[;1 2 3]
+'Testing gr2rd with the full vector, errors: ', ⍕ +/ testdata[;7] ≠ gr2rd testdata[;1 2 3]
 test1gr2rd 5 5
 test1gr2rd 5 3 3
 test1gr2rd 5 2 2 2
 ∇
 ∇ test1gr2rd DIM
-'Checking with dimension ', ⍕ DIM
+'Checking gr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ testdata[;7]
 GOT ← gr2rd (DIM, 3) ⍴ testdata[;1 2 3]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
@@ -193,13 +198,13 @@ CHKDATA:
 'Data errors: ', ⍕ +/,EXP≠GOT
 ∇
 ∇ testrd2fr
-'Checking the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
+'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
 test1rd2fr 3 3
 test1rd2fr 15 3
 test1rd2fr 2 3 3
 ∇
 ∇ test1rd2fr DIM
-'Checking with dimension ', ⍕ DIM
+'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ testdata[;4 5 6]
 GOT ← rd2fr DIM ⍴ testdata[;7]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM

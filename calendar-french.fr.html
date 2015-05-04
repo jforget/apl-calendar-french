@@ -29,6 +29,7 @@
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
+<br /><a href='#alltests'><tt>alltests</tt></a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
 <br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
@@ -38,7 +39,7 @@
 <hr /><h1><a name='Calendrier Républicain'>Calendrier Républicain</a></h1>
 <h2><a name='license'><tt>license</tt></a></h2>
 <p>
-La partie texte de ce dépôt est distribuée sous la licence
+La partie texte de ce dépôt git est distribuée sous la licence
 Creative Commons avec attribution et partage dans les mêmes conditions
 (CC-BY-SA). La partie code de ce dépôt est distribuée dans les mêmes
 conditions que Perl, c'est-à-dire au choix sous la licence GPL version 1.0
@@ -51,8 +52,8 @@ doit commencer par un commentaire décrivant de façon sommaire
 le logiciel et résumant la GPL. La description sommaire en français&nbsp;:</p>
 
 <p>
-Les fonctions de ce script permettent de faire des conversions
-du calendrier grégorien vers le calendrier républicain et vice-versa.</p>
+«&nbsp;Les fonctions de ce script permettent de faire des conversions
+du calendrier grégorien vers le calendrier républicain et vice-versa.&nbsp;»</p>
 
 <p>
 Quant au résumé de la GPL, le voici, en anglais (je ne suis
@@ -68,9 +69,9 @@ pas assez calé pour traduire en français un texte de teneur juridique).
 ' This program is distributed under the same terms as Perl 5.16.3:'
 ' GNU Public License version 1 or later and Perl Artistic License'
 ''
-' You can find the text of the licenses in the F&lt;LICENSE&gt; file or at'
-' L&lt;http://www.perlfoundation.org/artistic_license_1_0&gt;'
-' and L&lt;http://www.gnu.org/licenses/gpl-1.0.html&gt;.'
+' You can find the text of the licenses in the LICENSE file or at'
+' http://www.perlfoundation.org/artistic_license_1_0'
+' and http://www.gnu.org/licenses/gpl-1.0.html.'
 ''
 ' Here is the summary of GPL:'
 ''
@@ -197,7 +198,7 @@ Par exemple, le vecteur de dates&nbsp;:
 </p>
 
 <table border='1' cellpadding='2'><tr>
-<td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
+<td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td><td>31-MAR-2015</td>
 </tr></table>
 
 <p>
@@ -210,8 +211,9 @@ sera représenté par&nbsp;:
 1795 10  5
 1799 11  9
 1851 12  2
+2015  3 31
      ⍴ DATEVEC 
-4 3
+5 3
 </pre>
 <p>
 De la même manière, un tableau <tt>4 5</tt> de dates sera représenté
@@ -220,18 +222,19 @@ sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
 de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
 avec toutes ces structures, sauf lorsque l'on arrive au voisinage du rang maximal.
 Par exemple, le rang maximal en GNU APL est 15, donc les fonctions commencent
-à provoquer des erreurs avec une structure de rang 13.</p>
+à provoquer des erreurs avec une structure de rang 14.</p>
 
 <p>
-Par exemple, la conversion du vecteur ci-dessus se fait par&nbsp;:
+Ainsi, la conversion du vecteur ci-dessus se fait par&nbsp;:
 </p>
 
 <pre>
      gr2fr DATEVEC 
- 2  5  2
- 4  1 13
- 8  2 18
-60  3 11
+  2  5  2
+  4  1 13
+  8  2 18
+ 60  3 11
+223  7 11
 </pre>
 <p>
 Par contre, la fonction <tt>prtfr</tt> n'est pas compatible avec les vecteurs
@@ -255,7 +258,8 @@ Mais cela ne fonctionne pas avec les vecteurs de dates pour lesquels il faut
 écrire <tt>DATEVEC[;1]</tt> et <tt>DATEVEC[;3]</tt>,
 ni avec les tableaux de dates pour lesquel il faut écrire
 <tt>DATEARRAY[;;1]</tt> et <tt>DATEARRAY[;;3]</tt>.
-Il y a plusieurs façons de s'en tirer. La plus simple consiste à écrire&nbsp;:
+Il y a plusieurs façons de s'en tirer et d'avoir une fonction compatible avec
+tous les rangs et toutes les dimensions. La plus simple consiste à écrire&nbsp;:
 </p>
 
 <h4><a name='year'><tt>year</tt></a></h4>
@@ -307,7 +311,7 @@ Il faut ajouter les termes suivants&nbsp;:</p>
 <li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
 <li>(annee - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
 en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
-<li>frbis(annee), qui compte combien d'années bissextiles ont précédé l'année courante,</li>
+<li>frbis(annee), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
 <li>(mois - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
 <li>jour, pour arriver finalement au jour demandé.</li>
 </ul>
@@ -331,7 +335,7 @@ R ← 654019 + (<a href='#frbis' class='call'>frbis</a> <a href='#year' class='c
 <h3><a name='frbis'><tt>frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a></h3>
 <p>
 Cette fonction donne le nombre d'années bissextiles
-qui ont eu lieu avant l'année courante. Elle permet
+qui ont eu lieu avant l'année en paramètre. Elle permet
 d'affiner le calcul de la date, par rapport à l'estimation
 obtenue en prenant des années à 365&nbsp;jours.</p>
 
@@ -427,7 +431,7 @@ De plus, pour les raisons exposées ci-dessous, les mois sont numérotés de 4 (
 à 15 (février), pour la raison exposée ci-dessous.</p>
 
 <p>
-Par exemple le 28 février 2015 devient <tt>2014&nbsp;15&nbsp;28</tt> et le premier mars 2015
+Ainsi le 28 février 2015 devient <tt>2014&nbsp;15&nbsp;28</tt> et le premier mars 2015
 devient <tt>2015&nbsp;4&nbsp;1</tt>.
 </p>
 
@@ -467,7 +471,7 @@ R ← ¯428 + (-/ ⌊ (<a href='#year' class='call'>year</a> DATE) ∘.÷ 4 100 
 <h3><a name='rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a></h3>
 <p>
 Principe&nbsp;: en partant de la valeur <i lang='la'>Rata Die</i>, la fonction évalue
-une fourchette pour l'année, qui peut donc s'étaler de <tt>YL</tt> à <tt>YH</tt>
+une fourchette pour l'année, qui peut donc s'étaler de <tt>YL</tt> à <tt>YH</tt>.
 Supposons que l'on parte de la valeur <i lang='la'>Rata Die</i> 672800,
 avec une fourchette de 50 à 53.
 Puis le sous-programme construit la liste <tt>YR</tt> des années de la fourchette, soit dans
@@ -494,7 +498,16 @@ La fonction convertit cela en <i lang='la'>Rata Die</i>
 </pre>
 
 <p>
-et compare avec les valeurs initiales, ce qui permet d'avoir l'année de la date
+et compare avec les valeurs initiales, ce qui donne&nbsp;:
+</p>
+
+<pre>
+    CM
+1 1 0 0
+</pre>
+
+<p>
+Cela permet d'avoir l'année de la date
 en prenant l'année la plus élevée pour laquelle la valeur dans <tt>NR</tt> est inférieure
 à la valeur du paramètre d'entrée <tt>N</tt>.
 Dans l'exemple ci-dessus, on en déduit que l'année est 51. En faisant la différence
@@ -506,6 +519,8 @@ converti en 4 Pluviôse (<tt>5 4</tt>) avec de simples divisions par 30.
 Remarque&nbsp;: dans l'exemple ci-dessus, la plage d'années avait 4&nbsp;valeurs.
 Dans la réalité, la plage n'aura qu'une seule valeur, parfois deux au voisinage
 des changements d'année. Le choix de 4&nbsp;valeurs avait un rôle pédagogique.
+En fait, la première date pour laquelle la plage comporte trois valeurs est l'année
+3744 et il faut attendre 7480 pour qu'elle compte quatre valeurs.
 </p>
 
 <p>
@@ -513,8 +528,8 @@ Autre remarque&nbsp;: lorsque le paramètre en entrée n'est pas un scalaire, ma
 vecteur, un tableau ou une structure d'ordre plus élevé, les variables intermédiaires
 ont également un ordre plus élevé. Le seul point délicat est de savoir ce qui
 se passe lorsque l'une des valeurs <i lang='la'>Rata Die</i> donne une plage
-de 3&nbsp;valeurs et l'autre une plage de 4&nbsp;valeurs (par exemple). Dans ce cas,
-la plage de valeurs du premier <i lang='la'>Rata Die</i> est allongée à 4&nbsp;valeurs
+de 1&nbsp;valeur et l'autre une plage de 2&nbsp;valeurs (par exemple). Dans ce cas,
+la plage de valeurs du premier <i lang='la'>Rata Die</i> est allongée à 2&nbsp;valeurs
 pour conserver la rectangularité de la variable <tt>YR</tt>.
 </p>
 
@@ -539,16 +554,16 @@ R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 Résumé des variables locales&nbsp;:</p>
 
 <table>
-<tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années       	       </td></tr> 
-<tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années       	       </td></tr> 
+<tr><td>YH</td><td>year (high)      </td><td>borne supérieure de la plage d'années                 </td></tr> 
+<tr><td>YL</td><td>year (low)       </td><td>borne inférieure de la plage d'années                 </td></tr> 
 <tr><td>YI</td><td>year increments  </td><td>vecteur d'incréments pour construire la plage d'années</td></tr> 
-<tr><td>YR</td><td>year range       </td><td>plage d'années                              	       </td></tr> 
-<tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)              	       </td></tr> 
-<tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)	       </td></tr> 
-<tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                  	       </td></tr> 
-<tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                    	       </td></tr> 
-<tr><td>D </td><td>day final value  </td><td>valeur finale du jour                       	       </td></tr> 
-<tr><td>M </td><td>month final value</td><td>valeur finale du mois                       	       </td></tr> 
+<tr><td>YR</td><td>year range       </td><td>plage d'années                                        </td></tr> 
+<tr><td>DR</td><td>date range       </td><td>plage de dates (0 Vendémiaire)                        </td></tr> 
+<tr><td>NR</td><td>number range     </td><td>plage de nombres (<i lang='la'>Rata Die</i>)          </td></tr> 
+<tr><td>CM</td><td>comparison       </td><td>résultat de la comparaison                            </td></tr> 
+<tr><td>Y </td><td>year final value </td><td>valeur finale de l'année                              </td></tr> 
+<tr><td>D </td><td>day final value  </td><td>valeur finale du jour                                 </td></tr> 
+<tr><td>M </td><td>month final value</td><td>valeur finale du mois                                 </td></tr> 
 </table>
 
 <p>
@@ -652,10 +667,18 @@ L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
 </pre>
+<h3><a name='alltests'><tt>alltests</tt></a></h3>
+<pre>
+∇ alltests
+<a href='#testfr2rd' class='call'>testfr2rd</a>
+<a href='#testgr2rd' class='call'>testgr2rd</a>
+<a href='#testrd2fr' class='call'>testrd2fr</a>
+∇
+</pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
 <pre>
 ∇ testfr2rd
-'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+'Checking fr2rd with the full vector, errors: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
 <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 5
 <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 3 3
 <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 2 2 2
@@ -664,9 +687,9 @@ R ← (L, 7) ⍴ V
 <h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
 <pre>
 ∇ test1fr2rd DIM
-'Checking with dimension ', ⍕ DIM
+'Checking fr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
-GOT ← fr2rd (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+GOT ← <a href='#fr2rd' class='call'>fr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0
@@ -681,7 +704,7 @@ CHKDATA:
 <h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
 <pre>
 ∇ testgr2rd
-'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+'Testing gr2rd with the full vector, errors: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
 <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 5
 <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 3 3
 <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 2 2 2
@@ -690,9 +713,9 @@ CHKDATA:
 <h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
 <pre>
 ∇ test1gr2rd DIM
-'Checking with dimension ', ⍕ DIM
+'Checking gr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
-GOT ← gr2rd (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+GOT ← <a href='#gr2rd' class='call'>gr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0
@@ -707,7 +730,7 @@ CHKDATA:
 <h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
 <pre>
 ∇ testrd2fr
-'Checking the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
+'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
 <a href='#test1rd2fr' class='call'>test1rd2fr</a> 3 3
 <a href='#test1rd2fr' class='call'>test1rd2fr</a> 15 3
 <a href='#test1rd2fr' class='call'>test1rd2fr</a> 2 3 3
@@ -716,9 +739,9 @@ CHKDATA:
 <h4><a name='test1rd2fr'><tt>test1rd2fr</tt></a></h4>
 <pre>
 ∇ test1rd2fr DIM
-'Checking with dimension ', ⍕ DIM
+'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
-GOT ← rd2fr DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0

@@ -29,6 +29,7 @@
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar</a>
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
+<br /><a href='#alltests'><tt>alltests</tt></a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
 <br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
@@ -58,9 +59,9 @@ description of the program and the summary of the GPL. Here it is.
 ' This program is distributed under the same terms as Perl 5.16.3:'
 ' GNU Public License version 1 or later and Perl Artistic License'
 ''
-' You can find the text of the licenses in the F&lt;LICENSE&gt; file or at'
-' L&lt;http://www.perlfoundation.org/artistic_license_1_0&gt;'
-' and L&lt;http://www.gnu.org/licenses/gpl-1.0.html&gt;.'
+' You can find the text of the licenses in the LICENSE file or at'
+' http://www.perlfoundation.org/artistic_license_1_0'
+' and http://www.gnu.org/licenses/gpl-1.0.html.'
 ''
 ' Here is the summary of GPL:'
 ''
@@ -180,7 +181,7 @@ For example, the date vector:
 </p>
 
 <table border='1' cellpadding='2'><tr>
-<td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td>
+<td>21-JAN-1794</td><td>5-OCT-1795</td><td>9-NOV-1799</td><td>2-DEC-1851</td><td>31-MAR-2015</td>
 </tr></table>
 
 <p>
@@ -193,8 +194,9 @@ will be implemented by:
 1795 10  5
 1799 11  9
 1851 12  2
+2015  3 31
      ⍴ DATEVEC 
-4 3
+5 3
 </pre>
 <p>
 Likewise, a <tt>4 5</tt> array of dates will be entered as a <tt>4 5 3</tt>
@@ -206,15 +208,16 @@ GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
 functions are limited to rank 13.</p>
 
 <p>
-For example, converting the vector above is done with:
+Continuing with the example above, converting the date vector is done with:
 </p>
 
 <pre>
      gr2fr DATEVEC 
- 2  5  2
- 4  1 13
- 8  2 18
-60  3 11
+  2  5  2
+  4  1 13
+  8  2 18
+ 60  3 11
+223  7 11
 </pre>
 <p>
 On the other hand, the <tt>prtfr</tt> function is not compatible with date vectors
@@ -318,7 +321,7 @@ the date computation, initialised with a computation using only
 
 <p>
 Until year XX, the leap year rule is an astronomical rule,
-considering the 1st Vendémiaire should happen on the 
+stating that the 1st Vendémiaire should happen on the 
 fall equinox. Then from year XX on, there would have
 been an arithmetical rule, similar to the Gregorian Calendar
 rule, introduced by Gilbert Romme's reform.</p>
@@ -474,6 +477,15 @@ The function computes the <i lang='la'>Rata Die</i> of these dates
 </pre>
 
 <p>
+and compares with the initial value, which gives:
+</p>
+
+<pre>
+    CM
+1 1 0 0
+</pre>
+
+<p>
 and compares with the initial value. The proper year is the highest year for which
 the zeroth Vendémiaire has a <i lang='la'>Rata Die</i> value less than the value
 given as a parameter. In the example above, this would give year 51. By subtracting
@@ -483,16 +495,19 @@ the <i lang='la'>Rata Die</i> of the zeroth Vendémiaire from the parameter, we 
 
 <p>
 Remark: in the example above, the interval of candidate years has 4 values. Actually,
-in most cases there will be only one candidate year and there will be two around
+in most cases there will be only one candidate year when the date is far from the
+year's beginning and end, and there will be two around
 the years' ends. Using 4 values instead of just 1 or 2 has a pedagogical purpose.
+Actually, the first date with a 3-value range occurs in year 3744 and the first
+4-value range appears in year 7480.
 </p>
 
 <p>
 Other remark: when the input parameter is not a scalar, but a vector, array or higher
 ranked structure, the various variables also have a higher rank. The only question
-is what happens if a first <i lang='la'>Rata Die</i> value yields a 3-value 
-range for the candidate years and another one yields a 4-value range. In this case,
-the shorter range is extended to 4 values, so the <tt>YR</tt> variable will be
+is what happens if a first <i lang='la'>Rata Die</i> value yields a 1-value 
+range for the candidate years and another one yields a 2-value range. In this case,
+the shorter range is extended to 2 values, so the <tt>YR</tt> variable will be
 properly rectangular.
 </p>
 
@@ -617,7 +632,7 @@ with a <i lang='la'>Rata Die</i> value of 654415. Likewise, the 23rd October 179
 <p>
 The values used in these built-in tests come from the Perl module
 <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
-The program which turns these datese into an APL code chunk is available on
+The program which turns these dates into an APL code chunk is available on
 <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
 And a utility script (in Perl) in this project inserts the contents of <tt>testapl</tt>
 in the final script.
@@ -630,10 +645,18 @@ L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
 </pre>
+<h3><a name='alltests'><tt>alltests</tt></a></h3>
+<pre>
+∇ alltests
+<a href='#testfr2rd' class='call'>testfr2rd</a>
+<a href='#testgr2rd' class='call'>testgr2rd</a>
+<a href='#testrd2fr' class='call'>testrd2fr</a>
+∇
+</pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
 <pre>
 ∇ testfr2rd
-'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+'Checking fr2rd with the full vector, errors: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
 <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 5
 <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 3 3
 <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 2 2 2
@@ -642,9 +665,9 @@ R ← (L, 7) ⍴ V
 <h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
 <pre>
 ∇ test1fr2rd DIM
-'Checking with dimension ', ⍕ DIM
+'Checking fr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
-GOT ← fr2rd (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+GOT ← <a href='#fr2rd' class='call'>fr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0
@@ -659,7 +682,7 @@ CHKDATA:
 <h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
 <pre>
 ∇ testgr2rd
-'Erreurs: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+'Testing gr2rd with the full vector, errors: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
 <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 5
 <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 3 3
 <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 2 2 2
@@ -668,9 +691,9 @@ CHKDATA:
 <h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
 <pre>
 ∇ test1gr2rd DIM
-'Checking with dimension ', ⍕ DIM
+'Checking gr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
-GOT ← gr2rd (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+GOT ← <a href='#gr2rd' class='call'>gr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0
@@ -685,7 +708,7 @@ CHKDATA:
 <h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
 <pre>
 ∇ testrd2fr
-'Checking the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
+'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
 <a href='#test1rd2fr' class='call'>test1rd2fr</a> 3 3
 <a href='#test1rd2fr' class='call'>test1rd2fr</a> 15 3
 <a href='#test1rd2fr' class='call'>test1rd2fr</a> 2 3 3
@@ -694,9 +717,9 @@ CHKDATA:
 <h4><a name='test1rd2fr'><tt>test1rd2fr</tt></a></h4>
 <pre>
 ∇ test1rd2fr DIM
-'Checking with dimension ', ⍕ DIM
+'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
-GOT ← rd2fr DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 → 0
