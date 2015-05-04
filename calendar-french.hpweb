@@ -887,6 +887,21 @@ calendar-french.apl-1: apl
     R ← @rd2gr@ @fr2rd@ D
     ∇
 - section: 0
+  fr: Affichage des dates
+  en: Displaying the Dates
+- section: prtfr
+  level: 3
+  fr: Affichage d'une date du calendrier républicain
+  en: Displaying a French Revolutionary calendar date
+  calendar-french.apl-1: 13
+- code: |
+    ∇ R ← prtfr D; ⎕IO
+    DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
+    R ← DAY[1 + 10 | D[3];]
+    MONTH ← 12 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
+    R ← R, ' ', (⍕D[3]), ' ', (MONTH[D[2];]), ' ', ⍕D[1]
+    ∇
+- section: 0
   fr: Tests internes
   en: Built-in Tests
 - section: testdata

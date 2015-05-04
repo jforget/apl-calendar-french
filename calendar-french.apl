@@ -92,6 +92,12 @@ R ← rd2fr gr2rd D
 ∇ R ← fr2gr D
 R ← rd2gr fr2rd D
 ∇
+∇ R ← prtfr D; ⎕IO
+DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
+R ← DAY[1 + 10 | D[3];]
+MONTH ← 12 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
+R ← R, ' ', (⍕D[3]), ' ', (MONTH[D[2];]), ' ', ⍕D[1]
+∇
 ∇ R ← testdata; V; L
 ⍝ include here the contents of testapl
 V ← ⍳0
