@@ -895,11 +895,31 @@ calendar-french.apl-1: apl
   en: Displaying a French Revolutionary calendar date
   calendar-french.apl-1: 13
 - code: |
-    ∇ R ← prtfr D; ⎕IO
+    ∇ R ← prtfr D
     DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-    R ← DAY[1 + 10 | D[3];]
-    MONTH ← 12 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-    R ← R, ' ', (⍕D[3]), ' ', (MONTH[D[2];]), ' ', ⍕D[1]
+    R ← DAY[⎕IO + 10 | @day@ D;]
+    MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
+    R ← R, ' ', (⍕ @day@ D), ' ', (MONTH[@month@ D;]), ' ', @roman@ @year@ D
+    ⍝ TODO: trim multiple spaces
+    ∇
+- section: roman
+  level: 3
+  fr: Conversion d'un nombre en chiffres romains
+  en: Converting a number into Roman numerals
+  calendar-french.apl-1: 14
+- fr: |
+    Si le nombre dépasse 3999, il conserve son expression en chiffres indo-arabes.
+    Idem s'il est négatif ou nul.
+- en: |
+    If the number is higher than 3999, it is displayed with indo-arab numerals. Same thing if zero or negative.
+- code: |
+    ∇ R ← roman N
+    → ((N>0) ∧ N<4000)/CONV
+    R ← ⍕ N
+    → 0
+    CONV:
+    ⍝ TODO: the real conversion
+    R ← ⍕ N
     ∇
 - section: 0
   fr: Tests internes

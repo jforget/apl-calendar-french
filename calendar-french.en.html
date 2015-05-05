@@ -33,6 +33,7 @@
 <br /><a href='#fr2gr'><tt>fr2gr</tt> - Conversion from the French Revolutionary calendar to the Gregorian calendar</a>
 <br /><a href='#Displaying the Dates'>Displaying the Dates</a>
 <br /><a href='#prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a>
+<br /><a href='#roman'><tt>roman</tt> - Converting a number into Roman numerals</a>
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -678,11 +679,27 @@ R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2r
 <h2><a name='Displaying the Dates'>Displaying the Dates</a></h2>
 <h3><a name='prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a></h3>
 <pre>
-∇ R ← prtfr D; ⎕IO
+∇ R ← prtfr D
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-R ← DAY[1 + 10 | D[3];]
-MONTH ← 12 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕D[3]), ' ', (MONTH[D[2];]), ' ', ⍕D[1]
+R ← DAY[⎕IO + 10 | <a href='#day' class='call'>day</a> D;]
+MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
+R ← R, ' ', (⍕ <a href='#day' class='call'>day</a> D), ' ', (MONTH[<a href='#month' class='call'>month</a> D;]), ' ', <a href='#roman' class='call'>roman</a> <a href='#year' class='call'>year</a> D
+⍝ TODO: trim multiple spaces
+∇
+</pre>
+<h3><a name='roman'><tt>roman</tt> - Converting a number into Roman numerals</a></h3>
+<p>
+If the number is higher than 3999, it is displayed with indo-arab numerals. Same thing if zero or negative.
+</p>
+
+<pre>
+∇ R ← roman N
+→ ((N&gt;0) ∧ N&lt;4000)/CONV
+R ← ⍕ N
+→ 0
+CONV:
+⍝ TODO: the real conversion
+R ← ⍕ N
 ∇
 </pre>
 <h2><a name='Built-in Tests'>Built-in Tests</a></h2>
