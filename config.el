@@ -43,6 +43,8 @@
                      ("ceil"   . "⌈") ("slbck"  . "⍀") ("qquad"   . "⍞")
                      ("log"    . "⍟") ("elem"   . "∈") ("enquote" . "⍕")
                      ("domino" . "⌹") ("jot"    . "∘") ("dequote" . "⍎")
+                     ("encode" . "⊤")
+                     ("decode" . "⊥")
                      ("neq"    . "≠") ("transp" . "⍉")
                      ("leq"    . "≤")
                      ("geq"    . "≥")
