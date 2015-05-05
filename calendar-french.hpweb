@@ -900,7 +900,8 @@ calendar-french.apl-1: apl
     R ← DAY[⎕IO + 10 | @day@ D;]
     MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
     R ← R, ' ', (⍕ @day@ D), ' ', (MONTH[@month@ D;]), ' ', @roman@ @year@ D
-    ⍝ TODO: trim multiple spaces
+    CM ← ' ' ≠ R
+    R ← (CM ∨ 0,¯1↓CM) / R
     ∇
 - section: roman
   level: 3

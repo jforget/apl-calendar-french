@@ -97,7 +97,8 @@ DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septi
 R ← DAY[⎕IO + 10 | day D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
 R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', roman year D
-⍝ TODO: trim multiple spaces
+CM ← ' ' ≠ R
+R ← (CM ∨ 0,¯1↓CM) / R
 ∇
 ∇ R ← roman N; NODES
 → ((N>0) ∧ N<4000)/CONV

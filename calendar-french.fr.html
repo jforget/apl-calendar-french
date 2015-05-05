@@ -711,7 +711,8 @@ DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septi
 R ← DAY[⎕IO + 10 | <a href='#day' class='call'>day</a> D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
 R ← R, ' ', (⍕ <a href='#day' class='call'>day</a> D), ' ', (MONTH[<a href='#month' class='call'>month</a> D;]), ' ', <a href='#roman' class='call'>roman</a> <a href='#year' class='call'>year</a> D
-⍝ TODO: trim multiple spaces
+CM ← ' ' ≠ R
+R ← (CM ∨ 0,¯1↓CM) / R
 ∇
 </pre>
 <h3><a name='roman'><tt>roman</tt> - Conversion d'un nombre en chiffres romains</a></h3>
