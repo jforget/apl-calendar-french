@@ -913,13 +913,35 @@ calendar-french.apl-1: apl
 - en: |
     If the number is higher than 3999, it is displayed with indo-arab numerals. Same thing if zero or negative.
 - code: |
-    ∇ R ← roman N
+    ∇ R ← roman N; NODES
     → ((N>0) ∧ N<4000)/CONV
     R ← ⍕ N
     → 0
     CONV:
-    ⍝ TODO: the real conversion
-    R ← ⍕ N
+    NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
+    R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
+    R ← (R≠' ')/R
+    ∇
+- section: nodes
+  level: 3
+  fr: Construction des nœuds de la numération romaine
+  en: Building the nodes of Roman numerals
+  calendar-french.apl-1: 15
+- fr: |
+    Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
+    par Geneviève Guitel. Dans une numération de base <var>b</var>, un nœud est un nombre
+    de la forme <var>k × b<sup>n</sup></var>, avec <var>k</var> entre 0 et <var>b</var>&nbsp;-&nbsp;1.
+    Cette fonction participe à la construction d'un tableau de caractères où chaque ligne est un
+    nœud de la base 10 écrit en chiffres romains.
+- en: |
+    The word "nodes" comes from the French-written book <cite lang='fr'>Histoire comparée des numérations écrites</cite>
+    (which would translate to "Compared History of Written Number Systems"), by Geneviève Guitel.
+    When dealing with radix <var>b</var>, a node is a number <var>k × b<sup>n</sup></var>, with <var>k</var> between 0 and <var>b</var>&nbsp;-&nbsp;1.
+    This function provides a step to build a char-array, in which any line is a radix-10 node, 
+    written with Roman numerals.
+- code: |
+    ∇ R ← nodes CH
+    R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
     ∇
 - section: 0
   fr: Tests internes

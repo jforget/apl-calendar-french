@@ -99,13 +99,17 @@ MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   V
 R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', roman year D
 ⍝ TODO: trim multiple spaces
 ∇
-∇ R ← roman N
+∇ R ← roman N; NODES
 → ((N>0) ∧ N<4000)/CONV
 R ← ⍕ N
 → 0
 CONV:
-⍝ TODO: the real conversion
-R ← ⍕ N
+NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
+R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
+R ← (R≠' ')/R
+∇
+∇ R ← nodes CH
+R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 ∇ R ← testdata; V; L
 ⍝ include here the contents of testapl

@@ -34,6 +34,7 @@
 <br /><a href='#Displaying the Dates'>Displaying the Dates</a>
 <br /><a href='#prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a>
 <br /><a href='#roman'><tt>roman</tt> - Converting a number into Roman numerals</a>
+<br /><a href='#nodes'><tt>nodes</tt> - Building the nodes of Roman numerals</a>
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -694,13 +695,28 @@ If the number is higher than 3999, it is displayed with indo-arab numerals. Same
 </p>
 
 <pre>
-∇ R ← roman N
+∇ R ← roman N; NODES
 → ((N&gt;0) ∧ N&lt;4000)/CONV
 R ← ⍕ N
 → 0
 CONV:
-⍝ TODO: the real conversion
-R ← ⍕ N
+NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
+R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
+R ← (R≠' ')/R
+∇
+</pre>
+<h3><a name='nodes'><tt>nodes</tt> - Building the nodes of Roman numerals</a></h3>
+<p>
+The word "nodes" comes from the French-written book <cite lang='fr'>Histoire comparée des numérations écrites</cite>
+(which would translate to "Compared History of Written Number Systems"), by Geneviève Guitel.
+When dealing with radix <var>b</var>, a node is a number <var>k × b<sup>n</sup></var>, with <var>k</var> between 0 and <var>b</var>&nbsp;-&nbsp;1.
+This function provides a step to build a char-array, in which any line is a radix-10 node, 
+written with Roman numerals.
+</p>
+
+<pre>
+∇ R ← nodes CH
+R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 </pre>
 <h2><a name='Built-in Tests'>Built-in Tests</a></h2>

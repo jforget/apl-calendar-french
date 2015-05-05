@@ -34,6 +34,7 @@
 <br /><a href='#Affichage des dates'>Affichage des dates</a>
 <br /><a href='#prtfr'><tt>prtfr</tt> - Affichage d'une date du calendrier républicain</a>
 <br /><a href='#roman'><tt>roman</tt> - Conversion d'un nombre en chiffres romains</a>
+<br /><a href='#nodes'><tt>nodes</tt> - Construction des nœuds de la numération romaine</a>
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
@@ -720,13 +721,28 @@ Idem s'il est négatif ou nul.
 </p>
 
 <pre>
-∇ R ← roman N
+∇ R ← roman N; NODES
 → ((N&gt;0) ∧ N&lt;4000)/CONV
 R ← ⍕ N
 → 0
 CONV:
-⍝ TODO: the real conversion
-R ← ⍕ N
+NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
+R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
+R ← (R≠' ')/R
+∇
+</pre>
+<h3><a name='nodes'><tt>nodes</tt> - Construction des nœuds de la numération romaine</a></h3>
+<p>
+Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
+par Geneviève Guitel. Dans une numération de base <var>b</var>, un nœud est un nombre
+de la forme <var>k × b<sup>n</sup></var>, avec <var>k</var> entre 0 et <var>b</var>&nbsp;-&nbsp;1.
+Cette fonction participe à la construction d'un tableau de caractères où chaque ligne est un
+nœud de la base 10 écrit en chiffres romains.
+</p>
+
+<pre>
+∇ R ← nodes CH
+R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 </pre>
 <h2><a name='Tests internes'>Tests internes</a></h2>
