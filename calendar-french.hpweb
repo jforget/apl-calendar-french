@@ -1098,3 +1098,40 @@ calendar-french.apl-1: apl
     CHKDATA:
     'Data errors: ', ⍕ +/,∨/EXP≠GOT
     ∇
+- section: 0
+  fr: Voir également
+  en: See Also
+- fr: |
+    En Perl&nbsp;: <a href='http://metacpan.org/module/DateTime::Calendar::FrenchRevolutionary'><span class='tt'>DateTime::Calendar::FrenchRevolutionary</span></a> 
+    également disponible <a href='https://github.com/jforget/DateTime-Calendar-FrenchRevolutionary'>sur GitHub</a>.
+
+    En Perl également&nbsp;: <a href='http://metacpan.org/module/Date::Convert::French_Rev'><span class='tt'>Date::Convert::French_Rev</span></a>
+    également disponible <a href='https://github.com/jforget/Date-Convert-French_Rev'>sur GitHub</a>.
+
+    Existe aussi <a href='https://github.com/jhbadger/FrenchRevCal-ruby'>en Ruby</a>.
+
+    Ou alors sous Emacs <a href='https://github.com/jforget/emacs-lisp-cal-french'>en e-LISP</a>.
+
+    Existe <a href='https://github.com/jhbadger/Thermidor-Android'>sur Android</a>.
+
+    Existe aussi sur <a href='http://www.hpcalc.org/details.php?id=7309'>HP-48 et HP-50</a>
+    (<a href='https://github.com/jforget/hp48-hp50-French-Revolutionary-calendar'>dépôt GitHub</a>).
+
+    Existe enfin <a href='https://github.com/jforget/hp41-calfr'>sur HP-41</a>.
+- en: |
+    In Perl: <a href='http://metacpan.org/module/DateTime::Calendar::FrenchRevolutionary'><span class='tt'>DateTime::Calendar::FrenchRevolutionary</span></a> 
+    also available <a href='https://github.com/jforget/DateTime-Calendar-FrenchRevolutionary'>on GitHub</a>.
+
+    Also in Perl: <a href='http://metacpan.org/module/Date::Convert::French_Rev'><span class='tt'>Date::Convert::French_Rev</span></a>,
+    available <a href='https://github.com/jforget/Date-Convert-French_Rev'>on GitHub</a>.
+
+    Exists also <a href='https://github.com/jhbadger/FrenchRevCal-ruby'>in Ruby</a>.
+
+    Or else with Emacs <a href='https://github.com/jforget/emacs-lisp-cal-french'>using e-LISP</a>.
+
+    Exists <a href='https://github.com/jhbadger/Thermidor-Android'>on Android</a>.
+
+    Exists also on <a href='http://www.hpcalc.org/details.php?id=7309'>HP-48 and HP-50</a>
+    (<a href='https://github.com/jforget/hp48-hp50-French-Revolutionary-calendar'>GitHub repository</a>).
+
+    Lastly, exists <a href='https://github.com/jforget/hp41-calfr'>on HP-41</a>.
