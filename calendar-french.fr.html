@@ -35,8 +35,10 @@
 <br /><a href='#prtfr'><tt>prtfr</tt> - Affichage d'une date du calendrier républicain</a>
 <br /><a href='#roman'><tt>roman</tt> - Conversion d'un nombre en chiffres romains</a>
 <br /><a href='#nodes'><tt>nodes</tt> - Construction des nœuds de la numération romaine</a>
+<br /><a href='#feasts'><tt>feasts</tt> - Fêtes du calendrier républicain</a>
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
+<br /><a href='#teststring'><tt>teststring</tt> - Données alphanumériques de tests</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
@@ -746,6 +748,16 @@ nœud de la base 10 écrit en chiffres romains.
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 </pre>
+<h3><a name='feasts'><tt>feasts</tt> - Fêtes du calendrier républicain</a></h3>
+<p>
+Cette fonction énumère les fêtes des 366 jours du calendier républicain.
+</p>
+
+<pre>
+∇ R ← feasts
+⍝ include here the contents of feasts
+∇
+</pre>
 <h2><a name='Tests internes'>Tests internes</a></h2>
 <h3><a name='testdata'><tt>testdata</tt> - Données pour les tests</a></h3>
 <p>
@@ -780,6 +792,18 @@ Et un utilitaire est fourni dans le présent projet pour insérer les valeurs da
 ⍝ include here the contents of testapl
 L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
+∇
+</pre>
+<h2><a name='teststring'><tt>teststring</tt> - Données alphanumériques de tests</a></h2>
+<p>
+Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
+le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
+</p>
+
+<pre>
+∇ R ← teststring; V; L
+V ← ''
+⍝ include here the contents of testapl1
 ∇
 </pre>
 <h3><a name='alltests'><tt>alltests</tt></a></h3>

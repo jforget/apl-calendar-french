@@ -333,7 +333,7 @@ calendar-french.apl-1: apl
 - section: zerojanvnd
   fr: Notion de «&nbsp;jour zéro&nbsp;»
   en: Concept of "zeroth day"
-  calendar-french.apl-1: 5
+  calendar-french.apl-1: 10
   level: 3
 - fr: |
     Pour comprendre comment les algorithmes de conversion fonctionnent, il est
@@ -363,7 +363,7 @@ calendar-french.apl-1: apl
 - section: fr2rd
   fr: Conversion du calendrier républicain vers <i lang='la'>Rata Die</i>
   en: Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i>
-  calendar-french.apl-1: 6
+  calendar-french.apl-1: 11
   level: 3
 - fr: |
     Commençons par calculer le <i lang='la'>Rata Die</i> d'une date du calendrier républicain.
@@ -416,7 +416,7 @@ calendar-french.apl-1: apl
   fr: Nombre d'années bissextiles avant l'année N (calendrier républicain)
   en: Number of leap years before year N (French Revolutionary calendar)
   level: 3
-  calendar-french.apl-1: 7
+  calendar-french.apl-1: 12
 - fr: |
     Cette fonction donne le nombre d'années bissextiles
     qui ont eu lieu avant l'année en paramètre. Elle permet
@@ -529,7 +529,7 @@ calendar-french.apl-1: apl
 - section: gr2rd
   fr: Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i>
   en: Converting from the Gregorian calendar to <i lang='la'>Rata Die</i>
-  calendar-french.apl-1: 8
+  calendar-french.apl-1: 13
   level: 3
 - fr: |
     Malgré les critères pour les années bissextiles, la conversion du calendrier
@@ -603,7 +603,7 @@ calendar-french.apl-1: apl
 - section: rd2fr
   fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain 
   en: Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar
-  calendar-french.apl-1: 9
+  calendar-french.apl-1: 14
   level: 3
 - fr: |
     Principe&nbsp;: en partant de la valeur <i lang='la'>Rata Die</i>, la fonction évalue
@@ -805,7 +805,7 @@ calendar-french.apl-1: apl
 - section: rd2gr
   fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien 
   en: Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar
-  calendar-french.apl-1: 10
+  calendar-french.apl-1: 15
   level: 3
 - fr: |
     Pour cette fonction, il y a deux possibilités. La première consiste à
@@ -862,7 +862,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Conversion du calendrier grégorien vers le calendrier républicain
   en: Conversion from the Gregorian calendar to the French Revolutionary calendar
-  calendar-french.apl-1: 12
+  calendar-french.apl-1: 16
 - fr: |
     Après tous ces calculs compliqués, la fonction de conversion est simplissime,
     un peu décevante.
@@ -877,7 +877,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Conversion du calendrier républicain vers le calendrier grégorien
   en: Conversion from the French Revolutionary calendar to the Gregorian calendar
-  calendar-french.apl-1: 12
+  calendar-french.apl-1: 17
 - fr: |
     Idem pour l'autre fonction de conversion.
 - en: |
@@ -893,7 +893,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Affichage d'une date du calendrier républicain
   en: Displaying a French Revolutionary calendar date
-  calendar-french.apl-1: 13
+  calendar-french.apl-1: 20
 - code: |
     ∇ R ← prtfr D
     DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
@@ -907,7 +907,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Conversion d'un nombre en chiffres romains
   en: Converting a number into Roman numerals
-  calendar-french.apl-1: 14
+  calendar-french.apl-1: 21
 - fr: |
     Si le nombre dépasse 3999, il conserve son expression en chiffres indo-arabes.
     Idem s'il est négatif ou nul.
@@ -927,7 +927,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Construction des nœuds de la numération romaine
   en: Building the nodes of Roman numerals
-  calendar-french.apl-1: 15
+  calendar-french.apl-1: 22
 - fr: |
     Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
     par Geneviève Guitel. Dans une numération de base <var>b</var>, un nœud est un nombre
@@ -944,6 +944,19 @@ calendar-french.apl-1: apl
     ∇ R ← nodes CH
     R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
     ∇
+- section: feasts
+  level: 3
+  fr: Fêtes du calendrier républicain
+  en: Feasts of the French Revolutionary calendar
+  calendar-french.apl-1: 23
+- fr: |
+    Cette fonction énumère les fêtes des 366 jours du calendier républicain.
+- en: |
+    This function lists all 366 feasts for all days in a French Revolutionary calendar year.
+- code: |
+    ∇ R ← feasts
+    ⍝ include here the contents of feasts
+    ∇
 - section: 0
   fr: Tests internes
   en: Built-in Tests
@@ -951,7 +964,7 @@ calendar-french.apl-1: apl
   level: 3
   fr: Données pour les tests
   en: Test Data
-  calendar-french.apl-1: 20
+  calendar-french.apl-1: 30
 - fr: |
     Cette fonction renvoie un tableau de <var>n</var> lignes et 7 colonnes,
     contenant les données pour tester les fonctions de conversion.
@@ -998,9 +1011,24 @@ calendar-french.apl-1: apl
     L ← (⍴ V) ÷ 7
     R ← (L, 7) ⍴ V
     ∇
+- section: teststring
+  fr: Données alphanumériques de tests
+  en: Test alphanumeric data
+  calendar-french.apl-1: 31
+- fr: |
+    Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
+    le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
+- en: |
+    This function gives the  <a href='#prtfr'><tt>prtfr</tt></a> expected result for each
+    corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
+- code: |
+    ∇ R ← teststring; V; L
+    V ← ''
+    ⍝ include here the contents of testapl1
+    ∇
 - section: alltests
   level: 3
-  calendar-french.apl-1: 21
+  calendar-french.apl-1: 35
 - code: |
     ∇ alltests
     @testfr2rd@
@@ -1010,7 +1038,7 @@ calendar-french.apl-1: apl
     ∇
 - section: testfr2rd
   level: 3
-  calendar-french.apl-1: 22
+  calendar-french.apl-1: 40
 - code: |
     ∇ testfr2rd
     'Checking fr2rd with the full vector, errors: ', ⍕ +/ @testdata@[;7] ≠ @fr2rd@ @testdata@[;4 5 6]
@@ -1020,7 +1048,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1fr2rd
   level: 4
-  calendar-french.apl-1: 23
+  calendar-french.apl-1: 41
 - code: |
     ∇ test1fr2rd DIM
     'Checking fr2rd with dimension ', ⍕ DIM
@@ -1039,7 +1067,7 @@ calendar-french.apl-1: apl
 
 - section: testgr2rd
   level: 4
-  calendar-french.apl-1: 24
+  calendar-french.apl-1: 42
 - code: |
     ∇ testgr2rd
     'Testing gr2rd with the full vector, errors: ', ⍕ +/ @testdata@[;7] ≠ @gr2rd@ @testdata@[;1 2 3]
@@ -1049,7 +1077,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1gr2rd
   level: 4
-  calendar-french.apl-1: 25
+  calendar-french.apl-1: 43
 - code: |
     ∇ test1gr2rd DIM
     'Checking gr2rd with dimension ', ⍕ DIM
@@ -1067,7 +1095,7 @@ calendar-french.apl-1: apl
     ∇
 - section: testrd2fr
   level: 4
-  calendar-french.apl-1: 26
+  calendar-french.apl-1: 44
 - code: |
     ∇ testrd2fr
     'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ @testdata@[;4 5 6] ≠ @rd2fr@ @testdata@[;7]
@@ -1077,7 +1105,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1rd2fr
   level: 4
-  calendar-french.apl-1: 27
+  calendar-french.apl-1: 45
 - code: |
     ∇ test1rd2fr DIM
     'Checking rd2fr with dimension ', ⍕ DIM
@@ -1095,7 +1123,7 @@ calendar-french.apl-1: apl
     ∇
 - section: testrd2gr
   level: 4
-  calendar-french.apl-1: 28
+  calendar-french.apl-1: 46
 - code: |
     ∇ testrd2gr
     'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ @testdata@[;1 2 3] ≠ @rd2gr@ @testdata@[;7]
@@ -1105,7 +1133,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1rd2gr
   level: 4
-  calendar-french.apl-1: 29
+  calendar-french.apl-1: 47
 - code: |
     ∇ test1rd2gr DIM
     'Checking rd2gr with dimension ', ⍕ DIM

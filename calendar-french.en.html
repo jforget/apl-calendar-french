@@ -35,8 +35,10 @@
 <br /><a href='#prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a>
 <br /><a href='#roman'><tt>roman</tt> - Converting a number into Roman numerals</a>
 <br /><a href='#nodes'><tt>nodes</tt> - Building the nodes of Roman numerals</a>
+<br /><a href='#feasts'><tt>feasts</tt> - Feasts of the French Revolutionary calendar</a>
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
+<br /><a href='#teststring'><tt>teststring</tt> - Test alphanumeric data</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
@@ -720,6 +722,16 @@ written with Roman numerals.
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 </pre>
+<h3><a name='feasts'><tt>feasts</tt> - Feasts of the French Revolutionary calendar</a></h3>
+<p>
+This function lists all 366 feasts for all days in a French Revolutionary calendar year.
+</p>
+
+<pre>
+∇ R ← feasts
+⍝ include here the contents of feasts
+∇
+</pre>
 <h2><a name='Built-in Tests'>Built-in Tests</a></h2>
 <h3><a name='testdata'><tt>testdata</tt> - Test Data</a></h3>
 <p>
@@ -755,6 +767,18 @@ in the final script.
 ⍝ include here the contents of testapl
 L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
+∇
+</pre>
+<h2><a name='teststring'><tt>teststring</tt> - Test alphanumeric data</a></h2>
+<p>
+This function gives the  <a href='#prtfr'><tt>prtfr</tt></a> expected result for each
+corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
+</p>
+
+<pre>
+∇ R ← teststring; V; L
+V ← ''
+⍝ include here the contents of testapl1
 ∇
 </pre>
 <h3><a name='alltests'><tt>alltests</tt></a></h3>

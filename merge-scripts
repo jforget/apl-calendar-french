@@ -32,9 +32,11 @@ use v5.10;
 use strict;
 use warnings;
 
-my $script_av = 'calendar-french.apl-1';
-my $script_ap = 'calendar-french.apl';
-my $testdata  = 'testapl';
+my $script_av  = 'calendar-french.apl-1';
+my $script_ap  = 'calendar-french.apl';
+my $testdata   = 'testapl';
+my $teststring = 'testapl1';
+my $feasts     = 'feasts';
 
 open my $av, '<:encoding(UTF-8)', $script_av
   or die "opening $script_av $!";
@@ -43,7 +45,7 @@ open my $ap, '>:encoding(UTF-8)', $script_ap
 
 while (<$av>) {
   print $ap $_;
-  if (/include here the contents of testapl/) {
+  if (/include here the contents of testapl(?!1)/) {
     open my $sc, '<:encoding(UTF-8)', $testdata
       or die "opening $testdata $!";
     while (<$sc>) {
@@ -51,6 +53,24 @@ while (<$av>) {
     }
     close $sc
       or die "Closing $testdata $!";
+  }
+  elsif (/include here the contents of testapl1/) {
+    open my $sc, '<:encoding(UTF-8)', $teststring
+      or die "opening $teststring $!";
+    while (<$sc>) {
+      print $ap $_;
+    }
+    close $sc
+      or die "Closing $teststring $!";
+  }
+  elsif (/include here the contents of feasts/) {
+    open my $sc, '<:encoding(UTF-8)', $feasts
+      or die "opening $feasts $!";
+    while (<$sc>) {
+      print $ap $_;
+    }
+    close $sc
+      or die "Closing $feasts $!";
   }
 }
 close $av
