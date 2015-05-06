@@ -694,7 +694,7 @@ calendar-french.apl-1: apl
     the shorter range is extended to 2 values, so the <tt>YR</tt> variable will be
     properly rectangular.
 - code: |
-    ∇ R ← rd2fr N; N1
+    ∇ R ← rd2fr N; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
     N1 ← N - 654414
     YH ← ⌈ N1 ÷ 365.24
     YL ← ⌈ N1 ÷ 365.34
@@ -836,7 +836,7 @@ calendar-french.apl-1: apl
     estimation and we always use a two-value range for the month, even if the
     guesstimate would give a single-value range.
 - code: |
-    ∇ R ← rd2gr N
+    ∇ R ← rd2gr N; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
     YH ← ⌈ N ÷ 365.24
     YL ← ⌈ N ÷ 365.25
     YI ← 0 , ⍳ ⌈/,YH-YL
@@ -895,7 +895,7 @@ calendar-french.apl-1: apl
   en: Displaying a French Revolutionary calendar date
   calendar-french.apl-1: 20
 - code: |
-    ∇ R ← prtfr D
+    ∇ R ← prtfr D; DAY; MONTH; CM
     DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
     R ← DAY[⎕IO + 10 | @day@ D;]
     MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
@@ -955,7 +955,7 @@ calendar-french.apl-1: apl
 - en: |
     This function lists all 366 feasts for all days in a French Revolutionary calendar year.
 - code: |
-    ∇ R ← feasts
+    ∇ R ← feasts; V
     ⍝ include here the contents of feasts
     ∇
 - section: 0
@@ -1052,7 +1052,7 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 41
 - code: |
-    ∇ test1fr2rd DIM
+    ∇ test1fr2rd DIM; EXP; GOT
     'Checking fr2rd with dimension ', ⍕ DIM
     EXP ← DIM ⍴ @testdata@[;7]
     GOT ← @fr2rd@ (DIM, 3) ⍴ @testdata@[;4 5 6]
@@ -1081,7 +1081,7 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 43
 - code: |
-    ∇ test1gr2rd DIM
+    ∇ test1gr2rd DIM; EXP; GOT
     'Checking gr2rd with dimension ', ⍕ DIM
     EXP ← DIM ⍴ @testdata@[;7]
     GOT ← @gr2rd@ (DIM, 3) ⍴ @testdata@[;1 2 3]
@@ -1109,7 +1109,7 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 45
 - code: |
-    ∇ test1rd2fr DIM
+    ∇ test1rd2fr DIM; EXP; GOT
     'Checking rd2fr with dimension ', ⍕ DIM
     EXP ← (DIM, 3) ⍴ @testdata@[;4 5 6]
     GOT ← @rd2fr@ DIM ⍴ @testdata@[;7]
@@ -1137,7 +1137,7 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 47
 - code: |
-    ∇ test1rd2gr DIM
+    ∇ test1rd2gr DIM; EXP; GOT
     'Checking rd2gr with dimension ', ⍕ DIM
     EXP ← (DIM, 3) ⍴ @testdata@[;1 2 3]
     GOT ← @rd2gr@ DIM ⍴ @testdata@[;7]

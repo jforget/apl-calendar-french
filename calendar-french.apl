@@ -52,7 +52,7 @@ DIM ← ⍴ DATE
 DATE←(DIM ⍴0 1 0) + DATE + (2≥month DATE) ∘.× ¯1 12 0
 R ← ¯428 + (-/ ⌊ (year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
-∇ R ← rd2fr N; N1
+∇ R ← rd2fr N; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
@@ -67,7 +67,7 @@ M ← ⌈D÷30
 D ← D - 30 × M - 1
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
-∇ R ← rd2gr N
+∇ R ← rd2gr N; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
 YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
@@ -92,7 +92,7 @@ R ← rd2fr gr2rd D
 ∇ R ← fr2gr D
 R ← rd2gr fr2rd D
 ∇
-∇ R ← prtfr D
+∇ R ← prtfr D; DAY; MONTH; CM
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[⎕IO + 10 | day D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
@@ -113,7 +113,7 @@ R ← (R≠' ')/R
 ∇ R ← nodes CH
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
-∇ R ← feasts
+∇ R ← feasts; V
 ⍝ include here the contents of feasts
 V ← ''
 ⍝ Vendémiaire
@@ -679,7 +679,7 @@ test1fr2rd 5 5
 test1fr2rd 5 3 3
 test1fr2rd 5 2 2 2
 ∇
-∇ test1fr2rd DIM
+∇ test1fr2rd DIM; EXP; GOT
 'Checking fr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ testdata[;7]
 GOT ← fr2rd (DIM, 3) ⍴ testdata[;4 5 6]
@@ -699,7 +699,7 @@ test1gr2rd 5 5
 test1gr2rd 5 3 3
 test1gr2rd 5 2 2 2
 ∇
-∇ test1gr2rd DIM
+∇ test1gr2rd DIM; EXP; GOT
 'Checking gr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ testdata[;7]
 GOT ← gr2rd (DIM, 3) ⍴ testdata[;1 2 3]
@@ -719,7 +719,7 @@ test1rd2fr 3 3
 test1rd2fr 15 3
 test1rd2fr 2 3 3
 ∇
-∇ test1rd2fr DIM
+∇ test1rd2fr DIM; EXP; GOT
 'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ testdata[;4 5 6]
 GOT ← rd2fr DIM ⍴ testdata[;7]
@@ -739,7 +739,7 @@ test1rd2gr 3 3
 test1rd2gr 15 3
 test1rd2gr 2 3 3
 ∇
-∇ test1rd2gr DIM
+∇ test1rd2gr DIM; EXP; GOT
 'Checking rd2gr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ testdata[;1 2 3]
 GOT ← rd2gr DIM ⍴ testdata[;7]

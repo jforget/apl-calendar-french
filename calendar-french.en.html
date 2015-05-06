@@ -529,7 +529,7 @@ properly rectangular.
 </p>
 
 <pre>
-∇ R ← rd2fr N; N1
+∇ R ← rd2fr N; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
@@ -642,7 +642,7 @@ guesstimate would give a single-value range.
 </p>
 
 <pre>
-∇ R ← rd2gr N
+∇ R ← rd2gr N; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
 YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
@@ -687,7 +687,7 @@ R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2r
 <h2><a name='Displaying the Dates'>Displaying the Dates</a></h2>
 <h3><a name='prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a></h3>
 <pre>
-∇ R ← prtfr D
+∇ R ← prtfr D; DAY; MONTH; CM
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[⎕IO + 10 | <a href='#day' class='call'>day</a> D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
@@ -733,7 +733,7 @@ This function lists all 366 feasts for all days in a French Revolutionary calend
 </p>
 
 <pre>
-∇ R ← feasts
+∇ R ← feasts; V
 ⍝ include here the contents of feasts
 ∇
 </pre>
@@ -807,7 +807,7 @@ V ← ''
 </pre>
 <h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
 <pre>
-∇ test1fr2rd DIM
+∇ test1fr2rd DIM; EXP; GOT
 'Checking fr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
 GOT ← <a href='#fr2rd' class='call'>fr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
@@ -833,7 +833,7 @@ CHKDATA:
 </pre>
 <h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
 <pre>
-∇ test1gr2rd DIM
+∇ test1gr2rd DIM; EXP; GOT
 'Checking gr2rd with dimension ', ⍕ DIM
 EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
 GOT ← <a href='#gr2rd' class='call'>gr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
@@ -859,7 +859,7 @@ CHKDATA:
 </pre>
 <h4><a name='test1rd2fr'><tt>test1rd2fr</tt></a></h4>
 <pre>
-∇ test1rd2fr DIM
+∇ test1rd2fr DIM; EXP; GOT
 'Checking rd2fr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
 GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
@@ -885,7 +885,7 @@ CHKDATA:
 </pre>
 <h4><a name='test1rd2gr'><tt>test1rd2gr</tt></a></h4>
 <pre>
-∇ test1rd2gr DIM
+∇ test1rd2gr DIM; EXP; GOT
 'Checking rd2gr with dimension ', ⍕ DIM
 EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
 GOT ← <a href='#rd2gr' class='call'>rd2gr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
