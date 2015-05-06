@@ -44,7 +44,7 @@
                      ("log"    . "⍟") ("elem"   . "∈") ("enquote" . "⍕")
                      ("domino" . "⌹") ("jot"    . "∘") ("dequote" . "⍎")
                      ("encode" . "⊤")
-                     ("decode" . "⊥")
+                     ("decode" . "⊥") ("rotate" . "⌽")
                      ("neq"    . "≠") ("transp" . "⍉")
                      ("leq"    . "≤")
                      ("geq"    . "≥")
