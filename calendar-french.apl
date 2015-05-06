@@ -96,9 +96,10 @@ R ← rd2gr fr2rd D
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[⎕IO + 10 | day D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', roman year D
+R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', (roman year D), ', jour ', feasts[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
+R ← (⌽∨\⌽R≠' ')/R
 ∇
 ∇ R ← roman N; NODES
 → ((N>0) ∧ N<4000)/CONV
@@ -663,12 +664,14 @@ V ← V, 'Primidi 1 Vendémiaire 5000, jour du Raisin          '
 V ← V, 'Primidi 1 Vendémiaire 5001, jour du Raisin          '
 V ← V, 'Primidi 1 Vendémiaire 6000, jour du Raisin          '
 V ← V, 'Primidi 1 Vendémiaire 6001, jour du Raisin          '
-R ← 79 52 ⍴ V∇
+R ← 79 52 ⍴ V
+∇
 ∇ alltests
 testfr2rd
 testgr2rd
 testrd2fr
 testrd2gr
+testprtfr
 ∇
 ∇ testfr2rd
 'Checking fr2rd with the full vector, errors: ', ⍕ +/ testdata[;7] ≠ fr2rd testdata[;4 5 6]
@@ -749,4 +752,30 @@ CHKDIM:
 → 0
 CHKDATA:
 'Data errors: ', ⍕ +/,∨/EXP≠GOT
+∇
+∇ testprtfr; I; EXP; GOT; N
+'Checking prtfr with the full vector'
+I ← 0
+N ← 0
+LOOP:
+I ← I + 1
+→ (I > (⍴ teststring)[1])/END
+EXP ← teststring[I;]
+EXP ← (⌽∨\⌽EXP≠' ')/EXP
+GOT ← prtfr testdata[I; 4 5 6]
+→ ((⍴ EXP)  = ⍴ GOT)/NEXT
+'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
+'Expected: ', EXP
+'Got     : ', GOT
+N ← N + 1
+→ LOOP
+NEXT:
+→ (∧/EXP=GOT)/LOOP
+'Different content'
+'Expected: ', EXP
+'Got     : ', GOT
+N ← N + 1
+→ LOOP
+END:
+'Data errors: ', ⍕N
 ∇

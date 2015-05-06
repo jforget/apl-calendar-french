@@ -48,6 +48,7 @@
 <br /><a href='#test1rd2fr'><tt>test1rd2fr</tt></a>
 <br /><a href='#testrd2gr'><tt>testrd2gr</tt></a>
 <br /><a href='#test1rd2gr'><tt>test1rd2gr</tt></a>
+<br /><a href='#testprtfr'><tt>testprtfr</tt></a>
 <br /><a href='#See Also'>See Also</a>
 <hr /><h1><a name='French Revolutionary Calendar'>French Revolutionary Calendar</a></h1>
 <h2><a name='license'><tt>license</tt></a></h2>
@@ -687,9 +688,10 @@ R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2r
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[⎕IO + 10 | <a href='#day' class='call'>day</a> D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕ <a href='#day' class='call'>day</a> D), ' ', (MONTH[<a href='#month' class='call'>month</a> D;]), ' ', <a href='#roman' class='call'>roman</a> <a href='#year' class='call'>year</a> D
+R ← R, ' ', (⍕ <a href='#day' class='call'>day</a> D), ' ', (MONTH[<a href='#month' class='call'>month</a> D;]), ' ', (<a href='#roman' class='call'>roman</a> <a href='#year' class='call'>year</a> D), ', jour ', <a href='#feasts' class='call'>feasts</a>[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
+R ← (⌽∨\⌽R≠' ')/R
 ∇
 </pre>
 <h3><a name='roman'><tt>roman</tt> - Converting a number into Roman numerals</a></h3>
@@ -703,7 +705,7 @@ If the number is higher than 3999, it is displayed with indo-arab numerals. Same
 R ← ⍕ N
 → 0
 CONV:
-NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
+NODES ← 40 4 ⍴ (<a href='#nodes' class='call'>nodes</a> 'IVX'), (<a href='#nodes' class='call'>nodes</a> 'XLC'), (<a href='#nodes' class='call'>nodes</a> 'CDM'), <a href='#nodes' class='call'>nodes</a> 'M??'
 R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
 R ← (R≠' ')/R
 ∇
@@ -788,6 +790,7 @@ V ← ''
 <a href='#testgr2rd' class='call'>testgr2rd</a>
 <a href='#testrd2fr' class='call'>testrd2fr</a>
 <a href='#testrd2gr' class='call'>testrd2gr</a>
+<a href='#testprtfr' class='call'>testprtfr</a>
 ∇
 </pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
@@ -892,6 +895,35 @@ CHKDIM:
 → 0
 CHKDATA:
 'Data errors: ', ⍕ +/,∨/EXP≠GOT
+∇
+</pre>
+<h4><a name='testprtfr'><tt>testprtfr</tt></a></h4>
+<pre>
+∇ testprtfr; I; EXP; GOT; N
+'Checking prtfr with the full vector'
+I ← 0
+N ← 0
+LOOP:
+I ← I + 1
+→ (I &gt; (⍴ <a href='#teststring' class='call'>teststring</a>)[1])/END
+EXP ← <a href='#teststring' class='call'>teststring</a>[I;]
+EXP ← (⌽∨\⌽EXP≠' ')/EXP
+GOT ← <a href='#prtfr' class='call'>prtfr</a> <a href='#testdata' class='call'>testdata</a>[I; 4 5 6]
+→ ((⍴ EXP)  = ⍴ GOT)/NEXT
+'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
+'Expected: ', EXP
+'Got     : ', GOT
+N ← N + 1
+→ LOOP
+NEXT:
+→ (∧/EXP=GOT)/LOOP
+'Different content'
+'Expected: ', EXP
+'Got     : ', GOT
+N ← N + 1
+→ LOOP
+END:
+'Data errors: ', ⍕N
 ∇
 </pre>
 <h2><a name='See Also'>See Also</a></h2>
