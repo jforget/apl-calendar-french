@@ -1185,6 +1185,10 @@ calendar-french.apl-1: apl
 - section: 0
   fr: Voir également
   en: See Also
+- section: 0
+  fr: Logiciels
+  en: Software
+  level: 3
 - fr: |
     En Perl&nbsp;: <a href='http://metacpan.org/module/DateTime::Calendar::FrenchRevolutionary'><span class='tt'>DateTime::Calendar::FrenchRevolutionary</span></a> 
     également disponible <a href='https://github.com/jforget/DateTime-Calendar-FrenchRevolutionary'>sur GitHub</a>.
@@ -1219,3 +1223,43 @@ calendar-french.apl-1: apl
     (<a href='https://github.com/jforget/hp48-hp50-French-Revolutionary-calendar'>GitHub repository</a>).
 
     Lastly, exists <a href='https://github.com/jforget/hp41-calfr'>on HP-41</a>.
+- section: 0
+  fr: Internet
+  en: Internet
+  level: 3
+- fr: |
+    Forcément, l'<a href='http://fr.wikipedia.org/wiki/Calendrier_r%C3%A9publicain'>entrée</a> de Wikipedia.
+
+    La <a href='http://www.faqs.org/faqs/calendars/faq/part3/'>FAQ</a> de Claus Tondering (en anglais).
+
+    L'<a href='http://h2g2.com/approved_entry/A2903636'>entrée</a> dans le site H2G2 (en anglais).
+
+    Un <a href='http://prairial.free.fr/calendrier/calendrier.php?lien=sommairefr'>site</a> en français.
+- en: |
+    Of course, the <a href='http://en.wikipedia.org/wiki/French_Republican_Calendar'>Wikipedia entry</a>.
+
+    Claus Tondering's <a href='http://www.faqs.org/faqs/calendars/faq/part3/'>FAQ</a>.
+
+    The <a href='http://h2g2.com/approved_entry/A2903636'>entry</a> on the H2G2 website.
+
+    A <a href='http://prairial.free.fr/calendrier/calendrier.php?lien=sommairefr'>website</a> in French.
+- section: 0
+  fr: Livres
+  en: Books
+  level: 3
+- fr: |
+    Quid 2001, M and D Frémy, éditions Robert Laffont.
+
+    Agenda Républicain 197 (1988/89), éditions Syros Alternatives.
+
+    N'importe quel livre scolaire consacré à l'Histoire de la Révolution française.
+
+    The French Revolution, Thomas Carlyle, Oxford University Press, en anglais.
+- en: |
+    Quid 2001, M and D Frémy, publ. Robert Laffont, in French
+
+    Agenda Républicain 197 (1988/89), publ. Syros Alternatives, in French
+
+    Any French schoolbook about the French Revolution
+
+    The French Revolution, Thomas Carlyle, Oxford University Press, in English.
