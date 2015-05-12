@@ -176,6 +176,13 @@ Nonidi 9 Thermidor II, jour de la Mûre
 Nonidi 9 Thermidor II, jour de la Mûre
 </pre>
 <p>
+And to get the current day
+</p>
+
+<pre>
+     prtfr gr2fr ⎕TS[1 2 3]
+</pre>
+<p>
 If you want to compute the number of days between two
 dates, use the <i lang='la'>Rata Die</i> calendar. For example,
 if you want to know how many days elapsed from the 
@@ -902,16 +909,19 @@ CHKDATA:
 </pre>
 <h4><a name='testprtfr'><tt>testprtfr</tt></a></h4>
 <pre>
-∇ testprtfr; I; EXP; GOT; N
-'Checking prtfr with the full vector'
+∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
+'Checking prtfr with the full vector (a bit slow)'
+TD ← <a href='#testdata' class='call'>testdata</a>[; 4 5 6 ]
+TS ← <a href='#teststring' class='call'>teststring</a>
 I ← 0
 N ← 0
+IMAX ← (⍴ TS)[1]
 LOOP:
 I ← I + 1
-→ (I &gt; (⍴ <a href='#teststring' class='call'>teststring</a>)[1])/END
-EXP ← <a href='#teststring' class='call'>teststring</a>[I;]
+→ (I &gt; IMAX)/END
+EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
-GOT ← <a href='#prtfr' class='call'>prtfr</a> <a href='#testdata' class='call'>testdata</a>[I; 4 5 6]
+GOT ← <a href='#prtfr' class='call'>prtfr</a> TD[I;]
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP
@@ -943,7 +953,7 @@ available <a href='https://github.com/jforget/Date-Convert-French_Rev'>on GitHub
 Exists also <a href='https://github.com/jhbadger/FrenchRevCal-ruby'>in Ruby</a> (not from me).</p>
 
 <p>
-Or else with Emacs <a href='https://github.com/jforget/emacs-lisp-cal-french'>using e-LISP</a> (I did the superfluous, other did the backbone).</p>
+Or else with Emacs <a href='https://github.com/jforget/emacs-lisp-cal-french'>using e-LISP</a> (I did the superfluous, others did the backbone).</p>
 
 <p>
 Exists <a href='https://github.com/jhbadger/Thermidor-Android'>on Android</a> (not from me either).</p>

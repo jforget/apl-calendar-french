@@ -753,16 +753,19 @@ CHKDIM:
 CHKDATA:
 'Data errors: ', ⍕ +/,∨/EXP≠GOT
 ∇
-∇ testprtfr; I; EXP; GOT; N
-'Checking prtfr with the full vector'
+∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
+'Checking prtfr with the full vector (a bit slow)'
+TD ← testdata[; 4 5 6 ]
+TS ← teststring
 I ← 0
 N ← 0
+IMAX ← (⍴ TS)[1]
 LOOP:
 I ← I + 1
-→ (I > (⍴ teststring)[1])/END
-EXP ← teststring[I;]
+→ (I > IMAX)/END
+EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
-GOT ← prtfr testdata[I; 4 5 6]
+GOT ← prtfr TD[I;]
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP

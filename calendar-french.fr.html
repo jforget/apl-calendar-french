@@ -193,6 +193,13 @@ Nonidi 9 Thermidor II, jour de la Mûre
 Nonidi 9 Thermidor II, jour de la Mûre
 </pre>
 <p>
+Et pour avoir la date du jour
+</p>
+
+<pre>
+     prtfr gr2fr ⎕TS[1 2 3]
+</pre>
+<p>
 Si vous voulez calculer le nombre de jours entre deux
 dates, utilisez le <i lang='la'>Rata Die</i>. Par
 exemple, vous voulez savoir combien de jours séparent
@@ -927,16 +934,19 @@ CHKDATA:
 </pre>
 <h4><a name='testprtfr'><tt>testprtfr</tt></a></h4>
 <pre>
-∇ testprtfr; I; EXP; GOT; N
-'Checking prtfr with the full vector'
+∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
+'Checking prtfr with the full vector (a bit slow)'
+TD ← <a href='#testdata' class='call'>testdata</a>[; 4 5 6 ]
+TS ← <a href='#teststring' class='call'>teststring</a>
 I ← 0
 N ← 0
+IMAX ← (⍴ TS)[1]
 LOOP:
 I ← I + 1
-→ (I &gt; (⍴ <a href='#teststring' class='call'>teststring</a>)[1])/END
-EXP ← <a href='#teststring' class='call'>teststring</a>[I;]
+→ (I &gt; IMAX)/END
+EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
-GOT ← <a href='#prtfr' class='call'>prtfr</a> <a href='#testdata' class='call'>testdata</a>[I; 4 5 6]
+GOT ← <a href='#prtfr' class='call'>prtfr</a> TD[I;]
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP
