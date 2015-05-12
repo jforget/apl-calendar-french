@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv='content-type' content='Text/html; charset=utf-8' />
+<title>Lisez moi, calendrier républicain</title>
+<style>
+<!--
+.insert    { background-color: skyblue}
+.call      { background-color: yellow}
+.condcode  { background-color: lightgrey }
+.condition { font-size-adjust: .5 }
+-->
+</style>
+</head>
+<body>
+
+<h1>Calendrier républicain</h1>
+<h2>Quoi&nbsp;?</h2>
+
+<p>
+Ce dépôt fournit un script APL qui définit des fonctions
+pour convertir des dates grégoriennes vers le calendrier
+républicain ou dans l'autre sens. Exemples&nbsp;:
+</p>
+
+<pre>
+     ⍝ convertir 18 Brumaire VIII
+     fr2gr 8 2 18
+  1799 11 9
+     ⍝ dans l'autre sens, 9 November 1799
+     gr2fr 1799 11 9
+  8 2 18
+     ⍝ Affichage en clair de la date
+     prtfr 8 2 18
+  18 Brumaire 8, jour de la dentelaire
+     ⍝ Affichage de la date du jour
+     prtfr gr2rd ⎕TS[1 2 3]
+</pre>
+
+<h2>Pourquoi&nbsp;?</h2>
+
+<p>
+Parce que le calendrier républicain en tant que sujet de programmation
+m'a toujours intéressé.
+</p>
+
+<p>
+Les programmes de ce dépôt sont distribués avec la même licence que
+Perl&nbsp;: GPL version 1.0 ou supérieure et Artistic License. Ces deux
+licences sont fournies dans le fichier LICENSE de ce dépôt.
+</p>
+
+<h2>Qui&nbsp;?</h2>
+
+<p>
+Moi-même, Jean Forget
+</p>
+
+<p>
+Si vous voulez me contacter, sachez que j'ai un code sur <a href='http://www.cpan.org/'>CPAN</a> 
+et que ce code est "jforget". Cela vous permet de trouver mon adresse de
+messagerie.
+</p>
+
+<h2>Où&nbsp;?</h2>
+
+<p>
+Sur <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>.
+</p>
+
+<h2>Quand&nbsp;?</h2>
+
+<h2>Comment&nbsp;?</h2>
+
+</body>
+</html>
