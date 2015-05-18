@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv='content-type' content='Text/html; charset=utf-8' />
+<title>Read Me, French Revolutionary Calendar</title>
+<style>
+<!--
+.insert    { background-color: skyblue}
+.call      { background-color: yellow}
+.condcode  { background-color: lightgrey }
+.condition { font-size-adjust: .5 }
+-->
+</style>
+</head>
+<body>
+
+<p>
+<a href='#What'>What?</a>
+<a href='#Why'>Why?</a>
+<a href='#Who'>Who?</a>
+<a href='#Where'>Where?</a>
+<a href='#When'>When?</a>
+<a href='#How'>How?</a>
+</p>
+
+<h1>French Revolutionary Calendar</h1>
+<h2><a name='What' id='What'>What?</a></h2>
+
+<p>
+This repository provides an APL script to define functions
+which convert dates from the Gregorian calendar to the French
+Revolutionary calendar or the other way. E.g.:
+</p>
+
+<pre>
+     ⍝ converting 18 Brumaire VIII
+     fr2gr 8 2 18
+  1799 11 9
+     ⍝ converting back 9 November 1799
+     gr2fr 1799 11 9
+  8 2 18
+     ⍝ pretty-print the date
+     prtfr 8 2 18
+  18 Brumaire 8, jour de la dentelaire
+     ⍝ Printing today
+     prtfr gr2rd ⎕TS[1 2 3]
+</pre>
+
+<p>
+More détails in the <a href='calendar-french.en.html'>file commenting the programme</a>.
+</p>
+
+
+<h2><a name='Why' id='Why'>Why?</a></h2>
+
+<p>
+Because programming the French Revolutionary calendar has long
+been a favorite programming exercise to me.
+</p>
+
+<p>
+The various programs in this repository are licensed under the
+same terms as Perl : GPL version 1.0 or later and Artistic License.
+Both licenses are given in the LICENSE file in this repository.
+</p>
+
+<h2><a name='Who' id='Who'>Who?</a></h2>
+
+<p>
+I, me, myself, Jean Forget
+</p>
+
+<p>
+If you want to contact me, just remember that I have a user-code in
+CPAN. And somewhere in CPAN's website, you will find my email address.
+</p>
+
+<p>
+I learned APL more than thirty years ago. At this time, the only programming
+languages I knew where two programmable calculators (HP-25 plus another brand
+I have forgotten) and LSE, a French-speaking light version of Algol.
+And, a theoretical knowledge of BASIC, without any practice.
+For about one year, I had access to an APL interpreter and I
+wrote a French Revolutionary calendar program. The only remaining archive
+from this time is a paper sheet with a calendar of this year.
+</p>
+<p>
+Then for more than thirty years, I drifted away from APL.
+During this time, I learned
+Fortran, HP-41, Pascal, Lisp, C, COBOL, Hypertalk, SQL, PL-SQL,
+awk, Caml, lex, yacc, C++, Apple Script, HTML, Intercal,
+T<sub>E</sub>X, L<sup>A</sup>T<sub>E</sub>X, METAPOST,
+Perl, XML, Ruby, METAFONT, HP-48, Smalltalk, R, Lua,
+a few shell interpreters and some specific languages
+not worthy of your interest.
+When I write that I learned these languages, the situation
+varies a lot. For example, I learned C++ by reading Bjarne Stroustrup's
+book and writing an "Hello World" programme and I did nothing
+more. And for R, I juste read a book, I did not  even write a
+line of code.
+</p>
+
+<h2><a name='Where' id='Where'>Where?</a></h2>
+
+<p>
+On <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>.
+</p>
+
+<h2><a name='When' id='When'>When?</a></h2>
+
+<h2><a name='How' id='How'>How?</a></h2>
+
+</body>
+</html>
