@@ -95,7 +95,7 @@ Fortran, HP-41, Pascal, Lisp, C, COBOL, Hypertalk, SQL, PL-SQL,
 awk, Caml, lex, yacc, C++, Apple Script, HTML, Intercal,
 T<sub>E</sub>X, L<sup>A</sup>T<sub>E</sub>X, METAPOST,
 Perl, XML, Ruby, METAFONT, HP-48, Smalltalk, R, Lua,
-a few shell interpreters and some specific languages
+a few shell interpreters and assembly languages and some specific languages
 not worthy of your interest.
 When I write that I learned these languages, the situation
 varies a lot and for many languages mentioned above, I cannot
@@ -103,6 +103,17 @@ fluently write a programme. For example, I learned C++ by reading Bjarne Stroust
 book and writing an "Hello World" programme and I did nothing
 more. And for R, I juste read a book, I did not  even write a
 line of code.
+</p>
+<p>
+At the same time, during these thirty-or-so years, I discovered Unix and GNU/Linux,
+Emacs, Vi, Emacs-Viper, important concepts such as interoperability between
+differing systems and differing architecture, and so on.
+So, the 1980-vintage APL, with its dedicated charset and its sandbox-like
+architecture (workspaces) had lost its appeal when compared with the time
+when I discovered it. On the other hand, GNU APL 1.4, using Unicode, allowing
+the use of pipeline-compatible scripts in addition to workspaces,
+allowing to create and update these scripts with any source editor
+including the best-known ones, was a wonderful thing in my mind.
 </p>
 
 <h2><a name='Where' id='Where'>Where?</a></h2>
@@ -113,7 +124,85 @@ On <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>.
 
 <h2><a name='When' id='When'>When?</a></h2>
 
+<p>
+From April 2015 to May 2015. The writing of the programme took longer than
+it should have been, because when you have 
+an APL programme on one screen and
+<cite>OSS 117: Lost in Rio</cite> or
+<cite>Dead Men Don't Wear Plaid</cite>
+on the other, keeping concentrated on the programme is
+rather difficult.
+</p>
+
 <h2><a name='How' id='How'>How?</a></h2>
+
+<p>
+In this chapter, Your Mileage May Vary.
+My computer runs xubuntu 12.04 and I edit texts
+with GNU Emacs 23.3.1 in viper-mode.
+You should not have trouble with any other version of Unix.
+You will have to make minor changes if you use Emacs
+without viper mode. But if you run Windows or if you
+use another source editor, the explanations below
+will be next to useless.
+</p>
+
+<h3>Running simple scripts</h3>
+
+<p>
+I tried to run APL scripts from a xterm window. I did not
+like it because of the color theme, because the results are
+printed in black on a black background. And when you leave APL and come
+back to the shell, you keep this very unfortunate color combination.
+Yes, I should use the <tt>--noColor</tt> parameter, but I have 
+a tendency to forget it. And when I type it, I forget where
+the upper-case letter is located.
+</p>
+<p>
+Another more compelling reason is how to type the special characters.
+Some solutions are explained in
+<tt>/path/to/compilation/directory/apl-1.4/README-3-keyboard</tt>,
+but I find them rather awkward. Instead of that, I run the following
+Lisp code:
+</p>
+<pre>
+(progn
+(defun apl-insert ()
+       "Inserting an APL char"
+       (interactive)
+                     ; arithmetic     vector          program
+                     ; mathematic
+  (let* ((apl-conv '(("times"  . "×") ("rho"    . "⍴") ("gets"    . "←")
+                     ("div"    . "÷") ("iota"   . "⍳") ("goto"    . "→")
+                     ("neg"    . "¯") ("drop"   . "↓") ("del"     . "∇")
+                     ("circ"   . "○") ("take"   . "↑") ("lamp"    . "⍝")
+                     ))
+          (ch1 (cdr (assoc (completing-read "Car ? "
+                                            (mapcar 'car apl-conv)
+                                            nil t)
+                            apl-conv))))
+     (insert ch1))
+)
+(global-set-key '[f6] 'apl-insert)
+)
+</pre>
+<p>
+And then I use the <tt>M-x shell</tt> function of Emacs.
+In the shell buffer, I can run the APL interpreter, which
+writes with black characters on a white background.
+And when I need to, I press the F6 key, then I type the
+mnemonic of a character, which is inserted in the APL line
+being typed.
+</p>
+<p>
+If the required char is missing from the Lisp code above, I go
+and fetch it from 
+<tt>/path/to/compilation/directory/apl-1.4/README-3-keyboard</tt>
+or from
+<tt>/path/to/compilation/directory/apl-1.4/support-files/old-Keyboard/keyboard.txt</tt>,
+I add a new mnemonic+char pair in <tt>apl-insert</tt> and
+I rerun the <tt>defun</tt>.
+</p>
 
 </body>
 </html>

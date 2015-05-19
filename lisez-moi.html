@@ -82,7 +82,7 @@ messagerie.
 </p>
 
 <p>
-J'ai appris APL il y a plus de trois décennies. À l'époque,je ne connaissais que
+J'ai appris APL il y a plus de trois décennies. À l'époque, je ne connaissais que
 la programmation sur deux calculatrices programmables (HP-25 et une marque que j'ai
 oubliée), la programmation en LSE et, d'un point de vue purement théorique, BASIC.
 Pendant à peu près un an, j'ai eu accès à un interprêteur APL et j'en ai profité
@@ -96,13 +96,26 @@ Fortran, HP-41, Pascal, Lisp, C, COBOL, Hypertalk, SQL, PL-SQL,
 awk, Caml, lex, yacc, C++, Apple Script, HTML, Intercal,
 T<sub>E</sub>X, L<sup>A</sup>T<sub>E</sub>X, METAPOST,
 Perl, XML, Ruby, METAFONT, HP-48, Smalltalk, R, Lua,
-divers interpréteurs shell et quelques langages spécifiques
+divers interpréteurs shell, divers assembleurs et quelques langages spécifiques
 qui ne méritent pas votre attention.
 Quand je dis apprendre, il faut relativiser et cela ne veut pas dire
 que je suis efficace pour programmer dans tous les langages cités. Par exemple, pour
 C++ j'ai seulement lu le livre de Bjarne Stroustrup et écrit
 un programme qui affiche «&nbsp;<i lang='en'>Hello World</i>&nbsp;».
 Quant à R, j'ai juste lu un livre, je n'ai écrit aucune ligne de code.
+</p>
+<p>
+En même temps, pendant ces trois décennies, j'ai découvert Unix et GNU/Linux,
+Emacs, Vi et Emacs-Viper, l'importance de l'interopérabilité entre
+les différents systèmes et les différentes architectures, et ainsi de suite.
+Du coup, l'APL des années 1980, avec son jeu de caractères spécifique et 
+son architecture basée sur les bacs-à-sable que sont les <i lang='en'>workspaces</i>
+me plaisait beaucoup moins dans les années 2010 que dans lorsque je l'ai
+découvert. À l'inverse, GNU APL 1.4, basé sur Unicode, donnant le choix entre
+les <i lang='en'>workspaces</i> et les simples scripts, que l'on peut d'ailleurs
+insérer dans un <i lang='en'>pipeline shell</i>, lesquels peuvent
+être traité par n'importe quel éditeur de source, y compris les
+plus célèbres, m'a tout de suite beaucoup plu.
 </p>
 
 <h2><a name='Où' id='Où'>Où&nbsp;?</a></h2>
@@ -113,7 +126,87 @@ Sur <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>.
 
 <h2><a name='Quand' id='Quand'>Quand&nbsp;?</a></h2>
 
+<p>
+En avril et mai 2015. Le développement a pris un peu plus de temps
+que prévu, parce que quand il y a un programme APL sur un écran et
+<cite>OSS 117 Rio ne répond plus</cite> ou bien
+<cite>Les Cadavres ne portent pas de costard</cite>
+sur un autre écran, c'est difficile de se concentrer sur le premier
+écran.
+</p>
+
 <h2><a name='Comment' id='Comment'>Comment&nbsp;?</a></h2>
+
+<p>
+Dans ce chapitre, j'explique ce qui fonctionne pour moi, mais
+cela ne s'appliquera pas forcément à votre cas. 
+Ma machine tourne sous xubuntu 12.04 et je modifie mes
+fichiers texte avec GNU Emacs 23.3.1 en mode viper.
+Adapter mes conseils à une autre version d'Unix ne vous posera
+pas de problèmes. Si vous utilisez Emacs sans le mode
+viper, il vous faudra faire quelques adaptations mineures.
+Mais si vous utilisez Windows, ou bien si vous travaillez
+avec un autre éditeur de source, mes explications ne vous
+serviront pas à grand chose.
+</p>
+
+<h3>Exécution de simples scripts</h3>
+
+<p>
+J'ai essayé de faire tourner des scripts APL à partir d'une
+fenêtre xterm. Cela ne me convient pas parce que les couleurs
+sont peu propices à la lecture des résultats, puisqu'ils sont écrits
+en noir sur fond noir. Et lorsque l'on quitte APL pour revenir au shell,
+la fenêtre xterm conserve cette déplorable combinaison de couleurs. Certes, il
+est possible d'utiliser l'option <tt>--noColor</tt>, mais
+je l'oublie presque systématiquement. Et quand je pense à l'utiliser, 
+je ne mets pas la majuscule où il faut.
+</p>
+<p>
+Une autre raison plus importante est comment taper les caractères
+spéciaux. Certes, quelques solutions sont suggérées dans
+<tt>/chemin/du/repertoire/de/compilation/directory/apl-1.4/README-3-keyboard</tt>,
+mais je les trouve assez curieuses et pas très simples.
+La solution que j'ai retenue consiste à exécuter le code Lisp suivant&nbsp;:
+</p>
+<pre>
+(progn
+(defun apl-insert ()
+       "Inserting an APL char"
+       (interactive)
+                     ; arithmetic     vector          program
+                     ; mathematic
+  (let* ((apl-conv '(("times"  . "×") ("rho"    . "⍴") ("gets"    . "←")
+                     ("div"    . "÷") ("iota"   . "⍳") ("goto"    . "→")
+                     ("neg"    . "¯") ("drop"   . "↓") ("del"     . "∇")
+                     ("circ"   . "○") ("take"   . "↑") ("lamp"    . "⍝")
+                     ))
+          (ch1 (cdr (assoc (completing-read "Car ? "
+                                            (mapcar 'car apl-conv)
+                                            nil t)
+                            apl-conv))))
+     (insert ch1))
+)
+(global-set-key '[f6] 'apl-insert)
+)
+</pre>
+<p>
+Ensuite je lance la fonction Emacs <tt>M-x shell</tt>.
+Je peux alors lancer l'interprêteur APL qui écrit en noir
+sur blanc et, lorsque j'ai besoin, j'utilise la touche-fonction
+F6 puis le mnémonique du caractère pour insérer ce caractère
+dans la ligne APL en cours d'écriture.
+</p>
+<p>
+Si le caractère dont j'ai besoin n'est pas prévu, 
+je vais le chercher dans
+<tt>/chemin/du/repertoire/de/compilation/directory/apl-1.4/README-3-keyboard</tt>
+ou dans
+<tt>/chemin/du/repertoire/de/compilation/directory/apl-1.4/support-files/old-Keyboard/keyboard.txt</tt>,
+j'ajoute une nouvelle paire mnémonique + caractère dans la fonction
+<tt>apl-insert</tt> et je réexécute le <tt>defun</tt>
+de cette fonction.
+</p>
 
 </body>
 </html>
