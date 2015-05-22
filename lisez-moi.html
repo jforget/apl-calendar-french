@@ -221,5 +221,57 @@ sur le fichier décrivant le clavier, puis
 dans le fichier définissant <tt>apl-insert</tt>.
 </p>
 
+<h3>Développement d'un projet complet</h3>
+
+<p>
+Lorsque j'ai commencé à travailler sur la version pour HP-48 et HP-50
+du programme de calendrier républicain, j'ai décidé d'utiliser un système
+de programmation littéraire, parce que la proportion des commentaires (dans le
+code) par rapport aux lignes de code exécutables est très faible. Il y avait d'autres 
+fonctions spécifiques à l'architecture HP-48 / HP-50, mais la fonction de base,
+pour la programmation littéraire, est utilisable pour toute architecture où
+la proportion de lignes de commentaire dans le code par rapport aux lignes exécutables
+est faible. C'est ainsi que j'ai réutilisé ce générateur pour les HP-41 
+puis maintenant pour APL.
+</p>
+<p>
+Donc, si vous voulez faire de plus amples développements sur le script de
+ce projet, il faudra utiliser le générateur du dépôt
+<a href='https://github.com/jforget/perl-literate-prog-HP48-HP50'><tt>https://github.com/jforget/perl-literate-prog-HP48-HP50</tt></a>
+et utiliser le format des fichiers <tt>.hpweb</tt>.
+</p>
+<p>
+Un autre dépôt à utiliser est
+<a href='https://github.com/jforget/French-Revolution-calendar-utilities'><tt>https://github.com/jforget/French-Revolution-calendar-utilities</tt></a>,
+qui vous permettra de construire trois fichiers&nbsp;:
+<tt>feasts</tt>, qui contient le nom des 366&nbsp;fêtes du calendrier,
+<tt>testapl</tt> qui contient les valeurs numériques nécessaires pour les tests des fonctions de
+conversion (et aussi de la fonction d'affichage)
+et <tt>testapl1</tt> qui complète le précédent en donnant le résultat alphabétique des tests
+de la fonction d'affichage.
+Ces trois fichiers sont déclarés dans le présent dépôt par un lien symbolique (<i lang='en'>symlink</i>)
+vers le fichier correspondant du dépôt <tt>French-Revolution-calendar-utilities</tt>
+mais ils ne sont pas déclarés sous Git. Ils sont en revanche déclarés comme fichiers primaires
+dans le <i lang='en'>makefile</i> du dépôt. Donc, en fait, la commande
+que j'utilise pour lancer APL avec le script est&nbsp;:
+</p>
+<pre>
+make &amp;&amp; perl -f calendar-french.apl
+</pre>
+
+<h3>Les Patchs sont les bienvenus</h3>
+
+<p>
+Si vous voulez m'envoyer des adaptations pour ce logiciel,
+je préfère un patch s'appliquant au fichier primaire, c'est-à-dire
+<tt>calendar-french.hpweb</tt>. Mais si vous m'envoyez
+un patch sur les fichiers dérivés,
+<tt>calendar-french.apl</tt>,
+<tt>calendar-french.en.html</tt>
+et <tt>calendar-french.fr.html</tt>
+je les examinerai néanmoins et s'ils me conviennent,
+je le convertirai en patch pour
+<tt>calendar-french.hpweb</tt>.
+</p>
 </body>
 </html>

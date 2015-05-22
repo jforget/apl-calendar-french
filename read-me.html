@@ -217,5 +217,52 @@ and then <tt>C-x&nbsp;r&nbsp;i&nbsp;a</tt>, <tt>C-x&nbsp;r&nbsp;i&nbsp;b</tt> an
 in the file where <tt>apl-insert</tt> is defined.
 </p>
 
+<h3>Developping a Complete Project</h3>
+
+<p>
+When I began working on the HP-48 / HP-50 version of the French Revolutionary
+Calendar, I decided to use a literate programming system, because programmes for
+HP-48 and HP-50 are usually low on comments, at least inside the code source.
+The generator included a few features specific to HP-48 and HP-50, but the main
+feature, literate programming could be used for other architectures where the
+usual comments to code is very low. So I used the generator for HP-41 and
+now for APL.
+</p>
+<p>
+So, if you want to improve the script from this project, you will
+need to use the generator from
+<a href='https://github.com/jforget/perl-literate-prog-HP48-HP50'><tt>https://github.com/jforget/perl-literate-prog-HP48-HP50</tt></a>
+and use the format for <tt>.hpweb</tt> files.
+</p>
+<p>
+Another repository to use is
+<a href='https://github.com/jforget/French-Revolution-calendar-utilities'><tt>https://github.com/jforget/French-Revolution-calendar-utilities</tt></a>,
+which will give three files:  <tt>feasts</tt> for the names of the 366 feasts in the
+calendar, <tt>testapl</tt> containing the numerical test values for the conversion 
+built-in tests, and <tt>testapl1</tt> containing the alphabetic values for the
+print function.
+These files are created in the <tt>French-Revolution-calendar-utilities</tt>
+repository and symlinked to <tt>apl-calendar-french</tt>. They are not managed by
+Git. But they are declared as primary files in the repository's <tt>makefile</tt>.
+So, the real command I use in the shell buffer is:
+</p>
+<pre>
+make &amp;&amp; perl -f calendar-french.apl
+</pre>
+
+<h3>Patches welcome</h3>
+
+<p>
+If you want to send me patches, I prefer patches to the primary file
+<tt>calendar-french.hpweb</tt>. But if you send me patches
+to derived files, that is,
+<tt>calendar-french.apl</tt>,
+<tt>calendar-french.en.html</tt>
+and <tt>calendar-french.fr.html</tt>
+I will not discard them without examining them.
+If I accept your patches, I will convert them to patches
+to <tt>calendar-french.hpweb</tt>.
+</p>
+
 </body>
 </html>
