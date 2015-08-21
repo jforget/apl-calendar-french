@@ -478,7 +478,7 @@ depuis le zéro mars jusqu'au jour zéro du mois courant.
 <tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>245</td><td>   367.2</td><td>      245        </td></tr>
 <tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>275</td><td>   397.8</td><td>      275        </td></tr>
 <tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>306</td><td>   428.4</td><td>      306        </td></tr>
-<tr align='right'> <td>F</td><td>  7 </td><td>14</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
+<tr align='right'> <td>F</td><td>  7 </td><td>15</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
 </table>
 
 <p>
@@ -749,7 +749,7 @@ R ← (R≠' ')/R
 <h3><a name='nodes'><tt>nodes</tt> - Construction des nœuds de la numération romaine</a></h3>
 <p>
 Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
-par Geneviève Guitel. Dans une numération de base <var>b</var>, un nœud est un nombre
+par Geneviève Guitel et je l'ai traduit en «&nbsp;nodes&nbsp;». Dans une numération de base <var>b</var>, un nœud est un nombre
 de la forme <var>k × b<sup>n</sup></var>, avec <var>k</var> entre 0 et <var>b</var>&nbsp;-&nbsp;1.
 Cette fonction participe à la construction d'un tableau de caractères où chaque ligne est un
 nœud de la base 10 écrit en chiffres romains.
@@ -810,7 +810,14 @@ R ← (L, 7) ⍴ V
 <p>
 Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
 le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
+Par exemple&nbsp;:
 </p>
+
+<pre>
+      2 52↑teststring
+Primidi 1 Vendémiaire I, jour du Raisin             
+Duodi 2 Brumaire II, jour du Céleri                 
+</pre>
 
 <pre>
 ∇ R ← teststring; V; L

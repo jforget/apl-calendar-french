@@ -429,7 +429,7 @@ the year. In addition, the duration of the other months is variable: 30 or 31 da
 <p>
 This is why we use yet another calendar, the "shifted Gregorian calendar".
 In this calendar, the January and February months are assigned to the previous year
-so the year will begin on the First of March. In addition, for reasons explained
+so the year will begin on the First of March. In addition, for reasons shown
 below, the months are numbered from 4 (March) to 15 (February).</p>
 
 <p>
@@ -457,7 +457,7 @@ zeroth day of the current month.
 <tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>245</td><td>   367.2</td><td>      245        </td></tr>
 <tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>275</td><td>   397.8</td><td>      275        </td></tr>
 <tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>306</td><td>   428.4</td><td>      306        </td></tr>
-<tr align='right'> <td>F</td><td>  7 </td><td>14</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
+<tr align='right'> <td>F</td><td>  7 </td><td>15</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
 </table>
 
 <p>
@@ -642,8 +642,8 @@ to compute the month. I use this second way.</p>
 
 <p>
 Even if the guesstimate of the month is coarser than the estimated value of
-the year, we know that the computation will never exceed 366 days and 12 months,
-so the range will have at most two values. So we do not bother refining the
+the year, we know that the computation will never involve more than 366 days or 12 months,
+so the range will have at most two values. Therefore, we do not bother refining the
 estimation and we always use a two-value range for the month, even if the
 guesstimate would give a single-value range.
 </p>
@@ -724,6 +724,7 @@ R ← (R≠' ')/R
 <p>
 The word "nodes" comes from the French-written book <cite lang='fr'>Histoire comparée des numérations écrites</cite>
 (which would translate to "Compared History of Written Number Systems"), by Geneviève Guitel.
+The original french word is "nœuds".
 When dealing with radix <var>b</var>, a node is a number <var>k × b<sup>n</sup></var>, with <var>k</var> between 0 and <var>b</var>&nbsp;-&nbsp;1.
 This function provides a step to build a char-array, in which any line is a radix-10 node, 
 written with Roman numerals.
@@ -785,7 +786,14 @@ R ← (L, 7) ⍴ V
 <p>
 This function gives the  <a href='#prtfr'><tt>prtfr</tt></a> expected result for each
 corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
+For example
 </p>
+
+<pre>
+      2 52↑teststring
+Primidi 1 Vendémiaire I, jour du Raisin             
+Duodi 2 Brumaire II, jour du Céleri                 
+</pre>
 
 <pre>
 ∇ R ← teststring; V; L

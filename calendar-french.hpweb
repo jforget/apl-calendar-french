@@ -566,7 +566,7 @@ calendar-french.apl-1: apl
 - en: |
     This is why we use yet another calendar, the "shifted Gregorian calendar".
     In this calendar, the January and February months are assigned to the previous year
-    so the year will begin on the First of March. In addition, for reasons explained
+    so the year will begin on the First of March. In addition, for reasons shown
     below, the months are numbered from 4 (March) to 15 (February).
 
     So, 28th February 2015 becomes <tt>2014&nbsp;15&nbsp;28</tt> and 1st March 2015
@@ -595,7 +595,7 @@ calendar-french.apl-1: apl
     <tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>245</td><td>   367.2</td><td>      245        </td></tr>
     <tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>275</td><td>   397.8</td><td>      275        </td></tr>
     <tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>306</td><td>   428.4</td><td>      306        </td></tr>
-    <tr align='right'> <td>F</td><td>  7 </td><td>14</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
+    <tr align='right'> <td>F</td><td>  7 </td><td>15</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
     </table>
 - fr: |
     Voici donc la fonction&nbsp;:
@@ -838,8 +838,8 @@ calendar-french.apl-1: apl
     to compute the month. I use this second way.
 
     Even if the guesstimate of the month is coarser than the estimated value of
-    the year, we know that the computation will never exceed 366 days and 12 months,
-    so the range will have at most two values. So we do not bother refining the
+    the year, we know that the computation will never involve more than 366 days or 12 months,
+    so the range will have at most two values. Therefore, we do not bother refining the
     estimation and we always use a two-value range for the month, even if the
     guesstimate would give a single-value range.
 - code: |
@@ -938,13 +938,14 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 22
 - fr: |
     Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
-    par Geneviève Guitel. Dans une numération de base <var>b</var>, un nœud est un nombre
+    par Geneviève Guitel et je l'ai traduit en «&nbsp;nodes&nbsp;». Dans une numération de base <var>b</var>, un nœud est un nombre
     de la forme <var>k × b<sup>n</sup></var>, avec <var>k</var> entre 0 et <var>b</var>&nbsp;-&nbsp;1.
     Cette fonction participe à la construction d'un tableau de caractères où chaque ligne est un
     nœud de la base 10 écrit en chiffres romains.
 - en: |
     The word "nodes" comes from the French-written book <cite lang='fr'>Histoire comparée des numérations écrites</cite>
     (which would translate to "Compared History of Written Number Systems"), by Geneviève Guitel.
+    The original french word is "nœuds".
     When dealing with radix <var>b</var>, a node is a number <var>k × b<sup>n</sup></var>, with <var>k</var> between 0 and <var>b</var>&nbsp;-&nbsp;1.
     This function provides a step to build a char-array, in which any line is a radix-10 node, 
     written with Roman numerals.
@@ -1023,12 +1024,22 @@ calendar-french.apl-1: apl
   fr: Données alphanumériques de tests
   en: Test alphanumeric data
   calendar-french.apl-1: 31
+
 - fr: |
     Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
     le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
+    Par exemple&nbsp;:
 - en: |
     This function gives the  <a href='#prtfr'><tt>prtfr</tt></a> expected result for each
     corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
+    For example
+-
+  'fr,en': |
+    <pre>
+          2 52↑teststring
+    Primidi 1 Vendémiaire I, jour du Raisin             
+    Duodi 2 Brumaire II, jour du Céleri                 
+    </pre>
 - code: |
     ∇ R ← teststring; V; L
     V ← ''
