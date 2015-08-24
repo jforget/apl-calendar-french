@@ -77,6 +77,7 @@ I, me, myself, Jean Forget
 <p>
 If you want to contact me, just remember that I have a user-code in
 CPAN. And somewhere in CPAN's website, you will find my email address.
+My CPAN code is "jforget".
 </p>
 
 <p>
@@ -163,7 +164,7 @@ Another more compelling reason is how to type the special characters.
 Some solutions are explained in
 <tt>/path/to/compilation/directory/apl-1.4/README-3-keyboard</tt>,
 but I find them rather awkward. Instead of that, I run the following
-Lisp code:
+Lisp code in Emacs:
 </p>
 <pre>
 (progn
@@ -211,7 +212,9 @@ in the file where <tt>apl-insert</tt> is defined.
 </p>
 <p>
 To copy-paste a few characters with plain Emacs, type
-<tt>C-ESP C-f C-x&nbsp;r&nbsp;s&nbsp;a</tt>, <tt>C-ESP C-f C-x&nbsp;r&nbsp;s&nbsp;b</tt> and <tt>C-ESP C-f C-x&nbsp;r&nbsp;s&nbsp;c</tt>
+<tt>C-ESP C-f C-x&nbsp;r&nbsp;s&nbsp;a</tt> for the first char,
+<tt>C-ESP C-f C-x&nbsp;r&nbsp;s&nbsp;b</tt> for the second one 
+and <tt>C-ESP C-f C-x&nbsp;r&nbsp;s&nbsp;c</tt> for the last one
 in the file which describes the keyboard,
 and then <tt>C-x&nbsp;r&nbsp;i&nbsp;a</tt>, <tt>C-x&nbsp;r&nbsp;i&nbsp;b</tt> and <tt>C-x&nbsp;r&nbsp;i&nbsp;c</tt>
 in the file where <tt>apl-insert</tt> is defined.
@@ -225,7 +228,7 @@ Calendar, I decided to use a literate programming system, because programmes for
 HP-48 and HP-50 are usually low on comments, at least inside the code source.
 The generator included a few features specific to HP-48 and HP-50, but the main
 feature, literate programming could be used for other architectures where the
-usual comments to code is very low. So I used the generator for HP-41 and
+usual comments to code is very low. So I reused the generator for HP-41 and
 now for APL.
 </p>
 <p>

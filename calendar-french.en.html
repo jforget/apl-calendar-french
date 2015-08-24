@@ -745,6 +745,18 @@ This function lists all 366 feasts for all days in a French Revolutionary calend
 ⍝ include here the contents of feasts
 ∇
 </pre>
+<p>
+It returns an array of 366 lines of 21 chars, one line per day.
+</p>
+
+<pre>
+      4 21↑feasts
+du Raisin            
+du Safran            
+de la Châtaigne      
+de la Colchique      
+</pre>
+
 <h2><a name='Built-in Tests'>Built-in Tests</a></h2>
 <h3><a name='testdata'><tt>testdata</tt> - Test Data</a></h3>
 <p>
@@ -782,9 +794,9 @@ L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
 </pre>
-<h2><a name='teststring'><tt>teststring</tt> - Test alphanumeric data</a></h2>
+<h3><a name='teststring'><tt>teststring</tt> - Test alphanumeric data</a></h3>
 <p>
-This function gives the  <a href='#prtfr'><tt>prtfr</tt></a> expected result for each
+This function gives the expected <a href='#prtfr'><tt>prtfr</tt></a> result for each
 corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
 For example
 </p>
@@ -794,6 +806,11 @@ For example
 Primidi 1 Vendémiaire I, jour du Raisin             
 Duodi 2 Brumaire II, jour du Céleri                 
 </pre>
+
+<p>
+The strings are produced and inserted into the final code in the
+same fashion as <a href='#testdata'><tt>testdata</tt></a>.
+</p>
 
 <pre>
 ∇ R ← teststring; V; L

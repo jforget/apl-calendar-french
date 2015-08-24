@@ -966,6 +966,20 @@ calendar-french.apl-1: apl
     ∇ R ← feasts; V
     ⍝ include here the contents of feasts
     ∇
+- fr: |
+    Elle renvoie un tableau de 366 lignes de 21 caractères, une ligne par jour.
+- en: |
+    It returns an array of 366 lines of 21 chars, one line per day.
+-
+  'fr,en': |
+    <pre>
+          4 21↑feasts
+    du Raisin            
+    du Safran            
+    de la Châtaigne      
+    de la Colchique      
+    </pre>
+
 - section: 0
   fr: Tests internes
   en: Built-in Tests
@@ -1002,7 +1016,7 @@ calendar-french.apl-1: apl
     <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
     Le programme qui les formatte avec la syntaxe APL est disponible sur
     <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
-    Et un utilitaire est fourni dans le présent projet pour insérer les valeurs dans le script final.
+    Et un utilitaire (en Perl) est fourni dans le présent projet pour insérer les valeurs dans le script final.
 - en: |
     The first lines of the test data show that the 22nd September 1792 converts to 1st Vendémiaire I,
     with a <i lang='la'>Rata Die</i> value of 654415. Likewise, the 23rd October 1793 converts to 
@@ -1024,13 +1038,14 @@ calendar-french.apl-1: apl
   fr: Données alphanumériques de tests
   en: Test alphanumeric data
   calendar-french.apl-1: 31
+  level: 3
 
 - fr: |
     Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
     le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
     Par exemple&nbsp;:
 - en: |
-    This function gives the  <a href='#prtfr'><tt>prtfr</tt></a> expected result for each
+    This function gives the expected <a href='#prtfr'><tt>prtfr</tt></a> result for each
     corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
     For example
 -
@@ -1040,6 +1055,12 @@ calendar-french.apl-1: apl
     Primidi 1 Vendémiaire I, jour du Raisin             
     Duodi 2 Brumaire II, jour du Céleri                 
     </pre>
+- fr: |
+    L'origine des données et l'utilitaire pour les insérer dans le script
+    sont les mêmes que pour <a href='#testdata'><tt>testdata</tt></a>.
+- en: |
+    The strings are produced and inserted into the final code in the
+    same fashion as <a href='#testdata'><tt>testdata</tt></a>.
 - code: |
     ∇ R ← teststring; V; L
     V ← ''

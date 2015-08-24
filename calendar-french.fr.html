@@ -770,6 +770,18 @@ Cette fonction énumère les fêtes des 366 jours du calendier républicain.
 ⍝ include here the contents of feasts
 ∇
 </pre>
+<p>
+Elle renvoie un tableau de 366 lignes de 21 caractères, une ligne par jour.
+</p>
+
+<pre>
+      4 21↑feasts
+du Raisin            
+du Safran            
+de la Châtaigne      
+de la Colchique      
+</pre>
+
 <h2><a name='Tests internes'>Tests internes</a></h2>
 <h3><a name='testdata'><tt>testdata</tt> - Données pour les tests</a></h3>
 <p>
@@ -796,7 +808,7 @@ Les valeurs adoptées sont les valeurs utilisées dans les tests de
 <a href='https://metacpan.org/pod/DateTime::Calendar::FrenchRevolutionary'>DateTime::Calendar::FrenchRevolutionary</a>.
 Le programme qui les formatte avec la syntaxe APL est disponible sur
 <a href='https://github.com/jforget/French-Revolution-calendar-utilities'>GitHub</a>.
-Et un utilitaire est fourni dans le présent projet pour insérer les valeurs dans le script final.
+Et un utilitaire (en Perl) est fourni dans le présent projet pour insérer les valeurs dans le script final.
 </p>
 
 <pre>
@@ -806,7 +818,7 @@ L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
 </pre>
-<h2><a name='teststring'><tt>teststring</tt> - Données alphanumériques de tests</a></h2>
+<h3><a name='teststring'><tt>teststring</tt> - Données alphanumériques de tests</a></h3>
 <p>
 Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
 le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
@@ -818,6 +830,11 @@ Par exemple&nbsp;:
 Primidi 1 Vendémiaire I, jour du Raisin             
 Duodi 2 Brumaire II, jour du Céleri                 
 </pre>
+
+<p>
+L'origine des données et l'utilitaire pour les insérer dans le script
+sont les mêmes que pour <a href='#testdata'><tt>testdata</tt></a>.
+</p>
 
 <pre>
 ∇ R ← teststring; V; L
