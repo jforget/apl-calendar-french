@@ -252,8 +252,8 @@ calendar-french.apl-1: apl
     sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
     de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
     avec toutes ces structures, sauf lorsque l'on arrive au voisinage du rang maximal.
-    Par exemple, le rang maximal en GNU APL est 15, donc les fonctions commencent
-    à provoquer des erreurs avec une structure de rang 14.
+    Par exemple, sur cette implémentation le rang maximal est 8, donc les fonctions commencent
+    à provoquer des erreurs avec une structure de rang 7.
 
     Ainsi, la conversion du vecteur ci-dessus se fait par&nbsp;:
 - en: |
@@ -262,8 +262,8 @@ calendar-french.apl-1: apl
     as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>gr2fr</tt>
     and <tt>fr2gr</tt> functions can deal with these structures, except when
     using a rank nearly equal to the maximum allowed value. For example,
-    GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
-    functions are limited to rank 13.
+    in this implementation APL is limited to rank 8, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
+    functions are limited to rank 6.
 
     Continuing with the example above, converting the date vector is done with:
 - code: |
@@ -1081,34 +1081,93 @@ calendar-french.apl-1: apl
   level: 3
   calendar-french.apl-1: 40
 - code: |
-    ∇ testfr2rd
-    'Checking fr2rd with the full vector, errors: ', ⍕ +/ @testdata@[;7] ≠ @fr2rd@ @testdata@[;4 5 6]
-    @test1fr2rd@ 5 5
-    @test1fr2rd@ 5 3 3
-    @test1fr2rd@ 5 2 2 2
+    ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+    ⎕IO ← 1
+    EXPEC ← @testdata@[;7]
+    PARAM ← @testdata@[;4 5 6]
+    OK ← 1
+    IO ← 2
+    LOOP:
+    IO ← IO - 1
+    ⎕IO ← IO
+    OK ←OK ∧ @test0fr2rd@ 1
+    OK ←OK ∧ @test0fr2rd@ 2
+    OK ←OK ∧ @test1fr2rd@ 1 ↑ ⍴PARAM ⍝ checking with the full vector
+    OK ←OK ∧ @test1fr2rd@ 5 5
+    OK ←OK ∧ @test1fr2rd@ 5 3 3
+    OK ←OK ∧ @test1fr2rd@ 5 2 2 2
+    OK ←OK ∧ @test1fr2rd@ 7 ⍴ 2 ⍝ checking max allowed rank
+    → IO / LOOP
+    → (OK=0) / 0 ⍝ exit if the errors are already reported
+    'Checking fr2rd : no errors'
     ∇
-- section: test1fr2rd
+- section: test0fr2rd
   level: 4
   calendar-french.apl-1: 41
 - code: |
-    ∇ test1fr2rd DIM; EXP; GOT
-    'Checking fr2rd with dimension ', ⍕ DIM
-    EXP ← DIM ⍴ @testdata@[;7]
-    GOT ← @fr2rd@ (DIM, 3) ⍴ @testdata@[;4 5 6]
+    ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
+    ⎕IO ← 1
+    EXP ← EXPEC[N]
+    PAR ← PARAM[N;]
+    LIB  ← 'Checking fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    ⎕IO ← IO
+    GOT  ← @fr2rd@ PAR
+    → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
+    LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    R ← 0
+    → 0
+    CHKDATA:
+    NERR ← +/,EXP≠GOT
+    → (NERR=0) / CHKIO
+    LIB, ' Data errors: ', ⍕ NERR
+    R ← 0
+    → 0
+    CHKIO:
+    → (IO=⎕IO) / SUCCESS
+    LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+    R ← 0
+    → 0
+    SUCCESS:
+    R ← 1
+    → 0
+    ∇
+- section: test1fr2rd
+  level: 4
+  calendar-french.apl-1: 42
+- code: |
+    ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
+    LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    EXP ← DIM ⍴ EXPEC
+    ⎕IO ← IO
+    GOT  ← @fr2rd@ (DIM, 3) ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-    'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    R ← 0
     → 0
     CHKDIM:
     → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-    'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+    LIB, ' Wrong dimension: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+    R ← 0
     → 0
     CHKDATA:
-    'Data errors: ', ⍕ +/,EXP≠GOT
+    NERR ← +/,EXP≠GOT
+    → (NERR=0) / CHKIO
+    LIB, ' Data errors: ', ⍕ NERR
+    R ← 0
+    → 0
+    CHKIO:
+    → (IO=⎕IO) / SUCCESS
+    LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+    R ← 0
+    → 0
+    SUCCESS:
+    R ← 1
+    → 0
     ∇
 
 - section: testgr2rd
   level: 4
-  calendar-french.apl-1: 42
+  calendar-french.apl-1: 50
 - code: |
     ∇ testgr2rd
     'Testing gr2rd with the full vector, errors: ', ⍕ +/ @testdata@[;7] ≠ @gr2rd@ @testdata@[;1 2 3]
@@ -1118,7 +1177,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1gr2rd
   level: 4
-  calendar-french.apl-1: 43
+  calendar-french.apl-1: 52
 - code: |
     ∇ test1gr2rd DIM; EXP; GOT
     'Checking gr2rd with dimension ', ⍕ DIM
@@ -1136,7 +1195,7 @@ calendar-french.apl-1: apl
     ∇
 - section: testrd2fr
   level: 4
-  calendar-french.apl-1: 44
+  calendar-french.apl-1: 60
 - code: |
     ∇ testrd2fr
     'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ @testdata@[;4 5 6] ≠ @rd2fr@ @testdata@[;7]
@@ -1146,7 +1205,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1rd2fr
   level: 4
-  calendar-french.apl-1: 45
+  calendar-french.apl-1: 62
 - code: |
     ∇ test1rd2fr DIM; EXP; GOT
     'Checking rd2fr with dimension ', ⍕ DIM
@@ -1164,7 +1223,7 @@ calendar-french.apl-1: apl
     ∇
 - section: testrd2gr
   level: 4
-  calendar-french.apl-1: 46
+  calendar-french.apl-1: 70
 - code: |
     ∇ testrd2gr
     'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ @testdata@[;1 2 3] ≠ @rd2gr@ @testdata@[;7]
@@ -1174,7 +1233,7 @@ calendar-french.apl-1: apl
     ∇
 - section: test1rd2gr
   level: 4
-  calendar-french.apl-1: 47
+  calendar-french.apl-1: 72
 - code: |
     ∇ test1rd2gr DIM; EXP; GOT
     'Checking rd2gr with dimension ', ⍕ DIM
@@ -1192,7 +1251,7 @@ calendar-french.apl-1: apl
     ∇
 - section: testprtfr
   level: 4
-  calendar-french.apl-1: 47
+  calendar-french.apl-1: 80
 - code: |
     ∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
     'Checking prtfr with the full vector (a bit slow)'

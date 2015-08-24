@@ -41,6 +41,7 @@
 <br /><a href='#teststring'><tt>teststring</tt> - Test alphanumeric data</a>
 <br /><a href='#alltests'><tt>alltests</tt></a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
+<br /><a href='#test0fr2rd'><tt>test0fr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
 <br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
 <br /><a href='#test1gr2rd'><tt>test1gr2rd</tt></a>
@@ -228,8 +229,8 @@ block of numbers, and a <tt>2 2 6</tt> block of dates will be entered
 as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>gr2fr</tt>
 and <tt>fr2gr</tt> functions can deal with these structures, except when
 using a rank nearly equal to the maximum allowed value. For example,
-GNU APL is limited to rank 15, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
-functions are limited to rank 13.</p>
+in this implementation APL is limited to rank 8, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
+functions are limited to rank 6.</p>
 
 <p>
 Continuing with the example above, converting the date vector is done with:
@@ -830,28 +831,86 @@ V ← ''
 </pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
 <pre>
-∇ testfr2rd
-'Checking fr2rd with the full vector, errors: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#fr2rd' class='call'>fr2rd</a> <a href='#testdata' class='call'>testdata</a>[;4 5 6]
-<a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 5
-<a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 3 3
-<a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 2 2 2
+∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← <a href='#testdata' class='call'>testdata</a>[;7]
+PARAM ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ <a href='#test0fr2rd' class='call'>test0fr2rd</a> 1
+OK ←OK ∧ <a href='#test0fr2rd' class='call'>test0fr2rd</a> 2
+OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 5
+OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 3 3
+OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 2 2 2
+OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 7 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking fr2rd : no errors'
+∇
+</pre>
+<h4><a name='test0fr2rd'><tt>test0fr2rd</tt></a></h4>
+<pre>
+∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N]
+PAR ← PARAM[N;]
+LIB  ← 'Checking fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← <a href='#fr2rd' class='call'>fr2rd</a> PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
 <pre>
-∇ test1fr2rd DIM; EXP; GOT
-'Checking fr2rd with dimension ', ⍕ DIM
-EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
-GOT ← <a href='#fr2rd' class='call'>fr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
+LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← DIM ⍴ EXPEC
+⎕IO ← IO
+GOT  ← <a href='#fr2rd' class='call'>fr2rd</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimension: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,EXP≠GOT
+NERR ← +/,EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
