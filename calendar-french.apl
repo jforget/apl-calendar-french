@@ -748,25 +748,79 @@ SUCCESS:
 R ← 1
 → 0
 ∇
-∇ testgr2rd
-'Testing gr2rd with the full vector, errors: ', ⍕ +/ testdata[;7] ≠ gr2rd testdata[;1 2 3]
-test1gr2rd 5 5
-test1gr2rd 5 3 3
-test1gr2rd 5 2 2 2
+∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← testdata[;7]
+PARAM ← testdata[;1 2 3]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ test0gr2rd 1
+OK ←OK ∧ test0gr2rd 2
+OK ←OK ∧ test1gr2rd 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ test1gr2rd 5 5
+OK ←OK ∧ test1gr2rd 5 3 3
+OK ←OK ∧ test1gr2rd 5 2 2 2
+OK ←OK ∧ test1gr2rd 7 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking gr2rd : no errors'
 ∇
-∇ test1gr2rd DIM; EXP; GOT
-'Checking gr2rd with dimension ', ⍕ DIM
-EXP ← DIM ⍴ testdata[;7]
-GOT ← gr2rd (DIM, 3) ⍴ testdata[;1 2 3]
+∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N]
+PAR ← PARAM[N;]
+LIB  ← 'Checking gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← gr2rd PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
+LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← DIM ⍴ EXPEC
+GOT ← gr2rd (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,EXP≠GOT
+NERR ← +/,EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ +/,EXP≠GOT
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 ∇ testrd2fr
 'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]

@@ -44,6 +44,7 @@
 <br /><a href='#test0fr2rd'><tt>test0fr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
 <br /><a href='#testgr2rd'><tt>testgr2rd</tt></a>
+<br /><a href='#test0gr2rd'><tt>test0gr2rd</tt></a>
 <br /><a href='#test1gr2rd'><tt>test1gr2rd</tt></a>
 <br /><a href='#testrd2fr'><tt>testrd2fr</tt></a>
 <br /><a href='#test1rd2fr'><tt>test1rd2fr</tt></a>
@@ -830,6 +831,17 @@ V ← ''
 ∇
 </pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
+<p>
+This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a wide set of parameters:
+two scalar dates, a date vector, a date array, and so on until a rank-7 structure
+of dates (that is, a rank-8 block of integers). Tests are run a first time with <tt>⎕IO</tt>
+set to 1, a second time with <tt>⎕IO</tt> set to 0.</p>
+
+<p>
+Each failed subtest prints an error message. If everything succeeds, the main
+test function prints a single message.
+</p>
+
 <pre>
 ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
@@ -853,6 +865,13 @@ OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 7 ⍴ 2 ⍝ check
 ∇
 </pre>
 <h4><a name='test0fr2rd'><tt>test0fr2rd</tt></a></h4>
+<p>
+This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a scalar date.
+<tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
+a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
+and transmitted globally.
+</p>
+
 <pre>
 ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
@@ -882,6 +901,14 @@ R ← 1
 ∇
 </pre>
 <h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
+<p>
+This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a date vector
+or a higher rank structure.
+<tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
+a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
+and transmitted globally.
+</p>
+
 <pre>
 ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
@@ -915,28 +942,85 @@ R ← 1
 </pre>
 <h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
 <pre>
-∇ testgr2rd
-'Testing gr2rd with the full vector, errors: ', ⍕ +/ <a href='#testdata' class='call'>testdata</a>[;7] ≠ <a href='#gr2rd' class='call'>gr2rd</a> <a href='#testdata' class='call'>testdata</a>[;1 2 3]
-<a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 5
-<a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 3 3
-<a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 2 2 2
+∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← <a href='#testdata' class='call'>testdata</a>[;7]
+PARAM ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ <a href='#test0gr2rd' class='call'>test0gr2rd</a> 1
+OK ←OK ∧ <a href='#test0gr2rd' class='call'>test0gr2rd</a> 2
+OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 5
+OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 3 3
+OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 2 2 2
+OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 7 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking gr2rd : no errors'
+∇
+</pre>
+<h4><a name='test0gr2rd'><tt>test0gr2rd</tt></a></h4>
+<pre>
+∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N]
+PAR ← PARAM[N;]
+LIB  ← 'Checking gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← <a href='#gr2rd' class='call'>gr2rd</a> PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
 <pre>
-∇ test1gr2rd DIM; EXP; GOT
-'Checking gr2rd with dimension ', ⍕ DIM
-EXP ← DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
-GOT ← <a href='#gr2rd' class='call'>gr2rd</a> (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
+LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← DIM ⍴ EXPEC
+GOT ← <a href='#gr2rd' class='call'>gr2rd</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,EXP≠GOT
+NERR ← +/,EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ +/,EXP≠GOT
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>

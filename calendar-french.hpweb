@@ -1080,6 +1080,23 @@ calendar-french.apl-1: apl
 - section: testfr2rd
   level: 3
   calendar-french.apl-1: 40
+- fr: |
+    Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> avec une variété de
+    paramètres en entrée&nbsp;: deux dates scalaires, un vecteur de dates, un tableau
+    de dates, jusqu'à une structure de dates de rang 7 (donc une structure d'entiers
+    de rang 8). Les tests sont effectués une première fois avec <tt>⎕IO</tt>
+    à 1, une seconde fois avec <tt>⎕IO</tt> à 0.
+
+    Chaque tests élémentaire tombant en erreur affiche un message. Si tous les tests
+    élémentaires réussissent, la fonction principale de test affiche un seul message.
+- en: |
+    This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a wide set of parameters:
+    two scalar dates, a date vector, a date array, and so on until a rank-7 structure
+    of dates (that is, a rank-8 block of integers). Tests are run a first time with <tt>⎕IO</tt>
+    set to 1, a second time with <tt>⎕IO</tt> set to 0.
+
+    Each failed subtest prints an error message. If everything succeeds, the main
+    test function prints a single message.
 - code: |
     ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
@@ -1104,6 +1121,16 @@ calendar-french.apl-1: apl
 - section: test0fr2rd
   level: 4
   calendar-french.apl-1: 41
+- fr: |
+    Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> pour une date scalaire.
+    <tt>⎕IO</tt> est initialisé avec la variable globale <tt>IO</tt>, en fait
+    une variable locale de la fonction appelante <a href='#testfr2rd'><tt>testfr2rd</tt></a>
+    transmise globalement.
+- en: |
+    This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a scalar date.
+    <tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
+    a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
+    and transmitted globally.
 - code: |
     ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
@@ -1134,6 +1161,18 @@ calendar-french.apl-1: apl
 - section: test1fr2rd
   level: 4
   calendar-french.apl-1: 42
+- fr: |
+    Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> pour un vecteur de dates
+    ou une structure de rang supérieur.
+    <tt>⎕IO</tt> est initialisé avec la variable globale <tt>IO</tt>, en fait
+    une variable locale de la fonction appelante <a href='#testfr2rd'><tt>testfr2rd</tt></a>
+    transmise globalement.
+- en: |
+    This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a date vector
+    or a higher rank structure.
+    <tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
+    a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
+    and transmitted globally.
 - code: |
     ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
     LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
@@ -1169,29 +1208,87 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 50
 - code: |
-    ∇ testgr2rd
-    'Testing gr2rd with the full vector, errors: ', ⍕ +/ @testdata@[;7] ≠ @gr2rd@ @testdata@[;1 2 3]
-    @test1gr2rd@ 5 5
-    @test1gr2rd@ 5 3 3
-    @test1gr2rd@ 5 2 2 2
+    ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+    ⎕IO ← 1
+    EXPEC ← @testdata@[;7]
+    PARAM ← @testdata@[;1 2 3]
+    OK ← 1
+    IO ← 2
+    LOOP:
+    IO ← IO - 1
+    ⎕IO ← IO
+    OK ←OK ∧ @test0gr2rd@ 1
+    OK ←OK ∧ @test0gr2rd@ 2
+    OK ←OK ∧ @test1gr2rd@ 1 ↑ ⍴PARAM ⍝ checking with the full vector
+    OK ←OK ∧ @test1gr2rd@ 5 5
+    OK ←OK ∧ @test1gr2rd@ 5 3 3
+    OK ←OK ∧ @test1gr2rd@ 5 2 2 2
+    OK ←OK ∧ @test1gr2rd@ 7 ⍴ 2 ⍝ checking max allowed rank
+    → IO / LOOP
+    → (OK=0) / 0 ⍝ exit if the errors are already reported
+    'Checking gr2rd : no errors'
+    ∇
+- section: test0gr2rd
+  level: 4
+  calendar-french.apl-1: 51
+- code: |
+    ∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
+    ⎕IO ← 1
+    EXP ← EXPEC[N]
+    PAR ← PARAM[N;]
+    LIB  ← 'Checking gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    ⎕IO ← IO
+    GOT  ← @gr2rd@ PAR
+    → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
+    LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    R ← 0
+    → 0
+    CHKDATA:
+    NERR ← +/,EXP≠GOT
+    → (NERR=0) / CHKIO
+    LIB, ' Data errors: ', ⍕ NERR
+    R ← 0
+    → 0
+    CHKIO:
+    → (IO=⎕IO) / SUCCESS
+    LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+    R ← 0
+    → 0
+    SUCCESS:
+    R ← 1
+    → 0
     ∇
 - section: test1gr2rd
   level: 4
   calendar-french.apl-1: 52
 - code: |
-    ∇ test1gr2rd DIM; EXP; GOT
-    'Checking gr2rd with dimension ', ⍕ DIM
-    EXP ← DIM ⍴ @testdata@[;7]
-    GOT ← @gr2rd@ (DIM, 3) ⍴ @testdata@[;1 2 3]
+    ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
+    LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    EXP ← DIM ⍴ EXPEC
+    GOT ← @gr2rd@ (DIM, 3) ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-    'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+    R ← 0
     → 0
     CHKDIM:
     → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-    'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+    LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+    R ← 0
     → 0
     CHKDATA:
-    'Data errors: ', ⍕ +/,EXP≠GOT
+    NERR ← +/,EXP≠GOT
+    → (NERR=0) / CHKIO
+    LIB, ' Data errors: ', ⍕ +/,EXP≠GOT
+    R ← 0
+    → 0
+    CHKIO:
+    → (IO=⎕IO) / SUCCESS
+    LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+    R ← 0
+    → 0
+    SUCCESS:
+    R ← 1
+    → 0
     ∇
 - section: testrd2fr
   level: 4
@@ -1249,6 +1346,7 @@ calendar-french.apl-1: apl
     CHKDATA:
     'Data errors: ', ⍕ +/,∨/EXP≠GOT
     ∇
+
 - section: testprtfr
   level: 4
   calendar-french.apl-1: 80
