@@ -706,9 +706,10 @@ R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2r
 <h2><a name='Displaying the Dates'>Displaying the Dates</a></h2>
 <h3><a name='prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a></h3>
 <pre>
-∇ R ← prtfr D; DAY; MONTH; CM
+∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
+⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-R ← DAY[⎕IO + 10 | <a href='#day' class='call'>day</a> D;]
+R ← DAY[1 + 10 | <a href='#day' class='call'>day</a> D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
 R ← R, ' ', (⍕ <a href='#day' class='call'>day</a> D), ' ', (MONTH[<a href='#month' class='call'>month</a> D;]), ' ', (<a href='#roman' class='call'>roman</a> <a href='#year' class='call'>year</a> D), ', jour ', <a href='#feasts' class='call'>feasts</a>[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
@@ -728,7 +729,7 @@ R ← ⍕ N
 → 0
 CONV:
 NODES ← 40 4 ⍴ (<a href='#nodes' class='call'>nodes</a> 'IVX'), (<a href='#nodes' class='call'>nodes</a> 'XLC'), (<a href='#nodes' class='call'>nodes</a> 'CDM'), <a href='#nodes' class='call'>nodes</a> 'M??'
-R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
+R ← ,NODES[⎕IO + 30 20 10 0 + 10 10 10 10 ⊤ N;]
 R ← (R≠' ')/R
 ∇
 </pre>
@@ -1388,19 +1389,26 @@ R ← 1
 </pre>
 <h4><a name='testprtfr'><tt>testprtfr</tt></a></h4>
 <pre>
-∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
-'Checking prtfr with the full vector (a bit slow)'
+∇ testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
+IO ← 2
+LOOPIO:
+IO ← IO - 1
+'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
+⎕IO ← 1
 TD ← <a href='#testdata' class='call'>testdata</a>[; 4 5 6 ]
 TS ← <a href='#teststring' class='call'>teststring</a>
 I ← 0
 N ← 0
 IMAX ← (⍴ TS)[1]
 LOOP:
+⎕IO ← 1
 I ← I + 1
 → (I &gt; IMAX)/END
+PAR ← TD[I;]
 EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
-GOT ← <a href='#prtfr' class='call'>prtfr</a> TD[I;]
+⎕IO ← IO
+GOT ← <a href='#prtfr' class='call'>prtfr</a> PAR
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP
@@ -1415,7 +1423,8 @@ NEXT:
 N ← N + 1
 → LOOP
 END:
-'Data errors: ', ⍕N
+'Data errors with ⎕IO = ', (⍕IO), ' : ', ⍕N
+→ IO / LOOPIO 
 ∇
 </pre>
 <h2><a name='See Also'>See Also</a></h2>

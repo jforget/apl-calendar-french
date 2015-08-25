@@ -94,9 +94,10 @@ R ← rd2fr gr2rd D
 ∇ R ← fr2gr D
 R ← rd2gr fr2rd D
 ∇
-∇ R ← prtfr D; DAY; MONTH; CM
+∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
+⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-R ← DAY[⎕IO + 10 | day D;]
+R ← DAY[1 + 10 | day D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
 R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', (roman year D), ', jour ', feasts[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
@@ -109,7 +110,7 @@ R ← ⍕ N
 → 0
 CONV:
 NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
-R ← ,NODES[31 21 11 1 + 10 10 10 10 ⊤ N;]
+R ← ,NODES[⎕IO + 30 20 10 0 + 10 10 10 10 ⊤ N;]
 R ← (R≠' ')/R
 ∇
 ∇ R ← nodes CH
@@ -1141,19 +1142,26 @@ SUCCESS:
 R ← 1
 → 0
 ∇
-∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
-'Checking prtfr with the full vector (a bit slow)'
+∇ testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
+IO ← 2
+LOOPIO:
+IO ← IO - 1
+'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
+⎕IO ← 1
 TD ← testdata[; 4 5 6 ]
 TS ← teststring
 I ← 0
 N ← 0
 IMAX ← (⍴ TS)[1]
 LOOP:
+⎕IO ← 1
 I ← I + 1
 → (I > IMAX)/END
+PAR ← TD[I;]
 EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
-GOT ← prtfr TD[I;]
+⎕IO ← IO
+GOT ← prtfr PAR
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP
@@ -1168,5 +1176,6 @@ NEXT:
 N ← N + 1
 → LOOP
 END:
-'Data errors: ', ⍕N
+'Data errors with ⎕IO = ', (⍕IO), ' : ', ⍕N
+→ IO / LOOPIO 
 ∇
