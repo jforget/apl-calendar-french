@@ -50,6 +50,7 @@
 <br /><a href='#test0rd2fr'><tt>test0rd2fr</tt></a>
 <br /><a href='#test1rd2fr'><tt>test1rd2fr</tt></a>
 <br /><a href='#testrd2gr'><tt>testrd2gr</tt></a>
+<br /><a href='#test0rd2gr'><tt>test0rd2gr</tt></a>
 <br /><a href='#test1rd2gr'><tt>test1rd2gr</tt></a>
 <br /><a href='#testprtfr'><tt>testprtfr</tt></a>
 <br /><a href='#Voir également'>Voir également</a>
@@ -678,7 +679,8 @@ avait donné une plage à une seule valeur.
 </p>
 
 <pre>
-∇ R ← rd2gr N; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+⎕IO ← 1
 YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
@@ -1140,28 +1142,89 @@ R ← 1
 </pre>
 <h4><a name='testrd2gr'><tt>testrd2gr</tt></a></h4>
 <pre>
-∇ testrd2gr
-'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;1 2 3] ≠ <a href='#rd2gr' class='call'>rd2gr</a> <a href='#testdata' class='call'>testdata</a>[;7]
-<a href='#test1rd2gr' class='call'>test1rd2gr</a> 3 3
-<a href='#test1rd2gr' class='call'>test1rd2gr</a> 15 3
-<a href='#test1rd2gr' class='call'>test1rd2gr</a> 2 3 3
+∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+PARAM ← <a href='#testdata' class='call'>testdata</a>[;7]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ <a href='#test0rd2gr' class='call'>test0rd2gr</a> 1
+OK ←OK ∧ <a href='#test0rd2gr' class='call'>test0rd2gr</a> 2
+OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 3 3
+OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 15 3
+OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 2 3 3
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking rd2gr : no errors'
+∇
+</pre>
+<h4><a name='test0rd2gr'><tt>test0rd2gr</tt></a></h4>
+<pre>
+∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N;]
+PAR ← PARAM[N]
+LIB  ← 'Checking rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← <a href='#rd2gr' class='call'>rd2gr</a> PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimensions: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='test1rd2gr'><tt>test1rd2gr</tt></a></h4>
 <pre>
-∇ test1rd2gr DIM; EXP; GOT
-'Checking rd2gr with dimension ', ⍕ DIM
-EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;1 2 3]
-GOT ← <a href='#rd2gr' class='call'>rd2gr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
+LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← (DIM, 3) ⍴ EXPEC
+GOT ← <a href='#rd2gr' class='call'>rd2gr</a> DIM ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,∨/EXP≠GOT
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='testprtfr'><tt>testprtfr</tt></a></h4>

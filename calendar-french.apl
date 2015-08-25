@@ -68,7 +68,8 @@ M ← ⌈D÷30
 D ← D - 30 × M - 1
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
-∇ R ← rd2gr N; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+⎕IO ← 1
 YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
@@ -902,25 +903,83 @@ SUCCESS:
 R ← 1
 → 0
 ∇
-∇ testrd2gr
-'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ testdata[;1 2 3] ≠ rd2gr testdata[;7]
-test1rd2gr 3 3
-test1rd2gr 15 3
-test1rd2gr 2 3 3
+∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← testdata[;1 2 3]
+PARAM ← testdata[;7]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ test0rd2gr 1
+OK ←OK ∧ test0rd2gr 2
+OK ←OK ∧ test1rd2gr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ test1rd2gr 3 3
+OK ←OK ∧ test1rd2gr 15 3
+OK ←OK ∧ test1rd2gr 2 3 3
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking rd2gr : no errors'
 ∇
-∇ test1rd2gr DIM; EXP; GOT
-'Checking rd2gr with dimension ', ⍕ DIM
-EXP ← (DIM, 3) ⍴ testdata[;1 2 3]
-GOT ← rd2gr DIM ⍴ testdata[;7]
+∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N;]
+PAR ← PARAM[N]
+LIB  ← 'Checking rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← rd2gr PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimensions: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,∨/EXP≠GOT
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
+LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← (DIM, 3) ⍴ EXPEC
+GOT ← rd2gr DIM ⍴ PARAM
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 ∇ testprtfr; TD; TS; I; IMAX; EXP; GOT; N
 'Checking prtfr with the full vector (a bit slow)'
