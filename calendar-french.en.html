@@ -47,6 +47,7 @@
 <br /><a href='#test0gr2rd'><tt>test0gr2rd</tt></a>
 <br /><a href='#test1gr2rd'><tt>test1gr2rd</tt></a>
 <br /><a href='#testrd2fr'><tt>testrd2fr</tt></a>
+<br /><a href='#test0rd2fr'><tt>test0rd2fr</tt></a>
 <br /><a href='#test1rd2fr'><tt>test1rd2fr</tt></a>
 <br /><a href='#testrd2gr'><tt>testrd2gr</tt></a>
 <br /><a href='#test1rd2gr'><tt>test1rd2gr</tt></a>
@@ -538,7 +539,8 @@ properly rectangular.
 </p>
 
 <pre>
-∇ R ← rd2fr N; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+⎕IO ← 1
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
@@ -1010,7 +1012,7 @@ R ← 0
 CHKDATA:
 NERR ← +/,EXP≠GOT
 → (NERR=0) / CHKIO
-LIB, ' Data errors: ', ⍕ +/,EXP≠GOT
+LIB, ' Data errors: ', ⍕ NERR
 R ← 0
 → 0
 CHKIO:
@@ -1025,28 +1027,90 @@ R ← 1
 </pre>
 <h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
 <pre>
-∇ testrd2fr
-'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ <a href='#testdata' class='call'>testdata</a>[;4 5 6] ≠ <a href='#rd2fr' class='call'>rd2fr</a> <a href='#testdata' class='call'>testdata</a>[;7]
-<a href='#test1rd2fr' class='call'>test1rd2fr</a> 3 3
-<a href='#test1rd2fr' class='call'>test1rd2fr</a> 15 3
-<a href='#test1rd2fr' class='call'>test1rd2fr</a> 2 3 3
+∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+PARAM ← <a href='#testdata' class='call'>testdata</a>[;7]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ <a href='#test0rd2fr' class='call'>test0rd2fr</a> 1
+OK ←OK ∧ <a href='#test0rd2fr' class='call'>test0rd2fr</a> 2
+OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 3 3
+OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 15 3
+OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 2 3 3
+OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 6 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking rd2fr : no errors'
+∇
+</pre>
+<h4><a name='test0rd2fr'><tt>test0rd2fr</tt></a></h4>
+<pre>
+∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N;]
+PAR ← PARAM[N]
+LIB  ← 'Checking rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← <a href='#rd2fr' class='call'>rd2fr</a> PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimensions: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='test1rd2fr'><tt>test1rd2fr</tt></a></h4>
 <pre>
-∇ test1rd2fr DIM; EXP; GOT
-'Checking rd2fr with dimension ', ⍕ DIM
-EXP ← (DIM, 3) ⍴ <a href='#testdata' class='call'>testdata</a>[;4 5 6]
-GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ <a href='#testdata' class='call'>testdata</a>[;7]
+∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
+LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← (DIM, 3) ⍴ EXPEC
+GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,∨/EXP≠GOT
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 </pre>
 <h4><a name='testrd2gr'><tt>testrd2gr</tt></a></h4>

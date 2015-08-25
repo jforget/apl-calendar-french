@@ -52,7 +52,8 @@ DIM ← ⍴ DATE
 DATE←(DIM ⍴0 1 0) + DATE + (2≥month DATE) ∘.× ¯1 12 0
 R ← ¯428 + (-/ ⌊ (year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
-∇ R ← rd2fr N; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+⎕IO ← 1
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
@@ -810,7 +811,7 @@ R ← 0
 CHKDATA:
 NERR ← +/,EXP≠GOT
 → (NERR=0) / CHKIO
-LIB, ' Data errors: ', ⍕ +/,EXP≠GOT
+LIB, ' Data errors: ', ⍕ NERR
 R ← 0
 → 0
 CHKIO:
@@ -822,25 +823,84 @@ SUCCESS:
 R ← 1
 → 0
 ∇
-∇ testrd2fr
-'Checking rd2fr with the full vector: errors: ', ⍕ +/∨/ testdata[;4 5 6] ≠ rd2fr testdata[;7]
-test1rd2fr 3 3
-test1rd2fr 15 3
-test1rd2fr 2 3 3
+∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← testdata[;4 5 6]
+PARAM ← testdata[;7]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ test0rd2fr 1
+OK ←OK ∧ test0rd2fr 2
+OK ←OK ∧ test1rd2fr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ test1rd2fr 3 3
+OK ←OK ∧ test1rd2fr 15 3
+OK ←OK ∧ test1rd2fr 2 3 3
+OK ←OK ∧ test1rd2fr 6 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking rd2fr : no errors'
 ∇
-∇ test1rd2fr DIM; EXP; GOT
-'Checking rd2fr with dimension ', ⍕ DIM
-EXP ← (DIM, 3) ⍴ testdata[;4 5 6]
-GOT ← rd2fr DIM ⍴ testdata[;7]
+∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N;]
+PAR ← PARAM[N]
+LIB  ← 'Checking rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← rd2fr PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
-'Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
 → 0
 CHKDIM:
 → (∧/(⍴EXP)=⍴GOT)/CHKDATA
-'Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+LIB, ' Wrong dimensions: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
 → 0
 CHKDATA:
-'Data errors: ', ⍕ +/,∨/EXP≠GOT
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
+LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← (DIM, 3) ⍴ EXPEC
+GOT ← rd2fr DIM ⍴ PARAM
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
 ∇
 ∇ testrd2gr
 'Checking rd2gr with the full vector: errors: ', ⍕ +/∨/ testdata[;1 2 3] ≠ rd2gr testdata[;7]
