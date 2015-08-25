@@ -673,6 +673,7 @@ testfr2rd
 testgr2rd
 testrd2fr
 testrd2gr
+testgr2fr
 testprtfr
 ∇
 ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
@@ -957,6 +958,85 @@ R ← 1
 LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
 GOT ← rd2gr DIM ⍴ PARAM
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← testdata[;4 5 6]
+PARAM ← testdata[;1 2 3]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ test0gr2fr 1
+OK ←OK ∧ test0gr2fr 2
+OK ←OK ∧ test1gr2fr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ test1gr2fr 3 3
+OK ←OK ∧ test1gr2fr 15 3
+OK ←OK ∧ test1gr2fr 2 3 3
+OK ←OK ∧ test1gr2fr 6 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking gr2fr : no errors'
+∇
+∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N;]
+PAR ← PARAM[N;]
+LIB  ← 'Checking gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← gr2fr PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimensions: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
+LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← (DIM, 3) ⍴ EXPEC
+GOT ← gr2fr (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0

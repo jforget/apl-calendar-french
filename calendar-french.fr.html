@@ -52,6 +52,9 @@
 <br /><a href='#testrd2gr'><tt>testrd2gr</tt></a>
 <br /><a href='#test0rd2gr'><tt>test0rd2gr</tt></a>
 <br /><a href='#test1rd2gr'><tt>test1rd2gr</tt></a>
+<br /><a href='#testgr2fr'><tt>testgr2fr</tt></a>
+<br /><a href='#test0gr2fr'><tt>test0gr2fr</tt></a>
+<br /><a href='#test1gr2fr'><tt>test1gr2fr</tt></a>
 <br /><a href='#testprtfr'><tt>testprtfr</tt></a>
 <br /><a href='#Voir également'>Voir également</a>
 <br /><a href='#Logiciels'>Logiciels</a>
@@ -855,6 +858,7 @@ V ← ''
 <a href='#testgr2rd' class='call'>testgr2rd</a>
 <a href='#testrd2fr' class='call'>testrd2fr</a>
 <a href='#testrd2gr' class='call'>testrd2gr</a>
+<a href='#testgr2fr' class='call'>testgr2fr</a>
 <a href='#testprtfr' class='call'>testprtfr</a>
 ∇
 </pre>
@@ -1202,6 +1206,94 @@ R ← 1
 LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
 GOT ← <a href='#rd2gr' class='call'>rd2gr</a> DIM ⍴ PARAM
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimension, expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+</pre>
+<h4><a name='testgr2fr'><tt>testgr2fr</tt></a></h4>
+<pre>
+∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+⎕IO ← 1
+EXPEC ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+PARAM ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+OK ← 1
+IO ← 2
+LOOP:
+IO ← IO - 1
+⎕IO ← IO
+OK ←OK ∧ <a href='#test0gr2fr' class='call'>test0gr2fr</a> 1
+OK ←OK ∧ <a href='#test0gr2fr' class='call'>test0gr2fr</a> 2
+OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 3 3
+OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 15 3
+OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 2 3 3
+OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 6 ⍴ 2 ⍝ checking max allowed rank
+→ IO / LOOP
+→ (OK=0) / 0 ⍝ exit if the errors are already reported
+'Checking gr2fr : no errors'
+∇
+</pre>
+<h4><a name='test0gr2fr'><tt>test0gr2fr</tt></a></h4>
+<pre>
+∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
+⎕IO ← 1
+EXP ← EXPEC[N;]
+PAR ← PARAM[N;]
+LIB  ← 'Checking gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+⎕IO ← IO
+GOT  ← <a href='#gr2fr' class='call'>gr2fr</a> PAR
+→ ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
+LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
+R ← 0
+→ 0
+CHKDIM:
+→ (∧/(⍴EXP)=⍴GOT)/CHKDATA
+LIB, ' Wrong dimensions: expected ', (⍕⍴EXP), ', got ', ⍕⍴GOT
+R ← 0
+→ 0
+CHKDATA:
+NERR ← +/,∨/EXP≠GOT
+→ (NERR=0) / CHKIO
+LIB, ' Data errors: ', ⍕ NERR
+R ← 0
+→ 0
+CHKIO:
+→ (IO=⎕IO) / SUCCESS
+LIB, ' ⎕IO clobbered: was ', (⍕IO), ' became ', ⍕⎕IO
+R ← 0
+→ 0
+SUCCESS:
+R ← 1
+→ 0
+∇
+</pre>
+<h4><a name='test1gr2fr'><tt>test1gr2fr</tt></a></h4>
+<pre>
+∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
+LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+EXP ← (DIM, 3) ⍴ EXPEC
+GOT ← <a href='#gr2fr' class='call'>gr2fr</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
