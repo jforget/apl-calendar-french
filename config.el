@@ -104,6 +104,7 @@
   (define-key html-mode-map "\C-co"      'html-oelig)
   (define-key html-mode-map "\C-cp"      'html-pre-tt)
   (define-key html-mode-map "\C-ci"      'html-langage))
+  (global-set-key '[f5] 'other-window)
 (completer-html-table)
 (global-font-lock-mode -1)
 (mouse-avoidance-mode "proteus")
