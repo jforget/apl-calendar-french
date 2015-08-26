@@ -152,7 +152,14 @@ calendar-french.apl-1: apl
 - en: |
     You initialise an pristine workspace with the conversion functions with:
 - code: |
-    apl -f calendar-french.apl
+    apl -f workspaces/calendar-french.apl
+- fr: |
+    ou bien avec&nbsp;:
+- en: |
+    or with:
+- code: |
+    apl
+        )load calendar-french.apl
 - fr: |
     et vous vous retrouvez alors dans la boucle REPL (lecture,
     évaluation, impression et boucle) d'APL. Vous pouvez alors

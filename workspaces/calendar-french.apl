@@ -1,3 +1,4 @@
+#!/usr/bin/apl -f
 ∇ license
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'

@@ -33,7 +33,7 @@ use strict;
 use warnings;
 
 my $script_av  = 'calendar-french.apl-1';
-my $script_ap  = 'calendar-french.apl';
+my $script_ap  = 'workspaces/calendar-french.apl';
 my $testdata   = 'testapl';
 my $teststring = 'testapl1';
 my $feasts     = 'feasts';
@@ -42,6 +42,9 @@ open my $av, '<:encoding(UTF-8)', $script_av
   or die "opening $script_av $!";
 open my $ap, '>:encoding(UTF-8)', $script_ap
   or die "opening $script_ap $!";
+
+# Portability issue: maybe apl is installed in another directory
+print $ap "#!/usr/bin/apl -f\n";
 
 while (<$av>) {
   print $ap $_;
