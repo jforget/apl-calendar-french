@@ -190,7 +190,7 @@ And to get the current day
 </p>
 
 <pre>
-     prtfr gr2fr ⎕TS[1 2 3]
+     prtfr gr2fr 3↑⎕TS
 </pre>
 <p>
 If you want to compute the number of days between two
@@ -455,19 +455,19 @@ zeroth day of the current month.
 </p>
 
 <table border='1'>
-<tr align='center'><th>M</th><th>nb31</th><th> M</th><th>0.6 × M</th><th>¯2 + ⌊ 0.6 × M</th><th>M</th><th> nb</th><th>30.6 × M</th><th>¯122 + ⌊ 30.6 × M</th></tr>
-<tr align='right'> <td>M</td><td>  0 </td><td> 4</td><td>  2.4  </td><td>      0       </td><td>M</td><td>  0</td><td>   122.4</td><td>        0        </td></tr>
-<tr align='right'> <td>A</td><td>  1 </td><td> 5</td><td>  3.0  </td><td>      1       </td><td>A</td><td> 31</td><td>   153.0</td><td>       31        </td></tr>
-<tr align='right'> <td>M</td><td>  1 </td><td> 6</td><td>  3.6  </td><td>      1       </td><td>M</td><td> 61</td><td>   183.6</td><td>       61        </td></tr>
-<tr align='right'> <td>J</td><td>  2 </td><td> 7</td><td>  4.2  </td><td>      2       </td><td>J</td><td> 92</td><td>   214.2</td><td>       92        </td></tr>
-<tr align='right'> <td>J</td><td>  2 </td><td> 8</td><td>  4.8  </td><td>      2       </td><td>J</td><td>122</td><td>   244.8</td><td>      122        </td></tr>
-<tr align='right'> <td>A</td><td>  3 </td><td> 9</td><td>  5.4  </td><td>      3       </td><td>A</td><td>153</td><td>   275.4</td><td>      153        </td></tr>
-<tr align='right'> <td>S</td><td>  4 </td><td>10</td><td>  6.0  </td><td>      4       </td><td>S</td><td>184</td><td>   306.0</td><td>      184        </td></tr>
-<tr align='right'> <td>O</td><td>  4 </td><td>11</td><td>  6.6  </td><td>      4       </td><td>O</td><td>214</td><td>   336.6</td><td>      214        </td></tr>
-<tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>245</td><td>   367.2</td><td>      245        </td></tr>
-<tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>275</td><td>   397.8</td><td>      275        </td></tr>
-<tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>306</td><td>   428.4</td><td>      306        </td></tr>
-<tr align='right'> <td>F</td><td>  7 </td><td>15</td><td>  9.0  </td><td>      7       </td><td>F</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
+<tr align='center'><th>M</th><th>nb31</th><th> M</th><th>0.6 × M</th><th>¯2 + ⌊ 0.6 × M</th><th>M</th><th>  ln   </th><th> nb</th><th>30.6 × M</th><th>¯122 + ⌊ 30.6 × M</th></tr>
+<tr align='right'> <td>M</td><td>  0 </td><td> 4</td><td>  2.4  </td><td>      0       </td><td>M</td><td>  31   </td><td>  0</td><td>   122.4</td><td>        0        </td></tr>
+<tr align='right'> <td>A</td><td>  1 </td><td> 5</td><td>  3.0  </td><td>      1       </td><td>A</td><td>  30   </td><td> 31</td><td>   153.0</td><td>       31        </td></tr>
+<tr align='right'> <td>M</td><td>  1 </td><td> 6</td><td>  3.6  </td><td>      1       </td><td>M</td><td>  31   </td><td> 61</td><td>   183.6</td><td>       61        </td></tr>
+<tr align='right'> <td>J</td><td>  2 </td><td> 7</td><td>  4.2  </td><td>      2       </td><td>J</td><td>  30   </td><td> 92</td><td>   214.2</td><td>       92        </td></tr>
+<tr align='right'> <td>J</td><td>  2 </td><td> 8</td><td>  4.8  </td><td>      2       </td><td>J</td><td>  31   </td><td>122</td><td>   244.8</td><td>      122        </td></tr>
+<tr align='right'> <td>A</td><td>  3 </td><td> 9</td><td>  5.4  </td><td>      3       </td><td>A</td><td>  31   </td><td>153</td><td>   275.4</td><td>      153        </td></tr>
+<tr align='right'> <td>S</td><td>  4 </td><td>10</td><td>  6.0  </td><td>      4       </td><td>S</td><td>  30   </td><td>184</td><td>   306.0</td><td>      184        </td></tr>
+<tr align='right'> <td>O</td><td>  4 </td><td>11</td><td>  6.6  </td><td>      4       </td><td>O</td><td>  31   </td><td>214</td><td>   336.6</td><td>      214        </td></tr>
+<tr align='right'> <td>N</td><td>  5 </td><td>12</td><td>  7.2  </td><td>      5       </td><td>N</td><td>  30   </td><td>245</td><td>   367.2</td><td>      245        </td></tr>
+<tr align='right'> <td>D</td><td>  5 </td><td>13</td><td>  7.8  </td><td>      5       </td><td>D</td><td>  31   </td><td>275</td><td>   397.8</td><td>      275        </td></tr>
+<tr align='right'> <td>J</td><td>  6 </td><td>14</td><td>  8.4  </td><td>      6       </td><td>J</td><td>  31   </td><td>306</td><td>   428.4</td><td>      306        </td></tr>
+<tr align='right'> <td>F</td><td>  7 </td><td>15</td><td>  9.0  </td><td>      7       </td><td>F</td><td>28? 29?</td><td>337</td><td>   459.0</td><td>      337        </td></tr>
 </table>
 
 <p>
@@ -502,7 +502,7 @@ the zeroth Vendémiaire for each year.
 </pre>
 
 <p>
-The function computes the <i lang='la'>Rata Die</i> of these dates
+The <a href='#fr2rd'><tt>fr2rd</tt></a> function computes the <i lang='la'>Rata Die</i> of these dates
 </p>
 
 <pre>
@@ -511,7 +511,7 @@ The function computes the <i lang='la'>Rata Die</i> of these dates
 </pre>
 
 <p>
-and compares with the initial value, which gives:
+and compares with the initial value 672800, which gives:
 </p>
 
 <pre>
@@ -882,7 +882,8 @@ OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 7 ⍴ 2 ⍝ check
 This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a scalar date.
 <tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
 a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
-and transmitted globally.
+and transmitted globally. The same transmission mechanism applies to <tt>PARAM</tt>
+(parameters for the checked function) and <tt>EXPEC</tt> (expected results).
 </p>
 
 <pre>
