@@ -39,7 +39,7 @@
 <br /><a href='#Tests internes'>Tests internes</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
 <br /><a href='#teststring'><tt>teststring</tt> - Données alphanumériques de tests</a>
-<br /><a href='#alltests'><tt>alltests</tt></a>
+<br /><a href='#alltests'><tt>alltests</tt> - Lancement de tous les tests</a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test0fr2rd'><tt>test0fr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
@@ -343,21 +343,21 @@ Il faut ajouter les termes suivants&nbsp;:</p>
 
 <ul>
 <li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
-<li>(annee - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
+<li>(AAAA - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
 en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
-<li>frbis(annee), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
-<li>(mois - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
-<li>jour, pour arriver finalement au jour demandé.</li>
+<li>frbis(AAAA), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
+<li>(MM - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
+<li>JJ, pour arriver finalement au jour demandé.</li>
 </ul>
 
 <p>
 En fait, on rassemble toutes les constantes additives en une seule, ce qui donne le calcul suivant&nbsp;:</p>
 
 <ul>
-<li>annee × 365,</li>
-<li>frbis(annee),</li>
-<li>mois × 30,</li>
-<li>jour,</li>
+<li>AAAA × 365,</li>
+<li>frbis(AAAA),</li>
+<li>MM × 30,</li>
+<li>JJ,</li>
 <li>constante additive.</li>
 </ul>
 
@@ -449,7 +449,8 @@ R ← R + YEAR ∈ 3 7 11 15
 <h3><a name='gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a></h3>
 <p>
 Malgré les critères pour les années bissextiles, la conversion du calendrier
-républicain vers le <i lang='la'>Rata Die</i> est simple. En effet, la période
+républicain vers le <i lang='la'>Rata Die</i> est simple, comparée avec
+la fonction correspondante du calendrier grégorien. En effet, la période
 bouche-trou (jours complémentaires) est à la fin de l'année donc sa longueur variable
 et plus faible que les mois normaux n'a pas d'influence sur les calculs.
 En revanche, dans le calendrier grégorien, le mois bouche-trou, février, apparaît
@@ -676,9 +677,12 @@ fois pour calculer l'année, la seconde fois pour calculer le mois.
 C'est cette deuxième possibilité que j'ai choisie.</p>
 
 <p>
-Même si l'estimation du mois est beaucoup moins précise que l'estimation
-de l'année, on sait que le nombre de jours ne dépassera pas 366 et
-que le numéro du mois ne dépassera pas 12 et dans ces conditions,
+Le calcul de la borne supérieure et de la borne inférieure de la plage de
+mois nécessite une division par 29,5 et une division par 31. Du coup,
+l'estimation du mois est beaucoup moins précise que l'estimation
+de l'année. La plage aura donc trois valeurs dès que le nombre de jours
+vaut 620. Or, on sait que le nombre de jours ne dépassera pas 366 et
+que le numéro du mois ne dépassera pas 12. Dans ces conditions,
 la plage aura au maximum deux valeurs. Donc on ne s'embête pas, on prend
 toujours une plage à deux valeurs pour calculer le mois, même si l'estimation
 avait donné une plage à une seule valeur.
@@ -730,6 +734,13 @@ R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2r
 </pre>
 <h2><a name='Affichage des dates'>Affichage des dates</a></h2>
 <h3><a name='prtfr'><tt>prtfr</tt> - Affichage d'une date du calendrier républicain</a></h3>
+<p>
+Rassembler les éléments de la date&nbsp;: nom du jour, numéro, nom du mois, etc,
+ne pose pas de problème. Ce qui en pose, c'est le fait que le résultat comporte
+des espaces superflus et qu'il faut les éliminer tout en conservant les espaces
+nécessaires.
+</p>
+
 <pre>
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
@@ -764,8 +775,9 @@ R ← (R≠' ')/R
 Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
 par Geneviève Guitel et je l'ai traduit en «&nbsp;nodes&nbsp;». Dans une numération de base <var>b</var>, un nœud est un nombre
 de la forme <var>k × b<sup>n</sup></var>, avec <var>k</var> entre 0 et <var>b</var>&nbsp;-&nbsp;1.
-Cette fonction participe à la construction d'un tableau de caractères où chaque ligne est un
-nœud de la base 10 écrit en chiffres romains.
+Cette fonction participe à la construction d'une chaîne de caractères comportant 10
+nœuds de la base 10 écrit en chiffres romains. Chaque nœud est complété par des espaces pour avoir une
+longueur de 4.
 </p>
 
 <pre>
@@ -855,7 +867,7 @@ V ← ''
 ⍝ include here the contents of testapl1
 ∇
 </pre>
-<h3><a name='alltests'><tt>alltests</tt></a></h3>
+<h3><a name='alltests'><tt>alltests</tt> - Lancement de tous les tests</a></h3>
 <pre>
 ∇ alltests
 <a href='#testfr2rd' class='call'>testfr2rd</a>

@@ -39,7 +39,7 @@
 <br /><a href='#Built-in Tests'>Built-in Tests</a>
 <br /><a href='#testdata'><tt>testdata</tt> - Test Data</a>
 <br /><a href='#teststring'><tt>teststring</tt> - Test alphanumeric data</a>
-<br /><a href='#alltests'><tt>alltests</tt></a>
+<br /><a href='#alltests'><tt>alltests</tt> - Run all the tests</a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test0fr2rd'><tt>test0fr2rd</tt></a>
 <br /><a href='#test1fr2rd'><tt>test1fr2rd</tt></a>
@@ -132,7 +132,7 @@ as an additional month, numbered 13.
 calendar, but extending in the past farther than 1582. Not only the leap
 year rule is the same as the Gregorian rule, but also the beginning
 of the year is always on January 1st, although it was not always
-the case during the Middle Ages. The Gregorian dates
+the case during the Middle Ages with the actual calendar. The Gregorian dates
 are implemented as vectors of 3 numbers, in YYYY MM DD order.
 </dd>
 <dt>The <i lang='la'>Rata Die</i> calendar</dt>
@@ -322,11 +322,11 @@ Let us start by computing the <i lang='la'>Rata Die</i> for a given date in the 
 This number is the result of the addition of:
 <ul>
 <li>654414, which is the <i lang='la'>Rata Die</i> for zeroth Vendémiaire I,</li>
-<li>(year - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
+<li>(YYYY - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
 leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»,</li>
-<li>frbis(year), which gives the number of leap years before the target year,</li>
-<li>(month - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
-<li>day, to reach the target day.</li>
+<li>frbis(YYYY), which gives the number of leap years before the target year,</li>
+<li>(MM - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
+<li>DD, to reach the target day.</li>
 </ul>
 </p>
 
@@ -334,10 +334,10 @@ leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»
 Actually, we reorder the terms to have a single additive constant, which gives the following terms:</p>
 
 <ul>
-<li>year × 365,</li>
-<li>frbis(year),</li>
-<li>month × 30,</li>
-<li>day,</li>
+<li>YYYY × 365,</li>
+<li>frbis(YYYY),</li>
+<li>MM × 30,</li>
+<li>DD,</li>
 <li>additive constant.</li>
 </ul>
 
@@ -356,7 +356,7 @@ the date computation, initialised with a computation using only
 <p>
 Until year XX, the leap year rule is an astronomical rule,
 stating that the 1st Vendémiaire should happen on the 
-fall equinox. Then from year XX on, there would have
+autumn equinox. Then from year XX on, there would have
 been an arithmetical rule, similar to the Gregorian Calendar
 rule, introduced by Gilbert Romme's reform.</p>
 
@@ -429,7 +429,7 @@ R ← R + YEAR ∈ 3 7 11 15
 <p>
 Although the leap year criteria for the French Revolutionary calendar are a bit
 complicated, converting from this calendar to <i lang='la'>Rata Die</i>
-is simple. The filler period (additional days) is at the end of the year,
+is simple when compared with the Gregorian Calendar. The filler period (additional days) is at the end of the year,
 so its shorter and variable duration has no impact on the computation.
 On the other hand, in the Gregorian calendar, the filler period is February,
 near the beginning of the year, so its influence spans over the main part of
@@ -520,7 +520,7 @@ and compares with the initial value 672800, which gives:
 </pre>
 
 <p>
-and compares with the initial value. The proper year is the highest year for which
+The proper year is the highest year for which
 the zeroth Vendémiaire has a <i lang='la'>Rata Die</i> value less than the value
 given as a parameter. In the example above, this would give year 51. By subtracting
 the <i lang='la'>Rata Die</i> of the zeroth Vendémiaire from the parameter, we get
@@ -652,6 +652,9 @@ year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
 to compute the month. I use this second way.</p>
 
 <p>
+Computing the upper and lower limits of the candidate month range involves
+a division by 29.5 and a division by 31. So, the 3-value range will arrive
+sooner than with the candidate years. It will arrive with a day number 620.
 Even if the guesstimate of the month is coarser than the estimated value of
 the year, we know that the computation will never involve more than 366 days or 12 months,
 so the range will have at most two values. Therefore, we do not bother refining the
@@ -705,6 +708,13 @@ R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2r
 </pre>
 <h2><a name='Displaying the Dates'>Displaying the Dates</a></h2>
 <h3><a name='prtfr'><tt>prtfr</tt> - Displaying a French Revolutionary calendar date</a></h3>
+<p>
+Gathering the various date elements: day name, day number, month name, etc,
+is simple enough. What is more difficult is that this gives a result with 
+extraneous spaces and that we have to get rid of these spaces, while keeping
+the required spaces.
+</p>
+
 <pre>
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
@@ -739,8 +749,8 @@ The word "nodes" comes from the French-written book <cite lang='fr'>Histoire com
 (which would translate to "Compared History of Written Number Systems"), by Geneviève Guitel.
 The original french word is "nœuds".
 When dealing with radix <var>b</var>, a node is a number <var>k × b<sup>n</sup></var>, with <var>k</var> between 0 and <var>b</var>&nbsp;-&nbsp;1.
-This function provides a step to build a char-array, in which any line is a radix-10 node, 
-written with Roman numerals.
+This function provides a step to build a string which contains 10 substrings, each one being a radix-10 node, 
+written with Roman numerals. Each node is filled with spaces to reach a common length of 4 chars.
 </p>
 
 <pre>
@@ -831,7 +841,7 @@ V ← ''
 ⍝ include here the contents of testapl1
 ∇
 </pre>
-<h3><a name='alltests'><tt>alltests</tt></a></h3>
+<h3><a name='alltests'><tt>alltests</tt> - Run all the tests</a></h3>
 <pre>
 ∇ alltests
 <a href='#testfr2rd' class='call'>testfr2rd</a>

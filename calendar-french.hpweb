@@ -126,7 +126,7 @@ calendar-french.apl-1: apl
     calendar, but extending in the past farther than 1582. Not only the leap
     year rule is the same as the Gregorian rule, but also the beginning
     of the year is always on January 1st, although it was not always
-    the case during the Middle Ages. The Gregorian dates
+    the case during the Middle Ages with the actual calendar. The Gregorian dates
     are implemented as vectors of 3 numbers, in YYYY MM DD order.
     </dd>
 
@@ -378,41 +378,41 @@ calendar-french.apl-1: apl
 
     <ul>
     <li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
-    <li>(annee - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
+    <li>(AAAA - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
     en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
-    <li>frbis(annee), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
-    <li>(mois - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
-    <li>jour, pour arriver finalement au jour demandé.</li>
+    <li>frbis(AAAA), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
+    <li>(MM - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
+    <li>JJ, pour arriver finalement au jour demandé.</li>
     </ul>
 - en: |
     Let us start by computing the <i lang='la'>Rata Die</i> for a given date in the French Revolutionary calendar.
     This number is the result of the addition of:
     <ul>
     <li>654414, which is the <i lang='la'>Rata Die</i> for zeroth Vendémiaire I,</li>
-    <li>(year - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
+    <li>(YYYY - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
     leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»,</li>
-    <li>frbis(year), which gives the number of leap years before the target year,</li>
-    <li>(month - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
-    <li>day, to reach the target day.</li>
+    <li>frbis(YYYY), which gives the number of leap years before the target year,</li>
+    <li>(MM - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
+    <li>DD, to reach the target day.</li>
     </ul>
 - fr: |
     En fait, on rassemble toutes les constantes additives en une seule, ce qui donne le calcul suivant&nbsp;:
 
     <ul>
-    <li>annee × 365,</li>
-    <li>frbis(annee),</li>
-    <li>mois × 30,</li>
-    <li>jour,</li>
+    <li>AAAA × 365,</li>
+    <li>frbis(AAAA),</li>
+    <li>MM × 30,</li>
+    <li>JJ,</li>
     <li>constante additive.</li>
     </ul>
 - en: |
     Actually, we reorder the terms to have a single additive constant, which gives the following terms:
 
     <ul>
-    <li>year × 365,</li>
-    <li>frbis(year),</li>
-    <li>month × 30,</li>
-    <li>day,</li>
+    <li>YYYY × 365,</li>
+    <li>frbis(YYYY),</li>
+    <li>MM × 30,</li>
+    <li>DD,</li>
     <li>additive constant.</li>
     </ul>
 - code: |
@@ -447,7 +447,7 @@ calendar-french.apl-1: apl
 
     Until year XX, the leap year rule is an astronomical rule,
     stating that the 1st Vendémiaire should happen on the 
-    fall equinox. Then from year XX on, there would have
+    autumn equinox. Then from year XX on, there would have
     been an arithmetical rule, similar to the Gregorian Calendar
     rule, introduced by Gilbert Romme's reform.
 
@@ -540,7 +540,8 @@ calendar-french.apl-1: apl
   level: 3
 - fr: |
     Malgré les critères pour les années bissextiles, la conversion du calendrier
-    républicain vers le <i lang='la'>Rata Die</i> est simple. En effet, la période
+    républicain vers le <i lang='la'>Rata Die</i> est simple, comparée avec
+    la fonction correspondante du calendrier grégorien. En effet, la période
     bouche-trou (jours complémentaires) est à la fin de l'année donc sa longueur variable
     et plus faible que les mois normaux n'a pas d'influence sur les calculs.
     En revanche, dans le calendrier grégorien, le mois bouche-trou, février, apparaît
@@ -549,7 +550,7 @@ calendar-french.apl-1: apl
 - en: |
     Although the leap year criteria for the French Revolutionary calendar are a bit
     complicated, converting from this calendar to <i lang='la'>Rata Die</i>
-    is simple. The filler period (additional days) is at the end of the year,
+    is simple when compared with the Gregorian Calendar. The filler period (additional days) is at the end of the year,
     so its shorter and variable duration has no impact on the computation.
     On the other hand, in the Gregorian calendar, the filler period is February,
     near the beginning of the year, so its influence spans over the main part of
@@ -667,7 +668,7 @@ calendar-french.apl-1: apl
     des deux valeurs <i lang='la'>Rata Die</i>, on obtient 124, ce qui est facilement
     converti en 4 Pluviôse (<tt>5 4</tt>) avec de simples divisions par 30.
 - en: |
-    and compares with the initial value. The proper year is the highest year for which
+    The proper year is the highest year for which
     the zeroth Vendémiaire has a <i lang='la'>Rata Die</i> value less than the value
     given as a parameter. In the example above, this would give year 51. By subtracting
     the <i lang='la'>Rata Die</i> of the zeroth Vendémiaire from the parameter, we get
@@ -824,9 +825,12 @@ calendar-french.apl-1: apl
     fois pour calculer l'année, la seconde fois pour calculer le mois.
     C'est cette deuxième possibilité que j'ai choisie.
 
-    Même si l'estimation du mois est beaucoup moins précise que l'estimation
-    de l'année, on sait que le nombre de jours ne dépassera pas 366 et
-    que le numéro du mois ne dépassera pas 12 et dans ces conditions,
+    Le calcul de la borne supérieure et de la borne inférieure de la plage de
+    mois nécessite une division par 29,5 et une division par 31. Du coup,
+    l'estimation du mois est beaucoup moins précise que l'estimation
+    de l'année. La plage aura donc trois valeurs dès que le nombre de jours
+    vaut 620. Or, on sait que le nombre de jours ne dépassera pas 366 et
+    que le numéro du mois ne dépassera pas 12. Dans ces conditions,
     la plage aura au maximum deux valeurs. Donc on ne s'embête pas, on prend
     toujours une plage à deux valeurs pour calculer le mois, même si l'estimation
     avait donné une plage à une seule valeur.
@@ -838,6 +842,9 @@ calendar-french.apl-1: apl
     year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
     to compute the month. I use this second way.
 
+    Computing the upper and lower limits of the candidate month range involves
+    a division by 29.5 and a division by 31. So, the 3-value range will arrive
+    sooner than with the candidate years. It will arrive with a day number 620.
     Even if the guesstimate of the month is coarser than the estimated value of
     the year, we know that the computation will never involve more than 366 days or 12 months,
     so the range will have at most two values. Therefore, we do not bother refining the
@@ -903,6 +910,16 @@ calendar-french.apl-1: apl
   fr: Affichage d'une date du calendrier républicain
   en: Displaying a French Revolutionary calendar date
   calendar-french.apl-1: 20
+- fr: |
+    Rassembler les éléments de la date&nbsp;: nom du jour, numéro, nom du mois, etc,
+    ne pose pas de problème. Ce qui en pose, c'est le fait que le résultat comporte
+    des espaces superflus et qu'il faut les éliminer tout en conservant les espaces
+    nécessaires.
+- en: |
+    Gathering the various date elements: day name, day number, month name, etc,
+    is simple enough. What is more difficult is that this gives a result with 
+    extraneous spaces and that we have to get rid of these spaces, while keeping
+    the required spaces.
 - code: |
     ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
     ⎕IO ← 1
@@ -943,15 +960,16 @@ calendar-french.apl-1: apl
     Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
     par Geneviève Guitel et je l'ai traduit en «&nbsp;nodes&nbsp;». Dans une numération de base <var>b</var>, un nœud est un nombre
     de la forme <var>k × b<sup>n</sup></var>, avec <var>k</var> entre 0 et <var>b</var>&nbsp;-&nbsp;1.
-    Cette fonction participe à la construction d'un tableau de caractères où chaque ligne est un
-    nœud de la base 10 écrit en chiffres romains.
+    Cette fonction participe à la construction d'une chaîne de caractères comportant 10
+    nœuds de la base 10 écrit en chiffres romains. Chaque nœud est complété par des espaces pour avoir une
+    longueur de 4.
 - en: |
     The word "nodes" comes from the French-written book <cite lang='fr'>Histoire comparée des numérations écrites</cite>
     (which would translate to "Compared History of Written Number Systems"), by Geneviève Guitel.
     The original french word is "nœuds".
     When dealing with radix <var>b</var>, a node is a number <var>k × b<sup>n</sup></var>, with <var>k</var> between 0 and <var>b</var>&nbsp;-&nbsp;1.
-    This function provides a step to build a char-array, in which any line is a radix-10 node, 
-    written with Roman numerals.
+    This function provides a step to build a string which contains 10 substrings, each one being a radix-10 node, 
+    written with Roman numerals. Each node is filled with spaces to reach a common length of 4 chars.
 - code: |
     ∇ R ← nodes CH
     R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
@@ -1072,6 +1090,8 @@ calendar-french.apl-1: apl
 - section: alltests
   level: 3
   calendar-french.apl-1: 35
+  fr: Lancement de tous les tests
+  en: Run all the tests
 - code: |
     ∇ alltests
     @testfr2rd@
