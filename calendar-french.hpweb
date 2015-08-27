@@ -147,6 +147,21 @@ calendar-french.apl-1: apl
   en: Instructions for Use
 
 - fr: |
+    Le fichier <tt>calendar-french.apl</tt> doit se trouver
+    dans le sous-répertoire <tt>workspaces</tt>, pour compatibilité
+    avec la commande <tt>)load</tt>. Vous pouvez stocker ce fichier
+    dans un sous-répertoire <tt>wslib</tt><var>n</var> (<var>n</var>
+    valant de 1 à 9), auquel cas vous devrez utiliser la variante
+    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calendar-french.apl</tt>.
+- en: |
+    The <tt>calendar-french.apl</tt> file must be stored in the
+    <tt>workspaces</tt> sub-directory of the current directory, 
+    so you can use the <tt>)load</tt> APL command. You may store
+    it in a <tt>wslib</tt><var>n</var> sub-directory (<var>n</var>
+    from 1 to 9) and in this case, you will use the
+    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calendar-french.apl</tt>
+    variant.
+- fr: |
     Vous chargez un espace de travail initialisé avec les fonctions
     de conversion par&nbsp:
 - en: |
@@ -1798,16 +1813,24 @@ calendar-french.apl-1: apl
 - fr: |
     Quid 2001, M and D Frémy, éditions Robert Laffont.
 
-    Agenda Républicain 197 (1988/89), éditions Syros Alternatives.
+    Agenda Républicain 197 (1988/89), éditions Syros Alternatives, ISBN 2&nbsp;86738&nbsp;262-9.
 
     N'importe quel livre scolaire consacré à l'Histoire de la Révolution française.
 
-    The French Revolution, Thomas Carlyle, Oxford University Press, en anglais.
+    The French Revolution, Thomas Carlyle, Oxford University Press, ISBN 0-19-281843-0, en anglais.
+
+    Introduction à APL, S. Pommier, éditions Dunod, 1978, ISBN 2-04-010402-X.
+
+    Apprendre et appliquer le langage APL, B. Legrand, éditions Masson, 1981, ISBN 2-225-69421-4.
 - en: |
     Quid 2001, M and D Frémy, publ. Robert Laffont, in French
 
-    Agenda Républicain 197 (1988/89), publ. Syros Alternatives, in French
+    Agenda Républicain 197 (1988/89), publ. Syros Alternatives, in French, ISBN 2&nbsp;86738&nbsp;262-9
 
     Any French schoolbook about the French Revolution
 
-    The French Revolution, Thomas Carlyle, Oxford University Press, in English.
+    The French Revolution, Thomas Carlyle, Oxford University Press, ISBN 0-19-281843-0, in English.
+
+    Introduction à APL, S. Pommier, éditions Dunod, 1978, ISBN 2-04-010402-X, in French.
+
+    Apprendre et appliquer le langage APL, B. Legrand, éditions Masson, 1981, ISBN 2-225-69421-4, in French.
