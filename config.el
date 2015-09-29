@@ -50,6 +50,7 @@
                      ("geq"    . "≥")
                      ("or"     . "∨")
                      ("and"    . "∧")
+                     ("delta"  . "∆")
                      ))
           (ch1 (cdr (assoc (completing-read "Car ? "
                                             (mapcar 'car apl-conv)
