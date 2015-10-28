@@ -100,7 +100,19 @@ R ← rd2gr fr2rd D
 ∇
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
-DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
+DAY ← ⎕inp 'DAY-end'
+Décadi  
+Primidi 
+Duodi   
+Tridi   
+Quartidi
+Quintidi
+Sextidi 
+Septidi 
+Octidi  
+Nonidi
+DAY-end
+
 R ← DAY[1 + 10 | day D;]
 MONTH← ⊃ ⎕inp 'MONTH-end'
 Vendémiaire
