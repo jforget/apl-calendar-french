@@ -170,8 +170,7 @@ de l'Alisier
 de la Charrue        
 du Salsifis          
 de la Macre          
-du Topinambour       
-de l'Endive          
+du Topinambour       P
 du Dindon            
 du Chervis           
 du Cresson           
@@ -321,6 +320,7 @@ du Capillaire
 du Frêne    
 du Plantoir          
 V-end
+⍝ Germinal
 V←V, ⎕inp 'V-end'          
 de la Primevère      
 du Platane           
