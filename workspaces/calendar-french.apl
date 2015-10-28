@@ -100,7 +100,7 @@ R ← rd2gr fr2rd D
 ∇
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
-DAY ← ⎕inp 'DAY-end'
+DAY ←⊃ ⎕inp 'DAY-end'
 Décadi  
 Primidi 
 Duodi   
