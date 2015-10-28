@@ -1,4 +1,7 @@
 #!/usr/bin/apl -f
+⍝I'm not sure if my modifications change the license 
+⍝since I am using GNU APL specific features. Alex Weiner
+
 ∇ license
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'
@@ -119,387 +122,411 @@ R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 ∇ R ← feasts; V
 ⍝ include here the contents of feasts
-V ← ''
+
 ⍝ Vendémiaire
-V ← V, 'du Raisin            '
-V ← V, 'du Safran            '
-V ← V, 'de la Châtaigne      '
-V ← V, 'de la Colchique      '
-V ← V, 'du Cheval            '
-V ← V, 'de la Balsamine      '
-V ← V, 'de la Carotte        '
-V ← V, 'de l''Amarante        '
-V ← V, 'du Panais            '
-V ← V, 'de la Cuve           '
-V ← V, 'de la Pomme de terre '
-V ← V, 'de l''Immortelle      '
-V ← V, 'du Potiron           '
-V ← V, 'du Réséda            '
-V ← V, 'de l''Âne             '
-V ← V, 'de la Belle de nuit  '
-V ← V, 'de la Citrouille     '
-V ← V, 'du Sarrasin          '
-V ← V, 'du Tournesol         '
-V ← V, 'du Pressoir          '
-V ← V, 'du Chanvre           '
-V ← V, 'de la Pêche          '
-V ← V, 'du Navet             '
-V ← V, 'de l''Amaryllis       '
-V ← V, 'du Bœuf              '
-V ← V, 'de l''Aubergine       '
-V ← V, 'du Piment            '
-V ← V, 'de la Tomate         '
-V ← V, 'de l''Orge            '
-V ← V, 'du Tonneau           '
+V← ⎕inp 'V-end'
+du Raisin
+du Safran
+de la Châtaigne
+de la Colchique
+du Cheval            
+de la Balsamine      
+de la Carotte        
+de l'Amarante        
+du Panais            
+de la Cuve           
+de la Pomme de terre 
+de l'Immortelle      
+du Potiron           
+du Réséda            
+de l'Âne             
+de la Belle de nuit  
+de la Citrouille     
+du Sarrasin          
+du Tournesol         
+du Pressoir          
+du Chanvre           
+de la Pêche          
+du Navet             
+de l'Amaryllis       
+du Bœuf              
+de l'Aubergine       
+du Piment            
+de la Tomate         
+de l'Orge            
+du Tonneau 
+V-end
 ⍝ Brumaire
-V ← V, 'de la Pomme          '
-V ← V, 'du Céleri            '
-V ← V, 'de la Poire          '
-V ← V, 'de la Betterave      '
-V ← V, 'de l''Oie             '
-V ← V, 'de l''Héliotrope      '
-V ← V, 'de la Figue          '
-V ← V, 'de la Scorsonère     '
-V ← V, 'de l''Alisier         '
-V ← V, 'de la Charrue        '
-V ← V, 'du Salsifis          '
-V ← V, 'de la Macre          '
-V ← V, 'du Topinambour       '
-V ← V, 'de l''Endive          '
-V ← V, 'du Dindon            '
-V ← V, 'du Chervis           '
-V ← V, 'du Cresson           '
-V ← V, 'de la Dentelaire     '
-V ← V, 'de la Grenade        '
-V ← V, 'de la Herse          '
-V ← V, 'de la Bacchante      '
-V ← V, 'de l''Azerole         '
-V ← V, 'de la Garance        '
-V ← V, 'de l''Orange          '
-V ← V, 'du Faisan            '
-V ← V, 'de la Pistache       '
-V ← V, 'du Macjon            '
-V ← V, 'du Coing             '
-V ← V, 'du Cormier           '
-V ← V, 'du Rouleau           '
+V←V, ⎕inp 'V-end'          
+de la Pomme          
+du Céleri            
+de la Poire          
+de la Betterave      
+de l'Oie             
+de l'Héliotrope      
+de la Figue          
+de la Scorsonère     
+de l'Alisier         
+de la Charrue        
+du Salsifis          
+de la Macre          
+du Topinambour       
+de l'Endive          
+du Dindon            
+du Chervis           
+du Cresson           
+de la Dentelaire     
+de la Grenade        
+de la Herse          
+de la Bacchante      
+de l'Azerole         
+de la Garance        
+de l'Orange          
+du Faisan            
+de la Pistache       
+du Macjon            
+du Coing             
+du Cormier           
+du Rouleau 
+V-end
 ⍝ Frimaire
-V ← V, 'de la Raiponce       '
-V ← V, 'du Turneps           '
-V ← V, 'de la Chicorée       '
-V ← V, 'de la Nèfle          '
-V ← V, 'du Cochon            '
-V ← V, 'de la Mâche          '
-V ← V, 'du Chou-fleur        '
-V ← V, 'du Miel              '
-V ← V, 'du Genièvre          '
-V ← V, 'de la Pioche         '
-V ← V, 'de la Cire           '
-V ← V, 'du Raifort           '
-V ← V, 'du Cèdre             '
-V ← V, 'du Sapin             '
-V ← V, 'du Chevreuil         '
-V ← V, 'de l''Ajonc           '
-V ← V, 'du Cyprès            '
-V ← V, 'du Lierre            '
-V ← V, 'de la Sabine         '
-V ← V, 'du Hoyau             '
-V ← V, 'de l''Érable-sucre    '
-V ← V, 'de la Bruyère        '
-V ← V, 'du Roseau            '
-V ← V, 'de l''Oseille         '
-V ← V, 'du Grillon           '
-V ← V, 'du Pignon            '
-V ← V, 'du Liège             '
-V ← V, 'de la Truffe         '
-V ← V, 'de l''Olive           '
-V ← V, 'de la Pelle          '
+V←V, ⎕inp 'V-end'          
+de la Raiponce       
+du Turneps           
+de la Chicorée       
+de la Nèfle          
+du Cochon            
+de la Mâche          
+du Chou-fleur        
+du Miel              
+du Genièvre          
+de la Pioche         
+de la Cire           
+du Raifort           
+du Cèdre             
+du Sapin             
+du Chevreuil         
+de l'Ajonc           
+du Cyprès            
+du Lierre            
+de la Sabine         
+du Hoyau             
+de l'Érable-sucre    
+de la Bruyère        
+du Roseau            
+de l'Oseille         
+du Grillon           
+du Pignon            
+du Liège             
+de la Truffe         
+de l'Olive           
+de la Pelle   
+V-end
 ⍝ Nivôse
-V ← V, 'de la Tourbe         '
-V ← V, 'de la Houille        '
-V ← V, 'du Bitume            '
-V ← V, 'du Soufre            '
-V ← V, 'du Chien             '
-V ← V, 'de la Lave           '
-V ← V, 'de la Terre végétale '
-V ← V, 'du Fumier            '
-V ← V, 'du Salpêtre          '
-V ← V, 'du Fléau             '
-V ← V, 'du Granit            '
-V ← V, 'de l''Argile          '
-V ← V, 'de l''Ardoise         '
-V ← V, 'du Grès              '
-V ← V, 'du Lapin             '
-V ← V, 'du Silex             '
-V ← V, 'de la Marne          '
-V ← V, 'de la Pierre à chaux '
-V ← V, 'du Marbre            '
-V ← V, 'du Van               '
-V ← V, 'de la Pierre à plâtre'
-V ← V, 'du Sel               '
-V ← V, 'du Fer               '
-V ← V, 'du Cuivre            '
-V ← V, 'du Chat              '
-V ← V, 'de l''Étain           '
-V ← V, 'du Plomb             '
-V ← V, 'du Zinc              '
-V ← V, 'du Mercure           '
-V ← V, 'du Crible            '
+V←V, ⎕inp 'V-end'       
+de la Tourbe         
+de la Houille        
+du Bitume            
+du Soufre            
+du Chien             
+de la Lave           
+de la Terre végétale 
+du Fumier            
+du Salpêtre          
+du Fléau             
+du Granit            
+de l'Argile          
+de l'Ardoise         
+du Grès              
+du Lapin             
+du Silex             
+de la Marne          
+de la Pierre à chaux 
+du Marbre            
+du Van               
+de la Pierre à plâtre
+du Sel               
+du Fer               
+du Cuivre            
+du Chat              
+de l'Étain           
+du Plomb             
+du Zinc              
+du Mercure           
+du Crible        
+V-end
 ⍝ Pluviôse
-V ← V, 'de la Lauréole       '
-V ← V, 'de la Mousse         '
-V ← V, 'du Fragon            '
-V ← V, 'du Perce-neige       '
-V ← V, 'du Taureau           '
-V ← V, 'du Laurier-thym      '
-V ← V, 'de l''Amadouvier      '
-V ← V, 'du Mézéréon          '
-V ← V, 'du Peuplier          '
-V ← V, 'de la Cognée         '
-V ← V, 'de l''Ellébore        '
-V ← V, 'du Brocoli           '
-V ← V, 'du Laurier           '
-V ← V, 'de l''Avelinier       '
-V ← V, 'de la Vache          '
-V ← V, 'du Buis              '
-V ← V, 'du Lichen            '
-V ← V, 'de l''If              '
-V ← V, 'de la Pulmonaire     '
-V ← V, 'de la Serpette       '
-V ← V, 'du Thlaspi           '
-V ← V, 'du Thymelé           '
-V ← V, 'du Chiendent         '
-V ← V, 'de la Traînasse      '
-V ← V, 'du Lièvre            '
-V ← V, 'de la Guède          '
-V ← V, 'du Noisetier         '
-V ← V, 'du Cyclamen          '
-V ← V, 'de la Chélidoine     '
-V ← V, 'du Traîneau          '
-⍝ Ventôse
-V ← V, 'du Tussilage         '
-V ← V, 'du Cornouiller       '
-V ← V, 'du Violier           '
-V ← V, 'du Troène            '
-V ← V, 'du Bouc              '
-V ← V, 'de l''Asaret          '
-V ← V, 'de l''Alaterne        '
-V ← V, 'de la Violette       '
-V ← V, 'du Marsault          '
-V ← V, 'de la Bêche          '
-V ← V, 'du Narcisse          '
-V ← V, 'de l''Orme            '
-V ← V, 'de la Fumeterre      '
-V ← V, 'du Vélar             '
-V ← V, 'de la Chèvre         '
-V ← V, 'de l''Épinard         '
-V ← V, 'du Doronic           '
-V ← V, 'du Mouron            '
-V ← V, 'du Cerfeuil          '
-V ← V, 'du Cordeau           '
-V ← V, 'de la Mandragore     '
-V ← V, 'du Persil            '
-V ← V, 'du Cochléaria        '
-V ← V, 'de la Pâquerette     '
-V ← V, 'du Thon              '
-V ← V, 'du Pissenlit         '
-V ← V, 'de la Sylvie         '
-V ← V, 'du Capillaire        '
-V ← V, 'du Frêne             '
-V ← V, 'du Plantoir          '
-⍝ Germinal
-V ← V, 'de la Primevère      '
-V ← V, 'du Platane           '
-V ← V, 'de l''Asperge         '
-V ← V, 'de la Tulipe         '
-V ← V, 'de la Poule          '
-V ← V, 'de la Blette         '
-V ← V, 'du Bouleau           '
-V ← V, 'de la Jonquille      '
-V ← V, 'de l''Aulne           '
-V ← V, 'du Couvoir           '
-V ← V, 'de la Pervenche      '
-V ← V, 'du Charme            '
-V ← V, 'de la Morille        '
-V ← V, 'du Hêtre             '
-V ← V, 'de l''Abeille         '
-V ← V, 'de la Laitue         '
-V ← V, 'du Mélèze            '
-V ← V, 'de la Ciguë          '
-V ← V, 'du Radis             '
-V ← V, 'de la Ruche          '
-V ← V, 'du Gainier           '
-V ← V, 'de la Romaine        '
-V ← V, 'du Marronnier        '
-V ← V, 'de la Roquette       '
-V ← V, 'du Pigeon            '
-V ← V, 'du Lilas             '
-V ← V, 'de l''Anémone         '
-V ← V, 'de la Pensée         '
-V ← V, 'de la Myrtille       '
-V ← V, 'du Greffoir          '
+V←V, ⎕inp 'V-end'   
+de la Lauréole       
+de la Mousse         
+du Fragon            
+du Perce-neige       
+du Taureau           
+du Laurier-thym      
+de l'Amadouvier      
+du Mézéréon          
+du Peuplier          
+de la Cognée         
+de l'Ellébore        
+du Brocoli           
+du Laurier           
+de l'Avelinier       
+de la Vache          
+du Buis              
+du Lichen            
+de l'If              
+de la Pulmonaire     
+de la Serpette       
+du Thlaspi           
+du Thymelé           
+du Chiendent         
+de la Traînasse      
+du Lièvre            
+de la Guède          
+du Noisetier         
+du Cyclamen          
+de la Chélidoine     
+du Traîneau       
+V-end
+⍝ Ventôse   
+V←V, ⎕inp 'V-end'
+du Tussilage         
+du Cornouiller       
+du Violier           
+du Troène            
+du Bouc              
+de l'Asaret          
+de l'Alaterne        
+de la Violette       
+du Marsault          
+de la Bêche          
+du Narcisse          
+de l'Orme            
+de la Fumeterre      
+du Vélar             
+de la Chèvre         
+de l'Épinard         
+du Doronic           
+du Mouron            
+du Cerfeuil          
+du Cordeau           
+de la Mandragore     
+du Persil            
+du Cochléaria        
+de la Pâquerette     
+du Thon              
+du Pissenlit         
+de la Sylvie         
+du Capillaire        
+du Frêne    
+du Plantoir          
+V-end
+V←V, ⎕inp 'V-end'          
+de la Primevère      
+du Platane           
+de l'Asperge         
+de la Tulipe         
+de la Poule          
+de la Blette         
+du Bouleau           
+de la Jonquille      
+de l'Aulne           
+du Couvoir           
+de la Pervenche      
+du Charme            
+de la Morille        
+du Hêtre             
+de l'Abeille         
+de la Laitue         
+du Mélèze            
+de la Ciguë          
+du Radis             
+de la Ruche          
+du Gainier           
+de la Romaine        
+du Marronnier        
+de la Roquette       
+du Pigeon            
+du Lilas             
+de l'Anémone         
+de la Pensée         
+de la Myrtille       
+du Greffoir    
+V-end
 ⍝ Floréal
-V ← V, 'de la Rose           '
-V ← V, 'du Chêne             '
-V ← V, 'de la Fougère        '
-V ← V, 'de l''Aubépine        '
-V ← V, 'du Rossignol         '
-V ← V, 'de l''Ancolie         '
-V ← V, 'du Muguet            '
-V ← V, 'du Champignon        '
-V ← V, 'de la Jacinthe       '
-V ← V, 'du Rateau            '
-V ← V, 'de la Rhubarbe       '
-V ← V, 'du Sainfoin          '
-V ← V, 'du Bâton-d''or        '
-V ← V, 'du Chamérisier       '
-V ← V, 'du Ver à soie        '
-V ← V, 'de la Consoude       '
-V ← V, 'de la Pimprenelle    '
-V ← V, 'de la Corbeille-d''or '
-V ← V, 'de l''Arroche         '
-V ← V, 'du Sarcloir          '
-V ← V, 'du Statice           '
-V ← V, 'de la Fritillaire    '
-V ← V, 'de la Bourrache      '
-V ← V, 'de la Valériane      '
-V ← V, 'de la Carpe          '
-V ← V, 'du Fusain            '
-V ← V, 'de la Civette        '
-V ← V, 'de la Buglosse       '
-V ← V, 'du Sénevé            '
-V ← V, 'de la Houlette       '
+V←V, ⎕inp 'V-end'      
+de la Rose           
+du Chêne             
+de la Fougère        
+de l'Aubépine        
+du Rossignol         
+de l'Ancolie         
+du Muguet            
+du Champignon        
+de la Jacinthe       
+du Rateau            
+de la Rhubarbe       
+du Sainfoin          
+du Bâton-d'or        
+du Chamérisier       
+du Ver à soie        
+de la Consoude       
+de la Pimprenelle    
+de la Corbeille-d'or 
+de l'Arroche         
+du Sarcloir          
+du Statice           
+de la Fritillaire    
+de la Bourrache      
+de la Valériane      
+de la Carpe          
+du Fusain            
+de la Civette        
+de la Buglosse       
+du Sénevé            
+de la Houlette
+V-end
 ⍝ Prairial
-V ← V, 'de la Luzerne        '
-V ← V, 'de l''Hémérocalle     '
-V ← V, 'du Trèfle            '
-V ← V, 'de l''Angélique       '
-V ← V, 'du Canard            '
-V ← V, 'de la Mélisse        '
-V ← V, 'du Fromental         '
-V ← V, 'du Martagon          '
-V ← V, 'du Serpolet          '
-V ← V, 'de la Faux           '
-V ← V, 'de la Fraise         '
-V ← V, 'de la Bétoine        '
-V ← V, 'du Pois              '
-V ← V, 'de l''Acacia          '
-V ← V, 'de la Caille         '
-V ← V, 'de l''Œillet          '
-V ← V, 'du Sureau            '
-V ← V, 'du Pavot             '
-V ← V, 'du Tilleul           '
-V ← V, 'de la Fourche        '
-V ← V, 'du Barbeau           '
-V ← V, 'de la Camomille      '
-V ← V, 'du Chèvrefeuille     '
-V ← V, 'du Caille-lait       '
-V ← V, 'de la Tanche         '
-V ← V, 'du Jasmin            '
-V ← V, 'de la Verveine       '
-V ← V, 'du Thym              '
-V ← V, 'de la Pivoine        '
-V ← V, 'du Chariot           '
+V←V, ⎕inp 'V-end'       
+de la Luzerne        
+de l'Hémérocalle     
+du Trèfle            
+de l'Angélique       
+du Canard            
+de la Mélisse        
+du Fromental         
+du Martagon          
+du Serpolet          
+de la Faux           
+de la Fraise         
+de la Bétoine        
+du Pois              
+de l'Acacia          
+de la Caille         
+de l'Œillet          
+du Sureau            
+du Pavot             
+du Tilleul           
+de la Fourche        
+du Barbeau           
+de la Camomille      
+du Chèvrefeuille     
+du Caille-lait       
+de la Tanche         
+du Jasmin            
+de la Verveine       
+du Thym              
+de la Pivoine        
+du Chariot   
+V-end
 ⍝ Messidor
-V ← V, 'du Seigle            '
-V ← V, 'de l''Avoine          '
-V ← V, 'de l''Oignon          '
-V ← V, 'de la Véronique      '
-V ← V, 'du Mulet             '
-V ← V, 'du Romarin           '
-V ← V, 'du Concombre         '
-V ← V, 'de l''Échalotte       '
-V ← V, 'de l''Absinthe        '
-V ← V, 'de la Faucille       '
-V ← V, 'de la Coriandre      '
-V ← V, 'de l''Artichaut       '
-V ← V, 'de la Giroflée       '
-V ← V, 'de la Lavande        '
-V ← V, 'du Chamois           '
-V ← V, 'du Tabac             '
-V ← V, 'de la Groseille      '
-V ← V, 'de la Gesse          '
-V ← V, 'de la Cerise         '
-V ← V, 'du Parc              '
-V ← V, 'de la Menthe         '
-V ← V, 'du Cumin             '
-V ← V, 'du Haricot           '
-V ← V, 'de l''Orcanète        '
-V ← V, 'de la Pintade        '
-V ← V, 'de la Sauge          '
-V ← V, 'de l''Ail             '
-V ← V, 'de la Vesce          '
-V ← V, 'du Blé               '
-V ← V, 'de la Chalémie       '
-⍝ Thermidor
-V ← V, 'de l''Épautre         '
-V ← V, 'du Bouillon-blanc    '
-V ← V, 'du Melon             '
-V ← V, 'de l''Ivraie          '
-V ← V, 'du Bélier            '
-V ← V, 'de la Prèle          '
-V ← V, 'de l''Armoise         '
-V ← V, 'du Carthame          '
-V ← V, 'de la Mûre           '
-V ← V, 'de l''Arrosoir        '
-V ← V, 'du Panis             '
-V ← V, 'du Salicor           '
-V ← V, 'de l''Abricot         '
-V ← V, 'du Basilic           '
-V ← V, 'de la Brebis         '
-V ← V, 'de la Guimauve       '
-V ← V, 'du Lin               '
-V ← V, 'de l''Amande          '
-V ← V, 'de la Gentiane       '
-V ← V, 'de l''Écluse          '
-V ← V, 'de la Carline        '
-V ← V, 'du Câprier           '
-V ← V, 'de la Lentille       '
-V ← V, 'de l''Aunée           '
-V ← V, 'de la Loutre         '
-V ← V, 'de la Myrte          '
-V ← V, 'du Colza             '
-V ← V, 'du Lupin             '
-V ← V, 'du Coton             '
-V ← V, 'du Moulin            '
+V←V, ⎕inp 'V-end'        
+du Seigle            
+de l'Avoine          
+de l'Oignon          
+de la Véronique      
+du Mulet             
+du Romarin           
+du Concombre         
+de l'Échalotte       
+de l'Absinthe        
+de la Faucille       
+de la Coriandre      
+de l'Artichaut       
+de la Giroflée       
+de la Lavande        
+du Chamois           
+du Tabac             
+de la Groseille      
+de la Gesse          
+de la Cerise         
+du Parc              
+de la Menthe         
+du Cumin             
+du Haricot           
+de l'Orcanète        
+de la Pintade        
+de la Sauge          
+de l'Ail             
+de la Vesce          
+du Blé               
+de la Chalémie     
+V-end
+⍝ Thermidor 
+V←V, ⎕inp 'V-end'
+de l'Épautre         
+du Bouillon-blanc    
+du Melon             
+de l'Ivraie          
+du Bélier            
+de la Prèle          
+de l'Armoise         
+du Carthame          
+de la Mûre           
+de l'Arrosoir        
+du Panis             
+du Salicor           
+de l'Abricot         
+du Basilic           
+de la Brebis         
+de la Guimauve       
+du Lin               
+de l'Amande          
+de la Gentiane       
+de l'Écluse          
+de la Carline        
+du Câprier           
+de la Lentille       
+de l'Aunée           
+de la Loutre         
+de la Myrte          
+du Colza             
+du Lupin             
+du Coton             
+du Moulin
+V-end
 ⍝ Fructidor
-V ← V, 'de la Prune          '
-V ← V, 'du Millet            '
-V ← V, 'du Lycoperdon        '
-V ← V, 'de l''Escourgeon      '
-V ← V, 'du Saumon            '
-V ← V, 'de la Tubéreuse      '
-V ← V, 'du Sucrion           '
-V ← V, 'de l''Apocyn          '
-V ← V, 'de la Réglisse       '
-V ← V, 'de l''Échelle         '
-V ← V, 'de la Pastèque       '
-V ← V, 'du Fenouil           '
-V ← V, 'de l''Épine-vinette   '
-V ← V, 'de la Noix           '
-V ← V, 'de la Truite         '
-V ← V, 'du Citron            '
-V ← V, 'de la Cardère        '
-V ← V, 'du Nerprun           '
-V ← V, 'du Tagette           '
-V ← V, 'de la Hotte          '
-V ← V, 'de l''Églantier       '
-V ← V, 'de la Noisette       '
-V ← V, 'du Houblon           '
-V ← V, 'du Sorgho            '
-V ← V, 'de l''Écrevisse       '
-V ← V, 'de la Bagarade       '
-V ← V, 'de la Verge-d''or     '
-V ← V, 'du Maïs              '
-V ← V, 'du Marron            '
-V ← V, 'du Panier            '
+V←V, ⎕inp 'V-end'            
+de la Prune          
+du Millet            
+du Lycoperdon        
+de l'Escourgeon      
+du Saumon            
+de la Tubéreuse      
+du Sucrion           
+de l'Apocyn          
+de la Réglisse       
+de l'Échelle         
+de la Pastèque       
+du Fenouil           
+de l'Épine-vinette   
+de la Noix           
+de la Truite         
+du Citron            
+de la Cardère        
+du Nerprun           
+du Tagette           
+de la Hotte          
+de l'Églantier       
+de la Noisette       
+du Houblon           
+du Sorgho            
+de l'Écrevisse       
+de la Bagarade       
+de la Verge-d'or     
+du Maïs              
+du Marron            
+du Panier     
+V-end
 ⍝ jour complémentaire
-V ← V, 'de la Vertu          '
-V ← V, 'du Génie             '
-V ← V, 'du Travail           '
-V ← V, 'de l''Opinion         '
-V ← V, 'des Récompenses      '
-V ← V, 'de la Révolution     '
-R ← 366 21 ⍴ V
+R←⊃V, ⎕inp 'V-end'       
+de la Vertu          
+du Génie             
+du Travail           
+de l'Opinion         
+des Récompenses      
+de la Révolution     
+V-end
 ∇
 ∇ R ← testdata; V; L
 ⍝ include here the contents of testapl
