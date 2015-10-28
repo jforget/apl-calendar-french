@@ -102,7 +102,22 @@ R ← rd2gr fr2rd D
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[1 + 10 | day D;]
-MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
+MONTH← ⊃ ⎕inp 'MONTH-end'
+Vendémiaire
+Brumaire   
+Frimaire   
+Nivôse     
+Pluviôse   
+Ventôse    
+Germinal   
+Floréal    
+Prairial   
+Messidor   
+Thermidor  
+Fructidor  
+jour compl.
+MONTH-end
+
 R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', (roman year D), ', jour ', feasts[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
