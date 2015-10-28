@@ -555,174 +555,173 @@ des Récompenses
 de la Révolution     
 V-end
 ∇
-∇ R ← testdata; V; L
+∇ R ← testdata
 ⍝ include here the contents of testapl
-V ← ⍳0
-V ← V, 1792  9 22    1  1  1  654415
-V ← V, 1793 10 23    2  2  2  654811
-V ← V, 1794  7 27    2 11  9  655088
-V ← V, 1794 11 23    3  3  3  655207
-V ← V, 1795 10  5    4  1 13  655523
-V ← V, 1795 12 25    4  4  4  655604
-V ← V, 1797  1 24    5  5  5  656000
-V ← V, 1798  2 24    6  6  6  656396
-V ← V, 1799 11  9    8  2 18  657019
-V ← V, 1801  3 29    9  7  8  657524
-V ← V, 1804  4 30   12  8 10  658652
-V ← V, 1807  6  1   15  9 12  659779
-V ← V, 1810  7  3   18 10 14  660907
-V ← V, 1813  8  4   21 11 16  662035
-V ← V, 1816  9  4   24 12 18  663162
-V ← V, 2000  1  1  208  4 12  730120
-V ← V, 2001  5 11  209  8 22  730616
-V ← V, 1792  9 22    1  1  1  654415
-V ← V, 1793  9 21    1 13  5  654779
-V ← V, 1793  9 22    2  1  1  654780
-V ← V, 1794  9 21    2 13  5  655144
-V ← V, 1794  9 22    3  1  1  655145
-V ← V, 1795  9 22    3 13  6  655510
-V ← V, 1795  9 23    4  1  1  655511
-V ← V, 1796  9 21    4 13  5  655875
-V ← V, 1796  9 22    5  1  1  655876
-V ← V, 1797  9 21    5 13  5  656240
-V ← V, 1797  9 22    6  1  1  656241
-V ← V, 1799  9 22    7 13  6  656971
-V ← V, 1799  9 23    8  1  1  656972
-V ← V, 1800  9 22    8 13  5  657336
-V ← V, 1800  9 23    9  1  1  657337
-V ← V, 1801  9 22    9 13  5  657701
-V ← V, 1801  9 23   10  1  1  657702
-V ← V, 1823  9 22   31 13  5  665736
-V ← V, 1823  9 23   32  1  1  665737
-V ← V, 1824  9 22   32 13  6  666102
-V ← V, 1824  9 23   33  1  1  666103
-V ← V, 1825  9 22   33 13  5  666467
-V ← V, 1825  9 23   34  1  1  666468
-V ← V, 1892  9 21  100 13  5  690938
-V ← V, 1892  9 22  101  1  1  690939
-V ← V, 1900  9 22  108 13  6  693860
-V ← V, 1900  9 23  109  1  1  693861
-V ← V, 1992  9 21  200 13  5  727462
-V ← V, 1992  9 22  201  1  1  727463
-V ← V, 2000  9 21  208 13  6  730384
-V ← V, 2000  9 22  209  1  1  730385
-V ← V, 2092  9 20  300 13  5  763986
-V ← V, 2092  9 21  301  1  1  763987
-V ← V, 2100  9 21  308 13  6  766908
-V ← V, 2100  9 22  309  1  1  766909
-V ← V, 2192  9 21  400 13  6  800511
-V ← V, 2192  9 22  401  1  1  800512
-V ← V, 2193  9 21  401 13  5  800876
-V ← V, 2199  9 22  408  1  1  803068
-V ← V, 2200  9 22  408 13  6  803433
-V ← V, 2791  9 23 1000  1  1 1019292
-V ← V, 2792  9 22 1001  1  1 1019657
-V ← V, 3000  1  1 1208  4 12 1095363
-V ← V, 3001  1  1 1209  4 11 1095728
-V ← V, 3791  9 22 2000  1  1 1384534
-V ← V, 3792  9 22 2001  1  1 1384900
-V ← V, 4000  1  1 2208  4 12 1460605
-V ← V, 4001  1  1 2209  4 12 1460971
-V ← V, 4320  9 10 2528 12 24 1577735
-V ← V, 4320  9 11 2528 12 25 1577736
-V ← V, 4791  9 23 3000  1  1 1749777
-V ← V, 4792  9 22 3001  1  1 1750142
-V ← V, 5000  1  1 3208  4 12 1825848
-V ← V, 5001  1  1 3209  4 11 1826213
-V ← V, 5791  9 22 4000  1  1 2115019
-V ← V, 5792  9 21 4001  1  1 2115384
-V ← V, 6000  1  1 4208  4 13 2191090
-V ← V, 6001  1  1 4209  4 13 2191456
-V ← V, 6791  9 22 5000  1  1 2480261
-V ← V, 6792  9 21 5001  1  1 2480626
-V ← V, 7791  9 21 6000  1  1 2845503
-V ← V, 7792  9 21 6001  1  1 2845869
-L ← (⍴ V) ÷ 7
-R ← (L, 7) ⍴ V
+R← ⊃⍎¨⎕inp 'V-end'
+1792  9 22    1  1  1  654415
+1793 10 23    2  2  2  654811
+1794  7 27    2 11  9  655088
+1794 11 23    3  3  3  655207
+1795 10  5    4  1 13  655523
+1795 12 25    4  4  4  655604
+1797  1 24    5  5  5  656000
+1798  2 24    6  6  6  656396
+1799 11  9    8  2 18  657019
+1801  3 29    9  7  8  657524
+1804  4 30   12  8 10  658652
+1807  6  1   15  9 12  659779
+1810  7  3   18 10 14  660907
+1813  8  4   21 11 16  662035
+1816  9  4   24 12 18  663162
+2000  1  1  208  4 12  730120
+2001  5 11  209  8 22  730616
+1792  9 22    1  1  1  654415
+1793  9 21    1 13  5  654779
+1793  9 22    2  1  1  654780
+1794  9 21    2 13  5  655144
+1794  9 22    3  1  1  655145
+1795  9 22    3 13  6  655510
+1795  9 23    4  1  1  655511
+1796  9 21    4 13  5  655875
+1796  9 22    5  1  1  655876
+1797  9 21    5 13  5  656240
+1797  9 22    6  1  1  656241
+1799  9 22    7 13  6  656971
+1799  9 23    8  1  1  656972
+1800  9 22    8 13  5  657336
+1800  9 23    9  1  1  657337
+1801  9 22    9 13  5  657701
+1801  9 23   10  1  1  657702
+1823  9 22   31 13  5  665736
+1823  9 23   32  1  1  665737
+1824  9 22   32 13  6  666102
+1824  9 23   33  1  1  666103
+1825  9 22   33 13  5  666467
+1825  9 23   34  1  1  666468
+1892  9 21  100 13  5  690938
+1892  9 22  101  1  1  690939
+1900  9 22  108 13  6  693860
+1900  9 23  109  1  1  693861
+1992  9 21  200 13  5  727462
+1992  9 22  201  1  1  727463
+2000  9 21  208 13  6  730384
+2000  9 22  209  1  1  730385
+2092  9 20  300 13  5  763986
+2092  9 21  301  1  1  763987
+2100  9 21  308 13  6  766908
+2100  9 22  309  1  1  766909
+2192  9 21  400 13  6  800511
+2192  9 22  401  1  1  800512
+2193  9 21  401 13  5  800876
+2199  9 22  408  1  1  803068
+2200  9 22  408 13  6  803433
+2791  9 23 1000  1  1 1019292
+2792  9 22 1001  1  1 1019657
+3000  1  1 1208  4 12 1095363
+3001  1  1 1209  4 11 1095728
+3791  9 22 2000  1  1 1384534
+3792  9 22 2001  1  1 1384900
+4000  1  1 2208  4 12 1460605
+4001  1  1 2209  4 12 1460971
+4320  9 10 2528 12 24 1577735
+4320  9 11 2528 12 25 1577736
+4791  9 23 3000  1  1 1749777
+4792  9 22 3001  1  1 1750142
+5000  1  1 3208  4 12 1825848
+5001  1  1 3209  4 11 1826213
+5791  9 22 4000  1  1 2115019
+5792  9 21 4001  1  1 2115384
+6000  1  1 4208  4 13 2191090
+6001  1  1 4209  4 13 2191456
+6791  9 22 5000  1  1 2480261
+6792  9 21 5001  1  1 2480626
+7791  9 21 6000  1  1 2845503
+7792  9 21 6001  1  1 2845869
+V-end
 ∇
 ∇ R ← teststring; V; L
 V ← ''
 ⍝ include here the contents of testapl1
-V ← V, 'Primidi 1 Vendémiaire I, jour du Raisin             '
-V ← V, 'Duodi 2 Brumaire II, jour du Céleri                 '
-V ← V, 'Nonidi 9 Thermidor II, jour de la Mûre              '
-V ← V, 'Tridi 3 Frimaire III, jour de la Chicorée           '
-V ← V, 'Tridi 13 Vendémiaire IV, jour du Potiron            '
-V ← V, 'Quartidi 4 Nivôse IV, jour du Soufre                '
-V ← V, 'Quintidi 5 Pluviôse V, jour du Taureau              '
-V ← V, 'Sextidi 6 Ventôse VI, jour de l''Asaret              '
-V ← V, 'Octidi 18 Brumaire VIII, jour de la Dentelaire      '
-V ← V, 'Octidi 8 Germinal IX, jour de la Jonquille          '
-V ← V, 'Décadi 10 Floréal XII, jour du Rateau               '
-V ← V, 'Duodi 12 Prairial XV, jour de la Bétoine            '
-V ← V, 'Quartidi 14 Messidor XVIII, jour de la Lavande      '
-V ← V, 'Sextidi 16 Thermidor XXI, jour de la Guimauve       '
-V ← V, 'Octidi 18 Fructidor XXIV, jour du Nerprun           '
-V ← V, 'Duodi 12 Nivôse CCVIII, jour de l''Argile            '
-V ← V, 'Duodi 22 Floréal CCIX, jour de la Fritillaire       '
-V ← V, 'Primidi 1 Vendémiaire I, jour du Raisin             '
-V ← V, 'Quintidi 5 jour compl. I, jour des Récompenses      '
-V ← V, 'Primidi 1 Vendémiaire II, jour du Raisin            '
-V ← V, 'Quintidi 5 jour compl. II, jour des Récompenses     '
-V ← V, 'Primidi 1 Vendémiaire III, jour du Raisin           '
-V ← V, 'Sextidi 6 jour compl. III, jour de la Révolution    '
-V ← V, 'Primidi 1 Vendémiaire IV, jour du Raisin            '
-V ← V, 'Quintidi 5 jour compl. IV, jour des Récompenses     '
-V ← V, 'Primidi 1 Vendémiaire V, jour du Raisin             '
-V ← V, 'Quintidi 5 jour compl. V, jour des Récompenses      '
-V ← V, 'Primidi 1 Vendémiaire VI, jour du Raisin            '
-V ← V, 'Sextidi 6 jour compl. VII, jour de la Révolution    '
-V ← V, 'Primidi 1 Vendémiaire VIII, jour du Raisin          '
-V ← V, 'Quintidi 5 jour compl. VIII, jour des Récompenses   '
-V ← V, 'Primidi 1 Vendémiaire IX, jour du Raisin            '
-V ← V, 'Quintidi 5 jour compl. IX, jour des Récompenses     '
-V ← V, 'Primidi 1 Vendémiaire X, jour du Raisin             '
-V ← V, 'Quintidi 5 jour compl. XXXI, jour des Récompenses   '
-V ← V, 'Primidi 1 Vendémiaire XXXII, jour du Raisin         '
-V ← V, 'Sextidi 6 jour compl. XXXII, jour de la Révolution  '
-V ← V, 'Primidi 1 Vendémiaire XXXIII, jour du Raisin        '
-V ← V, 'Quintidi 5 jour compl. XXXIII, jour des Récompenses '
-V ← V, 'Primidi 1 Vendémiaire XXXIV, jour du Raisin         '
-V ← V, 'Quintidi 5 jour compl. C, jour des Récompenses      '
-V ← V, 'Primidi 1 Vendémiaire CI, jour du Raisin            '
-V ← V, 'Sextidi 6 jour compl. CVIII, jour de la Révolution  '
-V ← V, 'Primidi 1 Vendémiaire CIX, jour du Raisin           '
-V ← V, 'Quintidi 5 jour compl. CC, jour des Récompenses     '
-V ← V, 'Primidi 1 Vendémiaire CCI, jour du Raisin           '
-V ← V, 'Sextidi 6 jour compl. CCVIII, jour de la Révolution '
-V ← V, 'Primidi 1 Vendémiaire CCIX, jour du Raisin          '
-V ← V, 'Quintidi 5 jour compl. CCC, jour des Récompenses    '
-V ← V, 'Primidi 1 Vendémiaire CCCI, jour du Raisin          '
-V ← V, 'Sextidi 6 jour compl. CCCVIII, jour de la Révolution'
-V ← V, 'Primidi 1 Vendémiaire CCCIX, jour du Raisin         '
-V ← V, 'Sextidi 6 jour compl. CD, jour de la Révolution     '
-V ← V, 'Primidi 1 Vendémiaire CDI, jour du Raisin           '
-V ← V, 'Quintidi 5 jour compl. CDI, jour des Récompenses    '
-V ← V, 'Primidi 1 Vendémiaire CDVIII, jour du Raisin        '
-V ← V, 'Sextidi 6 jour compl. CDVIII, jour de la Révolution '
-V ← V, 'Primidi 1 Vendémiaire M, jour du Raisin             '
-V ← V, 'Primidi 1 Vendémiaire MI, jour du Raisin            '
-V ← V, 'Duodi 12 Nivôse MCCVIII, jour de l''Argile           '
-V ← V, 'Primidi 11 Nivôse MCCIX, jour du Granit             '
-V ← V, 'Primidi 1 Vendémiaire MM, jour du Raisin            '
-V ← V, 'Primidi 1 Vendémiaire MMI, jour du Raisin           '
-V ← V, 'Duodi 12 Nivôse MMCCVIII, jour de l''Argile          '
-V ← V, 'Duodi 12 Nivôse MMCCIX, jour de l''Argile            '
-V ← V, 'Quartidi 24 Fructidor MMDXXVIII, jour du Sorgho     '
-V ← V, 'Quintidi 25 Fructidor MMDXXVIII, jour de l''Écrevisse'
-V ← V, 'Primidi 1 Vendémiaire MMM, jour du Raisin           '
-V ← V, 'Primidi 1 Vendémiaire MMMI, jour du Raisin          '
-V ← V, 'Duodi 12 Nivôse MMMCCVIII, jour de l''Argile         '
-V ← V, 'Primidi 11 Nivôse MMMCCIX, jour du Granit           '
-V ← V, 'Primidi 1 Vendémiaire 4000, jour du Raisin          '
-V ← V, 'Primidi 1 Vendémiaire 4001, jour du Raisin          '
-V ← V, 'Tridi 13 Nivôse 4208, jour de l''Ardoise             '
-V ← V, 'Tridi 13 Nivôse 4209, jour de l''Ardoise             '
-V ← V, 'Primidi 1 Vendémiaire 5000, jour du Raisin          '
-V ← V, 'Primidi 1 Vendémiaire 5001, jour du Raisin          '
-V ← V, 'Primidi 1 Vendémiaire 6000, jour du Raisin          '
-V ← V, 'Primidi 1 Vendémiaire 6001, jour du Raisin          '
-R ← 79 52 ⍴ V
+R← ⊃⎕inp 'V-end'
+Primidi 1 Vendémiaire I, jour du Raisin             
+Duodi 2 Brumaire II, jour du Céleri                 
+Nonidi 9 Thermidor II, jour de la Mûre              
+Tridi 3 Frimaire III, jour de la Chicorée           
+Tridi 13 Vendémiaire IV, jour du Potiron            
+Quartidi 4 Nivôse IV, jour du Soufre                
+Quintidi 5 Pluviôse V, jour du Taureau              
+Sextidi 6 Ventôse VI, jour de l'Asaret              
+Octidi 18 Brumaire VIII, jour de la Dentelaire      
+Octidi 8 Germinal IX, jour de la Jonquille          
+Décadi 10 Floréal XII, jour du Rateau               
+Duodi 12 Prairial XV, jour de la Bétoine            
+Quartidi 14 Messidor XVIII, jour de la Lavande      
+Sextidi 16 Thermidor XXI, jour de la Guimauve       
+Octidi 18 Fructidor XXIV, jour du Nerprun           
+Duodi 12 Nivôse CCVIII, jour de l'Argile            
+Duodi 22 Floréal CCIX, jour de la Fritillaire       
+Primidi 1 Vendémiaire I, jour du Raisin             
+Quintidi 5 jour compl. I, jour des Récompenses      
+Primidi 1 Vendémiaire II, jour du Raisin            
+Quintidi 5 jour compl. II, jour des Récompenses     
+Primidi 1 Vendémiaire III, jour du Raisin           
+Sextidi 6 jour compl. III, jour de la Révolution    
+Primidi 1 Vendémiaire IV, jour du Raisin            
+Quintidi 5 jour compl. IV, jour des Récompenses     
+Primidi 1 Vendémiaire V, jour du Raisin             
+Quintidi 5 jour compl. V, jour des Récompenses      
+Primidi 1 Vendémiaire VI, jour du Raisin            
+Sextidi 6 jour compl. VII, jour de la Révolution    
+Primidi 1 Vendémiaire VIII, jour du Raisin          
+Quintidi 5 jour compl. VIII, jour des Récompenses   
+Primidi 1 Vendémiaire IX, jour du Raisin            
+Quintidi 5 jour compl. IX, jour des Récompenses     
+Primidi 1 Vendémiaire X, jour du Raisin             
+Quintidi 5 jour compl. XXXI, jour des Récompenses   
+Primidi 1 Vendémiaire XXXII, jour du Raisin         
+Sextidi 6 jour compl. XXXII, jour de la Révolution  
+Primidi 1 Vendémiaire XXXIII, jour du Raisin        
+Quintidi 5 jour compl. XXXIII, jour des Récompenses 
+Primidi 1 Vendémiaire XXXIV, jour du Raisin         
+Quintidi 5 jour compl. C, jour des Récompenses      
+Primidi 1 Vendémiaire CI, jour du Raisin            
+Sextidi 6 jour compl. CVIII, jour de la Révolution  
+Primidi 1 Vendémiaire CIX, jour du Raisin           
+Quintidi 5 jour compl. CC, jour des Récompenses     
+Primidi 1 Vendémiaire CCI, jour du Raisin           
+Sextidi 6 jour compl. CCVIII, jour de la Révolution 
+Primidi 1 Vendémiaire CCIX, jour du Raisin          
+Quintidi 5 jour compl. CCC, jour des Récompenses    
+Primidi 1 Vendémiaire CCCI, jour du Raisin          
+Sextidi 6 jour compl. CCCVIII, jour de la Révolution
+Primidi 1 Vendémiaire CCCIX, jour du Raisin         
+Sextidi 6 jour compl. CD, jour de la Révolution     
+Primidi 1 Vendémiaire CDI, jour du Raisin           
+Quintidi 5 jour compl. CDI, jour des Récompenses    
+Primidi 1 Vendémiaire CDVIII, jour du Raisin        
+Sextidi 6 jour compl. CDVIII, jour de la Révolution 
+Primidi 1 Vendémiaire M, jour du Raisin             
+Primidi 1 Vendémiaire MI, jour du Raisin            
+Duodi 12 Nivôse MCCVIII, jour de l'Argile           
+Primidi 11 Nivôse MCCIX, jour du Granit             
+Primidi 1 Vendémiaire MM, jour du Raisin            
+Primidi 1 Vendémiaire MMI, jour du Raisin           
+Duodi 12 Nivôse MMCCVIII, jour de l'Argile          
+Duodi 12 Nivôse MMCCIX, jour de l'Argile            
+Quartidi 24 Fructidor MMDXXVIII, jour du Sorgho     
+Quintidi 25 Fructidor MMDXXVIII, jour de l'Écrevisse
+Primidi 1 Vendémiaire MMM, jour du Raisin           
+Primidi 1 Vendémiaire MMMI, jour du Raisin          
+Duodi 12 Nivôse MMMCCVIII, jour de l'Argile         
+Primidi 11 Nivôse MMMCCIX, jour du Granit           
+Primidi 1 Vendémiaire 4000, jour du Raisin          
+Primidi 1 Vendémiaire 4001, jour du Raisin          
+Tridi 13 Nivôse 4208, jour de l'Ardoise             
+Tridi 13 Nivôse 4209, jour de l'Ardoise             
+Primidi 1 Vendémiaire 5000, jour du Raisin          
+Primidi 1 Vendémiaire 5001, jour du Raisin          
+Primidi 1 Vendémiaire 6000, jour du Raisin          
+V-end
 ∇
 ∇ alltests
 testfr2rd
