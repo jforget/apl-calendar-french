@@ -31,13 +31,13 @@
 ' Inc., <http://www.fsf.org/>.'
 ∇
 ∇ R ← year D
-R ← D +.× 1 0 0
+R ← 1 0 0/D
 ∇
 ∇ R ← month D
-R ← D +.× 0 1 0
+R ← 0 1 0/D
 ∇
 ∇ R ← day D
-R ← D +.× 0 0 1
+R ← 0 0 1 /D
 ∇
 ∇ R ← zerojanvnd Y
 R ← Y ∘.× 1 0 0
