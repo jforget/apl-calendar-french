@@ -170,7 +170,7 @@ de l'Alisier
 de la Charrue        
 du Salsifis          
 de la Macre          
-du Topinambour       P
+du Topinambour
 du Dindon            
 du Chervis           
 du Cresson           
