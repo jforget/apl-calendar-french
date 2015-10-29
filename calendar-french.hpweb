@@ -343,21 +343,21 @@ calendar-french.apl-1: apl
   level: 4
 - code: |
     ∇ R ← year D
-    R ← D +.× 1 0 0
+    R ← ,1 0 0/D
     ∇
 - section: month
   calendar-french.apl-1: 3
   level: 4
 - code: |
     ∇ R ← month D
-    R ← D +.× 0 1 0
+    R ← ,0 1 0/D
     ∇
 - section: day
   calendar-french.apl-1: 4
   level: 4
 - code: |
     ∇ R ← day D
-    R ← D +.× 0 0 1
+    R ← ,0 0 1/D
     ∇
 - section: zerojanvnd
   fr: Notion de «&nbsp;jour zéro&nbsp;»
