@@ -4,12 +4,10 @@
 #     Script to merge the generated APL script with chunks from other origin
 #     Copyright (C) 2015 Jean Forget
 #
-#     This program is distributed under the same terms as Perl 5.16.3:
-#     GNU Public License version 1 or later and Perl Artistic License
+#     This program is distributed under the GNU Public License version 1 or later
 #
-#     You can find the text of the licenses in the F<LICENSE> file or at
-#     L<http://www.perlfoundation.org/artistic_license_1_0>
-#     and L<http://www.gnu.org/licenses/gpl-1.0.html>.
+#     You can find the text of the license in the F<LICENSE> file or at
+#     L<http://www.gnu.org/licenses/gpl-1.0.html>.
 #
 #     Here is the summary of GPL:
 #

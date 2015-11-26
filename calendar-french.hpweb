@@ -6,15 +6,14 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 1
 - fr: |
     La partie texte de ce dépôt git est distribuée sous la licence
-    Creative Commons avec attribution et partage dans les mêmes conditions
-    (CC-BY-SA). La partie code de ce dépôt est distribuée dans les mêmes
-    conditions que Perl, c'est-à-dire au choix sous la licence GPL version 1.0
-    ou ultérieure ou sous la licence « Artistic ».
+    Creative Commons avec attribution et partage dans les mêmes
+    conditions (CC-BY-SA). La partie code de ce dépôt est distribuée
+    sous la licence GPL version 1.0 ou ultérieure.
 - en: |
-    The text part of this repository is licensed under the terms
-    of Creative Commons, with attribution and share-alike (CC-BY-SA).
-    The code part of this repository is licensed with the same terms
-    as Perl, that is, GPL version 1.0 or later or the Artistic License.
+    The text part of this repository is licensed under the terms of
+    Creative Commons, with attribution and share-alike (CC-BY-SA).
+    The code part of this repository is licensed with the GPL version
+    1.0 or later.
 - fr: |
     Ainsi que le requiert la licence GPL, tout fichier de code
     doit commencer par un commentaire décrivant de façon sommaire
@@ -34,12 +33,10 @@ calendar-french.apl-1: apl
     'to French Revolutionary dates and the other way'
     'Copyright (C) 2015 Jean Forget'
     ''
-    ' This program is distributed under the same terms as Perl 5.16.3:'
-    ' GNU Public License version 1 or later and Perl Artistic License'
+    ' This program is distributed under the GNU Public License version 1 or later'
     ''
-    ' You can find the text of the licenses in the LICENSE file or at'
-    ' http://www.perlfoundation.org/artistic_license_1_0'
-    ' and http://www.gnu.org/licenses/gpl-1.0.html.'
+    ' You can find the text of the license in the LICENSE file or at'
+    ' http://www.gnu.org/licenses/gpl-1.0.html.'
     ''
     ' Here is the summary of GPL:'
     ''
