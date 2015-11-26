@@ -339,6 +339,8 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 2
   level: 4
 - code: |
+    .
+
     ∇ R ← year D
     R ← D +.× 1 0 0
     ∇
@@ -346,6 +348,8 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 3
   level: 4
 - code: |
+    .
+
     ∇ R ← month D
     R ← D +.× 0 1 0
     ∇
@@ -353,6 +357,8 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 4
   level: 4
 - code: |
+    .
+
     ∇ R ← day D
     R ← D +.× 0 0 1
     ∇
@@ -382,6 +388,8 @@ calendar-french.apl-1: apl
 - en: |
     Here is a function which builds a 0th January or a 0th Vendémiaire for a given year:
 - code: |
+    .
+
     ∇ R ← zerojanvnd Y
     R ← Y ∘.× 1 0 0
     R ← R + (⍴R) ⍴ 0 1 0
@@ -435,6 +443,8 @@ calendar-french.apl-1: apl
     <li>additive constant.</li>
     </ul>
 - code: |
+    .
+
     ∇ R ← fr2rd DATE
     R ← 654019 + (@frbis@ @year@ DATE) + DATE +.× 365 30 1
     ∇
@@ -547,6 +557,8 @@ calendar-french.apl-1: apl
     with subtracting 1 from the year, therefore the values to 
     check are 3, 7, 11 and 15.
 - code: |
+    .
+
     ∇ R ← frbis YEAR
     YEAR ← YEAR - 1
     R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
@@ -622,6 +634,8 @@ calendar-french.apl-1: apl
 - en: |
     So here is the function:
 - code: |
+    .
+
     ∇ R ← gr2rd DATE; DIM
     DIM ← ⍴ DATE
     DATE←(DIM ⍴0 1 0) + DATE + (2≥@month@ DATE) ∘.× ¯1 12 0
@@ -721,6 +735,8 @@ calendar-french.apl-1: apl
     the shorter range is extended to 2 values, so the <tt>YR</tt> variable will be
     properly rectangular.
 - code: |
+    .
+
     ∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
     ⎕IO ← 1
     N1 ← N - 654414
@@ -870,6 +886,8 @@ calendar-french.apl-1: apl
     estimation and we always use a two-value range for the month, even if the
     guesstimate would give a single-value range.
 - code: |
+    .
+
     ∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
     ⎕IO ← 1
     YH ← ⌈ N ÷ 365.24
@@ -905,6 +923,8 @@ calendar-french.apl-1: apl
     After all theses complicated computations, the final conversion function is
     a bit of an anti-climax.
 - code: |
+    .
+
     ∇ R ← gr2fr D
     R ← @rd2fr@ @gr2rd@ D
     ∇
@@ -918,6 +938,8 @@ calendar-french.apl-1: apl
 - en: |
     Same thing for the other conversion function.
 - code: |
+    .
+
     ∇ R ← fr2gr D
     R ← @rd2gr@ @fr2rd@ D
     ∇
@@ -940,6 +962,8 @@ calendar-french.apl-1: apl
     extraneous spaces and that we have to get rid of these spaces, while keeping
     the required spaces.
 - code: |
+    .
+
     ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
     ⎕IO ← 1
     DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
@@ -961,6 +985,8 @@ calendar-french.apl-1: apl
 - en: |
     If the number is higher than 3999, it is displayed with indo-arab numerals. Same thing if zero or negative.
 - code: |
+    .
+
     ∇ R ← roman N; NODES
     → ((N>0) ∧ N<4000)/CONV
     R ← ⍕ N
@@ -990,6 +1016,8 @@ calendar-french.apl-1: apl
     This function provides a step to build a string which contains 10 substrings, each one being a radix-10 node, 
     written with Roman numerals. Each node is filled with spaces to reach a common length of 4 chars.
 - code: |
+    .
+
     ∇ R ← nodes CH
     R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
     ∇
@@ -1003,6 +1031,8 @@ calendar-french.apl-1: apl
 - en: |
     This function lists all 366 feasts for all days in a French Revolutionary calendar year.
 - code: |
+    .
+
     ∇ R ← feasts; V
     ⍝ include here the contents of feasts
     ∇
@@ -1069,6 +1099,8 @@ calendar-french.apl-1: apl
     And a utility script (in Perl) in this project inserts the contents of <tt>testapl</tt>
     in the final script.
 - code: |
+    .
+
     ∇ R ← testdata; V; L
     ⍝ include here the contents of testapl
     L ← (⍴ V) ÷ 7
@@ -1102,6 +1134,8 @@ calendar-french.apl-1: apl
     The strings are produced and inserted into the final code in the
     same fashion as <a href='#testdata'><tt>testdata</tt></a>.
 - code: |
+    .
+
     ∇ R ← teststring; V; L
     V ← ''
     ⍝ include here the contents of testapl1
@@ -1112,6 +1146,8 @@ calendar-french.apl-1: apl
   fr: Lancement de tous les tests
   en: Run all the tests
 - code: |
+    .
+
     ∇ alltests
     @testfr2rd@
     @testgr2rd@
@@ -1142,6 +1178,8 @@ calendar-french.apl-1: apl
     Each failed subtest prints an error message. If everything succeeds, the main
     test function prints a single message.
 - code: |
+    .
+
     ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
     EXPEC ← @testdata@[;7]
@@ -1178,6 +1216,8 @@ calendar-french.apl-1: apl
     and transmitted globally. The same transmission mechanism applies to <tt>PARAM</tt>
     (parameters for the checked function) and <tt>EXPEC</tt> (expected results).
 - code: |
+    .
+
     ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
     EXP ← EXPEC[N]
@@ -1220,6 +1260,8 @@ calendar-french.apl-1: apl
     a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
     and transmitted globally.
 - code: |
+    .
+
     ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
     LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← DIM ⍴ EXPEC
@@ -1254,6 +1296,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 50
 - code: |
+    .
+
     ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
     EXPEC ← @testdata@[;7]
@@ -1278,6 +1322,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 51
 - code: |
+    .
+
     ∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
     EXP ← EXPEC[N]
@@ -1308,6 +1354,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 52
 - code: |
+    .
+
     ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
     LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← DIM ⍴ EXPEC
@@ -1340,6 +1388,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 60
 - code: |
+    .
+
     ∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
     EXPEC ← @testdata@[;4 5 6]
@@ -1364,6 +1414,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 61
 - code: |
+    .
+
     ∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
     EXP ← EXPEC[N;]
@@ -1399,6 +1451,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 62
 - code: |
+    .
+
     ∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
     LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
@@ -1431,6 +1485,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 70
 - code: |
+    .
+
     ∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
     EXPEC ← @testdata@[;1 2 3]
@@ -1454,6 +1510,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 71
 - code: |
+    .
+
     ∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
     EXP ← EXPEC[N;]
@@ -1489,6 +1547,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 72
 - code: |
+    .
+
     ∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
     LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
@@ -1522,6 +1582,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 74
 - code: |
+    .
+
     ∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
     EXPEC ← @testdata@[;4 5 6]
@@ -1546,6 +1608,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 75
 - code: |
+    .
+
     ∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
     EXP ← EXPEC[N;]
@@ -1581,6 +1645,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 76
 - code: |
+    .
+
     ∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
     LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
@@ -1613,6 +1679,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 77
 - code: |
+    .
+
     ∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
     EXPEC ← @testdata@[;1 2 3]
@@ -1637,6 +1705,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 78
 - code: |
+    .
+
     ∇ R  ← test0fr2gr N; LIB; PAR; EXP; GOT; NERR
     ⎕IO ← 1
     EXP ← EXPEC[N;]
@@ -1672,6 +1742,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 79
 - code: |
+    .
+
     ∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
     LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
@@ -1704,6 +1776,8 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 80
 - code: |
+    .
+
     ∇ testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
     IO ← 2
     LOOPIO:

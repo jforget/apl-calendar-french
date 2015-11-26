@@ -25,32 +25,40 @@
 ' along with this program; if not, write to the Free Software Foundation,'
 ' Inc., <http://www.fsf.org/>.'
 ∇
+
 ∇ R ← year D
 R ← D +.× 1 0 0
 ∇
+
 ∇ R ← month D
 R ← D +.× 0 1 0
 ∇
+
 ∇ R ← day D
 R ← D +.× 0 0 1
 ∇
+
 ∇ R ← zerojanvnd Y
 R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
 ∇
+
 ∇ R ← fr2rd DATE
 R ← 654019 + (frbis year DATE) + DATE +.× 365 30 1
 ∇
+
 ∇ R ← frbis YEAR
 YEAR ← YEAR - 1
 R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15
 ∇
+
 ∇ R ← gr2rd DATE; DIM
 DIM ← ⍴ DATE
 DATE←(DIM ⍴0 1 0) + DATE + (2≥month DATE) ∘.× ¯1 12 0
 R ← ¯428 + (-/ ⌊ (year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
+
 ∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
 ⎕IO ← 1
 N1 ← N - 654414
@@ -67,6 +75,7 @@ M ← ⌈D÷30
 D ← D - 30 × M - 1
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
+
 ∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
 ⎕IO ← 1
 YH ← ⌈ N ÷ 365.24
@@ -87,12 +96,15 @@ M ← ⌈/MR×CM
 D ← N - ⌈/NR×CM
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
+
 ∇ R ← gr2fr D
 R ← rd2fr gr2rd D
 ∇
+
 ∇ R ← fr2gr D
 R ← rd2gr fr2rd D
 ∇
+
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
@@ -103,6 +115,7 @@ CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
 R ← (⌽∨\⌽R≠' ')/R
 ∇
+
 ∇ R ← roman N; NODES
 → ((N>0) ∧ N<4000)/CONV
 R ← ⍕ N
@@ -112,9 +125,11 @@ NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
 R ← ,NODES[⎕IO + 30 20 10 0 + 10 10 10 10 ⊤ N;]
 R ← (R≠' ')/R
 ∇
+
 ∇ R ← nodes CH
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
+
 ∇ R ← feasts; V
 ⍝ include here the contents of feasts
 V ← ''
@@ -499,6 +514,7 @@ V ← V, 'des Récompenses      '
 V ← V, 'de la Révolution     '
 R ← 366 21 ⍴ V
 ∇
+
 ∇ R ← testdata; V; L
 ⍝ include here the contents of testapl
 V ← ⍳0
@@ -584,6 +600,7 @@ V ← V, 7792  9 21 6001  1  1 2845869
 L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
+
 ∇ R ← teststring; V; L
 V ← ''
 ⍝ include here the contents of testapl1
@@ -668,6 +685,7 @@ V ← V, 'Primidi 1 Vendémiaire 6000, jour du Raisin          '
 V ← V, 'Primidi 1 Vendémiaire 6001, jour du Raisin          '
 R ← 79 52 ⍴ V
 ∇
+
 ∇ alltests
 testfr2rd
 testgr2rd
@@ -677,6 +695,7 @@ testgr2fr
 testfr2gr
 testprtfr
 ∇
+
 ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← testdata[;7]
@@ -697,6 +716,7 @@ OK ←OK ∧ test1fr2rd 7 ⍴ 2 ⍝ checking max allowed rank
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking fr2rd : no errors'
 ∇
+
 ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
@@ -723,6 +743,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
@@ -752,6 +773,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← testdata[;7]
@@ -772,6 +794,7 @@ OK ←OK ∧ test1gr2rd 7 ⍴ 2 ⍝ checking max allowed rank
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking gr2rd : no errors'
 ∇
+
 ∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
@@ -798,6 +821,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
@@ -826,6 +850,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← testdata[;4 5 6]
@@ -846,6 +871,7 @@ OK ←OK ∧ test1rd2fr 6 ⍴ 2 ⍝ checking max allowed rank
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking rd2fr : no errors'
 ∇
+
 ∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -877,6 +903,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -905,6 +932,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← testdata[;1 2 3]
@@ -924,6 +952,7 @@ OK ←OK ∧ test1rd2gr 2 3 3
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking rd2gr : no errors'
 ∇
+
 ∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -955,6 +984,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -983,6 +1013,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← testdata[;4 5 6]
@@ -1003,6 +1034,7 @@ OK ←OK ∧ test1gr2fr 6 ⍴ 2 ⍝ checking max allowed rank
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking gr2fr : no errors'
 ∇
+
 ∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -1034,6 +1066,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -1062,6 +1095,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← testdata[;1 2 3]
@@ -1082,6 +1116,7 @@ OK ←OK ∧ test1fr2gr 6 ⍴ 2 ⍝ checking max allowed rank
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking fr2gr : no errors'
 ∇
+
 ∇ R  ← test0fr2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -1113,6 +1148,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -1141,6 +1177,7 @@ SUCCESS:
 R ← 1
 → 0
 ∇
+
 ∇ testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
 IO ← 2
 LOOPIO:

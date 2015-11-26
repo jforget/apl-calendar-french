@@ -296,18 +296,21 @@ There are several ways to use the same functions for all. The simplest way is as
 
 <h4><a name='year'><tt>year</tt></a></h4>
 <pre>
+
 ∇ R ← year D
 R ← D +.× 1 0 0
 ∇
 </pre>
 <h4><a name='month'><tt>month</tt></a></h4>
 <pre>
+
 ∇ R ← month D
 R ← D +.× 0 1 0
 ∇
 </pre>
 <h4><a name='day'><tt>day</tt></a></h4>
 <pre>
+
 ∇ R ← day D
 R ← D +.× 0 0 1
 ∇
@@ -327,6 +330,7 @@ Here is a function which builds a 0th January or a 0th Vendémiaire for a given 
 </p>
 
 <pre>
+
 ∇ R ← zerojanvnd Y
 R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
@@ -358,6 +362,7 @@ Actually, we reorder the terms to have a single additive constant, which gives t
 </ul>
 
 <pre>
+
 ∇ R ← fr2rd DATE
 R ← 654019 + (<a href='#frbis' class='call'>frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
 ∇
@@ -435,6 +440,7 @@ check are 3, 7, 11 and 15.
 </p>
 
 <pre>
+
 ∇ R ← frbis YEAR
 YEAR ← YEAR - 1
 R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
@@ -491,6 +497,7 @@ So here is the function:
 </p>
 
 <pre>
+
 ∇ R ← gr2rd DATE; DIM
 DIM ← ⍴ DATE
 DATE←(DIM ⍴0 1 0) + DATE + (2≥<a href='#month' class='call'>month</a> DATE) ∘.× ¯1 12 0
@@ -562,6 +569,7 @@ properly rectangular.
 </p>
 
 <pre>
+
 ∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
 ⎕IO ← 1
 N1 ← N - 654414
@@ -679,6 +687,7 @@ guesstimate would give a single-value range.
 </p>
 
 <pre>
+
 ∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
 ⎕IO ← 1
 YH ← ⌈ N ÷ 365.24
@@ -708,6 +717,7 @@ a bit of an anti-climax.
 </p>
 
 <pre>
+
 ∇ R ← gr2fr D
 R ← <a href='#rd2fr' class='call'>rd2fr</a> <a href='#gr2rd' class='call'>gr2rd</a> D
 ∇
@@ -718,6 +728,7 @@ Same thing for the other conversion function.
 </p>
 
 <pre>
+
 ∇ R ← fr2gr D
 R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2rd</a> D
 ∇
@@ -732,6 +743,7 @@ the required spaces.
 </p>
 
 <pre>
+
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
@@ -749,6 +761,7 @@ If the number is higher than 3999, it is displayed with indo-arab numerals. Same
 </p>
 
 <pre>
+
 ∇ R ← roman N; NODES
 → ((N&gt;0) ∧ N&lt;4000)/CONV
 R ← ⍕ N
@@ -770,6 +783,7 @@ written with Roman numerals. Each node is filled with spaces to reach a common l
 </p>
 
 <pre>
+
 ∇ R ← nodes CH
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
@@ -780,6 +794,7 @@ This function lists all 366 feasts for all days in a French Revolutionary calend
 </p>
 
 <pre>
+
 ∇ R ← feasts; V
 ⍝ include here the contents of feasts
 ∇
@@ -827,6 +842,7 @@ in the final script.
 </p>
 
 <pre>
+
 ∇ R ← testdata; V; L
 ⍝ include here the contents of testapl
 L ← (⍴ V) ÷ 7
@@ -852,6 +868,7 @@ same fashion as <a href='#testdata'><tt>testdata</tt></a>.
 </p>
 
 <pre>
+
 ∇ R ← teststring; V; L
 V ← ''
 ⍝ include here the contents of testapl1
@@ -859,6 +876,7 @@ V ← ''
 </pre>
 <h3><a name='alltests'><tt>alltests</tt> - Run all the tests</a></h3>
 <pre>
+
 ∇ alltests
 <a href='#testfr2rd' class='call'>testfr2rd</a>
 <a href='#testgr2rd' class='call'>testgr2rd</a>
@@ -882,6 +900,7 @@ test function prints a single message.
 </p>
 
 <pre>
+
 ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← <a href='#testdata' class='call'>testdata</a>[;7]
@@ -913,6 +932,7 @@ and transmitted globally. The same transmission mechanism applies to <tt>PARAM</
 </p>
 
 <pre>
+
 ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
@@ -950,6 +970,7 @@ and transmitted globally.
 </p>
 
 <pre>
+
 ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
@@ -982,6 +1003,7 @@ R ← 1
 </pre>
 <h4><a name='testgr2rd'><tt>testgr2rd</tt></a></h4>
 <pre>
+
 ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← <a href='#testdata' class='call'>testdata</a>[;7]
@@ -1005,6 +1027,7 @@ OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 7 ⍴ 2 ⍝ check
 </pre>
 <h4><a name='test0gr2rd'><tt>test0gr2rd</tt></a></h4>
 <pre>
+
 ∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
@@ -1034,6 +1057,7 @@ R ← 1
 </pre>
 <h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
 <pre>
+
 ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
@@ -1065,6 +1089,7 @@ R ← 1
 </pre>
 <h4><a name='testrd2fr'><tt>testrd2fr</tt></a></h4>
 <pre>
+
 ∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
@@ -1088,6 +1113,7 @@ OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 6 ⍴ 2 ⍝ check
 </pre>
 <h4><a name='test0rd2fr'><tt>test0rd2fr</tt></a></h4>
 <pre>
+
 ∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -1122,6 +1148,7 @@ R ← 1
 </pre>
 <h4><a name='test1rd2fr'><tt>test1rd2fr</tt></a></h4>
 <pre>
+
 ∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -1153,6 +1180,7 @@ R ← 1
 </pre>
 <h4><a name='testrd2gr'><tt>testrd2gr</tt></a></h4>
 <pre>
+
 ∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
@@ -1175,6 +1203,7 @@ OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 2 3 3
 </pre>
 <h4><a name='test0rd2gr'><tt>test0rd2gr</tt></a></h4>
 <pre>
+
 ∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -1209,6 +1238,7 @@ R ← 1
 </pre>
 <h4><a name='test1rd2gr'><tt>test1rd2gr</tt></a></h4>
 <pre>
+
 ∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -1240,6 +1270,7 @@ R ← 1
 </pre>
 <h4><a name='testgr2fr'><tt>testgr2fr</tt></a></h4>
 <pre>
+
 ∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
@@ -1263,6 +1294,7 @@ OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 6 ⍴ 2 ⍝ check
 </pre>
 <h4><a name='test0gr2fr'><tt>test0gr2fr</tt></a></h4>
 <pre>
+
 ∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -1297,6 +1329,7 @@ R ← 1
 </pre>
 <h4><a name='test1gr2fr'><tt>test1gr2fr</tt></a></h4>
 <pre>
+
 ∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -1328,6 +1361,7 @@ R ← 1
 </pre>
 <h4><a name='testfr2gr'><tt>testfr2gr</tt></a></h4>
 <pre>
+
 ∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
@@ -1351,6 +1385,7 @@ OK ←OK ∧ <a href='#test1fr2gr' class='call'>test1fr2gr</a> 6 ⍴ 2 ⍝ check
 </pre>
 <h4><a name='test0fr2gr'><tt>test0fr2gr</tt></a></h4>
 <pre>
+
 ∇ R  ← test0fr2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
@@ -1385,6 +1420,7 @@ R ← 1
 </pre>
 <h4><a name='test1fr2gr'><tt>test1fr2gr</tt></a></h4>
 <pre>
+
 ∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
@@ -1416,6 +1452,7 @@ R ← 1
 </pre>
 <h4><a name='testprtfr'><tt>testprtfr</tt></a></h4>
 <pre>
+
 ∇ testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
 IO ← 2
 LOOPIO:
