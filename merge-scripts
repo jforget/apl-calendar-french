@@ -31,7 +31,7 @@ use strict;
 use warnings;
 
 my $script_av  = 'calendar-french.apl-1';
-my $script_ap  = 'workspaces/calendar-french.apl';
+my $script_ap  = 'workspaces/calfr.apl';
 my $testdata   = 'testapl';
 my $teststring = 'testapl1';
 my $feasts     = 'feasts';

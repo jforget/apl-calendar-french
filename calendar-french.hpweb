@@ -144,19 +144,19 @@ calendar-french.apl-1: apl
   en: Instructions for Use
 
 - fr: |
-    Le fichier <tt>calendar-french.apl</tt> doit se trouver
+    Le fichier <tt>calfr.apl</tt> doit se trouver
     dans le sous-répertoire <tt>workspaces</tt>, pour compatibilité
     avec la commande <tt>)load</tt>. Vous pouvez stocker ce fichier
     dans un sous-répertoire <tt>wslib</tt><var>n</var> (<var>n</var>
     valant de 1 à 9), auquel cas vous devrez utiliser la variante
-    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calendar-french.apl</tt>.
+    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
 - en: |
-    The <tt>calendar-french.apl</tt> file must be stored in the
+    The <tt>calfr.apl</tt> file must be stored in the
     <tt>workspaces</tt> sub-directory of the current directory, 
     so you can use the <tt>)load</tt> APL command. You may store
     it in a <tt>wslib</tt><var>n</var> sub-directory (<var>n</var>
     from 1 to 9) and in this case, you will use the
-    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calendar-french.apl</tt>
+    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>
     variant.
 - fr: |
     Vous chargez un espace de travail initialisé avec les fonctions
@@ -164,14 +164,14 @@ calendar-french.apl-1: apl
 - en: |
     You initialise an pristine workspace with the conversion functions with:
 - code: |
-    apl -f workspaces/calendar-french.apl
+    apl -f workspaces/calfr.apl
 - fr: |
     ou bien avec&nbsp;:
 - en: |
     or with:
 - code: |
     apl
-        )load calendar-french.apl
+        )load calfr.apl
 - fr: |
     et vous vous retrouvez alors dans la boucle REPL (lecture,
     évaluation, impression et boucle) d'APL. Vous pouvez alors
