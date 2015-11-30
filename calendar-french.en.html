@@ -13,7 +13,7 @@
 </head>
 <body>
 <a href='#French Revolutionary Calendar'>French Revolutionary Calendar</a>
-<br /><a href='#license'><tt>license</tt></a>
+<br /><a href='#calfr∆license'><tt>calfr∆license</tt></a>
 <br /><a href='#Conversion between calendars'>Conversion between calendars</a>
 <br /><a href='#Instructions for Use'>Instructions for Use</a>
 <br /><a href='#Higher Orders'>Higher Orders</a>
@@ -24,7 +24,7 @@
 <br /><a href='#day'><tt>day</tt></a>
 <br /><a href='#zerojanvnd'><tt>zerojanvnd</tt> - Concept of "zeroth day"</a>
 <br /><a href='#fr2rd'><tt>fr2rd</tt> - Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i></a>
-<br /><a href='#frbis'><tt>frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a>
+<br /><a href='#calfr∆frbis'><tt>calfr∆frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a>
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Converting from the Gregorian calendar to <i lang='la'>Rata Die</i></a>
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar</a>
 <br /><a href='#rd2gr'><tt>rd2gr</tt> - Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar</a>
@@ -64,7 +64,7 @@
 <br /><a href='#Internet'>Internet</a>
 <br /><a href='#Books'>Books</a>
 <hr /><h1><a name='French Revolutionary Calendar'>French Revolutionary Calendar</a></h1>
-<h2><a name='license'><tt>license</tt></a></h2>
+<h2><a name='calfr∆license'><tt>calfr∆license</tt></a></h2>
 <p>
 The text part of this repository is licensed under the terms of
 Creative Commons, with attribution and share-alike (CC-BY-SA).
@@ -78,7 +78,7 @@ description of the program and the summary of the GPL. Here it is.
 </p>
 
 <pre>
-∇ license
+∇ calfr∆license
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'
 'Copyright (C) 2015 Jean Forget'
@@ -344,7 +344,7 @@ This number is the result of the addition of:
 <li>654414, which is the <i lang='la'>Rata Die</i> for zeroth Vendémiaire I,</li>
 <li>(YYYY - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
 leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»,</li>
-<li>frbis(YYYY), which gives the number of leap years before the target year,</li>
+<li>calfr∆frbis(YYYY), which gives the number of leap years before the target year,</li>
 <li>(MM - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
 <li>DD, to reach the target day.</li>
 </ul>
@@ -355,7 +355,7 @@ Actually, we reorder the terms to have a single additive constant, which gives t
 
 <ul>
 <li>YYYY × 365,</li>
-<li>frbis(YYYY),</li>
+<li>calfr∆frbis(YYYY),</li>
 <li>MM × 30,</li>
 <li>DD,</li>
 <li>additive constant.</li>
@@ -364,10 +364,10 @@ Actually, we reorder the terms to have a single additive constant, which gives t
 <pre>
 
 ∇ R ← fr2rd DATE
-R ← 654019 + (<a href='#frbis' class='call'>frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
+R ← 654019 + (<a href='#calfr∆frbis' class='call'>calfr∆frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
 ∇
 </pre>
-<h3><a name='frbis'><tt>frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a></h3>
+<h3><a name='calfr∆frbis'><tt>calfr∆frbis</tt> - Number of leap years before year N (French Revolutionary calendar)</a></h3>
 <p>
 This subroutine gives the number of leap years preceding
 the current year. It allows refining
@@ -395,7 +395,7 @@ of the era. The "Astronomical" columns show the actual case,
 with the astronomical rule at first and the arithmetic rule
 after. The columns "Leap?" indicates leap years with an "X".
 The columns "frbis" show the number of leap years before the current
-year, which should be the result of the <tt>frbis</tt> function.
+year, which should be the result of the <tt>calfr∆frbis</tt> function.
 </p>
 
 <table border='1'>
@@ -441,7 +441,7 @@ check are 3, 7, 11 and 15.
 
 <pre>
 
-∇ R ← frbis YEAR
+∇ R ← calfr∆frbis YEAR
 YEAR ← YEAR - 1
 R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15

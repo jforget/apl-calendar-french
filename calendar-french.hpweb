@@ -2,7 +2,7 @@ fr: Calendrier Républicain
 en: French Revolutionary Calendar
 calendar-french.apl-1: apl
 ---
-- section: license
+- section: calfr∆license
   calendar-french.apl-1: 1
 - fr: |
     La partie texte de ce dépôt git est distribuée sous la licence
@@ -28,7 +28,7 @@ calendar-french.apl-1: apl
     As required by the GPL, each file with code must start with a one-line
     description of the program and the summary of the GPL. Here it is.
 - code: |
-    ∇ license
+    ∇ calfr∆license
     'APL program to convert Gregorian dates'
     'to French Revolutionary dates and the other way'
     'Copyright (C) 2015 Jean Forget'
@@ -407,7 +407,7 @@ calendar-french.apl-1: apl
     <li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
     <li>(AAAA - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
     en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
-    <li>frbis(AAAA), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
+    <li>calfr∆frbis(AAAA), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
     <li>(MM - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
     <li>JJ, pour arriver finalement au jour demandé.</li>
     </ul>
@@ -418,7 +418,7 @@ calendar-french.apl-1: apl
     <li>654414, which is the <i lang='la'>Rata Die</i> for zeroth Vendémiaire I,</li>
     <li>(YYYY - 1) × 365, the number of days from zeroth Vendémiaire I to zeroth Vendémiaire of the target year,
     leaving aside the leap days, that is, the «&nbsp;6 jour complémentaire&nbsp;»,</li>
-    <li>frbis(YYYY), which gives the number of leap years before the target year,</li>
+    <li>calfr∆frbis(YYYY), which gives the number of leap years before the target year,</li>
     <li>(MM - 1) × 30, the number of days from zeroth Vendémiaire until the zeroth day of the target month</li>
     <li>DD, to reach the target day.</li>
     </ul>
@@ -427,7 +427,7 @@ calendar-french.apl-1: apl
 
     <ul>
     <li>AAAA × 365,</li>
-    <li>frbis(AAAA),</li>
+    <li>calfr∆frbis(AAAA),</li>
     <li>MM × 30,</li>
     <li>JJ,</li>
     <li>constante additive.</li>
@@ -437,7 +437,7 @@ calendar-french.apl-1: apl
 
     <ul>
     <li>YYYY × 365,</li>
-    <li>frbis(YYYY),</li>
+    <li>calfr∆frbis(YYYY),</li>
     <li>MM × 30,</li>
     <li>DD,</li>
     <li>additive constant.</li>
@@ -446,9 +446,9 @@ calendar-french.apl-1: apl
     .
 
     ∇ R ← fr2rd DATE
-    R ← 654019 + (@frbis@ @year@ DATE) + DATE +.× 365 30 1
+    R ← 654019 + (@calfr∆frbis@ @year@ DATE) + DATE +.× 365 30 1
     ∇
-- section: frbis
+- section: calfr∆frbis
   fr: Nombre d'années bissextiles avant l'année N (calendrier républicain)
   en: Number of leap years before year N (French Revolutionary calendar)
   level: 3
@@ -493,7 +493,7 @@ calendar-french.apl-1: apl
     indiquent par un «&nbsp;X&nbsp;» si l'année est bissextile
     en fonction de la règle utilisée. Les colonnes «&nbsp;frbis&nbsp;»
     indiquent le nombre d'années bissextiles avant l'année considérée,
-    ce qui correspond au résultat de la fonction <tt>frbis</tt>.
+    ce qui correspond au résultat de la fonction <tt>calfr∆frbis</tt>.
 - en: |
     See below the comparison between both rules for the beginning
     of the Republican Era. The two "Arithmetic" columns simulate
@@ -502,7 +502,7 @@ calendar-french.apl-1: apl
     with the astronomical rule at first and the arithmetic rule
     after. The columns "Leap?" indicates leap years with an "X".
     The columns "frbis" show the number of leap years before the current
-    year, which should be the result of the <tt>frbis</tt> function.
+    year, which should be the result of the <tt>calfr∆frbis</tt> function.
 - fr: |
     <table border='1'>
     <tr align='center'><td>     </td><td colspan='2'>Arithmétique</td><td colspan='2'>Astronomique</td></tr>
@@ -559,7 +559,7 @@ calendar-french.apl-1: apl
 - code: |
     .
 
-    ∇ R ← frbis YEAR
+    ∇ R ← calfr∆frbis YEAR
     YEAR ← YEAR - 1
     R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
     R ← R + YEAR ∈ 3 7 11 15

@@ -1,5 +1,5 @@
 #!/usr/bin/apl -f
-∇ license
+∇ calfr∆license
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'
 'Copyright (C) 2015 Jean Forget'
@@ -44,10 +44,10 @@ R ← R + (⍴R) ⍴ 0 1 0
 ∇
 
 ∇ R ← fr2rd DATE
-R ← 654019 + (frbis year DATE) + DATE +.× 365 30 1
+R ← 654019 + (calfr∆frbis year DATE) + DATE +.× 365 30 1
 ∇
 
-∇ R ← frbis YEAR
+∇ R ← calfr∆frbis YEAR
 YEAR ← YEAR - 1
 R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15

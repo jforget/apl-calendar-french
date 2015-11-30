@@ -13,7 +13,7 @@
 </head>
 <body>
 <a href='#Calendrier Républicain'>Calendrier Républicain</a>
-<br /><a href='#license'><tt>license</tt></a>
+<br /><a href='#calfr∆license'><tt>calfr∆license</tt></a>
 <br /><a href='#Conversion entre calendriers'>Conversion entre calendriers</a>
 <br /><a href='#Mode d_emploi'>Mode d'emploi</a>
 <br /><a href='#Ordres supérieurs'>Ordres supérieurs</a>
@@ -24,7 +24,7 @@
 <br /><a href='#day'><tt>day</tt></a>
 <br /><a href='#zerojanvnd'><tt>zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a>
 <br /><a href='#fr2rd'><tt>fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a>
-<br /><a href='#frbis'><tt>frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a>
+<br /><a href='#calfr∆frbis'><tt>calfr∆frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a>
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
 <br /><a href='#rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
 <br /><a href='#rd2gr'><tt>rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a>
@@ -64,7 +64,7 @@
 <br /><a href='#Internet'>Internet</a>
 <br /><a href='#Livres'>Livres</a>
 <hr /><h1><a name='Calendrier Républicain'>Calendrier Républicain</a></h1>
-<h2><a name='license'><tt>license</tt></a></h2>
+<h2><a name='calfr∆license'><tt>calfr∆license</tt></a></h2>
 <p>
 La partie texte de ce dépôt git est distribuée sous la licence
 Creative Commons avec attribution et partage dans les mêmes
@@ -87,7 +87,7 @@ pas assez calé pour traduire en français un texte de teneur juridique).
 </p>
 
 <pre>
-∇ license
+∇ calfr∆license
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'
 'Copyright (C) 2015 Jean Forget'
@@ -363,7 +363,7 @@ Il faut ajouter les termes suivants&nbsp;:</p>
 <li>654414, qui est le <i lang='la'>Rata Die</i> du zéro Vendémiaire I,</li>
 <li>(AAAA - 1) × 365, le nombre de jours du zéro Vendémiaire I au zéro Vendémiaire de l'année demandée,
 en oubliant les jours bissextiles, c'est-à-dire les «&nbsp;6 jour complémentaire&nbsp;»,</li>
-<li>frbis(AAAA), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
+<li>calfr∆frbis(AAAA), qui compte combien d'années bissextiles ont précédé l'année demandée,</li>
 <li>(MM - 1) × 30, le nombre de jours du zéro Vendémiaire au jour zéro du mois demandé,</li>
 <li>JJ, pour arriver finalement au jour demandé.</li>
 </ul>
@@ -373,7 +373,7 @@ En fait, on rassemble toutes les constantes additives en une seule, ce qui donne
 
 <ul>
 <li>AAAA × 365,</li>
-<li>frbis(AAAA),</li>
+<li>calfr∆frbis(AAAA),</li>
 <li>MM × 30,</li>
 <li>JJ,</li>
 <li>constante additive.</li>
@@ -382,10 +382,10 @@ En fait, on rassemble toutes les constantes additives en une seule, ce qui donne
 <pre>
 
 ∇ R ← fr2rd DATE
-R ← 654019 + (<a href='#frbis' class='call'>frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
+R ← 654019 + (<a href='#calfr∆frbis' class='call'>calfr∆frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
 ∇
 </pre>
-<h3><a name='frbis'><tt>frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a></h3>
+<h3><a name='calfr∆frbis'><tt>calfr∆frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a></h3>
 <p>
 Cette fonction donne le nombre d'années bissextiles
 qui ont eu lieu avant l'année en paramètre. Elle permet
@@ -415,7 +415,7 @@ et règle arithmétique ensuite. Les colonnes «&nbsp;Bis&nbsp;?&nbsp;»
 indiquent par un «&nbsp;X&nbsp;» si l'année est bissextile
 en fonction de la règle utilisée. Les colonnes «&nbsp;frbis&nbsp;»
 indiquent le nombre d'années bissextiles avant l'année considérée,
-ce qui correspond au résultat de la fonction <tt>frbis</tt>.
+ce qui correspond au résultat de la fonction <tt>calfr∆frbis</tt>.
 </p>
 
 <table border='1'>
@@ -460,7 +460,7 @@ les valeurs 3, 7, 11 et 15.
 
 <pre>
 
-∇ R ← frbis YEAR
+∇ R ← calfr∆frbis YEAR
 YEAR ← YEAR - 1
 R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15
