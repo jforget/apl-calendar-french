@@ -26,6 +26,7 @@
 #     Inc., L<http://www.fsf.org/>.
 #
 
+use utf8;
 use v5.10;
 use strict;
 use warnings;
@@ -72,6 +73,9 @@ while (<$av>) {
     }
     close $sc
       or die "Closing $feasts $!";
+  }
+  elsif (/^∇$/) {
+    print $ap "\n";
   }
 }
 close $av
