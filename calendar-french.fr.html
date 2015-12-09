@@ -19,10 +19,10 @@
 <br /><a href='#Ordres supérieurs'>Ordres supérieurs</a>
 <br /><a href='#Implémentation'>Implémentation</a>
 <br /><a href='#Éléments de date'>Éléments de date</a>
-<br /><a href='#year'><tt>year</tt></a>
-<br /><a href='#month'><tt>month</tt></a>
-<br /><a href='#day'><tt>day</tt></a>
-<br /><a href='#zerojanvnd'><tt>zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a>
+<br /><a href='#calfr∆year'><tt>calfr∆year</tt></a>
+<br /><a href='#calfr∆month'><tt>calfr∆month</tt></a>
+<br /><a href='#calfr∆day'><tt>calfr∆day</tt></a>
+<br /><a href='#calfr∆zerojanvnd'><tt>calfr∆zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a>
 <br /><a href='#fr2rd'><tt>fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a>
 <br /><a href='#calfr∆frbis'><tt>calfr∆frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a>
 <br /><a href='#gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
@@ -34,11 +34,11 @@
 <br /><a href='#Affichage des dates'>Affichage des dates</a>
 <br /><a href='#prtfr'><tt>prtfr</tt> - Affichage d'une date du calendrier républicain</a>
 <br /><a href='#roman'><tt>roman</tt> - Conversion d'un nombre en chiffres romains</a>
-<br /><a href='#nodes'><tt>nodes</tt> - Construction des nœuds de la numération romaine</a>
-<br /><a href='#feasts'><tt>feasts</tt> - Fêtes du calendrier républicain</a>
+<br /><a href='#calfr∆nodes'><tt>calfr∆nodes</tt> - Construction des nœuds de la numération romaine</a>
+<br /><a href='#calfr∆feasts'><tt>calfr∆feasts</tt> - Fêtes du calendrier républicain</a>
 <br /><a href='#Tests internes'>Tests internes</a>
-<br /><a href='#testdata'><tt>testdata</tt> - Données pour les tests</a>
-<br /><a href='#teststring'><tt>teststring</tt> - Données alphanumériques de tests</a>
+<br /><a href='#calfr∆testdata'><tt>calfr∆testdata</tt> - Données pour les tests</a>
+<br /><a href='#calfr∆teststring'><tt>calfr∆teststring</tt> - Données alphanumériques de tests</a>
 <br /><a href='#alltests'><tt>alltests</tt> - Lancement de tous les tests</a>
 <br /><a href='#testfr2rd'><tt>testfr2rd</tt></a>
 <br /><a href='#test0fr2rd'><tt>test0fr2rd</tt></a>
@@ -310,25 +310,25 @@ Il y a plusieurs façons de s'en tirer et d'avoir une fonction compatible avec
 tous les rangs et toutes les dimensions. La plus simple consiste à écrire&nbsp;:
 </p>
 
-<h4><a name='year'><tt>year</tt></a></h4>
+<h4><a name='calfr∆year'><tt>calfr∆year</tt></a></h4>
 <pre>
-∇ R ← year D
+∇ R ← calfr∆year D
 R ← D +.× 1 0 0
 ∇
 </pre>
-<h4><a name='month'><tt>month</tt></a></h4>
+<h4><a name='calfr∆month'><tt>calfr∆month</tt></a></h4>
 <pre>
-∇ R ← month D
+∇ R ← calfr∆month D
 R ← D +.× 0 1 0
 ∇
 </pre>
-<h4><a name='day'><tt>day</tt></a></h4>
+<h4><a name='calfr∆day'><tt>calfr∆day</tt></a></h4>
 <pre>
-∇ R ← day D
+∇ R ← calfr∆day D
 R ← D +.× 0 0 1
 ∇
 </pre>
-<h3><a name='zerojanvnd'><tt>zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a></h3>
+<h3><a name='calfr∆zerojanvnd'><tt>calfr∆zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a></h3>
 <p>
 Pour comprendre comment les algorithmes de conversion fonctionnent, il est
 utile d'utiliser la notion de «&nbsp;jour zéro&nbsp;» pour un mois donné.
@@ -345,7 +345,7 @@ d'une année&nbsp;:
 </p>
 
 <pre>
-∇ R ← zerojanvnd Y
+∇ R ← calfr∆zerojanvnd Y
 R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
 ∇
@@ -377,7 +377,7 @@ En fait, on rassemble toutes les constantes additives en une seule, ce qui donne
 
 <pre>
 ∇ R ← fr2rd DATE
-R ← 654019 + (<a href='#calfr∆frbis' class='call'>calfr∆frbis</a> <a href='#year' class='call'>year</a> DATE) + DATE +.× 365 30 1
+R ← 654019 + (<a href='#calfr∆frbis' class='call'>calfr∆frbis</a> <a href='#calfr∆year' class='call'>calfr∆year</a> DATE) + DATE +.× 365 30 1
 ∇
 </pre>
 <h3><a name='calfr∆frbis'><tt>calfr∆frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a></h3>
@@ -513,8 +513,8 @@ Voici donc la fonction&nbsp;:
 <pre>
 ∇ R ← gr2rd DATE; DIM
 DIM ← ⍴ DATE
-DATE←(DIM ⍴0 1 0) + DATE + (2≥<a href='#month' class='call'>month</a> DATE) ∘.× ¯1 12 0
-R ← ¯428 + (-/ ⌊ (<a href='#year' class='call'>year</a> DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
+DATE←(DIM ⍴0 1 0) + DATE + (2≥<a href='#calfr∆month' class='call'>calfr∆month</a> DATE) ∘.× ¯1 12 0
+R ← ¯428 + (-/ ⌊ (<a href='#calfr∆year' class='call'>calfr∆year</a> DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
 </pre>
 <h3><a name='rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a></h3>
@@ -590,7 +590,7 @@ YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
-DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
+DR ← <a href='#calfr∆zerojanvnd' class='call'>calfr∆zerojanvnd</a> YR
 NR ← <a href='#fr2rd' class='call'>fr2rd</a> DR
 CM ← NR &lt; N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
@@ -709,7 +709,7 @@ YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
-DR ← <a href='#zerojanvnd' class='call'>zerojanvnd</a> YR
+DR ← <a href='#calfr∆zerojanvnd' class='call'>calfr∆zerojanvnd</a> YR
 NR ← <a href='#gr2rd' class='call'>gr2rd</a> DR
 CM ← NR &lt; N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
@@ -759,9 +759,9 @@ nécessaires.
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-R ← DAY[1 + 10 | <a href='#day' class='call'>day</a> D;]
+R ← DAY[1 + 10 | <a href='#calfr∆day' class='call'>calfr∆day</a> D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕ <a href='#day' class='call'>day</a> D), ' ', (MONTH[<a href='#month' class='call'>month</a> D;]), ' ', (<a href='#roman' class='call'>roman</a> <a href='#year' class='call'>year</a> D), ', jour ', <a href='#feasts' class='call'>feasts</a>[¯30 + D +.× 0 30 1;]
+R ← R, ' ', (⍕ <a href='#calfr∆day' class='call'>calfr∆day</a> D), ' ', (MONTH[<a href='#calfr∆month' class='call'>calfr∆month</a> D;]), ' ', (<a href='#roman' class='call'>roman</a> <a href='#calfr∆year' class='call'>calfr∆year</a> D), ', jour ', <a href='#calfr∆feasts' class='call'>calfr∆feasts</a>[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
 R ← (⌽∨\⌽R≠' ')/R
@@ -779,12 +779,12 @@ Idem s'il est négatif ou nul.
 R ← ⍕ N
 → 0
 CONV:
-NODES ← 40 4 ⍴ (<a href='#nodes' class='call'>nodes</a> 'IVX'), (<a href='#nodes' class='call'>nodes</a> 'XLC'), (<a href='#nodes' class='call'>nodes</a> 'CDM'), <a href='#nodes' class='call'>nodes</a> 'M??'
+NODES ← 40 4 ⍴ (<a href='#calfr∆nodes' class='call'>calfr∆nodes</a> 'IVX'), (<a href='#calfr∆nodes' class='call'>calfr∆nodes</a> 'XLC'), (<a href='#calfr∆nodes' class='call'>calfr∆nodes</a> 'CDM'), <a href='#calfr∆nodes' class='call'>calfr∆nodes</a> 'M??'
 R ← ,NODES[⎕IO + 30 20 10 0 + 10 10 10 10 ⊤ N;]
 R ← (R≠' ')/R
 ∇
 </pre>
-<h3><a name='nodes'><tt>nodes</tt> - Construction des nœuds de la numération romaine</a></h3>
+<h3><a name='calfr∆nodes'><tt>calfr∆nodes</tt> - Construction des nœuds de la numération romaine</a></h3>
 <p>
 Le terme «&nbsp;nœuds&nbsp;» provient de <cite>Histoire comparée des numérations écrites</cite>
 par Geneviève Guitel et je l'ai traduit en «&nbsp;nodes&nbsp;». Dans une numération de base <var>b</var>, un nœud est un nombre
@@ -795,17 +795,17 @@ longueur de 4.
 </p>
 
 <pre>
-∇ R ← nodes CH
+∇ R ← calfr∆nodes CH
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 </pre>
-<h3><a name='feasts'><tt>feasts</tt> - Fêtes du calendrier républicain</a></h3>
+<h3><a name='calfr∆feasts'><tt>calfr∆feasts</tt> - Fêtes du calendrier républicain</a></h3>
 <p>
 Cette fonction énumère les fêtes des 366 jours du calendier républicain.
 </p>
 
 <pre>
-∇ R ← feasts; V
+∇ R ← calfr∆feasts; V
 ⍝ include here the contents of feasts
 ∇
 </pre>
@@ -814,7 +814,7 @@ Elle renvoie un tableau de 366 lignes de 21 caractères, une ligne par jour.
 </p>
 
 <pre>
-      4 21↑feasts
+      4 21↑calfr∆feasts
 du Raisin            
 du Safran            
 de la Châtaigne      
@@ -822,7 +822,7 @@ de la Colchique
 </pre>
 
 <h2><a name='Tests internes'>Tests internes</a></h2>
-<h3><a name='testdata'><tt>testdata</tt> - Données pour les tests</a></h3>
+<h3><a name='calfr∆testdata'><tt>calfr∆testdata</tt> - Données pour les tests</a></h3>
 <p>
 Cette fonction renvoie un tableau de <var>n</var> lignes et 7 colonnes,
 contenant les données pour tester les fonctions de conversion.
@@ -832,7 +832,7 @@ Exemple&nbsp;:
 </p>
 
 <pre>
-      2 7↑testdata
+      2 7↑calfr∆testdata
 1792  9 22 1  1  1 654415
 1793 10 23 2  2  2 654811
 </pre>
@@ -851,32 +851,32 @@ Et un utilitaire (en Perl) est fourni dans le présent projet pour insérer les 
 </p>
 
 <pre>
-∇ R ← testdata; V; L
+∇ R ← calfr∆testdata; V; L
 ⍝ include here the contents of testapl
 L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
 </pre>
-<h3><a name='teststring'><tt>teststring</tt> - Données alphanumériques de tests</a></h3>
+<h3><a name='calfr∆teststring'><tt>calfr∆teststring</tt> - Données alphanumériques de tests</a></h3>
 <p>
-Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
+Cette fonction donne pour chaque ligne de <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>
 le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
 Par exemple&nbsp;:
 </p>
 
 <pre>
-      2 52↑teststring
+      2 52↑calfr∆teststring
 Primidi 1 Vendémiaire I, jour du Raisin             
 Duodi 2 Brumaire II, jour du Céleri                 
 </pre>
 
 <p>
 L'origine des données et l'utilitaire pour les insérer dans le script
-sont les mêmes que pour <a href='#testdata'><tt>testdata</tt></a>.
+sont les mêmes que pour <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>.
 </p>
 
 <pre>
-∇ R ← teststring; V; L
+∇ R ← calfr∆teststring; V; L
 V ← ''
 ⍝ include here the contents of testapl1
 ∇
@@ -909,8 +909,8 @@ Chaque test élémentaire tombant en erreur affiche un message. Si tous les test
 <pre>
 ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← <a href='#testdata' class='call'>testdata</a>[;7]
-PARAM ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+EXPEC ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;7]
+PARAM ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;4 5 6]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1009,8 +1009,8 @@ R ← 1
 <pre>
 ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← <a href='#testdata' class='call'>testdata</a>[;7]
-PARAM ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+EXPEC ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;7]
+PARAM ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;1 2 3]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1092,8 +1092,8 @@ R ← 1
 <pre>
 ∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
-PARAM ← <a href='#testdata' class='call'>testdata</a>[;7]
+EXPEC ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;4 5 6]
+PARAM ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;7]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1180,8 +1180,8 @@ R ← 1
 <pre>
 ∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
-PARAM ← <a href='#testdata' class='call'>testdata</a>[;7]
+EXPEC ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;1 2 3]
+PARAM ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;7]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1267,8 +1267,8 @@ R ← 1
 <pre>
 ∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
-PARAM ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
+EXPEC ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;4 5 6]
+PARAM ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;1 2 3]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1355,8 +1355,8 @@ R ← 1
 <pre>
 ∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← <a href='#testdata' class='call'>testdata</a>[;1 2 3]
-PARAM ← <a href='#testdata' class='call'>testdata</a>[;4 5 6]
+EXPEC ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;1 2 3]
+PARAM ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[;4 5 6]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1447,8 +1447,8 @@ LOOPIO:
 IO ← IO - 1
 'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
 ⎕IO ← 1
-TD ← <a href='#testdata' class='call'>testdata</a>[; 4 5 6 ]
-TS ← <a href='#teststring' class='call'>teststring</a>
+TD ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[; 4 5 6 ]
+TS ← <a href='#calfr∆teststring' class='call'>calfr∆teststring</a>
 I ← 0
 N ← 0
 IMAX ← (⍴ TS)[1]

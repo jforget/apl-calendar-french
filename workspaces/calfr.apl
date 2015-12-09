@@ -26,25 +26,25 @@
 ' Inc., <http://www.fsf.org/>.'
 ∇
 
-∇ R ← year D
+∇ R ← calfr∆year D
 R ← D +.× 1 0 0
 ∇
 
-∇ R ← month D
+∇ R ← calfr∆month D
 R ← D +.× 0 1 0
 ∇
 
-∇ R ← day D
+∇ R ← calfr∆day D
 R ← D +.× 0 0 1
 ∇
 
-∇ R ← zerojanvnd Y
+∇ R ← calfr∆zerojanvnd Y
 R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
 ∇
 
 ∇ R ← fr2rd DATE
-R ← 654019 + (calfr∆frbis year DATE) + DATE +.× 365 30 1
+R ← 654019 + (calfr∆frbis calfr∆year DATE) + DATE +.× 365 30 1
 ∇
 
 ∇ R ← calfr∆frbis YEAR
@@ -55,8 +55,8 @@ R ← R + YEAR ∈ 3 7 11 15
 
 ∇ R ← gr2rd DATE; DIM
 DIM ← ⍴ DATE
-DATE←(DIM ⍴0 1 0) + DATE + (2≥month DATE) ∘.× ¯1 12 0
-R ← ¯428 + (-/ ⌊ (year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
+DATE←(DIM ⍴0 1 0) + DATE + (2≥calfr∆month DATE) ∘.× ¯1 12 0
+R ← ¯428 + (-/ ⌊ (calfr∆year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
 
 ∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
@@ -66,7 +66,7 @@ YH ← ⌈ N1 ÷ 365.24
 YL ← ⌈ N1 ÷ 365.34
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
-DR ← zerojanvnd YR
+DR ← calfr∆zerojanvnd YR
 NR ← fr2rd DR
 CM ← NR < N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
@@ -82,7 +82,7 @@ YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
-DR ← zerojanvnd YR
+DR ← calfr∆zerojanvnd YR
 NR ← gr2rd DR
 CM ← NR < N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
@@ -108,9 +108,9 @@ R ← rd2gr fr2rd D
 ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-R ← DAY[1 + 10 | day D;]
+R ← DAY[1 + 10 | calfr∆day D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕ day D), ' ', (MONTH[month D;]), ' ', (roman year D), ', jour ', feasts[¯30 + D +.× 0 30 1;]
+R ← R, ' ', (⍕ calfr∆day D), ' ', (MONTH[calfr∆month D;]), ' ', (roman calfr∆year D), ', jour ', calfr∆feasts[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
 R ← (⌽∨\⌽R≠' ')/R
@@ -121,16 +121,16 @@ R ← (⌽∨\⌽R≠' ')/R
 R ← ⍕ N
 → 0
 CONV:
-NODES ← 40 4 ⍴ (nodes 'IVX'), (nodes 'XLC'), (nodes 'CDM'), nodes 'M??'
+NODES ← 40 4 ⍴ (calfr∆nodes 'IVX'), (calfr∆nodes 'XLC'), (calfr∆nodes 'CDM'), calfr∆nodes 'M??'
 R ← ,NODES[⎕IO + 30 20 10 0 + 10 10 10 10 ⊤ N;]
 R ← (R≠' ')/R
 ∇
 
-∇ R ← nodes CH
+∇ R ← calfr∆nodes CH
 R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
 ∇
 
-∇ R ← feasts; V
+∇ R ← calfr∆feasts; V
 ⍝ include here the contents of feasts
 V ← ''
 ⍝ Vendémiaire
@@ -515,7 +515,7 @@ V ← V, 'de la Révolution     '
 R ← 366 21 ⍴ V
 ∇
 
-∇ R ← testdata; V; L
+∇ R ← calfr∆testdata; V; L
 ⍝ include here the contents of testapl
 V ← ⍳0
 V ← V, 1792  9 22    1  1  1  654415
@@ -601,7 +601,7 @@ L ← (⍴ V) ÷ 7
 R ← (L, 7) ⍴ V
 ∇
 
-∇ R ← teststring; V; L
+∇ R ← calfr∆teststring; V; L
 V ← ''
 ⍝ include here the contents of testapl1
 V ← V, 'Primidi 1 Vendémiaire I, jour du Raisin             '
@@ -698,8 +698,8 @@ testprtfr
 
 ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← testdata[;7]
-PARAM ← testdata[;4 5 6]
+EXPEC ← calfr∆testdata[;7]
+PARAM ← calfr∆testdata[;4 5 6]
 OK ← 1
 IO ← 2
 LOOP:
@@ -776,8 +776,8 @@ R ← 1
 
 ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← testdata[;7]
-PARAM ← testdata[;1 2 3]
+EXPEC ← calfr∆testdata[;7]
+PARAM ← calfr∆testdata[;1 2 3]
 OK ← 1
 IO ← 2
 LOOP:
@@ -853,8 +853,8 @@ R ← 1
 
 ∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← testdata[;4 5 6]
-PARAM ← testdata[;7]
+EXPEC ← calfr∆testdata[;4 5 6]
+PARAM ← calfr∆testdata[;7]
 OK ← 1
 IO ← 2
 LOOP:
@@ -935,8 +935,8 @@ R ← 1
 
 ∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← testdata[;1 2 3]
-PARAM ← testdata[;7]
+EXPEC ← calfr∆testdata[;1 2 3]
+PARAM ← calfr∆testdata[;7]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1016,8 +1016,8 @@ R ← 1
 
 ∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← testdata[;4 5 6]
-PARAM ← testdata[;1 2 3]
+EXPEC ← calfr∆testdata[;4 5 6]
+PARAM ← calfr∆testdata[;1 2 3]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1098,8 +1098,8 @@ R ← 1
 
 ∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
-EXPEC ← testdata[;1 2 3]
-PARAM ← testdata[;4 5 6]
+EXPEC ← calfr∆testdata[;1 2 3]
+PARAM ← calfr∆testdata[;4 5 6]
 OK ← 1
 IO ← 2
 LOOP:
@@ -1184,8 +1184,8 @@ LOOPIO:
 IO ← IO - 1
 'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
 ⎕IO ← 1
-TD ← testdata[; 4 5 6 ]
-TS ← teststring
+TD ← calfr∆testdata[; 4 5 6 ]
+TS ← calfr∆teststring
 I ← 0
 N ← 0
 IMAX ← (⍴ TS)[1]

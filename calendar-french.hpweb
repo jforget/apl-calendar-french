@@ -335,28 +335,28 @@ calendar-french.apl-1: apl
     which in turn does not work with date arrays, for which you write
     <tt>DATEARRAY[;;1]</tt> and <tt>DATEARRAY[;;3]</tt>.
     There are several ways to use the same functions for all. The simplest way is as follows:
-- section: year
+- section: calfr∆year
   calendar-french.apl-1: 2
   level: 4
 - code: |
-    ∇ R ← year D
+    ∇ R ← calfr∆year D
     R ← D +.× 1 0 0
     ∇
-- section: month
+- section: calfr∆month
   calendar-french.apl-1: 3
   level: 4
 - code: |
-    ∇ R ← month D
+    ∇ R ← calfr∆month D
     R ← D +.× 0 1 0
     ∇
-- section: day
+- section: calfr∆day
   calendar-french.apl-1: 4
   level: 4
 - code: |
-    ∇ R ← day D
+    ∇ R ← calfr∆day D
     R ← D +.× 0 0 1
     ∇
-- section: zerojanvnd
+- section: calfr∆zerojanvnd
   fr: Notion de «&nbsp;jour zéro&nbsp;»
   en: Concept of "zeroth day"
   calendar-french.apl-1: 10
@@ -382,7 +382,7 @@ calendar-french.apl-1: apl
 - en: |
     Here is a function which builds a 0th January or a 0th Vendémiaire for a given year:
 - code: |
-    ∇ R ← zerojanvnd Y
+    ∇ R ← calfr∆zerojanvnd Y
     R ← Y ∘.× 1 0 0
     R ← R + (⍴R) ⍴ 0 1 0
     ∇
@@ -436,7 +436,7 @@ calendar-french.apl-1: apl
     </ul>
 - code: |
     ∇ R ← fr2rd DATE
-    R ← 654019 + (@calfr∆frbis@ @year@ DATE) + DATE +.× 365 30 1
+    R ← 654019 + (@calfr∆frbis@ @calfr∆year@ DATE) + DATE +.× 365 30 1
     ∇
 - section: calfr∆frbis
   fr: Nombre d'années bissextiles avant l'année N (calendrier républicain)
@@ -624,8 +624,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ R ← gr2rd DATE; DIM
     DIM ← ⍴ DATE
-    DATE←(DIM ⍴0 1 0) + DATE + (2≥@month@ DATE) ∘.× ¯1 12 0
-    R ← ¯428 + (-/ ⌊ (@year@ DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
+    DATE←(DIM ⍴0 1 0) + DATE + (2≥@calfr∆month@ DATE) ∘.× ¯1 12 0
+    R ← ¯428 + (-/ ⌊ (@calfr∆year@ DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
     ∇
 - section: rd2fr
   fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain 
@@ -728,7 +728,7 @@ calendar-french.apl-1: apl
     YL ← ⌈ N1 ÷ 365.34
     YI ← 0 , ⍳ ⌈/,YH-YL
     YR ← YL ∘.+ YI
-    DR ← @zerojanvnd@ YR
+    DR ← @calfr∆zerojanvnd@ YR
     NR ← @fr2rd@ DR
     CM ← NR < N ∘.+ (⍴YI)⍴0
     Y ← ⌈/YR×CM
@@ -876,7 +876,7 @@ calendar-french.apl-1: apl
     YL ← ⌈ N ÷ 365.25
     YI ← 0 , ⍳ ⌈/,YH-YL
     YR ← YL ∘.+ YI
-    DR ← @zerojanvnd@ YR
+    DR ← @calfr∆zerojanvnd@ YR
     NR ← @gr2rd@ DR
     CM ← NR < N ∘.+ (⍴YI)⍴0
     Y ← ⌈/YR×CM
@@ -943,9 +943,9 @@ calendar-french.apl-1: apl
     ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
     ⎕IO ← 1
     DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
-    R ← DAY[1 + 10 | @day@ D;]
+    R ← DAY[1 + 10 | @calfr∆day@ D;]
     MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-    R ← R, ' ', (⍕ @day@ D), ' ', (MONTH[@month@ D;]), ' ', (@roman@ @year@ D), ', jour ', @feasts@[¯30 + D +.× 0 30 1;]
+    R ← R, ' ', (⍕ @calfr∆day@ D), ' ', (MONTH[@calfr∆month@ D;]), ' ', (@roman@ @calfr∆year@ D), ', jour ', @calfr∆feasts@[¯30 + D +.× 0 30 1;]
     CM ← ' ' ≠ R
     R ← (CM ∨ 0,¯1↓CM) / R
     R ← (⌽∨\⌽R≠' ')/R
@@ -966,11 +966,11 @@ calendar-french.apl-1: apl
     R ← ⍕ N
     → 0
     CONV:
-    NODES ← 40 4 ⍴ (@nodes@ 'IVX'), (@nodes@ 'XLC'), (@nodes@ 'CDM'), @nodes@ 'M??'
+    NODES ← 40 4 ⍴ (@calfr∆nodes@ 'IVX'), (@calfr∆nodes@ 'XLC'), (@calfr∆nodes@ 'CDM'), @calfr∆nodes@ 'M??'
     R ← ,NODES[⎕IO + 30 20 10 0 + 10 10 10 10 ⊤ N;]
     R ← (R≠' ')/R
     ∇
-- section: nodes
+- section: calfr∆nodes
   level: 3
   fr: Construction des nœuds de la numération romaine
   en: Building the nodes of Roman numerals
@@ -990,10 +990,10 @@ calendar-french.apl-1: apl
     This function provides a step to build a string which contains 10 substrings, each one being a radix-10 node, 
     written with Roman numerals. Each node is filled with spaces to reach a common length of 4 chars.
 - code: |
-    ∇ R ← nodes CH
+    ∇ R ← calfr∆nodes CH
     R ← (' ', CH) [ ' IVX' ⍳ '    I   II  III IV  V   VI  VII VIIIIX  ' ]
     ∇
-- section: feasts
+- section: calfr∆feasts
   level: 3
   fr: Fêtes du calendrier républicain
   en: Feasts of the French Revolutionary calendar
@@ -1003,7 +1003,7 @@ calendar-french.apl-1: apl
 - en: |
     This function lists all 366 feasts for all days in a French Revolutionary calendar year.
 - code: |
-    ∇ R ← feasts; V
+    ∇ R ← calfr∆feasts; V
     ⍝ include here the contents of feasts
     ∇
 - fr: |
@@ -1013,7 +1013,7 @@ calendar-french.apl-1: apl
 -
   'fr,en': |
     <pre>
-          4 21↑feasts
+          4 21↑calfr∆feasts
     du Raisin            
     du Safran            
     de la Châtaigne      
@@ -1023,7 +1023,7 @@ calendar-french.apl-1: apl
 - section: 0
   fr: Tests internes
   en: Built-in Tests
-- section: testdata
+- section: calfr∆testdata
   level: 3
   fr: Données pour les tests
   en: Test Data
@@ -1043,7 +1043,7 @@ calendar-french.apl-1: apl
 -
   'fr,en': |
     <pre>
-          2 7↑testdata
+          2 7↑calfr∆testdata
     1792  9 22 1  1  1 654415
     1793 10 23 2  2  2 654811
     </pre>
@@ -1069,40 +1069,40 @@ calendar-french.apl-1: apl
     And a utility script (in Perl) in this project inserts the contents of <tt>testapl</tt>
     in the final script.
 - code: |
-    ∇ R ← testdata; V; L
+    ∇ R ← calfr∆testdata; V; L
     ⍝ include here the contents of testapl
     L ← (⍴ V) ÷ 7
     R ← (L, 7) ⍴ V
     ∇
-- section: teststring
+- section: calfr∆teststring
   fr: Données alphanumériques de tests
   en: Test alphanumeric data
   calendar-french.apl-1: 31
   level: 3
 
 - fr: |
-    Cette fonction donne pour chaque ligne de <a href='#testdata'><tt>testdata</tt></a>
+    Cette fonction donne pour chaque ligne de <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>
     le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
     Par exemple&nbsp;:
 - en: |
     This function gives the expected <a href='#prtfr'><tt>prtfr</tt></a> result for each
-    corresponding line ot <a href='#testdata'><tt>testdata</tt></a>.
+    corresponding line ot <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>.
     For example
 -
   'fr,en': |
     <pre>
-          2 52↑teststring
+          2 52↑calfr∆teststring
     Primidi 1 Vendémiaire I, jour du Raisin             
     Duodi 2 Brumaire II, jour du Céleri                 
     </pre>
 - fr: |
     L'origine des données et l'utilitaire pour les insérer dans le script
-    sont les mêmes que pour <a href='#testdata'><tt>testdata</tt></a>.
+    sont les mêmes que pour <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>.
 - en: |
     The strings are produced and inserted into the final code in the
-    same fashion as <a href='#testdata'><tt>testdata</tt></a>.
+    same fashion as <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>.
 - code: |
-    ∇ R ← teststring; V; L
+    ∇ R ← calfr∆teststring; V; L
     V ← ''
     ⍝ include here the contents of testapl1
     ∇
@@ -1144,8 +1144,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
-    EXPEC ← @testdata@[;7]
-    PARAM ← @testdata@[;4 5 6]
+    EXPEC ← @calfr∆testdata@[;7]
+    PARAM ← @calfr∆testdata@[;4 5 6]
     OK ← 1
     IO ← 2
     LOOP:
@@ -1256,8 +1256,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
-    EXPEC ← @testdata@[;7]
-    PARAM ← @testdata@[;1 2 3]
+    EXPEC ← @calfr∆testdata@[;7]
+    PARAM ← @calfr∆testdata@[;1 2 3]
     OK ← 1
     IO ← 2
     LOOP:
@@ -1342,8 +1342,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
-    EXPEC ← @testdata@[;4 5 6]
-    PARAM ← @testdata@[;7]
+    EXPEC ← @calfr∆testdata@[;4 5 6]
+    PARAM ← @calfr∆testdata@[;7]
     OK ← 1
     IO ← 2
     LOOP:
@@ -1433,8 +1433,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
-    EXPEC ← @testdata@[;1 2 3]
-    PARAM ← @testdata@[;7]
+    EXPEC ← @calfr∆testdata@[;1 2 3]
+    PARAM ← @calfr∆testdata@[;7]
     OK ← 1
     IO ← 2
     LOOP:
@@ -1524,8 +1524,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
-    EXPEC ← @testdata@[;4 5 6]
-    PARAM ← @testdata@[;1 2 3]
+    EXPEC ← @calfr∆testdata@[;4 5 6]
+    PARAM ← @calfr∆testdata@[;1 2 3]
     OK ← 1
     IO ← 2
     LOOP:
@@ -1615,8 +1615,8 @@ calendar-french.apl-1: apl
 - code: |
     ∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
     ⎕IO ← 1
-    EXPEC ← @testdata@[;1 2 3]
-    PARAM ← @testdata@[;4 5 6]
+    EXPEC ← @calfr∆testdata@[;1 2 3]
+    PARAM ← @calfr∆testdata@[;4 5 6]
     OK ← 1
     IO ← 2
     LOOP:
@@ -1710,8 +1710,8 @@ calendar-french.apl-1: apl
     IO ← IO - 1
     'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
     ⎕IO ← 1
-    TD ← @testdata@[; 4 5 6 ]
-    TS ← @teststring@
+    TD ← @calfr∆testdata@[; 4 5 6 ]
+    TS ← @calfr∆teststring@
     I ← 0
     N ← 0
     IMAX ← (⍴ TS)[1]
