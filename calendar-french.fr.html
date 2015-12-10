@@ -23,17 +23,17 @@
 <br /><a href='#calfr∆month'><tt>calfr∆month</tt></a>
 <br /><a href='#calfr∆day'><tt>calfr∆day</tt></a>
 <br /><a href='#calfr∆zerojanvnd'><tt>calfr∆zerojanvnd</tt> - Notion de «&nbsp;jour zéro&nbsp;»</a>
-<br /><a href='#fr2rd'><tt>fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a>
+<br /><a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a>
 <br /><a href='#calfr∆frbis'><tt>calfr∆frbis</tt> - Nombre d'années bissextiles avant l'année N (calendrier républicain)</a>
-<br /><a href='#gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
-<br /><a href='#rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
-<br /><a href='#rd2gr'><tt>rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a>
+<br /><a href='#calfr∆gr2rd'><tt>calfr∆gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a>
+<br /><a href='#calfr∆rd2fr'><tt>calfr∆rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a>
+<br /><a href='#calfr∆rd2gr'><tt>calfr∆rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a>
 <br /><a href='#Les fonctions de conversion'>Les fonctions de conversion</a>
-<br /><a href='#gr2fr'><tt>gr2fr</tt> - Conversion du calendrier grégorien vers le calendrier républicain</a>
-<br /><a href='#fr2gr'><tt>fr2gr</tt> - Conversion du calendrier républicain vers le calendrier grégorien</a>
+<br /><a href='#calfr∆gr2fr'><tt>calfr∆gr2fr</tt> - Conversion du calendrier grégorien vers le calendrier républicain</a>
+<br /><a href='#calfr∆fr2gr'><tt>calfr∆fr2gr</tt> - Conversion du calendrier républicain vers le calendrier grégorien</a>
 <br /><a href='#Affichage des dates'>Affichage des dates</a>
-<br /><a href='#prtfr'><tt>prtfr</tt> - Affichage d'une date du calendrier républicain</a>
-<br /><a href='#roman'><tt>roman</tt> - Conversion d'un nombre en chiffres romains</a>
+<br /><a href='#calfr∆prtfr'><tt>calfr∆prtfr</tt> - Affichage d'une date du calendrier républicain</a>
+<br /><a href='#calfr∆roman'><tt>calfr∆roman</tt> - Conversion d'un nombre en chiffres romains</a>
 <br /><a href='#calfr∆nodes'><tt>calfr∆nodes</tt> - Construction des nœuds de la numération romaine</a>
 <br /><a href='#calfr∆feasts'><tt>calfr∆feasts</tt> - Fêtes du calendrier républicain</a>
 <br /><a href='#Tests internes'>Tests internes</a>
@@ -192,7 +192,7 @@ demander la conversion du 13 Vendémiaire IV ainsi&nbsp;:
 </p>
 
 <pre>
-     fr2gr 4 1 13
+     calfr∆fr2gr 4 1 13
 1795 10 5
 </pre>
 <p>
@@ -202,18 +202,18 @@ ce qui veut dire que le 13 Vendémiaire IV correspond au
 </p>
 
 <pre>
-     gr2fr 1794 7 27
+     calfr∆gr2fr 1794 7 27
 2 11 9
 </pre>
 <p>
 ce qui signifie 9 Thermidor II. Pour avoir la date
-sous forme plus agréable, utilisez <tt>prtfr</tt>&nbsp;:
+sous forme plus agréable, utilisez <tt>calfr∆prtfr</tt>&nbsp;:
 </p>
 
 <pre>
-     prtfr 2 11 9
+     calfr∆prtfr 2 11 9
 Nonidi 9 Thermidor II, jour de la Mûre
-     prtfr gr2fr 1794 7 27
+     calfr∆prtfr calfr∆gr2fr 1794 7 27
 Nonidi 9 Thermidor II, jour de la Mûre
 </pre>
 <p>
@@ -221,7 +221,7 @@ Et pour avoir la date du jour
 </p>
 
 <pre>
-     prtfr gr2fr 3↑⎕TS
+     calfr∆prtfr calfr∆gr2fr 3↑⎕TS
 </pre>
 <p>
 Si vous voulez calculer le nombre de jours entre deux
@@ -232,7 +232,7 @@ de l'oncle (18 Brumaire VIII). Il suffit de taper&nbsp;:
 </p>
 
 <pre>
-     (gr2rd 1851 12 2) - fr2rd 8 2 18
+     (calfr∆gr2rd 1851 12 2) - calfr∆fr2rd 8 2 18
 19015
 </pre>
 <h3><a name='Ordres supérieurs'>Ordres supérieurs</a></h3>
@@ -267,7 +267,7 @@ sera représenté par&nbsp;:
 De la même manière, un tableau <tt>4 5</tt> de dates sera représenté
 par un bloc <tt>4 5 3</tt> de nombres, un bloc <tt>2 2 6</tt> de dates
 sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
-de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
+de suite. Les fonctions <tt>calfr∆gr2fr</tt> et <tt>calfr∆fr2gr</tt> sont compatibles
 avec toutes ces structures, sauf lorsque l'on arrive au voisinage du rang maximal.
 Par exemple, sur cette implémentation d'APL le rang maximal est 8, donc les fonctions commencent
 à provoquer des erreurs avec une structure de rang 7.</p>
@@ -277,7 +277,7 @@ Ainsi, la conversion du vecteur ci-dessus se fait par&nbsp;:
 </p>
 
 <pre>
-     gr2fr DATEVEC 
+     calfr∆gr2fr DATEVEC 
   2  5  2
   4  1 13
   8  2 18
@@ -285,7 +285,7 @@ Ainsi, la conversion du vecteur ci-dessus se fait par&nbsp;:
 223  7 11
 </pre>
 <p>
-Par contre, la fonction <tt>prtfr</tt> n'est pas compatible avec les vecteurs
+Par contre, la fonction <tt>calfr∆prtfr</tt> n'est pas compatible avec les vecteurs
 de dates ou les tableaux de dates. Elle accepte seulement les dates scalaires.
 </p>
 
@@ -350,7 +350,7 @@ R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
 ∇
 </pre>
-<h3><a name='fr2rd'><tt>fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a></h3>
+<h3><a name='calfr∆fr2rd'><tt>calfr∆fr2rd</tt> - Conversion du calendrier républicain vers <i lang='la'>Rata Die</i></a></h3>
 <p>
 Commençons par calculer le <i lang='la'>Rata Die</i> d'une date du calendrier républicain.
 Il faut ajouter les termes suivants&nbsp;:</p>
@@ -376,7 +376,7 @@ En fait, on rassemble toutes les constantes additives en une seule, ce qui donne
 </ul>
 
 <pre>
-∇ R ← fr2rd DATE
+∇ R ← calfr∆fr2rd DATE
 R ← 654019 + (<a href='#calfr∆frbis' class='call'>calfr∆frbis</a> <a href='#calfr∆year' class='call'>calfr∆year</a> DATE) + DATE +.× 365 30 1
 ∇
 </pre>
@@ -460,7 +460,7 @@ R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15
 ∇
 </pre>
-<h3><a name='gr2rd'><tt>gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a></h3>
+<h3><a name='calfr∆gr2rd'><tt>calfr∆gr2rd</tt> - Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i></a></h3>
 <p>
 Malgré les critères pour les années bissextiles, la conversion du calendrier
 républicain vers le <i lang='la'>Rata Die</i> est simple, comparée avec
@@ -511,13 +511,13 @@ Voici donc la fonction&nbsp;:
 </p>
 
 <pre>
-∇ R ← gr2rd DATE; DIM
+∇ R ← calfr∆gr2rd DATE; DIM
 DIM ← ⍴ DATE
 DATE←(DIM ⍴0 1 0) + DATE + (2≥<a href='#calfr∆month' class='call'>calfr∆month</a> DATE) ∘.× ¯1 12 0
 R ← ¯428 + (-/ ⌊ (<a href='#calfr∆year' class='call'>calfr∆year</a> DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
 </pre>
-<h3><a name='rd2fr'><tt>rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a></h3>
+<h3><a name='calfr∆rd2fr'><tt>calfr∆rd2fr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain</a></h3>
 <p>
 Principe&nbsp;: en partant de la valeur <i lang='la'>Rata Die</i>, la fonction évalue
 une fourchette pour l'année, qui peut donc s'étaler de <tt>YL</tt> à <tt>YH</tt>.
@@ -538,7 +538,7 @@ correspondant au zéro Vendémiaire de chaque année, ce qui donnerait&nbsp;:
 </pre>
 
 <p>
-La fonction <a href='#fr2rd'><tt>fr2rd</tt></a> convertit cela en <i lang='la'>Rata Die</i>
+La fonction <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> convertit cela en <i lang='la'>Rata Die</i>
 </p>
 
 <pre>
@@ -583,7 +583,7 @@ pour conserver la rectangularité de la variable <tt>YR</tt>.
 </p>
 
 <pre>
-∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+∇ R ← calfr∆rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
 ⎕IO ← 1
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
@@ -591,7 +591,7 @@ YL ← ⌈ N1 ÷ 365.34
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
 DR ← <a href='#calfr∆zerojanvnd' class='call'>calfr∆zerojanvnd</a> YR
-NR ← <a href='#fr2rd' class='call'>fr2rd</a> DR
+NR ← <a href='#calfr∆fr2rd' class='call'>calfr∆fr2rd</a> DR
 CM ← NR &lt; N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
@@ -626,7 +626,7 @@ Mais par «&nbsp;contamination&nbsp;» de la dernière valeur, cette plage a ét
 <p>
 <pre>
       V←800505 800511 800879 2115019
-      rd2fr V
+      calfr∆rd2fr V
  400 12 30
  400 13  6
  402  1  3
@@ -680,13 +680,13 @@ Mais par «&nbsp;contamination&nbsp;» de la dernière valeur, cette plage a ét
 </pre>
 </p>
 
-<h3><a name='rd2gr'><tt>rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a></h3>
+<h3><a name='calfr∆rd2gr'><tt>calfr∆rd2gr</tt> - Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien</a></h3>
 <p>
 Pour cette fonction, il y a deux possibilités. La première consiste à
 convertir le <i lang='la'>Rata Die</i> en grégorien décalé, puis le
 grégorien décalé en grégorien. Ou alors, convertir directement en
 grégorien en utilisant deux fois le mécanisme de plage
-de valeurs possibles utilisé dans <a href='#rd2fr'>rd2fr</a>, une première
+de valeurs possibles utilisé dans <a href='#calfr∆rd2fr'>calfr∆rd2fr</a>, une première
 fois pour calculer l'année, la seconde fois pour calculer le mois.
 C'est cette deuxième possibilité que j'ai choisie.</p>
 
@@ -703,21 +703,21 @@ avait donné une plage à une seule valeur.
 </p>
 
 <pre>
-∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+∇ R ← calfr∆rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
 ⎕IO ← 1
 YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
 DR ← <a href='#calfr∆zerojanvnd' class='call'>calfr∆zerojanvnd</a> YR
-NR ← <a href='#gr2rd' class='call'>gr2rd</a> DR
+NR ← <a href='#calfr∆gr2rd' class='call'>calfr∆gr2rd</a> DR
 CM ← NR &lt; N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
 ML ← ⌈D÷31
 MR ← ML ∘.+ 0 1
 DR ← (Y ∘.× 2 3 ⍴ 1 0 0) + (MR ∘.× 0 1 0)
-NR ← <a href='#gr2rd' class='call'>gr2rd</a> DR
+NR ← <a href='#calfr∆gr2rd' class='call'>calfr∆gr2rd</a> DR
 CM ← NR &lt; N ∘.+ 0 0
 M ← ⌈/MR×CM
 D ← N - ⌈/NR×CM
@@ -725,29 +725,29 @@ R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
 </pre>
 <h2><a name='Les fonctions de conversion'>Les fonctions de conversion</a></h2>
-<h3><a name='gr2fr'><tt>gr2fr</tt> - Conversion du calendrier grégorien vers le calendrier républicain</a></h3>
+<h3><a name='calfr∆gr2fr'><tt>calfr∆gr2fr</tt> - Conversion du calendrier grégorien vers le calendrier républicain</a></h3>
 <p>
 Après tous ces calculs compliqués, la fonction de conversion est simplissime,
 un peu décevante.
 </p>
 
 <pre>
-∇ R ← gr2fr D
-R ← <a href='#rd2fr' class='call'>rd2fr</a> <a href='#gr2rd' class='call'>gr2rd</a> D
+∇ R ← calfr∆gr2fr D
+R ← <a href='#calfr∆rd2fr' class='call'>calfr∆rd2fr</a> <a href='#calfr∆gr2rd' class='call'>calfr∆gr2rd</a> D
 ∇
 </pre>
-<h3><a name='fr2gr'><tt>fr2gr</tt> - Conversion du calendrier républicain vers le calendrier grégorien</a></h3>
+<h3><a name='calfr∆fr2gr'><tt>calfr∆fr2gr</tt> - Conversion du calendrier républicain vers le calendrier grégorien</a></h3>
 <p>
 Idem pour l'autre fonction de conversion.
 </p>
 
 <pre>
-∇ R ← fr2gr D
-R ← <a href='#rd2gr' class='call'>rd2gr</a> <a href='#fr2rd' class='call'>fr2rd</a> D
+∇ R ← calfr∆fr2gr D
+R ← <a href='#calfr∆rd2gr' class='call'>calfr∆rd2gr</a> <a href='#calfr∆fr2rd' class='call'>calfr∆fr2rd</a> D
 ∇
 </pre>
 <h2><a name='Affichage des dates'>Affichage des dates</a></h2>
-<h3><a name='prtfr'><tt>prtfr</tt> - Affichage d'une date du calendrier républicain</a></h3>
+<h3><a name='calfr∆prtfr'><tt>calfr∆prtfr</tt> - Affichage d'une date du calendrier républicain</a></h3>
 <p>
 Rassembler les éléments de la date&nbsp;: nom du jour, numéro, nom du mois, etc,
 ne pose pas de problème. Ce qui en pose, c'est le fait que le résultat comporte
@@ -756,25 +756,25 @@ nécessaires.
 </p>
 
 <pre>
-∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
+∇ R ← calfr∆prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[1 + 10 | <a href='#calfr∆day' class='call'>calfr∆day</a> D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕ <a href='#calfr∆day' class='call'>calfr∆day</a> D), ' ', (MONTH[<a href='#calfr∆month' class='call'>calfr∆month</a> D;]), ' ', (<a href='#roman' class='call'>roman</a> <a href='#calfr∆year' class='call'>calfr∆year</a> D), ', jour ', <a href='#calfr∆feasts' class='call'>calfr∆feasts</a>[¯30 + D +.× 0 30 1;]
+R ← R, ' ', (⍕ <a href='#calfr∆day' class='call'>calfr∆day</a> D), ' ', (MONTH[<a href='#calfr∆month' class='call'>calfr∆month</a> D;]), ' ', (<a href='#calfr∆roman' class='call'>calfr∆roman</a> <a href='#calfr∆year' class='call'>calfr∆year</a> D), ', jour ', <a href='#calfr∆feasts' class='call'>calfr∆feasts</a>[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
 R ← (⌽∨\⌽R≠' ')/R
 ∇
 </pre>
-<h3><a name='roman'><tt>roman</tt> - Conversion d'un nombre en chiffres romains</a></h3>
+<h3><a name='calfr∆roman'><tt>calfr∆roman</tt> - Conversion d'un nombre en chiffres romains</a></h3>
 <p>
 Si le nombre dépasse 3999, il conserve son expression en chiffres indo-arabes.
 Idem s'il est négatif ou nul.
 </p>
 
 <pre>
-∇ R ← roman N; NODES
+∇ R ← calfr∆roman N; NODES
 → ((N&gt;0) ∧ N&lt;4000)/CONV
 R ← ⍕ N
 → 0
@@ -860,7 +860,7 @@ R ← (L, 7) ⍴ V
 <h3><a name='calfr∆teststring'><tt>calfr∆teststring</tt> - Données alphanumériques de tests</a></h3>
 <p>
 Cette fonction donne pour chaque ligne de <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>
-le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
+le résultat attendu de la fonction <a href='#calfr∆prtfr'><tt>calfr∆prtfr</tt></a>.
 Par exemple&nbsp;:
 </p>
 
@@ -895,7 +895,7 @@ V ← ''
 </pre>
 <h3><a name='testfr2rd'><tt>testfr2rd</tt></a></h3>
 <p>
-Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> avec une variété de
+Cette fonction teste <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> avec une variété de
 paramètres en entrée&nbsp;: deux dates scalaires, un vecteur de dates, un tableau
 de dates, jusqu'à une structure de dates de rang 7 (donc une structure d'entiers
 de rang 8). Les tests sont effectués une première fois avec <tt>⎕IO</tt>
@@ -925,12 +925,12 @@ OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 5 2 2 2
 OK ←OK ∧ <a href='#test1fr2rd' class='call'>test1fr2rd</a> 7 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking fr2rd : no errors'
+'Checking calfr∆fr2rd : no errors'
 ∇
 </pre>
 <h4><a name='test0fr2rd'><tt>test0fr2rd</tt></a></h4>
 <p>
-Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> pour une date scalaire.
+Cette fonction teste <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> pour une date scalaire.
 <tt>⎕IO</tt> est initialisé avec la variable globale <tt>IO</tt>, en fait
 une variable locale de la fonction appelante <a href='#testfr2rd'><tt>testfr2rd</tt></a>
 transmise globalement, comme c'est le cas pour <tt>PARAM</tt> (paramètres à utiliser
@@ -942,9 +942,9 @@ pour les fonctions) et <tt>EXPEC</tt> (résultat attendu ou <i lang='en'>expecte
 ⎕IO ← 1
 EXP ← EXPEC[N]
 PAR ← PARAM[N;]
-LIB  ← 'Checking fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← <a href='#fr2rd' class='call'>fr2rd</a> PAR
+GOT  ← <a href='#calfr∆fr2rd' class='call'>calfr∆fr2rd</a> PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -967,7 +967,7 @@ R ← 1
 </pre>
 <h4><a name='test1fr2rd'><tt>test1fr2rd</tt></a></h4>
 <p>
-Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> pour un vecteur de dates
+Cette fonction teste <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> pour un vecteur de dates
 ou une structure de rang supérieur.
 <tt>⎕IO</tt> est initialisé avec la variable globale <tt>IO</tt>, en fait
 une variable locale de la fonction appelante <a href='#testfr2rd'><tt>testfr2rd</tt></a>
@@ -976,10 +976,10 @@ transmise globalement.
 
 <pre>
 ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
-LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
 ⎕IO ← IO
-GOT  ← <a href='#fr2rd' class='call'>fr2rd</a> (DIM, 3) ⍴ PARAM
+GOT  ← <a href='#calfr∆fr2rd' class='call'>calfr∆fr2rd</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1025,7 +1025,7 @@ OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 5 2 2 2
 OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 7 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking gr2rd : no errors'
+'Checking calfr∆gr2rd : no errors'
 ∇
 </pre>
 <h4><a name='test0gr2rd'><tt>test0gr2rd</tt></a></h4>
@@ -1034,9 +1034,9 @@ OK ←OK ∧ <a href='#test1gr2rd' class='call'>test1gr2rd</a> 7 ⍴ 2 ⍝ check
 ⎕IO ← 1
 EXP ← EXPEC[N]
 PAR ← PARAM[N;]
-LIB  ← 'Checking gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← <a href='#gr2rd' class='call'>gr2rd</a> PAR
+GOT  ← <a href='#calfr∆gr2rd' class='call'>calfr∆gr2rd</a> PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1060,9 +1060,9 @@ R ← 1
 <h4><a name='test1gr2rd'><tt>test1gr2rd</tt></a></h4>
 <pre>
 ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
-LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
-GOT ← <a href='#gr2rd' class='call'>gr2rd</a> (DIM, 3) ⍴ PARAM
+GOT ← <a href='#calfr∆gr2rd' class='call'>calfr∆gr2rd</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1108,7 +1108,7 @@ OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 2 3 3
 OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking rd2fr : no errors'
+'Checking calfr∆rd2fr : no errors'
 ∇
 </pre>
 <h4><a name='test0rd2fr'><tt>test0rd2fr</tt></a></h4>
@@ -1117,9 +1117,9 @@ OK ←OK ∧ <a href='#test1rd2fr' class='call'>test1rd2fr</a> 6 ⍴ 2 ⍝ check
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N]
-LIB  ← 'Checking rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← <a href='#rd2fr' class='call'>rd2fr</a> PAR
+GOT  ← <a href='#calfr∆rd2fr' class='call'>calfr∆rd2fr</a> PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1148,9 +1148,9 @@ R ← 1
 <h4><a name='test1rd2fr'><tt>test1rd2fr</tt></a></h4>
 <pre>
 ∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
-LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← <a href='#rd2fr' class='call'>rd2fr</a> DIM ⍴ PARAM
+GOT ← <a href='#calfr∆rd2fr' class='call'>calfr∆rd2fr</a> DIM ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1195,7 +1195,7 @@ OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 15 3
 OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 2 3 3
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking rd2gr : no errors'
+'Checking calfr∆rd2gr : no errors'
 ∇
 </pre>
 <h4><a name='test0rd2gr'><tt>test0rd2gr</tt></a></h4>
@@ -1204,9 +1204,9 @@ OK ←OK ∧ <a href='#test1rd2gr' class='call'>test1rd2gr</a> 2 3 3
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N]
-LIB  ← 'Checking rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← <a href='#rd2gr' class='call'>rd2gr</a> PAR
+GOT  ← <a href='#calfr∆rd2gr' class='call'>calfr∆rd2gr</a> PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1235,9 +1235,9 @@ R ← 1
 <h4><a name='test1rd2gr'><tt>test1rd2gr</tt></a></h4>
 <pre>
 ∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
-LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← <a href='#rd2gr' class='call'>rd2gr</a> DIM ⍴ PARAM
+GOT ← <a href='#calfr∆rd2gr' class='call'>calfr∆rd2gr</a> DIM ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1283,7 +1283,7 @@ OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 2 3 3
 OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking gr2fr : no errors'
+'Checking calfr∆gr2fr : no errors'
 ∇
 </pre>
 <h4><a name='test0gr2fr'><tt>test0gr2fr</tt></a></h4>
@@ -1292,9 +1292,9 @@ OK ←OK ∧ <a href='#test1gr2fr' class='call'>test1gr2fr</a> 6 ⍴ 2 ⍝ check
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N;]
-LIB  ← 'Checking gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← <a href='#gr2fr' class='call'>gr2fr</a> PAR
+GOT  ← <a href='#calfr∆gr2fr' class='call'>calfr∆gr2fr</a> PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1323,9 +1323,9 @@ R ← 1
 <h4><a name='test1gr2fr'><tt>test1gr2fr</tt></a></h4>
 <pre>
 ∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
-LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← <a href='#gr2fr' class='call'>gr2fr</a> (DIM, 3) ⍴ PARAM
+GOT ← <a href='#calfr∆gr2fr' class='call'>calfr∆gr2fr</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1371,7 +1371,7 @@ OK ←OK ∧ <a href='#test1fr2gr' class='call'>test1fr2gr</a> 2 3 3
 OK ←OK ∧ <a href='#test1fr2gr' class='call'>test1fr2gr</a> 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking fr2gr : no errors'
+'Checking calfr∆fr2gr : no errors'
 ∇
 </pre>
 <h4><a name='test0fr2gr'><tt>test0fr2gr</tt></a></h4>
@@ -1380,9 +1380,9 @@ OK ←OK ∧ <a href='#test1fr2gr' class='call'>test1fr2gr</a> 6 ⍴ 2 ⍝ check
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N;]
-LIB  ← 'Checking fr2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆fr2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← <a href='#fr2gr' class='call'>fr2gr</a> PAR
+GOT  ← <a href='#calfr∆fr2gr' class='call'>calfr∆fr2gr</a> PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1413,7 +1413,7 @@ R ← 1
 ∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← <a href='#fr2gr' class='call'>fr2gr</a> (DIM, 3) ⍴ PARAM
+GOT ← <a href='#calfr∆fr2gr' class='call'>calfr∆fr2gr</a> (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1445,7 +1445,7 @@ R ← 1
 IO ← 2
 LOOPIO:
 IO ← IO - 1
-'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
+'Checking calfr∆prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
 ⎕IO ← 1
 TD ← <a href='#calfr∆testdata' class='call'>calfr∆testdata</a>[; 4 5 6 ]
 TS ← <a href='#calfr∆teststring' class='call'>calfr∆teststring</a>
@@ -1460,7 +1460,7 @@ PAR ← TD[I;]
 EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
 ⎕IO ← IO
-GOT ← <a href='#prtfr' class='call'>prtfr</a> PAR
+GOT ← <a href='#calfr∆prtfr' class='call'>calfr∆prtfr</a> PAR
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP

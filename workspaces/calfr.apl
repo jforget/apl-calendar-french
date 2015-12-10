@@ -43,7 +43,7 @@ R ← Y ∘.× 1 0 0
 R ← R + (⍴R) ⍴ 0 1 0
 ∇
 
-∇ R ← fr2rd DATE
+∇ R ← calfr∆fr2rd DATE
 R ← 654019 + (calfr∆frbis calfr∆year DATE) + DATE +.× 365 30 1
 ∇
 
@@ -53,13 +53,13 @@ R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
 R ← R + YEAR ∈ 3 7 11 15
 ∇
 
-∇ R ← gr2rd DATE; DIM
+∇ R ← calfr∆gr2rd DATE; DIM
 DIM ← ⍴ DATE
 DATE←(DIM ⍴0 1 0) + DATE + (2≥calfr∆month DATE) ∘.× ¯1 12 0
 R ← ¯428 + (-/ ⌊ (calfr∆year DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
 ∇
 
-∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+∇ R ← calfr∆rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
 ⎕IO ← 1
 N1 ← N - 654414
 YH ← ⌈ N1 ÷ 365.24
@@ -67,7 +67,7 @@ YL ← ⌈ N1 ÷ 365.34
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
 DR ← calfr∆zerojanvnd YR
-NR ← fr2rd DR
+NR ← calfr∆fr2rd DR
 CM ← NR < N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
@@ -76,47 +76,47 @@ D ← D - 30 × M - 1
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
 
-∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+∇ R ← calfr∆rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
 ⎕IO ← 1
 YH ← ⌈ N ÷ 365.24
 YL ← ⌈ N ÷ 365.25
 YI ← 0 , ⍳ ⌈/,YH-YL
 YR ← YL ∘.+ YI
 DR ← calfr∆zerojanvnd YR
-NR ← gr2rd DR
+NR ← calfr∆gr2rd DR
 CM ← NR < N ∘.+ (⍴YI)⍴0
 Y ← ⌈/YR×CM
 D ← N - ⌈/NR×CM
 ML ← ⌈D÷31
 MR ← ML ∘.+ 0 1
 DR ← (Y ∘.× 2 3 ⍴ 1 0 0) + (MR ∘.× 0 1 0)
-NR ← gr2rd DR
+NR ← calfr∆gr2rd DR
 CM ← NR < N ∘.+ 0 0
 M ← ⌈/MR×CM
 D ← N - ⌈/NR×CM
 R ← (Y ∘.× 1 0 0) + (M ∘.× 0 1 0) + D ∘.× 0 0 1
 ∇
 
-∇ R ← gr2fr D
-R ← rd2fr gr2rd D
+∇ R ← calfr∆gr2fr D
+R ← calfr∆rd2fr calfr∆gr2rd D
 ∇
 
-∇ R ← fr2gr D
-R ← rd2gr fr2rd D
+∇ R ← calfr∆fr2gr D
+R ← calfr∆rd2gr calfr∆fr2rd D
 ∇
 
-∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
+∇ R ← calfr∆prtfr D; DAY; MONTH; CM; ⎕IO
 ⎕IO ← 1
 DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
 R ← DAY[1 + 10 | calfr∆day D;]
 MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-R ← R, ' ', (⍕ calfr∆day D), ' ', (MONTH[calfr∆month D;]), ' ', (roman calfr∆year D), ', jour ', calfr∆feasts[¯30 + D +.× 0 30 1;]
+R ← R, ' ', (⍕ calfr∆day D), ' ', (MONTH[calfr∆month D;]), ' ', (calfr∆roman calfr∆year D), ', jour ', calfr∆feasts[¯30 + D +.× 0 30 1;]
 CM ← ' ' ≠ R
 R ← (CM ∨ 0,¯1↓CM) / R
 R ← (⌽∨\⌽R≠' ')/R
 ∇
 
-∇ R ← roman N; NODES
+∇ R ← calfr∆roman N; NODES
 → ((N>0) ∧ N<4000)/CONV
 R ← ⍕ N
 → 0
@@ -714,16 +714,16 @@ OK ←OK ∧ test1fr2rd 5 2 2 2
 OK ←OK ∧ test1fr2rd 7 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking fr2rd : no errors'
+'Checking calfr∆fr2rd : no errors'
 ∇
 
 ∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
 PAR ← PARAM[N;]
-LIB  ← 'Checking fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← fr2rd PAR
+GOT  ← calfr∆fr2rd PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -745,10 +745,10 @@ R ← 1
 ∇
 
 ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
-LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
 ⎕IO ← IO
-GOT  ← fr2rd (DIM, 3) ⍴ PARAM
+GOT  ← calfr∆fr2rd (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -792,16 +792,16 @@ OK ←OK ∧ test1gr2rd 5 2 2 2
 OK ←OK ∧ test1gr2rd 7 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking gr2rd : no errors'
+'Checking calfr∆gr2rd : no errors'
 ∇
 
 ∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
 PAR ← PARAM[N;]
-LIB  ← 'Checking gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← gr2rd PAR
+GOT  ← calfr∆gr2rd PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -823,9 +823,9 @@ R ← 1
 ∇
 
 ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
-LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
-GOT ← gr2rd (DIM, 3) ⍴ PARAM
+GOT ← calfr∆gr2rd (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -869,16 +869,16 @@ OK ←OK ∧ test1rd2fr 2 3 3
 OK ←OK ∧ test1rd2fr 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking rd2fr : no errors'
+'Checking calfr∆rd2fr : no errors'
 ∇
 
 ∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N]
-LIB  ← 'Checking rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← rd2fr PAR
+GOT  ← calfr∆rd2fr PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -905,9 +905,9 @@ R ← 1
 ∇
 
 ∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
-LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← rd2fr DIM ⍴ PARAM
+GOT ← calfr∆rd2fr DIM ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -950,16 +950,16 @@ OK ←OK ∧ test1rd2gr 15 3
 OK ←OK ∧ test1rd2gr 2 3 3
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking rd2gr : no errors'
+'Checking calfr∆rd2gr : no errors'
 ∇
 
 ∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N]
-LIB  ← 'Checking rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← rd2gr PAR
+GOT  ← calfr∆rd2gr PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -986,9 +986,9 @@ R ← 1
 ∇
 
 ∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
-LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← rd2gr DIM ⍴ PARAM
+GOT ← calfr∆rd2gr DIM ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1032,16 +1032,16 @@ OK ←OK ∧ test1gr2fr 2 3 3
 OK ←OK ∧ test1gr2fr 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking gr2fr : no errors'
+'Checking calfr∆gr2fr : no errors'
 ∇
 
 ∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N;]
-LIB  ← 'Checking gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← gr2fr PAR
+GOT  ← calfr∆gr2fr PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1068,9 +1068,9 @@ R ← 1
 ∇
 
 ∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
-LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← gr2fr (DIM, 3) ⍴ PARAM
+GOT ← calfr∆gr2fr (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1114,16 +1114,16 @@ OK ←OK ∧ test1fr2gr 2 3 3
 OK ←OK ∧ test1fr2gr 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
-'Checking fr2gr : no errors'
+'Checking calfr∆fr2gr : no errors'
 ∇
 
 ∇ R  ← test0fr2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N;]
-LIB  ← 'Checking fr2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+LIB  ← 'Checking calfr∆fr2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
 ⎕IO ← IO
-GOT  ← fr2gr PAR
+GOT  ← calfr∆fr2gr PAR
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1152,7 +1152,7 @@ R ← 1
 ∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
-GOT ← fr2gr (DIM, 3) ⍴ PARAM
+GOT ← calfr∆fr2gr (DIM, 3) ⍴ PARAM
 → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
 LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
 R ← 0
@@ -1182,7 +1182,7 @@ R ← 1
 IO ← 2
 LOOPIO:
 IO ← IO - 1
-'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
+'Checking calfr∆prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
 ⎕IO ← 1
 TD ← calfr∆testdata[; 4 5 6 ]
 TS ← calfr∆teststring
@@ -1197,7 +1197,7 @@ PAR ← TD[I;]
 EXP ← TS[I;]
 EXP ← (⌽∨\⌽EXP≠' ')/EXP
 ⎕IO ← IO
-GOT ← prtfr PAR
+GOT ← calfr∆prtfr PAR
 → ((⍴ EXP)  = ⍴ GOT)/NEXT
 'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
 'Expected: ', EXP

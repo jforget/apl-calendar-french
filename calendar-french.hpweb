@@ -181,7 +181,7 @@ calendar-french.apl-1: apl
     for example ask to convert 13 Vendémiaire IV in this way:
 - code: |
     .
-         fr2gr 4 1 13
+         calfr∆fr2gr 4 1 13
     1795 10 5
 - fr: |
     ce qui veut dire que le 13 Vendémiaire IV correspond au 
@@ -193,19 +193,19 @@ calendar-french.apl-1: apl
     27th July 1794 is:
 - code: |
     .
-         gr2fr 1794 7 27
+         calfr∆gr2fr 1794 7 27
     2 11 9
 - fr: |
     ce qui signifie 9 Thermidor II. Pour avoir la date
-    sous forme plus agréable, utilisez <tt>prtfr</tt>&nbsp;:
+    sous forme plus agréable, utilisez <tt>calfr∆prtfr</tt>&nbsp;:
 - en: |
     which means 9 Thermidor II. To display the date in
-    a more convenient way, use  <tt>prtfr</tt> in addition:
+    a more convenient way, use  <tt>calfr∆prtfr</tt> in addition:
 - code: |
     .
-         prtfr 2 11 9
+         calfr∆prtfr 2 11 9
     Nonidi 9 Thermidor II, jour de la Mûre
-         prtfr gr2fr 1794 7 27
+         calfr∆prtfr calfr∆gr2fr 1794 7 27
     Nonidi 9 Thermidor II, jour de la Mûre
 - fr: |
     Et pour avoir la date du jour
@@ -213,7 +213,7 @@ calendar-french.apl-1: apl
     And to get the current day
 - code: |
     .
-         prtfr gr2fr 3↑⎕TS
+         calfr∆prtfr calfr∆gr2fr 3↑⎕TS
 - fr: |
     Si vous voulez calculer le nombre de jours entre deux
     dates, utilisez le <i lang='la'>Rata Die</i>. Par
@@ -228,7 +228,7 @@ calendar-french.apl-1: apl
     (2nd December 1851), just type:
 - code: |
     .
-         (gr2rd 1851 12 2) - fr2rd 8 2 18
+         (calfr∆gr2rd 1851 12 2) - calfr∆fr2rd 8 2 18
     19015
 - section: 0
   level: 3
@@ -269,7 +269,7 @@ calendar-french.apl-1: apl
     De la même manière, un tableau <tt>4 5</tt> de dates sera représenté
     par un bloc <tt>4 5 3</tt> de nombres, un bloc <tt>2 2 6</tt> de dates
     sera représenté par un bloc <tt>2 2 6 3</tt> de nombres, et ainsi
-    de suite. Les fonctions <tt>gr2fr</tt> et <tt>fr2gr</tt> sont compatibles
+    de suite. Les fonctions <tt>calfr∆gr2fr</tt> et <tt>calfr∆fr2gr</tt> sont compatibles
     avec toutes ces structures, sauf lorsque l'on arrive au voisinage du rang maximal.
     Par exemple, sur cette implémentation d'APL le rang maximal est 8, donc les fonctions commencent
     à provoquer des erreurs avec une structure de rang 7.
@@ -278,26 +278,26 @@ calendar-french.apl-1: apl
 - en: |
     Likewise, a <tt>4 5</tt> array of dates will be entered as a <tt>4 5 3</tt>
     block of numbers, and a <tt>2 2 6</tt> block of dates will be entered
-    as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>gr2fr</tt>
-    and <tt>fr2gr</tt> functions can deal with these structures, except when
+    as a <tt>2 2 6 3</tt> block of numbers and so on. The <tt>calfr∆gr2fr</tt>
+    and <tt>calfr∆fr2gr</tt> functions can deal with these structures, except when
     using a rank nearly equal to the maximum allowed value. For example,
-    in this implementation APL is limited to rank 8, so the <tt>gr2fr</tt> and <tt>fr2gr</tt>
+    in this implementation APL is limited to rank 8, so the <tt>calfr∆gr2fr</tt> and <tt>calfr∆fr2gr</tt>
     functions are limited to rank 6.
 
     Continuing with the example above, converting the date vector is done with:
 - code: |
     .
-         gr2fr DATEVEC 
+         calfr∆gr2fr DATEVEC 
       2  5  2
       4  1 13
       8  2 18
      60  3 11
     223  7 11
 - fr: |
-    Par contre, la fonction <tt>prtfr</tt> n'est pas compatible avec les vecteurs
+    Par contre, la fonction <tt>calfr∆prtfr</tt> n'est pas compatible avec les vecteurs
     de dates ou les tableaux de dates. Elle accepte seulement les dates scalaires.
 - en: |
-    On the other hand, the <tt>prtfr</tt> function is not compatible with date vectors
+    On the other hand, the <tt>calfr∆prtfr</tt> function is not compatible with date vectors
     or date arrays. It works only with scalar dates.
 - fr: |
     Remarque&nbsp;: je sais que APL permet d'inclure des objets dans d'autres, avec
@@ -386,7 +386,7 @@ calendar-french.apl-1: apl
     R ← Y ∘.× 1 0 0
     R ← R + (⍴R) ⍴ 0 1 0
     ∇
-- section: fr2rd
+- section: calfr∆fr2rd
   fr: Conversion du calendrier républicain vers <i lang='la'>Rata Die</i>
   en: Converting from the French Revolutionary calendar to <i lang='la'>Rata Die</i>
   calendar-french.apl-1: 11
@@ -435,7 +435,7 @@ calendar-french.apl-1: apl
     <li>additive constant.</li>
     </ul>
 - code: |
-    ∇ R ← fr2rd DATE
+    ∇ R ← calfr∆fr2rd DATE
     R ← 654019 + (@calfr∆frbis@ @calfr∆year@ DATE) + DATE +.× 365 30 1
     ∇
 - section: calfr∆frbis
@@ -552,7 +552,7 @@ calendar-french.apl-1: apl
     R ← - / ⌊ YEAR ∘.÷ 4 100 400 4000
     R ← R + YEAR ∈ 3 7 11 15
     ∇
-- section: gr2rd
+- section: calfr∆gr2rd
   fr: Conversion du calendrier grégorien vers <i lang='la'>Rata Die</i>
   en: Converting from the Gregorian calendar to <i lang='la'>Rata Die</i>
   calendar-french.apl-1: 13
@@ -622,12 +622,12 @@ calendar-french.apl-1: apl
 - en: |
     So here is the function:
 - code: |
-    ∇ R ← gr2rd DATE; DIM
+    ∇ R ← calfr∆gr2rd DATE; DIM
     DIM ← ⍴ DATE
     DATE←(DIM ⍴0 1 0) + DATE + (2≥@calfr∆month@ DATE) ∘.× ¯1 12 0
     R ← ¯428 + (-/ ⌊ (@calfr∆year@ DATE) ∘.÷ 4 100 400) + ⌊DATE +.× 365 30.6 1
     ∇
-- section: rd2fr
+- section: calfr∆rd2fr
   fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier républicain 
   en: Converting from <i lang='la'>Rata Die</i> to the French Revolutionary calendar
   calendar-french.apl-1: 14
@@ -660,9 +660,9 @@ calendar-french.apl-1: apl
     53 1 0  
     </pre>
 - fr: |
-    La fonction <a href='#fr2rd'><tt>fr2rd</tt></a> convertit cela en <i lang='la'>Rata Die</i>
+    La fonction <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> convertit cela en <i lang='la'>Rata Die</i>
 - en: |
-    The <a href='#fr2rd'><tt>fr2rd</tt></a> function computes the <i lang='la'>Rata Die</i> of these dates
+    The <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> function computes the <i lang='la'>Rata Die</i> of these dates
 -
   'fr,en': |
     <pre>
@@ -721,7 +721,7 @@ calendar-french.apl-1: apl
     the shorter range is extended to 2 values, so the <tt>YR</tt> variable will be
     properly rectangular.
 - code: |
-    ∇ R ← rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
+    ∇ R ← calfr∆rd2fr N; ⎕IO; N1; YH; YL; YI; YR; DR; NR; CM; Y; M; D
     ⎕IO ← 1
     N1 ← N - 654414
     YH ← ⌈ N1 ÷ 365.24
@@ -729,7 +729,7 @@ calendar-french.apl-1: apl
     YI ← 0 , ⍳ ⌈/,YH-YL
     YR ← YL ∘.+ YI
     DR ← @calfr∆zerojanvnd@ YR
-    NR ← @fr2rd@ DR
+    NR ← @calfr∆fr2rd@ DR
     CM ← NR < N ∘.+ (⍴YI)⍴0
     Y ← ⌈/YR×CM
     D ← N - ⌈/NR×CM
@@ -781,7 +781,7 @@ calendar-french.apl-1: apl
   'fr,en': |
     <pre>
           V←800505 800511 800879 2115019
-          rd2fr V
+          calfr∆rd2fr V
      400 12 30
      400 13  6
      402  1  3
@@ -830,7 +830,7 @@ calendar-french.apl-1: apl
           D
     30 6 3 1
     </pre>
-- section: rd2gr
+- section: calfr∆rd2gr
   fr: Conversion du <i lang='la'>Rata Die</i> vers le calendrier grégorien 
   en: Converting from <i lang='la'>Rata Die</i> to the Gregorian calendar
   calendar-french.apl-1: 15
@@ -840,7 +840,7 @@ calendar-french.apl-1: apl
     convertir le <i lang='la'>Rata Die</i> en grégorien décalé, puis le
     grégorien décalé en grégorien. Ou alors, convertir directement en
     grégorien en utilisant deux fois le mécanisme de plage
-    de valeurs possibles utilisé dans <a href='#rd2fr'>rd2fr</a>, une première
+    de valeurs possibles utilisé dans <a href='#calfr∆rd2fr'>calfr∆rd2fr</a>, une première
     fois pour calculer l'année, la seconde fois pour calculer le mois.
     C'est cette deuxième possibilité que j'ai choisie.
 
@@ -858,7 +858,7 @@ calendar-french.apl-1: apl
     <i lang='la'>Rata Die</i> to shifted Gregorian and then converting from 
     shifted Gregorian to standard Gregorian. The second possibility consists
     in using twice the "possible value range", the first time to compute the 
-    year (as in <a href='#rd2fr'><tt>rd2fr</tt></a>) and the second time
+    year (as in <a href='#calfr∆rd2fr'><tt>calfr∆rd2fr</tt></a>) and the second time
     to compute the month. I use this second way.
 
     Computing the upper and lower limits of the candidate month range involves
@@ -870,21 +870,21 @@ calendar-french.apl-1: apl
     estimation and we always use a two-value range for the month, even if the
     guesstimate would give a single-value range.
 - code: |
-    ∇ R ← rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
+    ∇ R ← calfr∆rd2gr N; ⎕IO; YH; YL; YI; YR; DR; NR; CM; Y; M; D; ML; MR
     ⎕IO ← 1
     YH ← ⌈ N ÷ 365.24
     YL ← ⌈ N ÷ 365.25
     YI ← 0 , ⍳ ⌈/,YH-YL
     YR ← YL ∘.+ YI
     DR ← @calfr∆zerojanvnd@ YR
-    NR ← @gr2rd@ DR
+    NR ← @calfr∆gr2rd@ DR
     CM ← NR < N ∘.+ (⍴YI)⍴0
     Y ← ⌈/YR×CM
     D ← N - ⌈/NR×CM
     ML ← ⌈D÷31
     MR ← ML ∘.+ 0 1
     DR ← (Y ∘.× 2 3 ⍴ 1 0 0) + (MR ∘.× 0 1 0)
-    NR ← @gr2rd@ DR
+    NR ← @calfr∆gr2rd@ DR
     CM ← NR < N ∘.+ 0 0
     M ← ⌈/MR×CM
     D ← N - ⌈/NR×CM
@@ -893,7 +893,7 @@ calendar-french.apl-1: apl
 - section: 0
   fr: Les fonctions de conversion
   en: The Conversion Functions
-- section: gr2fr
+- section: calfr∆gr2fr
   level: 3
   fr: Conversion du calendrier grégorien vers le calendrier républicain
   en: Conversion from the Gregorian calendar to the French Revolutionary calendar
@@ -905,10 +905,10 @@ calendar-french.apl-1: apl
     After all theses complicated computations, the final conversion function is
     a bit of an anti-climax.
 - code: |
-    ∇ R ← gr2fr D
-    R ← @rd2fr@ @gr2rd@ D
+    ∇ R ← calfr∆gr2fr D
+    R ← @calfr∆rd2fr@ @calfr∆gr2rd@ D
     ∇
-- section: fr2gr
+- section: calfr∆fr2gr
   level: 3
   fr: Conversion du calendrier républicain vers le calendrier grégorien
   en: Conversion from the French Revolutionary calendar to the Gregorian calendar
@@ -918,13 +918,13 @@ calendar-french.apl-1: apl
 - en: |
     Same thing for the other conversion function.
 - code: |
-    ∇ R ← fr2gr D
-    R ← @rd2gr@ @fr2rd@ D
+    ∇ R ← calfr∆fr2gr D
+    R ← @calfr∆rd2gr@ @calfr∆fr2rd@ D
     ∇
 - section: 0
   fr: Affichage des dates
   en: Displaying the Dates
-- section: prtfr
+- section: calfr∆prtfr
   level: 3
   fr: Affichage d'une date du calendrier républicain
   en: Displaying a French Revolutionary calendar date
@@ -940,17 +940,17 @@ calendar-french.apl-1: apl
     extraneous spaces and that we have to get rid of these spaces, while keeping
     the required spaces.
 - code: |
-    ∇ R ← prtfr D; DAY; MONTH; CM; ⎕IO
+    ∇ R ← calfr∆prtfr D; DAY; MONTH; CM; ⎕IO
     ⎕IO ← 1
     DAY ← 10 8 ⍴ 'Décadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Septidi Octidi  Nonidi  '
     R ← DAY[1 + 10 | @calfr∆day@ D;]
     MONTH ← 13 11 ⍴ 'VendémiaireBrumaire   Frimaire   Nivôse     Pluviôse   Ventôse    Germinal   Floréal    Prairial   Messidor   Thermidor  Fructidor  jour compl.'
-    R ← R, ' ', (⍕ @calfr∆day@ D), ' ', (MONTH[@calfr∆month@ D;]), ' ', (@roman@ @calfr∆year@ D), ', jour ', @calfr∆feasts@[¯30 + D +.× 0 30 1;]
+    R ← R, ' ', (⍕ @calfr∆day@ D), ' ', (MONTH[@calfr∆month@ D;]), ' ', (@calfr∆roman@ @calfr∆year@ D), ', jour ', @calfr∆feasts@[¯30 + D +.× 0 30 1;]
     CM ← ' ' ≠ R
     R ← (CM ∨ 0,¯1↓CM) / R
     R ← (⌽∨\⌽R≠' ')/R
     ∇
-- section: roman
+- section: calfr∆roman
   level: 3
   fr: Conversion d'un nombre en chiffres romains
   en: Converting a number into Roman numerals
@@ -961,7 +961,7 @@ calendar-french.apl-1: apl
 - en: |
     If the number is higher than 3999, it is displayed with indo-arab numerals. Same thing if zero or negative.
 - code: |
-    ∇ R ← roman N; NODES
+    ∇ R ← calfr∆roman N; NODES
     → ((N>0) ∧ N<4000)/CONV
     R ← ⍕ N
     → 0
@@ -1082,10 +1082,10 @@ calendar-french.apl-1: apl
 
 - fr: |
     Cette fonction donne pour chaque ligne de <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>
-    le résultat attendu de la fonction <a href='#prtfr'><tt>prtfr</tt></a>.
+    le résultat attendu de la fonction <a href='#calfr∆prtfr'><tt>calfr∆prtfr</tt></a>.
     Par exemple&nbsp;:
 - en: |
-    This function gives the expected <a href='#prtfr'><tt>prtfr</tt></a> result for each
+    This function gives the expected <a href='#calfr∆prtfr'><tt>calfr∆prtfr</tt></a> result for each
     corresponding line ot <a href='#calfr∆testdata'><tt>calfr∆testdata</tt></a>.
     For example
 -
@@ -1125,7 +1125,7 @@ calendar-french.apl-1: apl
   level: 3
   calendar-french.apl-1: 40
 - fr: |
-    Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> avec une variété de
+    Cette fonction teste <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> avec une variété de
     paramètres en entrée&nbsp;: deux dates scalaires, un vecteur de dates, un tableau
     de dates, jusqu'à une structure de dates de rang 7 (donc une structure d'entiers
     de rang 8). Les tests sont effectués une première fois avec <tt>⎕IO</tt>
@@ -1134,7 +1134,7 @@ calendar-french.apl-1: apl
     Chaque test élémentaire tombant en erreur affiche un message. Si tous les tests
     élémentaires réussissent, la fonction principale de test affiche un seul message.
 - en: |
-    This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a wide set of parameters:
+    This function checks <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> with a wide set of parameters:
     two scalar dates, a date vector, a date array, and so on until a rank-7 structure
     of dates (that is, a rank-8 block of integers). Tests are run a first time with <tt>⎕IO</tt>
     set to 1, a second time with <tt>⎕IO</tt> set to 0.
@@ -1160,19 +1160,19 @@ calendar-french.apl-1: apl
     OK ←OK ∧ @test1fr2rd@ 7 ⍴ 2 ⍝ checking max allowed rank
     → IO / LOOP
     → (OK=0) / 0 ⍝ exit if the errors are already reported
-    'Checking fr2rd : no errors'
+    'Checking calfr∆fr2rd : no errors'
     ∇
 - section: test0fr2rd
   level: 4
   calendar-french.apl-1: 41
 - fr: |
-    Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> pour une date scalaire.
+    Cette fonction teste <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> pour une date scalaire.
     <tt>⎕IO</tt> est initialisé avec la variable globale <tt>IO</tt>, en fait
     une variable locale de la fonction appelante <a href='#testfr2rd'><tt>testfr2rd</tt></a>
     transmise globalement, comme c'est le cas pour <tt>PARAM</tt> (paramètres à utiliser
     pour les fonctions) et <tt>EXPEC</tt> (résultat attendu ou <i lang='en'>expected result</i>).
 - en: |
-    This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a scalar date.
+    This function checks <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> with a scalar date.
     <tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
     a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
     and transmitted globally. The same transmission mechanism applies to <tt>PARAM</tt>
@@ -1182,9 +1182,9 @@ calendar-french.apl-1: apl
     ⎕IO ← 1
     EXP ← EXPEC[N]
     PAR ← PARAM[N;]
-    LIB  ← 'Checking fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆fr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
     ⎕IO ← IO
-    GOT  ← @fr2rd@ PAR
+    GOT  ← @calfr∆fr2rd@ PAR
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1208,23 +1208,23 @@ calendar-french.apl-1: apl
   level: 4
   calendar-french.apl-1: 42
 - fr: |
-    Cette fonction teste <a href='#fr2rd'><tt>fr2rd</tt></a> pour un vecteur de dates
+    Cette fonction teste <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> pour un vecteur de dates
     ou une structure de rang supérieur.
     <tt>⎕IO</tt> est initialisé avec la variable globale <tt>IO</tt>, en fait
     une variable locale de la fonction appelante <a href='#testfr2rd'><tt>testfr2rd</tt></a>
     transmise globalement.
 - en: |
-    This function checks <a href='#fr2rd'><tt>fr2rd</tt></a> with a date vector
+    This function checks <a href='#calfr∆fr2rd'><tt>calfr∆fr2rd</tt></a> with a date vector
     or a higher rank structure.
     <tt>⎕IO</tt> is initialised with the global variable<tt>IO</tt>, actually
     a variable local to the upper function <a href='#testfr2rd'><tt>testfr2rd</tt></a>
     and transmitted globally.
 - code: |
     ∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
-    LIB  ← 'Checking fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← DIM ⍴ EXPEC
     ⎕IO ← IO
-    GOT  ← @fr2rd@ (DIM, 3) ⍴ PARAM
+    GOT  ← @calfr∆fr2rd@ (DIM, 3) ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1272,7 +1272,7 @@ calendar-french.apl-1: apl
     OK ←OK ∧ @test1gr2rd@ 7 ⍴ 2 ⍝ checking max allowed rank
     → IO / LOOP
     → (OK=0) / 0 ⍝ exit if the errors are already reported
-    'Checking gr2rd : no errors'
+    'Checking calfr∆gr2rd : no errors'
     ∇
 - section: test0gr2rd
   level: 4
@@ -1282,9 +1282,9 @@ calendar-french.apl-1: apl
     ⎕IO ← 1
     EXP ← EXPEC[N]
     PAR ← PARAM[N;]
-    LIB  ← 'Checking gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆gr2rd with scalar date ', (⍕PAR), ' and ⎕IO ', ⍕IO
     ⎕IO ← IO
-    GOT  ← @gr2rd@ PAR
+    GOT  ← @calfr∆gr2rd@ PAR
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDATA ⍝ no need to check dimension, it is the empty vector
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1309,9 +1309,9 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 52
 - code: |
     ∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
-    LIB  ← 'Checking gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← DIM ⍴ EXPEC
-    GOT ← @gr2rd@ (DIM, 3) ⍴ PARAM
+    GOT ← @calfr∆gr2rd@ (DIM, 3) ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1358,7 +1358,7 @@ calendar-french.apl-1: apl
     OK ←OK ∧ @test1rd2fr@ 6 ⍴ 2 ⍝ checking max allowed rank
     → IO / LOOP
     → (OK=0) / 0 ⍝ exit if the errors are already reported
-    'Checking rd2fr : no errors'
+    'Checking calfr∆rd2fr : no errors'
     ∇
 - section: test0rd2fr
   level: 4
@@ -1368,9 +1368,9 @@ calendar-french.apl-1: apl
     ⎕IO ← 1
     EXP ← EXPEC[N;]
     PAR ← PARAM[N]
-    LIB  ← 'Checking rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆rd2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
     ⎕IO ← IO
-    GOT  ← @rd2fr@ PAR
+    GOT  ← @calfr∆rd2fr@ PAR
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1400,9 +1400,9 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 62
 - code: |
     ∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
-    LIB  ← 'Checking rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
-    GOT ← @rd2fr@ DIM ⍴ PARAM
+    GOT ← @calfr∆rd2fr@ DIM ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1448,7 +1448,7 @@ calendar-french.apl-1: apl
     OK ←OK ∧ @test1rd2gr@ 2 3 3
     → IO / LOOP
     → (OK=0) / 0 ⍝ exit if the errors are already reported
-    'Checking rd2gr : no errors'
+    'Checking calfr∆rd2gr : no errors'
     ∇
 - section: test0rd2gr
   level: 4
@@ -1458,9 +1458,9 @@ calendar-french.apl-1: apl
     ⎕IO ← 1
     EXP ← EXPEC[N;]
     PAR ← PARAM[N]
-    LIB  ← 'Checking rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆rd2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
     ⎕IO ← IO
-    GOT  ← @rd2gr@ PAR
+    GOT  ← @calfr∆rd2gr@ PAR
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1490,9 +1490,9 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 72
 - code: |
     ∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
-    LIB  ← 'Checking rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
-    GOT ← @rd2gr@ DIM ⍴ PARAM
+    GOT ← @calfr∆rd2gr@ DIM ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1540,7 +1540,7 @@ calendar-french.apl-1: apl
     OK ←OK ∧ @test1gr2fr@ 6 ⍴ 2 ⍝ checking max allowed rank
     → IO / LOOP
     → (OK=0) / 0 ⍝ exit if the errors are already reported
-    'Checking gr2fr : no errors'
+    'Checking calfr∆gr2fr : no errors'
     ∇
 - section: test0gr2fr
   level: 4
@@ -1550,9 +1550,9 @@ calendar-french.apl-1: apl
     ⎕IO ← 1
     EXP ← EXPEC[N;]
     PAR ← PARAM[N;]
-    LIB  ← 'Checking gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆gr2fr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
     ⎕IO ← IO
-    GOT  ← @gr2fr@ PAR
+    GOT  ← @calfr∆gr2fr@ PAR
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1582,9 +1582,9 @@ calendar-french.apl-1: apl
   calendar-french.apl-1: 76
 - code: |
     ∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
-    LIB  ← 'Checking gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
-    GOT ← @gr2fr@ (DIM, 3) ⍴ PARAM
+    GOT ← @calfr∆gr2fr@ (DIM, 3) ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1631,7 +1631,7 @@ calendar-french.apl-1: apl
     OK ←OK ∧ @test1fr2gr@ 6 ⍴ 2 ⍝ checking max allowed rank
     → IO / LOOP
     → (OK=0) / 0 ⍝ exit if the errors are already reported
-    'Checking fr2gr : no errors'
+    'Checking calfr∆fr2gr : no errors'
     ∇
 - section: test0fr2gr
   level: 4
@@ -1641,9 +1641,9 @@ calendar-french.apl-1: apl
     ⎕IO ← 1
     EXP ← EXPEC[N;]
     PAR ← PARAM[N;]
-    LIB  ← 'Checking fr2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
+    LIB  ← 'Checking calfr∆fr2gr with scalar RD value ', (⍕PAR), ' and ⎕IO ', ⍕IO
     ⎕IO ← IO
-    GOT  ← @fr2gr@ PAR
+    GOT  ← @calfr∆fr2gr@ PAR
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank: expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1675,7 +1675,7 @@ calendar-french.apl-1: apl
     ∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
     LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
     EXP ← (DIM, 3) ⍴ EXPEC
-    GOT ← @fr2gr@ (DIM, 3) ⍴ PARAM
+    GOT ← @calfr∆fr2gr@ (DIM, 3) ⍴ PARAM
     → ((⍴⍴EXP)=⍴⍴GOT)/CHKDIM
     LIB, ' Wrong rank, expected ', (⍕⍴⍴EXP), ', got ', ⍕⍴⍴GOT
     R ← 0
@@ -1708,7 +1708,7 @@ calendar-french.apl-1: apl
     IO ← 2
     LOOPIO:
     IO ← IO - 1
-    'Checking prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
+    'Checking calfr∆prtfr with the full vector (a bit slow) and ⎕IO ', ⍕IO
     ⎕IO ← 1
     TD ← @calfr∆testdata@[; 4 5 6 ]
     TS ← @calfr∆teststring@
@@ -1723,7 +1723,7 @@ calendar-french.apl-1: apl
     EXP ← TS[I;]
     EXP ← (⌽∨\⌽EXP≠' ')/EXP
     ⎕IO ← IO
-    GOT ← @prtfr@ PAR
+    GOT ← @calfr∆prtfr@ PAR
     → ((⍴ EXP)  = ⍴ GOT)/NEXT
     'Different length: ', (⍕⍴ EXP), ' ', ⍕⍴GOT
     'Expected: ', EXP
