@@ -686,17 +686,17 @@ V ← V, 'Primidi 1 Vendémiaire 6001, jour du Raisin          '
 R ← 79 52 ⍴ V
 ∇
 
-∇ alltests
-testfr2rd
-testgr2rd
-testrd2fr
-testrd2gr
-testgr2fr
-testfr2gr
-testprtfr
+∇ calfr∆alltests
+calfr∆testfr2rd
+calfr∆testgr2rd
+calfr∆testrd2fr
+calfr∆testrd2gr
+calfr∆testgr2fr
+calfr∆testfr2gr
+calfr∆testprtfr
 ∇
 
-∇ testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+∇ calfr∆testfr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← calfr∆testdata[;7]
 PARAM ← calfr∆testdata[;4 5 6]
@@ -705,19 +705,19 @@ IO ← 2
 LOOP:
 IO ← IO - 1
 ⎕IO ← IO
-OK ←OK ∧ test0fr2rd 1
-OK ←OK ∧ test0fr2rd 2
-OK ←OK ∧ test1fr2rd 1 ↑ ⍴PARAM ⍝ checking with the full vector
-OK ←OK ∧ test1fr2rd 5 5
-OK ←OK ∧ test1fr2rd 5 3 3
-OK ←OK ∧ test1fr2rd 5 2 2 2
-OK ←OK ∧ test1fr2rd 7 ⍴ 2 ⍝ checking max allowed rank
+OK ←OK ∧ calfr∆test0fr2rd 1
+OK ←OK ∧ calfr∆test0fr2rd 2
+OK ←OK ∧ calfr∆test1fr2rd 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ calfr∆test1fr2rd 5 5
+OK ←OK ∧ calfr∆test1fr2rd 5 3 3
+OK ←OK ∧ calfr∆test1fr2rd 5 2 2 2
+OK ←OK ∧ calfr∆test1fr2rd 7 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking calfr∆fr2rd : no errors'
 ∇
 
-∇ R  ← test0fr2rd N; LIB; PAR; EXP; GOT; NERR
+∇ R  ← calfr∆test0fr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
 PAR ← PARAM[N;]
@@ -744,7 +744,7 @@ R ← 1
 → 0
 ∇
 
-∇ R  ← test1fr2rd DIM; LIB; EXP; GOT; NERR
+∇ R  ← calfr∆test1fr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking calfr∆fr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
 ⎕IO ← IO
@@ -774,7 +774,7 @@ R ← 1
 → 0
 ∇
 
-∇ testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+∇ calfr∆testgr2rd; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← calfr∆testdata[;7]
 PARAM ← calfr∆testdata[;1 2 3]
@@ -783,19 +783,19 @@ IO ← 2
 LOOP:
 IO ← IO - 1
 ⎕IO ← IO
-OK ←OK ∧ test0gr2rd 1
-OK ←OK ∧ test0gr2rd 2
-OK ←OK ∧ test1gr2rd 1 ↑ ⍴PARAM ⍝ checking with the full vector
-OK ←OK ∧ test1gr2rd 5 5
-OK ←OK ∧ test1gr2rd 5 3 3
-OK ←OK ∧ test1gr2rd 5 2 2 2
-OK ←OK ∧ test1gr2rd 7 ⍴ 2 ⍝ checking max allowed rank
+OK ←OK ∧ calfr∆test0gr2rd 1
+OK ←OK ∧ calfr∆test0gr2rd 2
+OK ←OK ∧ calfr∆test1gr2rd 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ calfr∆test1gr2rd 5 5
+OK ←OK ∧ calfr∆test1gr2rd 5 3 3
+OK ←OK ∧ calfr∆test1gr2rd 5 2 2 2
+OK ←OK ∧ calfr∆test1gr2rd 7 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking calfr∆gr2rd : no errors'
 ∇
 
-∇ R  ← test0gr2rd N; LIB; PAR; EXP; GOT; NERR
+∇ R  ← calfr∆test0gr2rd N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N]
 PAR ← PARAM[N;]
@@ -822,7 +822,7 @@ R ← 1
 → 0
 ∇
 
-∇ R  ← test1gr2rd DIM; LIB; EXP; GOT; NERR
+∇ R  ← calfr∆test1gr2rd DIM; LIB; EXP; GOT; NERR
 LIB  ← 'Checking calfr∆gr2rd with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← DIM ⍴ EXPEC
 GOT ← calfr∆gr2rd (DIM, 3) ⍴ PARAM
@@ -851,7 +851,7 @@ R ← 1
 → 0
 ∇
 
-∇ testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+∇ calfr∆testrd2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← calfr∆testdata[;4 5 6]
 PARAM ← calfr∆testdata[;7]
@@ -860,19 +860,19 @@ IO ← 2
 LOOP:
 IO ← IO - 1
 ⎕IO ← IO
-OK ←OK ∧ test0rd2fr 1
-OK ←OK ∧ test0rd2fr 2
-OK ←OK ∧ test1rd2fr 1 ↑ ⍴PARAM ⍝ checking with the full vector
-OK ←OK ∧ test1rd2fr 3 3
-OK ←OK ∧ test1rd2fr 15 3
-OK ←OK ∧ test1rd2fr 2 3 3
-OK ←OK ∧ test1rd2fr 6 ⍴ 2 ⍝ checking max allowed rank
+OK ←OK ∧ calfr∆test0rd2fr 1
+OK ←OK ∧ calfr∆test0rd2fr 2
+OK ←OK ∧ calfr∆test1rd2fr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ calfr∆test1rd2fr 3 3
+OK ←OK ∧ calfr∆test1rd2fr 15 3
+OK ←OK ∧ calfr∆test1rd2fr 2 3 3
+OK ←OK ∧ calfr∆test1rd2fr 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking calfr∆rd2fr : no errors'
 ∇
 
-∇ R  ← test0rd2fr N; LIB; PAR; EXP; GOT; NERR
+∇ R  ← calfr∆test0rd2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N]
@@ -904,7 +904,7 @@ R ← 1
 → 0
 ∇
 
-∇ R ← test1rd2fr DIM; EXP; GOT; LIB; NERR
+∇ R ← calfr∆test1rd2fr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking calfr∆rd2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
 GOT ← calfr∆rd2fr DIM ⍴ PARAM
@@ -933,7 +933,7 @@ R ← 1
 → 0
 ∇
 
-∇ testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+∇ calfr∆testrd2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← calfr∆testdata[;1 2 3]
 PARAM ← calfr∆testdata[;7]
@@ -942,18 +942,18 @@ IO ← 2
 LOOP:
 IO ← IO - 1
 ⎕IO ← IO
-OK ←OK ∧ test0rd2gr 1
-OK ←OK ∧ test0rd2gr 2
-OK ←OK ∧ test1rd2gr 1 ↑ ⍴PARAM ⍝ checking with the full vector
-OK ←OK ∧ test1rd2gr 3 3
-OK ←OK ∧ test1rd2gr 15 3
-OK ←OK ∧ test1rd2gr 2 3 3
+OK ←OK ∧ calfr∆test0rd2gr 1
+OK ←OK ∧ calfr∆test0rd2gr 2
+OK ←OK ∧ calfr∆test1rd2gr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ calfr∆test1rd2gr 3 3
+OK ←OK ∧ calfr∆test1rd2gr 15 3
+OK ←OK ∧ calfr∆test1rd2gr 2 3 3
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking calfr∆rd2gr : no errors'
 ∇
 
-∇ R  ← test0rd2gr N; LIB; PAR; EXP; GOT; NERR
+∇ R  ← calfr∆test0rd2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N]
@@ -985,7 +985,7 @@ R ← 1
 → 0
 ∇
 
-∇ R ← test1rd2gr DIM; EXP; GOT; LIB; NERR
+∇ R ← calfr∆test1rd2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking calfr∆rd2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
 GOT ← calfr∆rd2gr DIM ⍴ PARAM
@@ -1014,7 +1014,7 @@ R ← 1
 → 0
 ∇
 
-∇ testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+∇ calfr∆testgr2fr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← calfr∆testdata[;4 5 6]
 PARAM ← calfr∆testdata[;1 2 3]
@@ -1023,19 +1023,19 @@ IO ← 2
 LOOP:
 IO ← IO - 1
 ⎕IO ← IO
-OK ←OK ∧ test0gr2fr 1
-OK ←OK ∧ test0gr2fr 2
-OK ←OK ∧ test1gr2fr 1 ↑ ⍴PARAM ⍝ checking with the full vector
-OK ←OK ∧ test1gr2fr 3 3
-OK ←OK ∧ test1gr2fr 15 3
-OK ←OK ∧ test1gr2fr 2 3 3
-OK ←OK ∧ test1gr2fr 6 ⍴ 2 ⍝ checking max allowed rank
+OK ←OK ∧ calfr∆test0gr2fr 1
+OK ←OK ∧ calfr∆test0gr2fr 2
+OK ←OK ∧ calfr∆test1gr2fr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ calfr∆test1gr2fr 3 3
+OK ←OK ∧ calfr∆test1gr2fr 15 3
+OK ←OK ∧ calfr∆test1gr2fr 2 3 3
+OK ←OK ∧ calfr∆test1gr2fr 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking calfr∆gr2fr : no errors'
 ∇
 
-∇ R  ← test0gr2fr N; LIB; PAR; EXP; GOT; NERR
+∇ R  ← calfr∆test0gr2fr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N;]
@@ -1067,7 +1067,7 @@ R ← 1
 → 0
 ∇
 
-∇ R ← test1gr2fr DIM; EXP; GOT; LIB; NERR
+∇ R ← calfr∆test1gr2fr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking calfr∆gr2fr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
 GOT ← calfr∆gr2fr (DIM, 3) ⍴ PARAM
@@ -1096,7 +1096,7 @@ R ← 1
 → 0
 ∇
 
-∇ testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
+∇ calfr∆testfr2gr; IO; ⎕IO; OK; PARAM; EXPEC; RESUL
 ⎕IO ← 1
 EXPEC ← calfr∆testdata[;1 2 3]
 PARAM ← calfr∆testdata[;4 5 6]
@@ -1105,19 +1105,19 @@ IO ← 2
 LOOP:
 IO ← IO - 1
 ⎕IO ← IO
-OK ←OK ∧ test0fr2gr 1
-OK ←OK ∧ test0fr2gr 2
-OK ←OK ∧ test1fr2gr 1 ↑ ⍴PARAM ⍝ checking with the full vector
-OK ←OK ∧ test1fr2gr 3 3
-OK ←OK ∧ test1fr2gr 15 3
-OK ←OK ∧ test1fr2gr 2 3 3
-OK ←OK ∧ test1fr2gr 6 ⍴ 2 ⍝ checking max allowed rank
+OK ←OK ∧ calfr∆test0fr2gr 1
+OK ←OK ∧ calfr∆test0fr2gr 2
+OK ←OK ∧ calfr∆test1fr2gr 1 ↑ ⍴PARAM ⍝ checking with the full vector
+OK ←OK ∧ calfr∆test1fr2gr 3 3
+OK ←OK ∧ calfr∆test1fr2gr 15 3
+OK ←OK ∧ calfr∆test1fr2gr 2 3 3
+OK ←OK ∧ calfr∆test1fr2gr 6 ⍴ 2 ⍝ checking max allowed rank
 → IO / LOOP
 → (OK=0) / 0 ⍝ exit if the errors are already reported
 'Checking calfr∆fr2gr : no errors'
 ∇
 
-∇ R  ← test0fr2gr N; LIB; PAR; EXP; GOT; NERR
+∇ R  ← calfr∆test0fr2gr N; LIB; PAR; EXP; GOT; NERR
 ⎕IO ← 1
 EXP ← EXPEC[N;]
 PAR ← PARAM[N;]
@@ -1149,7 +1149,7 @@ R ← 1
 → 0
 ∇
 
-∇ R ← test1fr2gr DIM; EXP; GOT; LIB; NERR
+∇ R ← calfr∆test1fr2gr DIM; EXP; GOT; LIB; NERR
 LIB  ← 'Checking fr2gr with dimension ', (⍕DIM), ' and ⎕IO ', ⍕IO
 EXP ← (DIM, 3) ⍴ EXPEC
 GOT ← calfr∆fr2gr (DIM, 3) ⍴ PARAM
@@ -1178,7 +1178,7 @@ R ← 1
 → 0
 ∇
 
-∇ testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
+∇ calfr∆testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; N; IO; ⎕IO
 IO ← 2
 LOOPIO:
 IO ← IO - 1
