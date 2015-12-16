@@ -147,6 +147,7 @@ sub intro_html {
 -->
 </style>
 </head><body><pre>
+#!/usr/bin/apl -f
 ⍝ Explanations <a href='#en'>in English</a> <a href='#fr'>en français</a>.
 ⍝ Full text of the <a href='#GPL'>GPL License</a>
 EOF
