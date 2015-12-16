@@ -2,7 +2,8 @@
 ∇ calfr∆license
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'
-'Copyright (C) 2015 Jean Forget'
+''
+'Copyright (C) 2015 Jean Forget  (JFORGET at cpan dot org)'
 ''
 ' This program is distributed under the GNU Public License version 1 or later'
 ''
@@ -24,6 +25,28 @@
 ' You should have received a copy of the GNU General Public License'
 ' along with this program; if not, write to the Free Software Foundation,'
 ' Inc., <http://www.fsf.org/>.'
+∇
+
+⍝ Installing from GitHub (https://github.com/jforget/apl-calendar-french):
+⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your APL directory
+⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
+⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
+∇ calfr∆usage
+'Loading the module from the command line:'
+'      apl -f workspaces/calfr.apl'
+'Loading the module from inside APL:'
+'      )LOAD calfr'
+'Dates are vectors of 3 numbers YYYY MM DD. e.g.'
+'      DR ←    8 2 18 ⍝ for 18 Brumaire VIII'
+'      DG ← 1794 7 27 ⍝ for 27th July 1794'
+'Gregorian to French Revolutionary:'
+'      DR ← calfr∆gr2fr DG'
+'French Revolutionary to Gregorian:'
+'      DG ← calfr∆fr2gr DR'
+'Pretty-printing:'
+'      STRING ← calfr∆prtfr DR'
+'Pretty-printing today''s date:'
+'      STRING ← calfr∆prtfr calfr∆gr2fr 3↑⎕TS'
 ∇
 
 ∇ R ← calfr∆year D
