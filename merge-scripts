@@ -169,11 +169,11 @@ sub copy_html {
   my $p = HTML::TokeParser->new($inp)
     or die "Opening $name $!";
   while (my $token = $p->get_token) {
-    if ($token->[0] eq 'S' && $token->[1] eq 'body') {
+    if ($token->[0] eq 'S' && lc($token->[1]) eq 'body') {
       $go = 1;
       next;
     }
-    if ($token->[0] eq 'E' && $token->[1] eq 'body') {
+    if ($token->[0] eq 'E' && lc($token->[1]) eq 'body') {
       $go = 0;
       next;
     }
@@ -181,6 +181,30 @@ sub copy_html {
       given ($token->[0]) {
         when ('T') {
           print $ht $token->[1];
+        }
+        when ('S') {
+          if (uc($token->[1]) ne 'A') {
+            print $ht $token->[4];
+          }
+          else {
+            my %att = %{$token->[2]};
+            if (1 == keys %att && defined $att{name}) {
+              $att{name} = "$prefix." . $att{name};
+              $token->[4] = qq(<a name="$att{name}">);
+            }
+            elsif (1 == keys %att && defined $att{href} && substr($att{href}, 0, 1) eq '#') {
+              $att{href} = "#$prefix." . substr($att{href}, 1);
+              $token->[4] = qq(<a href="$att{href}">);
+            }
+            elsif (2 == keys %att && defined $att{class} && defined $att{href} && substr($att{href}, 0, 1) eq '#') {
+              $att{href} = "#$prefix." . substr($att{href}, 1);
+              $token->[4] = qq(<a href="$att{href}" class="$att{class}">);
+            }
+            elsif (1 != keys %{$token->[2]}) {
+              say "complex a tag $token->[4]";
+            }
+            print $ht $token->[4];
+          }
         }
         default {
           print $ht $token->[-1];
