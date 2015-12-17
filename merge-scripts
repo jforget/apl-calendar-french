@@ -30,6 +30,7 @@ use utf8;
 use v5.10;
 use strict;
 use warnings;
+use HTML::TokeParser;
 
 my $script_av  = 'calendar-french.apl-1';
 my $script_ap  = 'workspaces/calfr.apl';
@@ -162,19 +163,29 @@ EOF
 sub copy_html {
   my ($name, $prefix) = @_;
   my $go = 0;
+
   open my $inp, '<:encoding(UTF-8)', $name
     or die "Opening $name $!";
-  while (my $ln = <$inp>) {
-    if ($ln =~ /<body>/) {
+  my $p = HTML::TokeParser->new($inp)
+    or die "Opening $name $!";
+  while (my $token = $p->get_token) {
+    if ($token->[0] eq 'S' && $token->[1] eq 'body') {
       $go = 1;
       next;
     }
-    if ($ln =~ m{</body>}) {
+    if ($token->[0] eq 'E' && $token->[1] eq 'body') {
       $go = 0;
       next;
     }
     if ($go) {
-      print $ht $ln;
+      given ($token->[0]) {
+        when ('T') {
+          print $ht $token->[1];
+        }
+        default {
+          print $ht $token->[-1];
+        }
+      }
     }
   }
   close $inp
