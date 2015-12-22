@@ -16,6 +16,9 @@
 <br /><a href='#calfr∆license'><tt>calfr∆license</tt></a>
 <br /><a href='#Conversion entre calendriers'>Conversion entre calendriers</a>
 <br /><a href='#Mode d_emploi'>Mode d'emploi</a>
+<br /><a href='#Installation'>Installation</a>
+<br /><a href='#Chargement'>Chargement</a>
+<br /><a href='#Utilisation'>Utilisation</a>
 <br /><a href='#calfr∆usage'><tt>calfr∆usage</tt></a>
 <br /><a href='#Ordres supérieurs'>Ordres supérieurs</a>
 <br /><a href='#Implémentation'>Implémentation</a>
@@ -162,17 +165,34 @@ exemple pour calculer le nombre de jours entre deux dates.
 </dl>
 
 <h2><a name='Mode d_emploi'>Mode d'emploi</a></h2>
+<h3><a name='Installation'>Installation</a></h3>
 <p>
 Le fichier <tt>calfr.apl</tt> doit se trouver
 dans le sous-répertoire <tt>workspaces</tt>, pour compatibilité
-avec la commande <tt>)load</tt>. Vous pouvez stocker ce fichier
+avec la commande <tt>)LOAD</tt>. Vous pouvez stocker ce fichier
 dans un sous-répertoire <tt>wslib</tt><var>n</var> (<var>n</var>
 valant de 1 à 9), auquel cas vous devrez utiliser la variante
 <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
 </p>
 
 <p>
-Vous chargez un espace de travail initialisé avec les fonctions
+Installation pour GNU-APL à partir de  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>&nbsp;:
+vous pouvez cloner le dépôt et copier <tt>workspaces/calfr.apl</tt>
+vers le sous-répertoire <tt>workspaces</tt> de votre répertoire APL.
+Ou alors, affichez <a href='https://github.com/jforget/apl-calendar-french/blob/master/workspaces/calfr.apl'>https://github.com/.../calfr.apl</a>
+en mode <i lang='en'>raw</i> et sauvegardez-le en mode «&nbsp;texte seul&nbsp;»
+dans le sous-répertoire <tt>workspaces</tt> de votre répertoire APL.
+</p>
+
+<p>
+Installation pour GNU-APL à partir de <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>GNU-APL Bits and Pieces</a>&nbsp;:
+sauvegardez le fichier affiché en mode «&nbsp;texte seul&nbsp;» dans le sous-répertoire <tt>workspace</tt>.
+Ne vous préoccupez pas de tout le texte en anglais et en français, il sera masqué lors du chargement sous APL.
+</p>
+
+<h3><a name='Chargement'>Chargement</a></h3>
+<p>
+Chargement dans GNU-APL&nbsp;: vous chargez un espace de travail initialisé avec les fonctions
 de conversion par&nbsp:
 </p>
 
@@ -185,10 +205,11 @@ ou bien avec&nbsp;:
 
 <pre>
 apl
-    )load calfr
+    )LOAD calfr
 </pre>
+<h3><a name='Utilisation'>Utilisation</a></h3>
 <p>
-et vous vous retrouvez alors dans la boucle REPL (lecture,
+Vous vous retrouvez alors dans la boucle REPL (lecture,
 évaluation, impression et boucle) d'APL. Vous pouvez alors
 demander la conversion du 13 Vendémiaire IV ainsi&nbsp;:
 </p>

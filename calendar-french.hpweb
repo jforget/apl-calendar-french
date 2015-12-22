@@ -144,26 +144,56 @@ calendar-french.apl-1: apl
   fr: Mode d'emploi
   en: Instructions for Use
 
+- section: 0
+  'fr,en': Installation
+  level: 3
 - fr: |
     Le fichier <tt>calfr.apl</tt> doit se trouver
     dans le sous-répertoire <tt>workspaces</tt>, pour compatibilité
-    avec la commande <tt>)load</tt>. Vous pouvez stocker ce fichier
+    avec la commande <tt>)LOAD</tt>. Vous pouvez stocker ce fichier
     dans un sous-répertoire <tt>wslib</tt><var>n</var> (<var>n</var>
     valant de 1 à 9), auquel cas vous devrez utiliser la variante
     <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
 - en: |
     The <tt>calfr.apl</tt> file must be stored in the
     <tt>workspaces</tt> sub-directory of the current directory, 
-    so you can use the <tt>)load</tt> APL command. You may store
+    so you can use the <tt>)LOAD</tt> APL command. You may store
     it in a <tt>wslib</tt><var>n</var> sub-directory (<var>n</var>
     from 1 to 9) and in this case, you will use the
     <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>
     variant.
 - fr: |
-    Vous chargez un espace de travail initialisé avec les fonctions
+    Installation pour GNU-APL à partir de  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>&nbsp;:
+    vous pouvez cloner le dépôt et copier <tt>workspaces/calfr.apl</tt>
+    vers le sous-répertoire <tt>workspaces</tt> de votre répertoire APL.
+    Ou alors, affichez <a href='https://github.com/jforget/apl-calendar-french/blob/master/workspaces/calfr.apl'>https://github.com/.../calfr.apl</a>
+    en mode <i lang='en'>raw</i> et sauvegardez-le en mode «&nbsp;texte seul&nbsp;»
+    dans le sous-répertoire <tt>workspaces</tt> de votre répertoire APL.
+- en: |
+    Installation for GNU-APL from  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>:
+    you may clone the repository and copy <tt>workspaces/calfr.apl</tt>
+    to the <tt>workspaces</tt> subdirectory of your APL directory.
+    Or else, display <a href='https://github.com/jforget/apl-calendar-french/blob/master/workspaces/calfr.apl'>https://github.com/.../calfr.apl</a>
+    click on the "raw" button and save the file as "text only"
+    into the <tt>workspaces</tt> of your APL directory.
+- fr: |
+    Installation pour GNU-APL à partir de <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>GNU-APL Bits and Pieces</a>&nbsp;:
+    sauvegardez le fichier affiché en mode «&nbsp;texte seul&nbsp;» dans le sous-répertoire <tt>workspace</tt>.
+    Ne vous préoccupez pas de tout le texte en anglais et en français, il sera masqué lors du chargement sous APL.
+- en: |
+    Installation for GNU-APL from <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>GNU-APL Bits and Pieces</a>:
+    save the file as "text only" into the <tt>workspace</tt> subdirectory. Do not bother about all this English and French text,
+    il will be hidden while loading the program into APL.
+    
+- section: 0
+  fr: Chargement
+  en: Loading
+  level: 3
+- fr: |
+    Chargement dans GNU-APL&nbsp;: vous chargez un espace de travail initialisé avec les fonctions
     de conversion par&nbsp:
 - en: |
-    You initialise an pristine workspace with the conversion functions with:
+    Loading into GNU-APL: you initialise an pristine workspace with the conversion functions with:
 - code: |
     apl -f workspaces/calfr.apl
 - fr: |
@@ -172,13 +202,17 @@ calendar-french.apl-1: apl
     or with:
 - code: |
     apl
-        )load calfr
+        )LOAD calfr
+- section: 0
+  fr: Utilisation
+  en: Basic use
+  level: 3
 - fr: |
-    et vous vous retrouvez alors dans la boucle REPL (lecture,
+    Vous vous retrouvez alors dans la boucle REPL (lecture,
     évaluation, impression et boucle) d'APL. Vous pouvez alors
     demander la conversion du 13 Vendémiaire IV ainsi&nbsp;:
 - en: |
-    and you are now in the REPL loop of APL. You can
+    You are now in the REPL loop of APL. You can
     for example ask to convert 13 Vendémiaire IV in this way:
 - code: |
     .

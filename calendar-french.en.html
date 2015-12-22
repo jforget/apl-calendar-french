@@ -16,6 +16,9 @@
 <br /><a href='#calfr∆license'><tt>calfr∆license</tt></a>
 <br /><a href='#Conversion between calendars'>Conversion between calendars</a>
 <br /><a href='#Instructions for Use'>Instructions for Use</a>
+<br /><a href='#Installation'>Installation</a>
+<br /><a href='#Loading'>Loading</a>
+<br /><a href='#Basic use'>Basic use</a>
 <br /><a href='#calfr∆usage'><tt>calfr∆usage</tt></a>
 <br /><a href='#Higher Orders'>Higher Orders</a>
 <br /><a href='#Implementation'>Implementation</a>
@@ -148,10 +151,11 @@ days lie between two given dates.
 </dl>
 
 <h2><a name='Instructions for Use'>Instructions for Use</a></h2>
+<h3><a name='Installation'>Installation</a></h3>
 <p>
 The <tt>calfr.apl</tt> file must be stored in the
 <tt>workspaces</tt> sub-directory of the current directory, 
-so you can use the <tt>)load</tt> APL command. You may store
+so you can use the <tt>)LOAD</tt> APL command. You may store
 it in a <tt>wslib</tt><var>n</var> sub-directory (<var>n</var>
 from 1 to 9) and in this case, you will use the
 <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>
@@ -159,7 +163,23 @@ variant.
 </p>
 
 <p>
-You initialise an pristine workspace with the conversion functions with:
+Installation for GNU-APL from  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>:
+you may clone the repository and copy <tt>workspaces/calfr.apl</tt>
+to the <tt>workspaces</tt> subdirectory of your APL directory.
+Or else, display <a href='https://github.com/jforget/apl-calendar-french/blob/master/workspaces/calfr.apl'>https://github.com/.../calfr.apl</a>
+click on the "raw" button and save the file as "text only"
+into the <tt>workspaces</tt> of your APL directory.
+</p>
+
+<p>
+Installation for GNU-APL from <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>GNU-APL Bits and Pieces</a>:
+save the file as "text only" into the <tt>workspace</tt> subdirectory. Do not bother about all this English and French text,
+il will be hidden while loading the program into APL.
+</p>
+
+<h3><a name='Loading'>Loading</a></h3>
+<p>
+Loading into GNU-APL: you initialise an pristine workspace with the conversion functions with:
 </p>
 
 <pre>
@@ -171,10 +191,11 @@ or with:
 
 <pre>
 apl
-    )load calfr
+    )LOAD calfr
 </pre>
+<h3><a name='Basic use'>Basic use</a></h3>
 <p>
-and you are now in the REPL loop of APL. You can
+You are now in the REPL loop of APL. You can
 for example ask to convert 13 Vendémiaire IV in this way:
 </p>
 
