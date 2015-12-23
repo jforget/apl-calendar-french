@@ -189,12 +189,12 @@ calendar-french.apl-1: apl
     il will be hidden while loading the program into APL.
 - fr: |
     Installation pour NARS2000 à partir de  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>&nbsp;:
-    clonez le dépôt et copier <tt>workspaces/calfr.apl</tt>
+    clonez le dépôt et copier <tt>workspaces/calfrnars.atf</tt>
     vers le répertoire <tt>c:\user\moi-meme\Application Data\NARS2000\workspaces</tt> ou, si vous utilisez GNU/Linux et Wine&nbsp;:
     <tt>/home/moi-meme/.wine/drive_c/users/moi-meme/Application Data/NARS2000/workspaces</tt>.
 - en: |
     Installation for NARS2000 from  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>:
-    Clone the repository and copy <tt>workspaces/calfr.apl</tt>
+    Clone the repository and copy <tt>workspaces/calfrnars.atf</tt>
     to the <tt>c:\user\myself\Application Data\NARS2000\workspaces</tt> directory or, if you use GNU/Linux and Wine:
     <tt>/home/myself/.wine/drive_c/users/myself/Application Data/NARS2000/workspaces</tt>.
     
