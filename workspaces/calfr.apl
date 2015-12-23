@@ -32,10 +32,12 @@
 ⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
 ⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
 ∇ calfr∆usage
-'Loading the module from the command line:'
+'Loading the module from the command line (for GNU-APL):'
 '      apl -f workspaces/calfr.apl'
-'Loading the module from inside APL:'
+'Loading the module from inside GNU-APL:'
 '      )LOAD calfr'
+'Loading the module from inside NARS2000:'
+'      )IN calfrnars'
 'Dates are vectors of 3 numbers YYYY MM DD. e.g.'
 '      DR ←    8 2 18 ⍝ for 18 Brumaire VIII'
 '      DG ← 1794 7 27 ⍝ for 27th July 1794'

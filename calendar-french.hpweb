@@ -153,15 +153,18 @@ calendar-french.apl-1: apl
     avec la commande <tt>)LOAD</tt>. Vous pouvez stocker ce fichier
     dans un sous-répertoire <tt>wslib</tt><var>n</var> (<var>n</var>
     valant de 1 à 9), auquel cas vous devrez utiliser la variante
-    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
+    <tt>)LOAD</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
+    De même, là où le mode d'emploi indique la commande <tt>)LOAD</tt>,
+    vous pouvez utiliser les variantes <tt>)XLOAD</tt> ou <tt>)COPY</tt>.
 - en: |
     The <tt>calfr.apl</tt> file must be stored in the
     <tt>workspaces</tt> sub-directory of the current directory, 
     so you can use the <tt>)LOAD</tt> APL command. You may store
     it in a <tt>wslib</tt><var>n</var> sub-directory (<var>n</var>
     from 1 to 9) and in this case, you will use the
-    <tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>
-    variant.
+    <tt>)LOAD</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>
+    variant. Likewise, when the present text shows the command <tt>)LOAD</tt>,
+    you can use the <tt>)XLOAD</tt> or <tt>)COPY</tt> variants instead.
 - fr: |
     Installation pour GNU-APL à partir de  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>&nbsp;:
     vous pouvez cloner le dépôt et copier <tt>workspaces/calfr.apl</tt>
@@ -184,6 +187,16 @@ calendar-french.apl-1: apl
     Installation for GNU-APL from <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>GNU-APL Bits and Pieces</a>:
     save the file as "text only" into the <tt>workspace</tt> subdirectory. Do not bother about all this English and French text,
     il will be hidden while loading the program into APL.
+- fr: |
+    Installation pour NARS2000 à partir de  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>&nbsp;:
+    clonez le dépôt et copier <tt>workspaces/calfr.apl</tt>
+    vers le répertoire <tt>c:\user\moi-meme\Application Data\NARS2000\workspaces</tt> ou, si vous utilisez GNU/Linux et Wine&nbsp;:
+    <tt>/home/moi-meme/.wine/drive_c/users/moi-meme/Application Data/NARS2000/workspaces</tt>.
+- en: |
+    Installation for NARS2000 from  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>:
+    Clone the repository and copy <tt>workspaces/calfr.apl</tt>
+    to the <tt>c:\user\myself\Application Data\NARS2000\workspaces</tt> directory or, if you use GNU/Linux and Wine:
+    <tt>/home/myself/.wine/drive_c/users/myself/Application Data/NARS2000/workspaces</tt>.
     
 - section: 0
   fr: Chargement
@@ -203,6 +216,13 @@ calendar-french.apl-1: apl
 - code: |
     apl
         )LOAD calfr
+- fr: |
+    Chargement dans NARS2000&nbsp;: vous chargez un espace de travail initialisé avec les fonctions
+    de conversion par&nbsp:
+- en: |
+    Loading into NARS2000: you initialise an pristine workspace with the conversion functions with:
+- code: |
+        )IN calfrnars
 - section: 0
   fr: Utilisation
   en: Basic use
@@ -278,10 +298,12 @@ calendar-french.apl-1: apl
     ⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
     ⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
     ∇ calfr∆usage
-    'Loading the module from the command line:'
+    'Loading the module from the command line (for GNU-APL):'
     '      apl -f workspaces/calfr.apl'
-    'Loading the module from inside APL:'
+    'Loading the module from inside GNU-APL:'
     '      )LOAD calfr'
+    'Loading the module from inside NARS2000:'
+    '      )IN calfrnars'
     'Dates are vectors of 3 numbers YYYY MM DD. e.g.'
     '      DR ←    8 2 18 ⍝ for 18 Brumaire VIII'
     '      DG ← 1794 7 27 ⍝ for 27th July 1794'

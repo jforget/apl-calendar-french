@@ -172,7 +172,9 @@ dans le sous-répertoire <tt>workspaces</tt>, pour compatibilité
 avec la commande <tt>)LOAD</tt>. Vous pouvez stocker ce fichier
 dans un sous-répertoire <tt>wslib</tt><var>n</var> (<var>n</var>
 valant de 1 à 9), auquel cas vous devrez utiliser la variante
-<tt>)load</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
+<tt>)LOAD</tt>&nbsp;<var>n</var>&nbsp;<tt>calfr.apl</tt>.
+De même, là où le mode d'emploi indique la commande <tt>)LOAD</tt>,
+vous pouvez utiliser les variantes <tt>)XLOAD</tt> ou <tt>)COPY</tt>.
 </p>
 
 <p>
@@ -188,6 +190,13 @@ dans le sous-répertoire <tt>workspaces</tt> de votre répertoire APL.
 Installation pour GNU-APL à partir de <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>GNU-APL Bits and Pieces</a>&nbsp;:
 sauvegardez le fichier affiché en mode «&nbsp;texte seul&nbsp;» dans le sous-répertoire <tt>workspace</tt>.
 Ne vous préoccupez pas de tout le texte en anglais et en français, il sera masqué lors du chargement sous APL.
+</p>
+
+<p>
+Installation pour NARS2000 à partir de  <a href='https://github.com/jforget/apl-calendar-french'>GitHub</a>&nbsp;:
+clonez le dépôt et copier <tt>workspaces/calfr.apl</tt>
+vers le répertoire <tt>c:\user\moi-meme\Application Data\NARS2000\workspaces</tt> ou, si vous utilisez GNU/Linux et Wine&nbsp;:
+<tt>/home/moi-meme/.wine/drive_c/users/moi-meme/Application Data/NARS2000/workspaces</tt>.
 </p>
 
 <h3><a name='Chargement'>Chargement</a></h3>
@@ -206,6 +215,14 @@ ou bien avec&nbsp;:
 <pre>
 apl
     )LOAD calfr
+</pre>
+<p>
+Chargement dans NARS2000&nbsp;: vous chargez un espace de travail initialisé avec les fonctions
+de conversion par&nbsp:
+</p>
+
+<pre>
+)IN calfrnars
 </pre>
 <h3><a name='Utilisation'>Utilisation</a></h3>
 <p>
@@ -269,10 +286,12 @@ Voici l'aide en ligne en anglais.
 ⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
 ⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
 ∇ calfr∆usage
-'Loading the module from the command line:'
+'Loading the module from the command line (for GNU-APL):'
 '      apl -f workspaces/calfr.apl'
-'Loading the module from inside APL:'
+'Loading the module from inside GNU-APL:'
 '      )LOAD calfr'
+'Loading the module from inside NARS2000:'
+'      )IN calfrnars'
 'Dates are vectors of 3 numbers YYYY MM DD. e.g.'
 '      DR ←    8 2 18 ⍝ for 18 Brumaire VIII'
 '      DG ← 1794 7 27 ⍝ for 27th July 1794'

@@ -5,7 +5,7 @@ XAêLXΩ''                                                                00000004
 XAêPPΩ10                                                                00000005
 XAêPRΩ' '                                                               00000006
 XAêRLΩ16807                                                             00000007
-*(2015 12 23 20 52 37 252)                                              00000008
+*(2015 12 23 21 23 58 311)                                              00000008
  Fcalfr∂test1gr2rd êFX 'R  Ω calfr∂test1gr2rd DIM; LIB; EXP; GOT; NERR' 00000009
  'LIB  Ω ''Checking calfr∂gr2rd with dimension '', (ÆDIM), '' and êIO ''00000010
  , ÆIO' 'EXP Ω DIM Ê EXPEC' 'GOT Ω calfr∂gr2rd (DIM, 3) Ê PARAM' '∏ ((ÊÊ00000011
@@ -16,7 +16,7 @@ XAêRLΩ16807                                                             00000007
  rrors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, 00000016
  '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUC00000017
 XCESS:' 'R Ω 1' '∏ 0'                                                   00000018
-*(2015 12 23 20 52 37 251)                                              00000019
+*(2015 12 23 21 23 58 310)                                              00000019
  Fcalfr∂testgr2rd êFX 'calfr∂testgr2rd; IO; êIO; OK; PARAM; EXPEC; RESUL00000020
  ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;7]' 'PARAM Ω calfr∂testdata[;1 2 300000021
  ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000022
@@ -26,13 +26,13 @@ XCESS:' 'R Ω 1' '∏ 0'                                                   00000018
  2' 'OK ΩOK ^ calfr∂test1gr2rd 7 Ê 2 ‰ checking max allowed rank' '∏ IO 00000026
  / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Che00000027
 Xcking calfr∂gr2rd : no errors'''                                       00000028
-*(2015 12 23 20 52 37 227)                                              00000029
+*(2015 12 23 21 23 58 288)                                              00000029
 XFcalfr∂gr2fr êFX 'R Ω calfr∂gr2fr D' 'R Ω calfr∂rd2fr calfr∂gr2rd D'   00000030
-*(2015 12 23 20 52 37 224)                                              00000031
+*(2015 12 23 21 23 58 285)                                              00000031
  Fcalfr∂gr2rd êFX 'R Ω calfr∂gr2rd DATE; DIM' 'DIM Ω Ê DATE' 'DATEΩ(DIM 00000032
  Ê0 1 0) + DATE + (2Úcalfr∂month DATE) ¯.ı ˝1 12 0' 'R Ω ˝428 + (-/ æ (c00000033
 Xalfr∂year DATE) ¯.ˆ 4 100 400) + æDATE +.ı 365 30.6 1'                 00000034
-*(2015 12 23 20 52 37 250)                                              00000035
+*(2015 12 23 21 23 58 310)                                              00000035
  Fcalfr∂test1fr2rd êFX 'R  Ω calfr∂test1fr2rd DIM; LIB; EXP; GOT; NERR' 00000036
  'LIB  Ω ''Checking calfr∂fr2rd with dimension '', (ÆDIM), '' and êIO ''00000037
  , ÆIO' 'EXP Ω DIM Ê EXPEC' 'êIO Ω IO' 'GOT  Ω calfr∂fr2rd (DIM, 3) Ê PA00000038
@@ -43,7 +43,7 @@ Xalfr∂year DATE) ¯.ˆ 4 100 400) + æDATE +.ı 365 30.6 1'                 00000034
  B, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUC00000043
  CESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 000000044
 X' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                                       00000045
-*(2015 12 23 20 52 37 259)                                              00000046
+*(2015 12 23 21 23 58 319)                                              00000046
  Fcalfr∂test0fr2gr êFX 'R  Ω calfr∂test0fr2gr N; LIB; PAR; EXP; GOT; NER00000047
  R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking cal00000048
  fr∂fr2gr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO00000049
@@ -54,7 +54,7 @@ X' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                                       00000045
   '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' '00000054
  CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '00000055
 X' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'              00000056
-*(2015 12 23 20 52 37 258)                                              00000057
+*(2015 12 23 21 23 58 318)                                              00000057
  Fcalfr∂test1gr2fr êFX 'R Ω calfr∂test1gr2fr DIM; EXP; GOT; LIB; NERR' '00000058
  LIB  Ω ''Checking calfr∂gr2fr with dimension '', (ÆDIM), '' and êIO '',00000059
   ÆIO' 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂gr2fr (DIM, 3) Ê PARAM' '∏ 00000060
@@ -65,7 +65,7 @@ X' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'              00000056
  Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 00000065
  'LIB, '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 000000066
 X' 'SUCCESS:' 'R Ω 1' '∏ 0'                                             00000067
-*(2015 12 23 20 52 37 259)                                              00000068
+*(2015 12 23 21 23 58 318)                                              00000068
  Fcalfr∂testfr2gr êFX 'calfr∂testfr2gr; IO; êIO; OK; PARAM; EXPEC; RESUL00000069
  ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;1 2 3]' 'PARAM Ω calfr∂testdata[;400000070
   5 6]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ cal00000071
@@ -75,7 +75,7 @@ X' 'SUCCESS:' 'R Ω 1' '∏ 0'                                             00000067
   3' 'OK ΩOK ^ calfr∂test1fr2gr 6 Ê 2 ‰ checking max allowed rank' '∏ IO00000075
   / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Ch00000076
 Xecking calfr∂fr2gr : no errors'''                                      00000077
-*(2015 12 23 20 52 37 249)                                              00000078
+*(2015 12 23 21 23 58 308)                                              00000078
  Fcalfr∂testfr2rd êFX 'calfr∂testfr2rd; IO; êIO; OK; PARAM; EXPEC; RESUL00000079
  ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;7]' 'PARAM Ω calfr∂testdata[;4 5 600000080
  ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000081
@@ -85,13 +85,13 @@ Xecking calfr∂fr2gr : no errors'''                                      00000077
  2' 'OK ΩOK ^ calfr∂test1fr2rd 7 Ê 2 ‰ checking max allowed rank' '∏ IO 00000085
  / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Che00000086
 Xcking calfr∂fr2rd : no errors'''                                       00000087
-*(2015 12 23 20 52 37 227)                                              00000088
+*(2015 12 23 21 23 58 288)                                              00000088
 XFcalfr∂fr2gr êFX 'R Ω calfr∂fr2gr D' 'R Ω calfr∂rd2gr calfr∂fr2rd D'   00000089
-*(2015 12 23 20 52 37 248)                                              00000090
+*(2015 12 23 21 23 58 308)                                              00000090
  Fcalfr∂alltests êFX 'calfr∂alltests' 'calfr∂testfr2rd' 'calfr∂testgr2rd00000091
  ' 'calfr∂testrd2fr' 'calfr∂testrd2gr' 'calfr∂testgr2fr' 'calfr∂testfr2g00000092
 Xr' 'calfr∂testprtfr'                                                   00000093
-*(2015 12 23 20 52 37 261)                                              00000094
+*(2015 12 23 21 23 58 320)                                              00000094
  Fcalfr∂testprtfr êFX 'calfr∂testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; 00000095
  N; IO; êIO' 'IO Ω 2' 'LOOPIO:' 'IO Ω IO - 1' '''Checking calfr∂prtfr wi00000096
  th the full vector (a bit slow) and êIO '', ÆIO' 'êIO Ω 1' 'TD Ω calfr∂00000097
@@ -103,10 +103,10 @@ Xr' 'calfr∂testprtfr'                                                   00000093
  ∏ LOOP' 'NEXT:' '∏ (^/EXP=GOT)/LOOP' '''Different content''' '''Expecte00000103
  d: '', EXP' '''Got     : '', GOT' 'N Ω N + 1' '∏ LOOP' 'END:' '''Data e00000104
 Xrrors with êIO = '', (ÆIO), '' : '', ÆN' '∏ IO / LOOPIO '              00000105
-*(2015 12 23 20 52 37 229)                                              00000106
+*(2015 12 23 21 23 58 289)                                              00000106
  Fcalfr∂nodes êFX 'R Ω calfr∂nodes CH' 'R Ω ('' '', CH) [ '' IVX'' Ï '' 00000107
 X   I   II  III IV  V   VI  VII VIIIIX  '' ]'                           00000108
-*(2015 12 23 20 52 37 260)                                              00000109
+*(2015 12 23 21 23 58 320)                                              00000109
  Fcalfr∂test1fr2gr êFX 'R Ω calfr∂test1fr2gr DIM; EXP; GOT; LIB; NERR' '00000110
  LIB  Ω ''Checking fr2gr with dimension '', (ÆDIM), '' and êIO '', ÆIO' 00000111
  'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂fr2gr (DIM, 3) Ê PARAM' '∏ ((ÊÊEX00000112
@@ -117,7 +117,7 @@ X   I   II  III IV  V   VI  VII VIIIIX  '' ]'                           00000108
  rrors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, 00000117
  '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUC00000118
 XCESS:' 'R Ω 1' '∏ 0'                                                   00000119
-*(2015 12 23 20 52 37 222)                                              00000120
+*(2015 12 23 21 23 58 283)                                              00000120
  Fcalfr∂license êFX 'calfr∂license' '''APL program to convert Gregorian 00000121
  dates''' '''to French Revolutionary dates and the other way''' '''''' '00000122
  ''Copyright (C) 2015 Jean Forget  (JFORGET at cpan dot org)''' '''''' '00000123
@@ -135,7 +135,7 @@ XCESS:' 'R Ω 1' '∏ 0'                                                   00000119
  '''' ''' You should have received a copy of the GNU General Public Lice00000135
  nse''' ''' along with this program; if not, write to the Free Software 00000136
 XFoundation,''' ''' Inc., <http://www.fsf.org/>.'''                     00000137
-*(2015 12 23 20 52 37 237)                                              00000138
+*(2015 12 23 21 23 58 298)                                              00000138
  Fcalfr∂feasts êFX 'R Ω calfr∂feasts; V' '‰ include here the contents of00000139
   feasts' 'V Ω ''''' '‰ Vendemiaire' 'V Ω V, ''du Raisin            ''' 00000140
  'V Ω V, ''du Safran            ''' 'V Ω V, ''de la Chataigne      ''' '00000141
@@ -324,9 +324,9 @@ XFoundation,''' ''' Inc., <http://www.fsf.org/>.'''                     00000137
   ''du Travail           ''' 'V Ω V, ''de l''''Opinion         ''' 'V Ω 00000324
  V, ''des Recompenses      ''' 'V Ω V, ''de la Revolution     ''' 'R Ω 300000325
 X66 21 Ê V'                                                             00000326
-*(2015 12 23 20 52 37 223)                                              00000327
+*(2015 12 23 21 23 58 284)                                              00000327
 XFcalfr∂year êFX 'R Ω calfr∂year D' 'R Ω D +.ı 1 0 0'                   00000328
-*(2015 12 23 20 52 37 249)                                              00000329
+*(2015 12 23 21 23 58 309)                                              00000329
  Fcalfr∂test0fr2rd êFX 'R  Ω calfr∂test0fr2rd N; LIB; PAR; EXP; GOT; NER00000330
  R' 'êIO Ω 1' 'EXP Ω EXPEC[N]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking calf00000331
  r∂fr2rd with scalar date '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO' 'GO00000332
@@ -336,7 +336,7 @@ XFcalfr∂year êFX 'R Ω calfr∂year D' 'R Ω D +.ı 1 0 0'                   00000328
  ∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CH00000336
  KIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' 00000337
 Xbecame '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                00000338
-*(2015 12 23 20 52 37 255)                                              00000339
+*(2015 12 23 21 23 58 315)                                              00000339
  Fcalfr∂test0rd2gr êFX 'R  Ω calfr∂test0rd2gr N; LIB; PAR; EXP; GOT; NER00000340
  R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N]' 'LIB  Ω ''Checking calf00000341
  r∂rd2gr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO'00000342
@@ -347,7 +347,7 @@ Xbecame '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                00000338
  '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'C00000347
  HKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), ''00000348
 X became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'               00000349
-*(2015 12 23 20 52 37 226)                                              00000350
+*(2015 12 23 21 23 58 287)                                              00000350
  Fcalfr∂rd2gr êFX 'R Ω calfr∂rd2gr N; êIO; YH; YL; YI; YR; DR; NR; CM; Y00000351
  ; M; D; ML; MR' 'êIO Ω 1' 'YH Ω © N ˆ 365.24' 'YL Ω © N ˆ 365.25' 'YI Ω00000352
   0 , Ï ©/,YH-YL' 'YR Ω YL ¯.+ YI' 'DR Ω calfr∂zerojanvnd YR' 'NR Ω calf00000353
@@ -355,14 +355,14 @@ X became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'               00000349
  ML Ω ©Dˆ31' 'MR Ω ML ¯.+ 0 1' 'DR Ω (Y ¯.ı 2 3 Ê 1 0 0) + (MR ¯.ı 0 1 000000355
  )' 'NR Ω calfr∂gr2rd DR' 'CM Ω NR < N ¯.+ 0 0' 'M Ω ©/MRıCM' 'D Ω N - ©00000356
 X/NRıCM' 'R Ω (Y ¯.ı 1 0 0) + (M ¯.ı 0 1 0) + D ¯.ı 0 0 1'              00000357
-*(2015 12 23 20 52 37 225)                                              00000358
+*(2015 12 23 21 23 58 286)                                              00000358
  Fcalfr∂rd2fr êFX 'R Ω calfr∂rd2fr N; êIO; N1; YH; YL; YI; YR; DR; NR; C00000359
  M; Y; M; D' 'êIO Ω 1' 'N1 Ω N - 654414' 'YH Ω © N1 ˆ 365.24' 'YL Ω © N100000360
   ˆ 365.34' 'YI Ω 0 , Ï ©/,YH-YL' 'YR Ω YL ¯.+ YI' 'DR Ω calfr∂zerojanvn00000361
  d YR' 'NR Ω calfr∂fr2rd DR' 'CM Ω NR < N ¯.+ (ÊYI)Ê0' 'Y Ω ©/YRıCM' 'D 00000362
  Ω N - ©/NRıCM' 'M Ω ©Dˆ30' 'D Ω D - 30 ı M - 1' 'R Ω (Y ¯.ı 1 0 0) + (M00000363
 X ¯.ı 0 1 0) + D ¯.ı 0 0 1'                                             00000364
-*(2015 12 23 20 52 37 253)                                              00000365
+*(2015 12 23 21 23 58 313)                                              00000365
  Fcalfr∂test0rd2fr êFX 'R  Ω calfr∂test0rd2fr N; LIB; PAR; EXP; GOT; NER00000366
  R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N]' 'LIB  Ω ''Checking calf00000367
  r∂rd2fr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO'00000368
@@ -373,7 +373,7 @@ X ¯.ı 0 1 0) + D ¯.ı 0 0 1'                                             00000364
  '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'C00000373
  HKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), ''00000374
 X became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'               00000375
-*(2015 12 23 20 52 37 247)                                              00000376
+*(2015 12 23 21 23 58 307)                                              00000376
  Fcalfr∂teststring êFX 'R Ω calfr∂teststring; V; L' 'V Ω ''''' '‰ includ00000377
  e here the contents of testapl1' 'V Ω V, ''Primidi 1 Vendemiaire I, jou00000378
  r du Raisin             ''' 'V Ω V, ''Duodi 2 Brumaire II, jour du Cele00000379
@@ -450,14 +450,14 @@ X became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'               00000375
  , jour du Raisin          ''' 'V Ω V, ''Primidi 1 Vendemiaire 6000, jou00000450
  r du Raisin          ''' 'V Ω V, ''Primidi 1 Vendemiaire 6001, jour du 00000451
 XRaisin          ''' 'R Ω 79 52 Ê V'                                    00000452
-*(2015 12 23 20 52 37 228)                                              00000453
+*(2015 12 23 21 23 58 289)                                              00000453
  Fcalfr∂roman êFX 'R Ω calfr∂roman N; NODES' '∏ ((N>0) ^ N<4000)/CONV' '00000454
  R Ω Æ N' '∏ 0' 'CONV:' 'NODES Ω 40 4 Ê (calfr∂nodes ''IVX''), (calfr∂no00000455
  des ''XLC''), (calfr∂nodes ''CDM''), calfr∂nodes ''M??''' 'R Ω ,NODES[ê00000456
 XIO + 30 20 10 0 + 10 10 10 10 ò N;]' 'R Ω (RÙ'' '')/R'                 00000457
-*(2015 12 23 20 52 37 223)                                              00000458
+*(2015 12 23 21 23 58 284)                                              00000458
 XFcalfr∂day êFX 'R Ω calfr∂day D' 'R Ω D +.ı 0 0 1'                     00000459
-*(2015 12 23 20 52 37 243)                                              00000460
+*(2015 12 23 21 23 58 303)                                              00000460
  Fcalfr∂testdata êFX 'R Ω calfr∂testdata; V; L' '‰ include here the cont00000461
  ents of testapl' 'V Ω Ï0' 'V Ω V, 1792  9 22    1  1  1  654415' 'V Ω V00000462
  , 1793 10 23    2  2  2  654811' 'V Ω V, 1794  7 27    2 11  9  655088'00000463
@@ -504,10 +504,10 @@ XFcalfr∂day êFX 'R Ω calfr∂day D' 'R Ω D +.ı 0 0 1'                     00000459
  480261' 'V Ω V, 6792  9 21 5001  1  1 2480626' 'V Ω V, 7791  9 21 6000 00000504
   1  1 2845503' 'V Ω V, 7792  9 21 6001  1  1 2845869' 'L Ω (Ê V) ˆ 7' '00000505
 XR Ω (L, 7) Ê V'                                                        00000506
-*(2015 12 23 20 52 37 224)                                              00000507
+*(2015 12 23 21 23 58 285)                                              00000507
  Fcalfr∂frbis êFX 'R Ω calfr∂frbis YEAR' 'YEAR Ω YEAR - 1' 'R Ω - / æ YE00000508
 XAR ¯.ˆ 4 100 400 4000' 'R Ω R + YEAR Ó 3 7 11 15'                      00000509
-*(2015 12 23 20 52 37 255)                                              00000510
+*(2015 12 23 21 23 58 314)                                              00000510
  Fcalfr∂testrd2gr êFX 'calfr∂testrd2gr; IO; êIO; OK; PARAM; EXPEC; RESUL00000511
  ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;1 2 3]' 'PARAM Ω calfr∂testdata[;700000512
  ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000513
@@ -516,7 +516,7 @@ XAR ¯.ˆ 4 100 400 4000' 'R Ω R + YEAR Ó 3 7 11 15'                      00000509
   3' 'OK ΩOK ^ calfr∂test1rd2gr 15 3' 'OK ΩOK ^ calfr∂test1rd2gr 2 3 3' 00000516
  '∏ IO / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' 00000517
 X'''Checking calfr∂rd2gr : no errors'''                                 00000518
-*(2015 12 23 20 52 37 253)                                              00000519
+*(2015 12 23 21 23 58 312)                                              00000519
  Fcalfr∂testrd2fr êFX 'calfr∂testrd2fr; IO; êIO; OK; PARAM; EXPEC; RESUL00000520
  ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;4 5 6]' 'PARAM Ω calfr∂testdata[;700000521
  ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000522
@@ -526,7 +526,7 @@ X'''Checking calfr∂rd2gr : no errors'''                                 00000518
  'OK ΩOK ^ calfr∂test1rd2fr 6 Ê 2 ‰ checking max allowed rank' '∏ IO / L00000526
  OOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Checki00000527
 Xng calfr∂rd2fr : no errors'''                                          00000528
-*(2015 12 23 20 52 37 254)                                              00000529
+*(2015 12 23 21 23 58 314)                                              00000529
  Fcalfr∂test1rd2fr êFX 'R Ω calfr∂test1rd2fr DIM; EXP; GOT; LIB; NERR' '00000530
  LIB  Ω ''Checking calfr∂rd2fr with dimension '', (ÆDIM), '' and êIO '',00000531
   ÆIO' 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂rd2fr DIM Ê PARAM' '∏ ((ÊÊE00000532
@@ -537,10 +537,10 @@ Xng calfr∂rd2fr : no errors'''                                          00000528
  errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB,00000537
   '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SU00000538
 XCCESS:' 'R Ω 1' '∏ 0'                                                  00000539
-*(2015 12 23 20 52 37 224)                                              00000540
+*(2015 12 23 21 23 58 284)                                              00000540
  Fcalfr∂fr2rd êFX 'R Ω calfr∂fr2rd DATE' 'R Ω 654019 + (calfr∂frbis calf00000541
 Xr∂year DATE) + DATE +.ı 365 30 1'                                      00000542
-*(2015 12 23 20 52 37 256)                                              00000543
+*(2015 12 23 21 23 58 316)                                              00000543
  Fcalfr∂test1rd2gr êFX 'R Ω calfr∂test1rd2gr DIM; EXP; GOT; LIB; NERR' '00000544
  LIB  Ω ''Checking calfr∂rd2gr with dimension '', (ÆDIM), '' and êIO '',00000545
   ÆIO' 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂rd2gr DIM Ê PARAM' '∏ ((ÊÊE00000546
@@ -551,59 +551,61 @@ Xr∂year DATE) + DATE +.ı 365 30 1'                                      00000542
  errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB,00000551
   '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SU00000552
 XCCESS:' 'R Ω 1' '∏ 0'                                                  00000553
-*(2015 12 23 20 52 37 223)                                              00000554
+*(2015 12 23 21 23 58 283)                                              00000554
  Fcalfr∂usage êFX 'calfr∂usage' '''Loading the module from the command l00000555
- ine:''' '''      apl -f workspaces/calfr.apl''' '''Loading the module f00000556
- rom inside APL:''' '''      )LOAD calfr''' '''Dates are vectors of 3 nu00000557
- mbers YYYY MM DD. e.g.''' '''      DR Ω    8 2 18 ‰ for 18 Brumaire VII00000558
- I''' '''      DG Ω 1794 7 27 ‰ for 27th July 1794''' '''Gregorian to Fr00000559
- ench Revolutionary:''' '''      DR Ω calfr∂gr2fr DG''' '''French Revolu00000560
- tionary to Gregorian:''' '''      DG Ω calfr∂fr2gr DR''' '''Pretty-prin00000561
- ting:''' '''      STRING Ω calfr∂prtfr DR''' '''Pretty-printing today''00000562
-X''s date:''' '''      STRING Ω calfr∂prtfr calfr∂gr2fr 3∆êTS'''        00000563
-*(2015 12 23 20 52 37 251)                                              00000564
- Fcalfr∂test0gr2rd êFX 'R  Ω calfr∂test0gr2rd N; LIB; PAR; EXP; GOT; NER00000565
- R' 'êIO Ω 1' 'EXP Ω EXPEC[N]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking calf00000566
- r∂gr2rd with scalar date '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO' 'GO00000567
- T  Ω calfr∂gr2rd PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDATA ‰ no need to check dim00000568
- ension, it is the empty vector' 'LIB, '' Wrong rank: expected '', (ÆÊÊE00000569
- XP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,EXPÙGOT' '00000570
- ∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CH00000571
- KIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' 00000572
-Xbecame '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                00000573
-*(2015 12 23 20 52 37 223)                                              00000574
-XFcalfr∂month êFX 'R Ω calfr∂month D' 'R Ω D +.ı 0 1 0'                 00000575
-*(2015 12 23 20 52 37 228)                                              00000576
- Fcalfr∂prtfr êFX 'R Ω calfr∂prtfr D; DAY; MONTH; CM; êIO' 'êIO Ω 1' 'DA00000577
- Y Ω 10 8 Ê ''Decadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Se00000578
- ptidi Octidi  Nonidi  ''' 'R Ω DAY[1 + 10 | calfr∂day D;]' 'MONTH Ω 13 00000579
- 11 Ê ''VendemiaireBrumaire   Frimaire   Nivose     Pluviose   Ventose  00000580
-   Germinal   Floreal    Prairial   Messidor   Thermidor  Fructidor  jou00000581
- r compl.''' 'R Ω R, '' '', (Æ calfr∂day D), '' '', (MONTH[calfr∂month D00000582
- ;]), '' '', (calfr∂roman calfr∂year D), '', jour '', calfr∂feasts[˝30 +00000583
-  D +.ı 0 30 1;]' 'CM Ω '' '' Ù R' 'R Ω (CM Î 0,˝1«CM) / R' 'R Ω (ËÎ\ËRÙ00000584
-X'' '')/R'                                                              00000585
-*(2015 12 23 20 52 37 223)                                              00000586
- Fcalfr∂zerojanvnd êFX 'R Ω calfr∂zerojanvnd Y' 'R Ω Y ¯.ı 1 0 0' 'R Ω R00000587
-X + (ÊR) Ê 0 1 0'                                                       00000588
-*(2015 12 23 20 52 37 257)                                              00000589
- Fcalfr∂test0gr2fr êFX 'R  Ω calfr∂test0gr2fr N; LIB; PAR; EXP; GOT; NER00000590
- R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking cal00000591
- fr∂gr2fr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO00000592
- ' 'GOT  Ω calfr∂gr2fr PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong ra00000593
- nk: expected '', (ÆÊÊEXP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' 00000594
- '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '' Wrong dimensions: expected '', (ÆÊ00000595
- EXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT'00000596
-  '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' '00000597
- CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '00000598
-X' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'              00000599
-*(2015 12 23 20 52 37 257)                                              00000600
- Fcalfr∂testgr2fr êFX 'calfr∂testgr2fr; IO; êIO; OK; PARAM; EXPEC; RESUL00000601
- ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;4 5 6]' 'PARAM Ω calfr∂testdata[;100000602
-  2 3]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ cal00000603
- fr∂test0gr2fr 1' 'OK ΩOK ^ calfr∂test0gr2fr 2' 'OK ΩOK ^ calfr∂test1gr200000604
- fr 1 ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1gr200000605
- fr 3 3' 'OK ΩOK ^ calfr∂test1gr2fr 15 3' 'OK ΩOK ^ calfr∂test1gr2fr 2 300000606
-  3' 'OK ΩOK ^ calfr∂test1gr2fr 6 Ê 2 ‰ checking max allowed rank' '∏ IO00000607
-  / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Ch00000608
-Xecking calfr∂gr2fr : no errors'''                                      00000609
+ ine (for GNU-APL):''' '''      apl -f workspaces/calfr.apl''' '''Loadin00000556
+ g the module from inside GNU-APL:''' '''      )LOAD calfr''' '''Loading00000557
+  the module from inside NARS2000:''' '''      )IN calfrnars''' '''Dates00000558
+  are vectors of 3 numbers YYYY MM DD. e.g.''' '''      DR Ω    8 2 18 ‰00000559
+  for 18 Brumaire VIII''' '''      DG Ω 1794 7 27 ‰ for 27th July 1794''00000560
+ ' '''Gregorian to French Revolutionary:''' '''      DR Ω calfr∂gr2fr DG00000561
+ ''' '''French Revolutionary to Gregorian:''' '''      DG Ω calfr∂fr2gr 00000562
+ DR''' '''Pretty-printing:''' '''      STRING Ω calfr∂prtfr DR''' '''Pre00000563
+ tty-printing today''''s date:''' '''      STRING Ω calfr∂prtfr calfr∂gr00000564
+X2fr 3∆êTS'''                                                           00000565
+*(2015 12 23 21 23 58 311)                                              00000566
+ Fcalfr∂test0gr2rd êFX 'R  Ω calfr∂test0gr2rd N; LIB; PAR; EXP; GOT; NER00000567
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking calf00000568
+ r∂gr2rd with scalar date '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO' 'GO00000569
+ T  Ω calfr∂gr2rd PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDATA ‰ no need to check dim00000570
+ ension, it is the empty vector' 'LIB, '' Wrong rank: expected '', (ÆÊÊE00000571
+ XP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,EXPÙGOT' '00000572
+ ∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CH00000573
+ KIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' 00000574
+Xbecame '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                00000575
+*(2015 12 23 21 23 58 284)                                              00000576
+XFcalfr∂month êFX 'R Ω calfr∂month D' 'R Ω D +.ı 0 1 0'                 00000577
+*(2015 12 23 21 23 58 288)                                              00000578
+ Fcalfr∂prtfr êFX 'R Ω calfr∂prtfr D; DAY; MONTH; CM; êIO' 'êIO Ω 1' 'DA00000579
+ Y Ω 10 8 Ê ''Decadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Se00000580
+ ptidi Octidi  Nonidi  ''' 'R Ω DAY[1 + 10 | calfr∂day D;]' 'MONTH Ω 13 00000581
+ 11 Ê ''VendemiaireBrumaire   Frimaire   Nivose     Pluviose   Ventose  00000582
+   Germinal   Floreal    Prairial   Messidor   Thermidor  Fructidor  jou00000583
+ r compl.''' 'R Ω R, '' '', (Æ calfr∂day D), '' '', (MONTH[calfr∂month D00000584
+ ;]), '' '', (calfr∂roman calfr∂year D), '', jour '', calfr∂feasts[˝30 +00000585
+  D +.ı 0 30 1;]' 'CM Ω '' '' Ù R' 'R Ω (CM Î 0,˝1«CM) / R' 'R Ω (ËÎ\ËRÙ00000586
+X'' '')/R'                                                              00000587
+*(2015 12 23 21 23 58 284)                                              00000588
+ Fcalfr∂zerojanvnd êFX 'R Ω calfr∂zerojanvnd Y' 'R Ω Y ¯.ı 1 0 0' 'R Ω R00000589
+X + (ÊR) Ê 0 1 0'                                                       00000590
+*(2015 12 23 21 23 58 317)                                              00000591
+ Fcalfr∂test0gr2fr êFX 'R  Ω calfr∂test0gr2fr N; LIB; PAR; EXP; GOT; NER00000592
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking cal00000593
+ fr∂gr2fr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO00000594
+ ' 'GOT  Ω calfr∂gr2fr PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong ra00000595
+ nk: expected '', (ÆÊÊEXP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' 00000596
+ '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '' Wrong dimensions: expected '', (ÆÊ00000597
+ EXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT'00000598
+  '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' '00000599
+ CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '00000600
+X' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'              00000601
+*(2015 12 23 21 23 58 316)                                              00000602
+ Fcalfr∂testgr2fr êFX 'calfr∂testgr2fr; IO; êIO; OK; PARAM; EXPEC; RESUL00000603
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;4 5 6]' 'PARAM Ω calfr∂testdata[;100000604
+  2 3]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ cal00000605
+ fr∂test0gr2fr 1' 'OK ΩOK ^ calfr∂test0gr2fr 2' 'OK ΩOK ^ calfr∂test1gr200000606
+ fr 1 ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1gr200000607
+ fr 3 3' 'OK ΩOK ^ calfr∂test1gr2fr 15 3' 'OK ΩOK ^ calfr∂test1gr2fr 2 300000608
+  3' 'OK ΩOK ^ calfr∂test1gr2fr 6 Ê 2 ‰ checking max allowed rank' '∏ IO00000609
+  / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Ch00000610
+Xecking calfr∂gr2fr : no errors'''                                      00000611
