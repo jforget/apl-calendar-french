@@ -33,33 +33,39 @@ use warnings;
 use DateTime;
 use HTML::TokeParser;
 
-my $script_av  = 'calendar-french.apl-1';
-my $script_ap  = 'workspaces/calfr.apl';
-my $html       = 'calfr.apl.html';
-my $testdata   = 'testapl';
-my $teststring = 'testapl1';
-my $feasts     = 'feasts';
+my $script_av    = 'calendar-french.apl-1';
+my $script_ap    = 'workspaces/calfr.apl';
+my $script_nars  = 'workspaces/calfrnars.apl';
+my $html         = 'calfr.apl.html';
+my $testdata     = 'testapl';
+my $teststring   = 'testapl1';
+my $feasts       = 'feasts';
 
 open my $av, '<:encoding(UTF-8)', $script_av
   or die "opening $script_av $!";
 open my $ap, '>:encoding(UTF-8)', $script_ap
   or die "opening $script_ap $!";
+open my $nars, '>:encoding(UTF-8)', $script_nars
+  or die "opening $script_nars $!";
 open my $ht, '>:encoding(UTF-8)', $html
   or die "opening $html $!";
 
 intro_html();
 # Portability issue: maybe apl is installed in another directory
-print $ap "#!/usr/bin/apl -f\n";
+print $ap   "#!/usr/bin/apl -f\n";
+print $nars "#!/usr/bin/apl -f\n";
 
 while (<$av>) {
   print $ap $_;
   print $ht to_html($_);
+  print $nars remove_accents($_);
   if (/include here the contents of testapl(?!1)/) {
     open my $sc, '<:encoding(UTF-8)', $testdata
       or die "opening $testdata $!";
     while (<$sc>) {
       print $ap $_;
       print $ht to_html($_);
+      print $nars remove_accents($_);
     }
     close $sc
       or die "Closing $testdata $!";
@@ -70,6 +76,7 @@ while (<$av>) {
     while (<$sc>) {
       print $ap $_;
       print $ht to_html($_);
+      print $nars remove_accents($_);
     }
     close $sc
       or die "Closing $teststring $!";
@@ -80,13 +87,15 @@ while (<$av>) {
     while (<$sc>) {
       print $ap $_;
       print $ht to_html($_);
+      print $nars remove_accents($_);
     }
     close $sc
       or die "Closing $feasts $!";
   }
   elsif (/^∇$/) {
-    print $ap "\n";
-    print $ht "\n";
+    print $ap   "\n";
+    print $ht   "\n";
+    print $nars "\n";
   }
 }
 print $ht <<'EOF';
@@ -119,6 +128,8 @@ close $av
   or die "Closing $script_av $!";
 close $ap
   or die "Closing $script_ap $!";
+close $nars
+  or die "Closing $script_nars $!";
 close $ht
   or die "Closing $html $!";
 
@@ -126,6 +137,14 @@ sub to_html {
   my ($ln) = @_;
   my %transco = qw( < &lt > &gt & &amp);
   $ln =~ s/([<>\&])/$transco{$1};/g;
+  $ln;
+}
+
+sub remove_accents {
+  my ($ln) = @_;
+  $ln =~ s/œ(.*) '/oe$1'/;
+  $ln =~ s/Œ(.*) '/Oe$1'/;
+  $ln =~ tr/ÂÉàâèéêëîïôû/AEaaeeeeiiou/;
   $ln;
 }
 
