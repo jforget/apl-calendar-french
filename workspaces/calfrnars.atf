@@ -1,0 +1,609 @@
+XAêCTΩ1E˝13                                                             00000001
+XAêFCΩ'.,*0_˝'                                                          00000002
+XAêIOΩ1                                                                 00000003
+XAêLXΩ''                                                                00000004
+XAêPPΩ10                                                                00000005
+XAêPRΩ' '                                                               00000006
+XAêRLΩ16807                                                             00000007
+*(2015 12 23 20 52 37 252)                                              00000008
+ Fcalfr∂test1gr2rd êFX 'R  Ω calfr∂test1gr2rd DIM; LIB; EXP; GOT; NERR' 00000009
+ 'LIB  Ω ''Checking calfr∂gr2rd with dimension '', (ÆDIM), '' and êIO ''00000010
+ , ÆIO' 'EXP Ω DIM Ê EXPEC' 'GOT Ω calfr∂gr2rd (DIM, 3) Ê PARAM' '∏ ((ÊÊ00000011
+ EXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong rank, expected '', (ÆÊÊEXP), '', got00000012
+  '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, 00000013
+ '' Wrong dimension, expected '', (ÆÊEXP), '', got '', ÆÊGOT' 'R Ω 0' '∏00000014
+  0' 'CHKDATA:' 'NERR Ω +/,EXPÙGOT' '∏ (NERR=0) / CHKIO' 'LIB, '' Data e00000015
+ rrors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, 00000016
+ '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUC00000017
+XCESS:' 'R Ω 1' '∏ 0'                                                   00000018
+*(2015 12 23 20 52 37 251)                                              00000019
+ Fcalfr∂testgr2rd êFX 'calfr∂testgr2rd; IO; êIO; OK; PARAM; EXPEC; RESUL00000020
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;7]' 'PARAM Ω calfr∂testdata[;1 2 300000021
+ ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000022
+ est0gr2rd 1' 'OK ΩOK ^ calfr∂test0gr2rd 2' 'OK ΩOK ^ calfr∂test1gr2rd 100000023
+  ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1gr2rd 500000024
+  5' 'OK ΩOK ^ calfr∂test1gr2rd 5 3 3' 'OK ΩOK ^ calfr∂test1gr2rd 5 2 2 00000025
+ 2' 'OK ΩOK ^ calfr∂test1gr2rd 7 Ê 2 ‰ checking max allowed rank' '∏ IO 00000026
+ / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Che00000027
+Xcking calfr∂gr2rd : no errors'''                                       00000028
+*(2015 12 23 20 52 37 227)                                              00000029
+XFcalfr∂gr2fr êFX 'R Ω calfr∂gr2fr D' 'R Ω calfr∂rd2fr calfr∂gr2rd D'   00000030
+*(2015 12 23 20 52 37 224)                                              00000031
+ Fcalfr∂gr2rd êFX 'R Ω calfr∂gr2rd DATE; DIM' 'DIM Ω Ê DATE' 'DATEΩ(DIM 00000032
+ Ê0 1 0) + DATE + (2Úcalfr∂month DATE) ¯.ı ˝1 12 0' 'R Ω ˝428 + (-/ æ (c00000033
+Xalfr∂year DATE) ¯.ˆ 4 100 400) + æDATE +.ı 365 30.6 1'                 00000034
+*(2015 12 23 20 52 37 250)                                              00000035
+ Fcalfr∂test1fr2rd êFX 'R  Ω calfr∂test1fr2rd DIM; LIB; EXP; GOT; NERR' 00000036
+ 'LIB  Ω ''Checking calfr∂fr2rd with dimension '', (ÆDIM), '' and êIO ''00000037
+ , ÆIO' 'EXP Ω DIM Ê EXPEC' 'êIO Ω IO' 'GOT  Ω calfr∂fr2rd (DIM, 3) Ê PA00000038
+ RAM' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong rank: expected '', (ÆÊÊE00000039
+ XP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '∏ (^/(ÊEXP)=ÊGOT)/CHK00000040
+ DATA' 'LIB, '' Wrong dimension: expected '', (ÆÊEXP), '', got '', ÆÊGOT00000041
+ ' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,EXPÙGOT' '∏ (NERR=0) / CHKIO' 'LI00000042
+ B, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUC00000043
+ CESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 000000044
+X' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                                       00000045
+*(2015 12 23 20 52 37 259)                                              00000046
+ Fcalfr∂test0fr2gr êFX 'R  Ω calfr∂test0fr2gr N; LIB; PAR; EXP; GOT; NER00000047
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking cal00000048
+ fr∂fr2gr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO00000049
+ ' 'GOT  Ω calfr∂fr2gr PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong ra00000050
+ nk: expected '', (ÆÊÊEXP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' 00000051
+ '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '' Wrong dimensions: expected '', (ÆÊ00000052
+ EXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT'00000053
+  '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' '00000054
+ CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '00000055
+X' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'              00000056
+*(2015 12 23 20 52 37 258)                                              00000057
+ Fcalfr∂test1gr2fr êFX 'R Ω calfr∂test1gr2fr DIM; EXP; GOT; LIB; NERR' '00000058
+ LIB  Ω ''Checking calfr∂gr2fr with dimension '', (ÆDIM), '' and êIO '',00000059
+  ÆIO' 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂gr2fr (DIM, 3) Ê PARAM' '∏ 00000060
+ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong rank, expected '', (ÆÊÊEXP), '',00000061
+  got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'L00000062
+ IB, '' Wrong dimension, expected '', (ÆÊEXP), '', got '', ÆÊGOT' 'R Ω 000000063
+ ' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT' '∏ (NERR=0) / CHKIO' 'LIB, '' 00000064
+ Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 00000065
+ 'LIB, '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 000000066
+X' 'SUCCESS:' 'R Ω 1' '∏ 0'                                             00000067
+*(2015 12 23 20 52 37 259)                                              00000068
+ Fcalfr∂testfr2gr êFX 'calfr∂testfr2gr; IO; êIO; OK; PARAM; EXPEC; RESUL00000069
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;1 2 3]' 'PARAM Ω calfr∂testdata[;400000070
+  5 6]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ cal00000071
+ fr∂test0fr2gr 1' 'OK ΩOK ^ calfr∂test0fr2gr 2' 'OK ΩOK ^ calfr∂test1fr200000072
+ gr 1 ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1fr200000073
+ gr 3 3' 'OK ΩOK ^ calfr∂test1fr2gr 15 3' 'OK ΩOK ^ calfr∂test1fr2gr 2 300000074
+  3' 'OK ΩOK ^ calfr∂test1fr2gr 6 Ê 2 ‰ checking max allowed rank' '∏ IO00000075
+  / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Ch00000076
+Xecking calfr∂fr2gr : no errors'''                                      00000077
+*(2015 12 23 20 52 37 249)                                              00000078
+ Fcalfr∂testfr2rd êFX 'calfr∂testfr2rd; IO; êIO; OK; PARAM; EXPEC; RESUL00000079
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;7]' 'PARAM Ω calfr∂testdata[;4 5 600000080
+ ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000081
+ est0fr2rd 1' 'OK ΩOK ^ calfr∂test0fr2rd 2' 'OK ΩOK ^ calfr∂test1fr2rd 100000082
+  ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1fr2rd 500000083
+  5' 'OK ΩOK ^ calfr∂test1fr2rd 5 3 3' 'OK ΩOK ^ calfr∂test1fr2rd 5 2 2 00000084
+ 2' 'OK ΩOK ^ calfr∂test1fr2rd 7 Ê 2 ‰ checking max allowed rank' '∏ IO 00000085
+ / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Che00000086
+Xcking calfr∂fr2rd : no errors'''                                       00000087
+*(2015 12 23 20 52 37 227)                                              00000088
+XFcalfr∂fr2gr êFX 'R Ω calfr∂fr2gr D' 'R Ω calfr∂rd2gr calfr∂fr2rd D'   00000089
+*(2015 12 23 20 52 37 248)                                              00000090
+ Fcalfr∂alltests êFX 'calfr∂alltests' 'calfr∂testfr2rd' 'calfr∂testgr2rd00000091
+ ' 'calfr∂testrd2fr' 'calfr∂testrd2gr' 'calfr∂testgr2fr' 'calfr∂testfr2g00000092
+Xr' 'calfr∂testprtfr'                                                   00000093
+*(2015 12 23 20 52 37 261)                                              00000094
+ Fcalfr∂testprtfr êFX 'calfr∂testprtfr; TD; TS; I; IMAX; PAR; EXP; GOT; 00000095
+ N; IO; êIO' 'IO Ω 2' 'LOOPIO:' 'IO Ω IO - 1' '''Checking calfr∂prtfr wi00000096
+ th the full vector (a bit slow) and êIO '', ÆIO' 'êIO Ω 1' 'TD Ω calfr∂00000097
+ testdata[; 4 5 6 ]' 'TS Ω calfr∂teststring' 'I Ω 0' 'N Ω 0' 'IMAX Ω (Ê 00000098
+ TS)[1]' 'LOOP:' 'êIO Ω 1' 'I Ω I + 1' '∏ (I > IMAX)/END' 'PAR Ω TD[I;]'00000099
+  'EXP Ω TS[I;]' 'EXP Ω (ËÎ\ËEXPÙ'' '')/EXP' 'êIO Ω IO' 'GOT Ω calfr∂prt00000100
+ fr PAR' '∏ ((Ê EXP)  = Ê GOT)/NEXT' '''Different length: '', (ÆÊ EXP), 00000101
+ '' '', ÆÊGOT' '''Expected: '', EXP' '''Got     : '', GOT' 'N Ω N + 1' '00000102
+ ∏ LOOP' 'NEXT:' '∏ (^/EXP=GOT)/LOOP' '''Different content''' '''Expecte00000103
+ d: '', EXP' '''Got     : '', GOT' 'N Ω N + 1' '∏ LOOP' 'END:' '''Data e00000104
+Xrrors with êIO = '', (ÆIO), '' : '', ÆN' '∏ IO / LOOPIO '              00000105
+*(2015 12 23 20 52 37 229)                                              00000106
+ Fcalfr∂nodes êFX 'R Ω calfr∂nodes CH' 'R Ω ('' '', CH) [ '' IVX'' Ï '' 00000107
+X   I   II  III IV  V   VI  VII VIIIIX  '' ]'                           00000108
+*(2015 12 23 20 52 37 260)                                              00000109
+ Fcalfr∂test1fr2gr êFX 'R Ω calfr∂test1fr2gr DIM; EXP; GOT; LIB; NERR' '00000110
+ LIB  Ω ''Checking fr2gr with dimension '', (ÆDIM), '' and êIO '', ÆIO' 00000111
+ 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂fr2gr (DIM, 3) Ê PARAM' '∏ ((ÊÊEX00000112
+ P)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong rank, expected '', (ÆÊÊEXP), '', got '00000113
+ ', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, ''00000114
+  Wrong dimension, expected '', (ÆÊEXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 000000115
+ ' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT' '∏ (NERR=0) / CHKIO' 'LIB, '' Data e00000116
+ rrors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, 00000117
+ '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUC00000118
+XCESS:' 'R Ω 1' '∏ 0'                                                   00000119
+*(2015 12 23 20 52 37 222)                                              00000120
+ Fcalfr∂license êFX 'calfr∂license' '''APL program to convert Gregorian 00000121
+ dates''' '''to French Revolutionary dates and the other way''' '''''' '00000122
+ ''Copyright (C) 2015 Jean Forget  (JFORGET at cpan dot org)''' '''''' '00000123
+ '' This program is distributed under the GNU Public License version 1 o00000124
+ r later''' '''''' ''' You can find the text of the license in the LICEN00000125
+ SE file or at''' ''' http://www.gnu.org/licenses/gpl-1.0.html.''' '''''00000126
+ ' ''' Here is the summary of GPL:''' '''''' ''' This program is free so00000127
+ ftware; you can redistribute it and/or modify''' ''' it under the terms00000128
+  of the GNU General Public License as published by''' ''' the Free Soft00000129
+ ware Foundation; either version 1, or (at your option)''' ''' any later00000130
+  version.''' '''''' ''' This program is distributed in the hope that it00000131
+  will be useful,''' ''' but WITHOUT ANY WARRANTY; without even the impl00000132
+ ied warranty of''' ''' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURP00000133
+ OSE.  See the''' ''' GNU General Public License for more details.''' ''00000134
+ '''' ''' You should have received a copy of the GNU General Public Lice00000135
+ nse''' ''' along with this program; if not, write to the Free Software 00000136
+XFoundation,''' ''' Inc., <http://www.fsf.org/>.'''                     00000137
+*(2015 12 23 20 52 37 237)                                              00000138
+ Fcalfr∂feasts êFX 'R Ω calfr∂feasts; V' '‰ include here the contents of00000139
+  feasts' 'V Ω ''''' '‰ Vendemiaire' 'V Ω V, ''du Raisin            ''' 00000140
+ 'V Ω V, ''du Safran            ''' 'V Ω V, ''de la Chataigne      ''' '00000141
+ V Ω V, ''de la Colchique      ''' 'V Ω V, ''du Cheval            ''' 'V00000142
+  Ω V, ''de la Balsamine      ''' 'V Ω V, ''de la Carotte        ''' 'V 00000143
+ Ω V, ''de l''''Amarante        ''' 'V Ω V, ''du Panais            ''' '00000144
+ V Ω V, ''de la Cuve           ''' 'V Ω V, ''de la Pomme de terre ''' 'V00000145
+  Ω V, ''de l''''Immortelle      ''' 'V Ω V, ''du Potiron           ''' 00000146
+ 'V Ω V, ''du Reseda            ''' 'V Ω V, ''de l''''Ane             ''00000147
+ ' 'V Ω V, ''de la Belle de nuit  ''' 'V Ω V, ''de la Citrouille     '''00000148
+  'V Ω V, ''du Sarrasin          ''' 'V Ω V, ''du Tournesol         ''' 00000149
+ 'V Ω V, ''du Pressoir          ''' 'V Ω V, ''du Chanvre           ''' '00000150
+ V Ω V, ''de la Peche          ''' 'V Ω V, ''du Navet             ''' 'V00000151
+  Ω V, ''de l''''Amaryllis       ''' 'V Ω V, ''du Boeuf             ''' 00000152
+ 'V Ω V, ''de l''''Aubergine       ''' 'V Ω V, ''du Piment            ''00000153
+ ' 'V Ω V, ''de la Tomate         ''' 'V Ω V, ''de l''''Orge            00000154
+ ''' 'V Ω V, ''du Tonneau           ''' '‰ Brumaire' 'V Ω V, ''de la Pom00000155
+ me          ''' 'V Ω V, ''du Celeri            ''' 'V Ω V, ''de la Poir00000156
+ e          ''' 'V Ω V, ''de la Betterave      ''' 'V Ω V, ''de l''''Oie00000157
+              ''' 'V Ω V, ''de l''''Heliotrope      ''' 'V Ω V, ''de la 00000158
+ Figue          ''' 'V Ω V, ''de la Scorsonere     ''' 'V Ω V, ''de l'''00000159
+ 'Alisier         ''' 'V Ω V, ''de la Charrue        ''' 'V Ω V, ''du Sa00000160
+ lsifis          ''' 'V Ω V, ''de la Macre          ''' 'V Ω V, ''du Top00000161
+ inambour       ''' 'V Ω V, ''de l''''Endive          ''' 'V Ω V, ''du D00000162
+ indon            ''' 'V Ω V, ''du Chervis           ''' 'V Ω V, ''du Cr00000163
+ esson           ''' 'V Ω V, ''de la Dentelaire     ''' 'V Ω V, ''de la 00000164
+ Grenade        ''' 'V Ω V, ''de la Herse          ''' 'V Ω V, ''de la B00000165
+ acchante      ''' 'V Ω V, ''de l''''Azerole         ''' 'V Ω V, ''de la00000166
+  Garance        ''' 'V Ω V, ''de l''''Orange          ''' 'V Ω V, ''du 00000167
+ Faisan            ''' 'V Ω V, ''de la Pistache       ''' 'V Ω V, ''du M00000168
+ acjon            ''' 'V Ω V, ''du Coing             ''' 'V Ω V, ''du Co00000169
+ rmier           ''' 'V Ω V, ''du Rouleau           ''' '‰ Frimaire' 'V 00000170
+ Ω V, ''de la Raiponce       ''' 'V Ω V, ''du Turneps           ''' 'V Ω00000171
+  V, ''de la Chicoree       ''' 'V Ω V, ''de la Nefle          ''' 'V Ω 00000172
+ V, ''du Cochon            ''' 'V Ω V, ''de la Mache          ''' 'V Ω V00000173
+ , ''du Chou-fleur        ''' 'V Ω V, ''du Miel              ''' 'V Ω V,00000174
+  ''du Genievre          ''' 'V Ω V, ''de la Pioche         ''' 'V Ω V, 00000175
+ ''de la Cire           ''' 'V Ω V, ''du Raifort           ''' 'V Ω V, '00000176
+ 'du Cedre             ''' 'V Ω V, ''du Sapin             ''' 'V Ω V, ''00000177
+ du Chevreuil         ''' 'V Ω V, ''de l''''Ajonc           ''' 'V Ω V, 00000178
+ ''du Cypres            ''' 'V Ω V, ''du Lierre            ''' 'V Ω V, '00000179
+ 'de la Sabine         ''' 'V Ω V, ''du Hoyau             ''' 'V Ω V, ''00000180
+ de l''''Erable-sucre    ''' 'V Ω V, ''de la Bruyere        ''' 'V Ω V, 00000181
+ ''du Roseau            ''' 'V Ω V, ''de l''''Oseille         ''' 'V Ω V00000182
+ , ''du Grillon           ''' 'V Ω V, ''du Pignon            ''' 'V Ω V,00000183
+  ''du Liege             ''' 'V Ω V, ''de la Truffe         ''' 'V Ω V, 00000184
+ ''de l''''Olive           ''' 'V Ω V, ''de la Pelle          ''' '‰ Niv00000185
+ ose' 'V Ω V, ''de la Tourbe         ''' 'V Ω V, ''de la Houille        00000186
+ ''' 'V Ω V, ''du Bitume            ''' 'V Ω V, ''du Soufre            '00000187
+ '' 'V Ω V, ''du Chien             ''' 'V Ω V, ''de la Lave           ''00000188
+ ' 'V Ω V, ''de la Terre vegetale ''' 'V Ω V, ''du Fumier            '''00000189
+  'V Ω V, ''du Salpetre          ''' 'V Ω V, ''du Fleau             ''' 00000190
+ 'V Ω V, ''du Granit            ''' 'V Ω V, ''de l''''Argile          ''00000191
+ ' 'V Ω V, ''de l''''Ardoise         ''' 'V Ω V, ''du Gres              00000192
+ ''' 'V Ω V, ''du Lapin             ''' 'V Ω V, ''du Silex             '00000193
+ '' 'V Ω V, ''de la Marne          ''' 'V Ω V, ''de la Pierre a chaux ''00000194
+ ' 'V Ω V, ''du Marbre            ''' 'V Ω V, ''du Van               '''00000195
+  'V Ω V, ''de la Pierre a platre''' 'V Ω V, ''du Sel               ''' 00000196
+ 'V Ω V, ''du Fer               ''' 'V Ω V, ''du Cuivre            ''' '00000197
+ V Ω V, ''du Chat              ''' 'V Ω V, ''de l''''Etain           '''00000198
+  'V Ω V, ''du Plomb             ''' 'V Ω V, ''du Zinc              ''' 00000199
+ 'V Ω V, ''du Mercure           ''' 'V Ω V, ''du Crible            ''' '00000200
+ ‰ Pluviose' 'V Ω V, ''de la Laureole       ''' 'V Ω V, ''de la Mousse  00000201
+        ''' 'V Ω V, ''du Fragon            ''' 'V Ω V, ''du Perce-neige 00000202
+       ''' 'V Ω V, ''du Taureau           ''' 'V Ω V, ''du Laurier-thym 00000203
+      ''' 'V Ω V, ''de l''''Amadouvier      ''' 'V Ω V, ''du Mezereon   00000204
+        ''' 'V Ω V, ''du Peuplier          ''' 'V Ω V, ''de la Cognee   00000205
+       ''' 'V Ω V, ''de l''''Ellebore        ''' 'V Ω V, ''du Brocoli   00000206
+         ''' 'V Ω V, ''du Laurier           ''' 'V Ω V, ''de l''''Avelin00000207
+ ier       ''' 'V Ω V, ''de la Vache          ''' 'V Ω V, ''du Buis     00000208
+          ''' 'V Ω V, ''du Lichen            ''' 'V Ω V, ''de l''''If   00000209
+            ''' 'V Ω V, ''de la Pulmonaire     ''' 'V Ω V, ''de la Serpe00000210
+ tte       ''' 'V Ω V, ''du Thlaspi           ''' 'V Ω V, ''du Thymele  00000211
+          ''' 'V Ω V, ''du Chiendent         ''' 'V Ω V, ''de la Trainas00000212
+ se      ''' 'V Ω V, ''du Lievre            ''' 'V Ω V, ''de la Guede   00000213
+        ''' 'V Ω V, ''du Noisetier         ''' 'V Ω V, ''du Cyclamen    00000214
+       ''' 'V Ω V, ''de la Chelidoine     ''' 'V Ω V, ''du Traineau     00000215
+      ''' '‰ Ventose' 'V Ω V, ''du Tussilage         ''' 'V Ω V, ''du Co00000216
+ rnouiller       ''' 'V Ω V, ''du Violier           ''' 'V Ω V, ''du Tro00000217
+ ene            ''' 'V Ω V, ''du Bouc              ''' 'V Ω V, ''de l'''00000218
+ 'Asaret          ''' 'V Ω V, ''de l''''Alaterne        ''' 'V Ω V, ''de00000219
+  la Violette       ''' 'V Ω V, ''du Marsault          ''' 'V Ω V, ''de 00000220
+ la Beche          ''' 'V Ω V, ''du Narcisse          ''' 'V Ω V, ''de l00000221
+ ''''Orme            ''' 'V Ω V, ''de la Fumeterre      ''' 'V Ω V, ''du00000222
+  Velar             ''' 'V Ω V, ''de la Chevre         ''' 'V Ω V, ''de 00000223
+ l''''Epinard         ''' 'V Ω V, ''du Doronic           ''' 'V Ω V, ''d00000224
+ u Mouron            ''' 'V Ω V, ''du Cerfeuil          ''' 'V Ω V, ''du00000225
+  Cordeau           ''' 'V Ω V, ''de la Mandragore     ''' 'V Ω V, ''du 00000226
+ Persil            ''' 'V Ω V, ''du Cochlearia        ''' 'V Ω V, ''de l00000227
+ a Paquerette     ''' 'V Ω V, ''du Thon              ''' 'V Ω V, ''du Pi00000228
+ ssenlit         ''' 'V Ω V, ''de la Sylvie         ''' 'V Ω V, ''du Cap00000229
+ illaire        ''' 'V Ω V, ''du Frene             ''' 'V Ω V, ''du Plan00000230
+ toir          ''' '‰ Germinal' 'V Ω V, ''de la Primevere      ''' 'V Ω 00000231
+ V, ''du Platane           ''' 'V Ω V, ''de l''''Asperge         ''' 'V 00000232
+ Ω V, ''de la Tulipe         ''' 'V Ω V, ''de la Poule          ''' 'V Ω00000233
+  V, ''de la Blette         ''' 'V Ω V, ''du Bouleau           ''' 'V Ω 00000234
+ V, ''de la Jonquille      ''' 'V Ω V, ''de l''''Aulne           ''' 'V 00000235
+ Ω V, ''du Couvoir           ''' 'V Ω V, ''de la Pervenche      ''' 'V Ω00000236
+  V, ''du Charme            ''' 'V Ω V, ''de la Morille        ''' 'V Ω 00000237
+ V, ''du Hetre             ''' 'V Ω V, ''de l''''Abeille         ''' 'V 00000238
+ Ω V, ''de la Laitue         ''' 'V Ω V, ''du Meleze            ''' 'V Ω00000239
+  V, ''de la Cigue          ''' 'V Ω V, ''du Radis             ''' 'V Ω 00000240
+ V, ''de la Ruche          ''' 'V Ω V, ''du Gainier           ''' 'V Ω V00000241
+ , ''de la Romaine        ''' 'V Ω V, ''du Marronnier        ''' 'V Ω V,00000242
+  ''de la Roquette       ''' 'V Ω V, ''du Pigeon            ''' 'V Ω V, 00000243
+ ''du Lilas             ''' 'V Ω V, ''de l''''Anemone         ''' 'V Ω V00000244
+ , ''de la Pensee         ''' 'V Ω V, ''de la Myrtille       ''' 'V Ω V,00000245
+  ''du Greffoir          ''' '‰ Floreal' 'V Ω V, ''de la Rose           00000246
+ ''' 'V Ω V, ''du Chene             ''' 'V Ω V, ''de la Fougere        '00000247
+ '' 'V Ω V, ''de l''''Aubepine        ''' 'V Ω V, ''du Rossignol        00000248
+  ''' 'V Ω V, ''de l''''Ancolie         ''' 'V Ω V, ''du Muguet         00000249
+    ''' 'V Ω V, ''du Champignon        ''' 'V Ω V, ''de la Jacinthe     00000250
+   ''' 'V Ω V, ''du Rateau            ''' 'V Ω V, ''de la Rhubarbe      00000251
+  ''' 'V Ω V, ''du Sainfoin          ''' 'V Ω V, ''du Baton-d''''or     00000252
+    ''' 'V Ω V, ''du Chamerisier       ''' 'V Ω V, ''du Ver a soie      00000253
+   ''' 'V Ω V, ''de la Consoude       ''' 'V Ω V, ''de la Pimprenelle   00000254
+  ''' 'V Ω V, ''de la Corbeille-d''''or ''' 'V Ω V, ''de l''''Arroche   00000255
+       ''' 'V Ω V, ''du Sarcloir          ''' 'V Ω V, ''du Statice      00000256
+      ''' 'V Ω V, ''de la Fritillaire    ''' 'V Ω V, ''de la Bourrache  00000257
+     ''' 'V Ω V, ''de la Valeriane      ''' 'V Ω V, ''de la Carpe       00000258
+    ''' 'V Ω V, ''du Fusain            ''' 'V Ω V, ''de la Civette      00000259
+   ''' 'V Ω V, ''de la Buglosse       ''' 'V Ω V, ''du Seneve           00000260
+  ''' 'V Ω V, ''de la Houlette       ''' '‰ Prairial' 'V Ω V, ''de la Lu00000261
+ zerne        ''' 'V Ω V, ''de l''''Hemerocalle     ''' 'V Ω V, ''du Tre00000262
+ fle            ''' 'V Ω V, ''de l''''Angelique       ''' 'V Ω V, ''du C00000263
+ anard            ''' 'V Ω V, ''de la Melisse        ''' 'V Ω V, ''du Fr00000264
+ omental         ''' 'V Ω V, ''du Martagon          ''' 'V Ω V, ''du Ser00000265
+ polet          ''' 'V Ω V, ''de la Faux           ''' 'V Ω V, ''de la F00000266
+ raise         ''' 'V Ω V, ''de la Betoine        ''' 'V Ω V, ''du Pois 00000267
+              ''' 'V Ω V, ''de l''''Acacia          ''' 'V Ω V, ''de la 00000268
+ Caille         ''' 'V Ω V, ''de l''''Oeillet         ''' 'V Ω V, ''du S00000269
+ ureau            ''' 'V Ω V, ''du Pavot             ''' 'V Ω V, ''du Ti00000270
+ lleul           ''' 'V Ω V, ''de la Fourche        ''' 'V Ω V, ''du Bar00000271
+ beau           ''' 'V Ω V, ''de la Camomille      ''' 'V Ω V, ''du Chev00000272
+ refeuille     ''' 'V Ω V, ''du Caille-lait       ''' 'V Ω V, ''de la Ta00000273
+ nche         ''' 'V Ω V, ''du Jasmin            ''' 'V Ω V, ''de la Ver00000274
+ veine       ''' 'V Ω V, ''du Thym              ''' 'V Ω V, ''de la Pivo00000275
+ ine        ''' 'V Ω V, ''du Chariot           ''' '‰ Messidor' 'V Ω V, 00000276
+ ''du Seigle            ''' 'V Ω V, ''de l''''Avoine          ''' 'V Ω V00000277
+ , ''de l''''Oignon          ''' 'V Ω V, ''de la Veronique      ''' 'V Ω00000278
+  V, ''du Mulet             ''' 'V Ω V, ''du Romarin           ''' 'V Ω 00000279
+ V, ''du Concombre         ''' 'V Ω V, ''de l''''Echalotte       ''' 'V 00000280
+ Ω V, ''de l''''Absinthe        ''' 'V Ω V, ''de la Faucille       ''' '00000281
+ V Ω V, ''de la Coriandre      ''' 'V Ω V, ''de l''''Artichaut       '''00000282
+  'V Ω V, ''de la Giroflee       ''' 'V Ω V, ''de la Lavande        ''' 00000283
+ 'V Ω V, ''du Chamois           ''' 'V Ω V, ''du Tabac             ''' '00000284
+ V Ω V, ''de la Groseille      ''' 'V Ω V, ''de la Gesse          ''' 'V00000285
+  Ω V, ''de la Cerise         ''' 'V Ω V, ''du Parc              ''' 'V 00000286
+ Ω V, ''de la Menthe         ''' 'V Ω V, ''du Cumin             ''' 'V Ω00000287
+  V, ''du Haricot           ''' 'V Ω V, ''de l''''Orcanete        ''' 'V00000288
+  Ω V, ''de la Pintade        ''' 'V Ω V, ''de la Sauge          ''' 'V 00000289
+ Ω V, ''de l''''Ail             ''' 'V Ω V, ''de la Vesce          ''' '00000290
+ V Ω V, ''du Ble               ''' 'V Ω V, ''de la Chalemie       ''' '‰00000291
+  Thermidor' 'V Ω V, ''de l''''Epautre         ''' 'V Ω V, ''du Bouillon00000292
+ -blanc    ''' 'V Ω V, ''du Melon             ''' 'V Ω V, ''de l''''Ivra00000293
+ ie          ''' 'V Ω V, ''du Belier            ''' 'V Ω V, ''de la Prel00000294
+ e          ''' 'V Ω V, ''de l''''Armoise         ''' 'V Ω V, ''du Carth00000295
+ ame          ''' 'V Ω V, ''de la Mure           ''' 'V Ω V, ''de l''''A00000296
+ rrosoir        ''' 'V Ω V, ''du Panis             ''' 'V Ω V, ''du Sali00000297
+ cor           ''' 'V Ω V, ''de l''''Abricot         ''' 'V Ω V, ''du Ba00000298
+ silic           ''' 'V Ω V, ''de la Brebis         ''' 'V Ω V, ''de la 00000299
+ Guimauve       ''' 'V Ω V, ''du Lin               ''' 'V Ω V, ''de l'''00000300
+ 'Amande          ''' 'V Ω V, ''de la Gentiane       ''' 'V Ω V, ''de l'00000301
+ '''Ecluse          ''' 'V Ω V, ''de la Carline        ''' 'V Ω V, ''du 00000302
+ Caprier           ''' 'V Ω V, ''de la Lentille       ''' 'V Ω V, ''de l00000303
+ ''''Aunee           ''' 'V Ω V, ''de la Loutre         ''' 'V Ω V, ''de00000304
+  la Myrte          ''' 'V Ω V, ''du Colza             ''' 'V Ω V, ''du 00000305
+ Lupin             ''' 'V Ω V, ''du Coton             ''' 'V Ω V, ''du M00000306
+ oulin            ''' '‰ Fructidor' 'V Ω V, ''de la Prune          ''' '00000307
+ V Ω V, ''du Millet            ''' 'V Ω V, ''du Lycoperdon        ''' 'V00000308
+  Ω V, ''de l''''Escourgeon      ''' 'V Ω V, ''du Saumon            ''' 00000309
+ 'V Ω V, ''de la Tubereuse      ''' 'V Ω V, ''du Sucrion           ''' '00000310
+ V Ω V, ''de l''''Apocyn          ''' 'V Ω V, ''de la Reglisse       '''00000311
+  'V Ω V, ''de l''''Echelle         ''' 'V Ω V, ''de la Pasteque       '00000312
+ '' 'V Ω V, ''du Fenouil           ''' 'V Ω V, ''de l''''Epine-vinette  00000313
+  ''' 'V Ω V, ''de la Noix           ''' 'V Ω V, ''de la Truite         00000314
+ ''' 'V Ω V, ''du Citron            ''' 'V Ω V, ''de la Cardere        '00000315
+ '' 'V Ω V, ''du Nerprun           ''' 'V Ω V, ''du Tagette           ''00000316
+ ' 'V Ω V, ''de la Hotte          ''' 'V Ω V, ''de l''''Eglantier       00000317
+ ''' 'V Ω V, ''de la Noisette       ''' 'V Ω V, ''du Houblon           '00000318
+ '' 'V Ω V, ''du Sorgho            ''' 'V Ω V, ''de l''''Ecrevisse      00000319
+  ''' 'V Ω V, ''de la Bagarade       ''' 'V Ω V, ''de la Verge-d''''or  00000320
+    ''' 'V Ω V, ''du Mais              ''' 'V Ω V, ''du Marron          00000321
+   ''' 'V Ω V, ''du Panier            ''' '‰ jour complementaire' 'V Ω V00000322
+ , ''de la Vertu          ''' 'V Ω V, ''du Genie             ''' 'V Ω V,00000323
+  ''du Travail           ''' 'V Ω V, ''de l''''Opinion         ''' 'V Ω 00000324
+ V, ''des Recompenses      ''' 'V Ω V, ''de la Revolution     ''' 'R Ω 300000325
+X66 21 Ê V'                                                             00000326
+*(2015 12 23 20 52 37 223)                                              00000327
+XFcalfr∂year êFX 'R Ω calfr∂year D' 'R Ω D +.ı 1 0 0'                   00000328
+*(2015 12 23 20 52 37 249)                                              00000329
+ Fcalfr∂test0fr2rd êFX 'R  Ω calfr∂test0fr2rd N; LIB; PAR; EXP; GOT; NER00000330
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking calf00000331
+ r∂fr2rd with scalar date '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO' 'GO00000332
+ T  Ω calfr∂fr2rd PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDATA ‰ no need to check dim00000333
+ ension, it is the empty vector' 'LIB, '' Wrong rank: expected '', (ÆÊÊE00000334
+ XP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,EXPÙGOT' '00000335
+ ∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CH00000336
+ KIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' 00000337
+Xbecame '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                00000338
+*(2015 12 23 20 52 37 255)                                              00000339
+ Fcalfr∂test0rd2gr êFX 'R  Ω calfr∂test0rd2gr N; LIB; PAR; EXP; GOT; NER00000340
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N]' 'LIB  Ω ''Checking calf00000341
+ r∂rd2gr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO'00000342
+  'GOT  Ω calfr∂rd2gr PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong ran00000343
+ k: expected '', (ÆÊÊEXP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '00000344
+ ∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '' Wrong dimensions: expected '', (ÆÊE00000345
+ XP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT' 00000346
+ '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'C00000347
+ HKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), ''00000348
+X became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'               00000349
+*(2015 12 23 20 52 37 226)                                              00000350
+ Fcalfr∂rd2gr êFX 'R Ω calfr∂rd2gr N; êIO; YH; YL; YI; YR; DR; NR; CM; Y00000351
+ ; M; D; ML; MR' 'êIO Ω 1' 'YH Ω © N ˆ 365.24' 'YL Ω © N ˆ 365.25' 'YI Ω00000352
+  0 , Ï ©/,YH-YL' 'YR Ω YL ¯.+ YI' 'DR Ω calfr∂zerojanvnd YR' 'NR Ω calf00000353
+ r∂gr2rd DR' 'CM Ω NR < N ¯.+ (ÊYI)Ê0' 'Y Ω ©/YRıCM' 'D Ω N - ©/NRıCM' '00000354
+ ML Ω ©Dˆ31' 'MR Ω ML ¯.+ 0 1' 'DR Ω (Y ¯.ı 2 3 Ê 1 0 0) + (MR ¯.ı 0 1 000000355
+ )' 'NR Ω calfr∂gr2rd DR' 'CM Ω NR < N ¯.+ 0 0' 'M Ω ©/MRıCM' 'D Ω N - ©00000356
+X/NRıCM' 'R Ω (Y ¯.ı 1 0 0) + (M ¯.ı 0 1 0) + D ¯.ı 0 0 1'              00000357
+*(2015 12 23 20 52 37 225)                                              00000358
+ Fcalfr∂rd2fr êFX 'R Ω calfr∂rd2fr N; êIO; N1; YH; YL; YI; YR; DR; NR; C00000359
+ M; Y; M; D' 'êIO Ω 1' 'N1 Ω N - 654414' 'YH Ω © N1 ˆ 365.24' 'YL Ω © N100000360
+  ˆ 365.34' 'YI Ω 0 , Ï ©/,YH-YL' 'YR Ω YL ¯.+ YI' 'DR Ω calfr∂zerojanvn00000361
+ d YR' 'NR Ω calfr∂fr2rd DR' 'CM Ω NR < N ¯.+ (ÊYI)Ê0' 'Y Ω ©/YRıCM' 'D 00000362
+ Ω N - ©/NRıCM' 'M Ω ©Dˆ30' 'D Ω D - 30 ı M - 1' 'R Ω (Y ¯.ı 1 0 0) + (M00000363
+X ¯.ı 0 1 0) + D ¯.ı 0 0 1'                                             00000364
+*(2015 12 23 20 52 37 253)                                              00000365
+ Fcalfr∂test0rd2fr êFX 'R  Ω calfr∂test0rd2fr N; LIB; PAR; EXP; GOT; NER00000366
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N]' 'LIB  Ω ''Checking calf00000367
+ r∂rd2fr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO'00000368
+  'GOT  Ω calfr∂rd2fr PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong ran00000369
+ k: expected '', (ÆÊÊEXP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '00000370
+ ∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '' Wrong dimensions: expected '', (ÆÊE00000371
+ XP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT' 00000372
+ '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'C00000373
+ HKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), ''00000374
+X became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'               00000375
+*(2015 12 23 20 52 37 247)                                              00000376
+ Fcalfr∂teststring êFX 'R Ω calfr∂teststring; V; L' 'V Ω ''''' '‰ includ00000377
+ e here the contents of testapl1' 'V Ω V, ''Primidi 1 Vendemiaire I, jou00000378
+ r du Raisin             ''' 'V Ω V, ''Duodi 2 Brumaire II, jour du Cele00000379
+ ri                 ''' 'V Ω V, ''Nonidi 9 Thermidor II, jour de la Mure00000380
+               ''' 'V Ω V, ''Tridi 3 Frimaire III, jour de la Chicoree  00000381
+          ''' 'V Ω V, ''Tridi 13 Vendemiaire IV, jour du Potiron        00000382
+     ''' 'V Ω V, ''Quartidi 4 Nivose IV, jour du Soufre                '00000383
+ '' 'V Ω V, ''Quintidi 5 Pluviose V, jour du Taureau              ''' 'V00000384
+  Ω V, ''Sextidi 6 Ventose VI, jour de l''''Asaret              ''' 'V Ω00000385
+  V, ''Octidi 18 Brumaire VIII, jour de la Dentelaire      ''' 'V Ω V, '00000386
+ 'Octidi 8 Germinal IX, jour de la Jonquille          ''' 'V Ω V, ''Deca00000387
+ di 10 Floreal XII, jour du Rateau               ''' 'V Ω V, ''Duodi 12 00000388
+ Prairial XV, jour de la Betoine            ''' 'V Ω V, ''Quartidi 14 Me00000389
+ ssidor XVIII, jour de la Lavande      ''' 'V Ω V, ''Sextidi 16 Thermido00000390
+ r XXI, jour de la Guimauve       ''' 'V Ω V, ''Octidi 18 Fructidor XXIV00000391
+ , jour du Nerprun           ''' 'V Ω V, ''Duodi 12 Nivose CCVIII, jour 00000392
+ de l''''Argile            ''' 'V Ω V, ''Duodi 22 Floreal CCIX, jour de 00000393
+ la Fritillaire       ''' 'V Ω V, ''Primidi 1 Vendemiaire I, jour du Rai00000394
+ sin             ''' 'V Ω V, ''Quintidi 5 jour compl. I, jour des Recomp00000395
+ enses      ''' 'V Ω V, ''Primidi 1 Vendemiaire II, jour du Raisin      00000396
+       ''' 'V Ω V, ''Quintidi 5 jour compl. II, jour des Recompenses    00000397
+  ''' 'V Ω V, ''Primidi 1 Vendemiaire III, jour du Raisin           ''' 00000398
+ 'V Ω V, ''Sextidi 6 jour compl. III, jour de la Revolution    ''' 'V Ω 00000399
+ V, ''Primidi 1 Vendemiaire IV, jour du Raisin            ''' 'V Ω V, ''00000400
+ Quintidi 5 jour compl. IV, jour des Recompenses     ''' 'V Ω V, ''Primi00000401
+ di 1 Vendemiaire V, jour du Raisin             ''' 'V Ω V, ''Quintidi 500000402
+  jour compl. V, jour des Recompenses      ''' 'V Ω V, ''Primidi 1 Vende00000403
+ miaire VI, jour du Raisin            ''' 'V Ω V, ''Sextidi 6 jour compl00000404
+ . VII, jour de la Revolution    ''' 'V Ω V, ''Primidi 1 Vendemiaire VII00000405
+ I, jour du Raisin          ''' 'V Ω V, ''Quintidi 5 jour compl. VIII, j00000406
+ our des Recompenses   ''' 'V Ω V, ''Primidi 1 Vendemiaire IX, jour du R00000407
+ aisin            ''' 'V Ω V, ''Quintidi 5 jour compl. IX, jour des Reco00000408
+ mpenses     ''' 'V Ω V, ''Primidi 1 Vendemiaire X, jour du Raisin      00000409
+        ''' 'V Ω V, ''Quintidi 5 jour compl. XXXI, jour des Recompenses 00000410
+   ''' 'V Ω V, ''Primidi 1 Vendemiaire XXXII, jour du Raisin         '''00000411
+  'V Ω V, ''Sextidi 6 jour compl. XXXII, jour de la Revolution  ''' 'V Ω00000412
+  V, ''Primidi 1 Vendemiaire XXXIII, jour du Raisin        ''' 'V Ω V, '00000413
+ 'Quintidi 5 jour compl. XXXIII, jour des Recompenses ''' 'V Ω V, ''Prim00000414
+ idi 1 Vendemiaire XXXIV, jour du Raisin         ''' 'V Ω V, ''Quintidi 00000415
+ 5 jour compl. C, jour des Recompenses      ''' 'V Ω V, ''Primidi 1 Vend00000416
+ emiaire CI, jour du Raisin            ''' 'V Ω V, ''Sextidi 6 jour comp00000417
+ l. CVIII, jour de la Revolution  ''' 'V Ω V, ''Primidi 1 Vendemiaire CI00000418
+ X, jour du Raisin           ''' 'V Ω V, ''Quintidi 5 jour compl. CC, jo00000419
+ ur des Recompenses     ''' 'V Ω V, ''Primidi 1 Vendemiaire CCI, jour du00000420
+  Raisin           ''' 'V Ω V, ''Sextidi 6 jour compl. CCVIII, jour de l00000421
+ a Revolution ''' 'V Ω V, ''Primidi 1 Vendemiaire CCIX, jour du Raisin  00000422
+         ''' 'V Ω V, ''Quintidi 5 jour compl. CCC, jour des Recompenses 00000423
+    ''' 'V Ω V, ''Primidi 1 Vendemiaire CCCI, jour du Raisin          ''00000424
+ ' 'V Ω V, ''Sextidi 6 jour compl. CCCVIII, jour de la Revolution''' 'V 00000425
+ Ω V, ''Primidi 1 Vendemiaire CCCIX, jour du Raisin         ''' 'V Ω V, 00000426
+ ''Sextidi 6 jour compl. CD, jour de la Revolution     ''' 'V Ω V, ''Pri00000427
+ midi 1 Vendemiaire CDI, jour du Raisin           ''' 'V Ω V, ''Quintidi00000428
+  5 jour compl. CDI, jour des Recompenses    ''' 'V Ω V, ''Primidi 1 Ven00000429
+ demiaire CDVIII, jour du Raisin        ''' 'V Ω V, ''Sextidi 6 jour com00000430
+ pl. CDVIII, jour de la Revolution ''' 'V Ω V, ''Primidi 1 Vendemiaire M00000431
+ , jour du Raisin             ''' 'V Ω V, ''Primidi 1 Vendemiaire MI, jo00000432
+ ur du Raisin            ''' 'V Ω V, ''Duodi 12 Nivose MCCVIII, jour de 00000433
+ l''''Argile           ''' 'V Ω V, ''Primidi 11 Nivose MCCIX, jour du Gr00000434
+ anit             ''' 'V Ω V, ''Primidi 1 Vendemiaire MM, jour du Raisin00000435
+             ''' 'V Ω V, ''Primidi 1 Vendemiaire MMI, jour du Raisin    00000436
+        ''' 'V Ω V, ''Duodi 12 Nivose MMCCVIII, jour de l''''Argile     00000437
+      ''' 'V Ω V, ''Duodi 12 Nivose MMCCIX, jour de l''''Argile         00000438
+    ''' 'V Ω V, ''Quartidi 24 Fructidor MMDXXVIII, jour du Sorgho     ''00000439
+ ' 'V Ω V, ''Quintidi 25 Fructidor MMDXXVIII, jour de l''''Ecrevisse''' 00000440
+ 'V Ω V, ''Primidi 1 Vendemiaire MMM, jour du Raisin           ''' 'V Ω 00000441
+ V, ''Primidi 1 Vendemiaire MMMI, jour du Raisin          ''' 'V Ω V, ''00000442
+ Duodi 12 Nivose MMMCCVIII, jour de l''''Argile         ''' 'V Ω V, ''Pr00000443
+ imidi 11 Nivose MMMCCIX, jour du Granit           ''' 'V Ω V, ''Primidi00000444
+  1 Vendemiaire 4000, jour du Raisin          ''' 'V Ω V, ''Primidi 1 Ve00000445
+ ndemiaire 4001, jour du Raisin          ''' 'V Ω V, ''Tridi 13 Nivose 400000446
+ 208, jour de l''''Ardoise             ''' 'V Ω V, ''Tridi 13 Nivose 42000000447
+ 9, jour de l''''Ardoise             ''' 'V Ω V, ''Primidi 1 Vendemiaire00000448
+  5000, jour du Raisin          ''' 'V Ω V, ''Primidi 1 Vendemiaire 500100000449
+ , jour du Raisin          ''' 'V Ω V, ''Primidi 1 Vendemiaire 6000, jou00000450
+ r du Raisin          ''' 'V Ω V, ''Primidi 1 Vendemiaire 6001, jour du 00000451
+XRaisin          ''' 'R Ω 79 52 Ê V'                                    00000452
+*(2015 12 23 20 52 37 228)                                              00000453
+ Fcalfr∂roman êFX 'R Ω calfr∂roman N; NODES' '∏ ((N>0) ^ N<4000)/CONV' '00000454
+ R Ω Æ N' '∏ 0' 'CONV:' 'NODES Ω 40 4 Ê (calfr∂nodes ''IVX''), (calfr∂no00000455
+ des ''XLC''), (calfr∂nodes ''CDM''), calfr∂nodes ''M??''' 'R Ω ,NODES[ê00000456
+XIO + 30 20 10 0 + 10 10 10 10 ò N;]' 'R Ω (RÙ'' '')/R'                 00000457
+*(2015 12 23 20 52 37 223)                                              00000458
+XFcalfr∂day êFX 'R Ω calfr∂day D' 'R Ω D +.ı 0 0 1'                     00000459
+*(2015 12 23 20 52 37 243)                                              00000460
+ Fcalfr∂testdata êFX 'R Ω calfr∂testdata; V; L' '‰ include here the cont00000461
+ ents of testapl' 'V Ω Ï0' 'V Ω V, 1792  9 22    1  1  1  654415' 'V Ω V00000462
+ , 1793 10 23    2  2  2  654811' 'V Ω V, 1794  7 27    2 11  9  655088'00000463
+  'V Ω V, 1794 11 23    3  3  3  655207' 'V Ω V, 1795 10  5    4  1 13  00000464
+ 655523' 'V Ω V, 1795 12 25    4  4  4  655604' 'V Ω V, 1797  1 24    5 00000465
+  5  5  656000' 'V Ω V, 1798  2 24    6  6  6  656396' 'V Ω V, 1799 11  00000466
+ 9    8  2 18  657019' 'V Ω V, 1801  3 29    9  7  8  657524' 'V Ω V, 1800000467
+ 04  4 30   12  8 10  658652' 'V Ω V, 1807  6  1   15  9 12  659779' 'V 00000468
+ Ω V, 1810  7  3   18 10 14  660907' 'V Ω V, 1813  8  4   21 11 16  662000000469
+ 35' 'V Ω V, 1816  9  4   24 12 18  663162' 'V Ω V, 2000  1  1  208  4 100000470
+ 2  730120' 'V Ω V, 2001  5 11  209  8 22  730616' 'V Ω V, 1792  9 22   00000471
+  1  1  1  654415' 'V Ω V, 1793  9 21    1 13  5  654779' 'V Ω V, 1793  00000472
+ 9 22    2  1  1  654780' 'V Ω V, 1794  9 21    2 13  5  655144' 'V Ω V,00000473
+  1794  9 22    3  1  1  655145' 'V Ω V, 1795  9 22    3 13  6  655510' 00000474
+ 'V Ω V, 1795  9 23    4  1  1  655511' 'V Ω V, 1796  9 21    4 13  5  600000475
+ 55875' 'V Ω V, 1796  9 22    5  1  1  655876' 'V Ω V, 1797  9 21    5 100000476
+ 3  5  656240' 'V Ω V, 1797  9 22    6  1  1  656241' 'V Ω V, 1799  9 2200000477
+     7 13  6  656971' 'V Ω V, 1799  9 23    8  1  1  656972' 'V Ω V, 18000000478
+ 0  9 22    8 13  5  657336' 'V Ω V, 1800  9 23    9  1  1  657337' 'V Ω00000479
+  V, 1801  9 22    9 13  5  657701' 'V Ω V, 1801  9 23   10  1  1  6577000000480
+ 2' 'V Ω V, 1823  9 22   31 13  5  665736' 'V Ω V, 1823  9 23   32  1  100000481
+   665737' 'V Ω V, 1824  9 22   32 13  6  666102' 'V Ω V, 1824  9 23   300000482
+ 3  1  1  666103' 'V Ω V, 1825  9 22   33 13  5  666467' 'V Ω V, 1825  900000483
+  23   34  1  1  666468' 'V Ω V, 1892  9 21  100 13  5  690938' 'V Ω V, 00000484
+ 1892  9 22  101  1  1  690939' 'V Ω V, 1900  9 22  108 13  6  693860' '00000485
+ V Ω V, 1900  9 23  109  1  1  693861' 'V Ω V, 1992  9 21  200 13  5  7200000486
+ 7462' 'V Ω V, 1992  9 22  201  1  1  727463' 'V Ω V, 2000  9 21  208 1300000487
+   6  730384' 'V Ω V, 2000  9 22  209  1  1  730385' 'V Ω V, 2092  9 20 00000488
+  300 13  5  763986' 'V Ω V, 2092  9 21  301  1  1  763987' 'V Ω V, 210000000489
+   9 21  308 13  6  766908' 'V Ω V, 2100  9 22  309  1  1  766909' 'V Ω 00000490
+ V, 2192  9 21  400 13  6  800511' 'V Ω V, 2192  9 22  401  1  1  80051200000491
+ ' 'V Ω V, 2193  9 21  401 13  5  800876' 'V Ω V, 2199  9 22  408  1  1 00000492
+  803068' 'V Ω V, 2200  9 22  408 13  6  803433' 'V Ω V, 2791  9 23 100000000493
+   1  1 1019292' 'V Ω V, 2792  9 22 1001  1  1 1019657' 'V Ω V, 3000  1 00000494
+  1 1208  4 12 1095363' 'V Ω V, 3001  1  1 1209  4 11 1095728' 'V Ω V, 300000495
+ 791  9 22 2000  1  1 1384534' 'V Ω V, 3792  9 22 2001  1  1 1384900' 'V00000496
+  Ω V, 4000  1  1 2208  4 12 1460605' 'V Ω V, 4001  1  1 2209  4 12 146000000497
+ 971' 'V Ω V, 4320  9 10 2528 12 24 1577735' 'V Ω V, 4320  9 11 2528 12 00000498
+ 25 1577736' 'V Ω V, 4791  9 23 3000  1  1 1749777' 'V Ω V, 4792  9 22 300000499
+ 001  1  1 1750142' 'V Ω V, 5000  1  1 3208  4 12 1825848' 'V Ω V, 5001 00000500
+  1  1 3209  4 11 1826213' 'V Ω V, 5791  9 22 4000  1  1 2115019' 'V Ω V00000501
+ , 5792  9 21 4001  1  1 2115384' 'V Ω V, 6000  1  1 4208  4 13 2191090'00000502
+  'V Ω V, 6001  1  1 4209  4 13 2191456' 'V Ω V, 6791  9 22 5000  1  1 200000503
+ 480261' 'V Ω V, 6792  9 21 5001  1  1 2480626' 'V Ω V, 7791  9 21 6000 00000504
+  1  1 2845503' 'V Ω V, 7792  9 21 6001  1  1 2845869' 'L Ω (Ê V) ˆ 7' '00000505
+XR Ω (L, 7) Ê V'                                                        00000506
+*(2015 12 23 20 52 37 224)                                              00000507
+ Fcalfr∂frbis êFX 'R Ω calfr∂frbis YEAR' 'YEAR Ω YEAR - 1' 'R Ω - / æ YE00000508
+XAR ¯.ˆ 4 100 400 4000' 'R Ω R + YEAR Ó 3 7 11 15'                      00000509
+*(2015 12 23 20 52 37 255)                                              00000510
+ Fcalfr∂testrd2gr êFX 'calfr∂testrd2gr; IO; êIO; OK; PARAM; EXPEC; RESUL00000511
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;1 2 3]' 'PARAM Ω calfr∂testdata[;700000512
+ ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000513
+ est0rd2gr 1' 'OK ΩOK ^ calfr∂test0rd2gr 2' 'OK ΩOK ^ calfr∂test1rd2gr 100000514
+  ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1rd2gr 300000515
+  3' 'OK ΩOK ^ calfr∂test1rd2gr 15 3' 'OK ΩOK ^ calfr∂test1rd2gr 2 3 3' 00000516
+ '∏ IO / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' 00000517
+X'''Checking calfr∂rd2gr : no errors'''                                 00000518
+*(2015 12 23 20 52 37 253)                                              00000519
+ Fcalfr∂testrd2fr êFX 'calfr∂testrd2fr; IO; êIO; OK; PARAM; EXPEC; RESUL00000520
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;4 5 6]' 'PARAM Ω calfr∂testdata[;700000521
+ ]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ calfr∂t00000522
+ est0rd2fr 1' 'OK ΩOK ^ calfr∂test0rd2fr 2' 'OK ΩOK ^ calfr∂test1rd2fr 100000523
+  ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1rd2fr 300000524
+  3' 'OK ΩOK ^ calfr∂test1rd2fr 15 3' 'OK ΩOK ^ calfr∂test1rd2fr 2 3 3' 00000525
+ 'OK ΩOK ^ calfr∂test1rd2fr 6 Ê 2 ‰ checking max allowed rank' '∏ IO / L00000526
+ OOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Checki00000527
+Xng calfr∂rd2fr : no errors'''                                          00000528
+*(2015 12 23 20 52 37 254)                                              00000529
+ Fcalfr∂test1rd2fr êFX 'R Ω calfr∂test1rd2fr DIM; EXP; GOT; LIB; NERR' '00000530
+ LIB  Ω ''Checking calfr∂rd2fr with dimension '', (ÆDIM), '' and êIO '',00000531
+  ÆIO' 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂rd2fr DIM Ê PARAM' '∏ ((ÊÊE00000532
+ XP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong rank, expected '', (ÆÊÊEXP), '', got 00000533
+ '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '00000534
+ ' Wrong dimension, expected '', (ÆÊEXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 00000535
+ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT' '∏ (NERR=0) / CHKIO' 'LIB, '' Data 00000536
+ errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB,00000537
+  '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SU00000538
+XCCESS:' 'R Ω 1' '∏ 0'                                                  00000539
+*(2015 12 23 20 52 37 224)                                              00000540
+ Fcalfr∂fr2rd êFX 'R Ω calfr∂fr2rd DATE' 'R Ω 654019 + (calfr∂frbis calf00000541
+Xr∂year DATE) + DATE +.ı 365 30 1'                                      00000542
+*(2015 12 23 20 52 37 256)                                              00000543
+ Fcalfr∂test1rd2gr êFX 'R Ω calfr∂test1rd2gr DIM; EXP; GOT; LIB; NERR' '00000544
+ LIB  Ω ''Checking calfr∂rd2gr with dimension '', (ÆDIM), '' and êIO '',00000545
+  ÆIO' 'EXP Ω (DIM, 3) Ê EXPEC' 'GOT Ω calfr∂rd2gr DIM Ê PARAM' '∏ ((ÊÊE00000546
+ XP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong rank, expected '', (ÆÊÊEXP), '', got 00000547
+ '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '00000548
+ ' Wrong dimension, expected '', (ÆÊEXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 00000549
+ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT' '∏ (NERR=0) / CHKIO' 'LIB, '' Data 00000550
+ errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB,00000551
+  '' êIO clobbered: was '', (ÆIO), '' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SU00000552
+XCCESS:' 'R Ω 1' '∏ 0'                                                  00000553
+*(2015 12 23 20 52 37 223)                                              00000554
+ Fcalfr∂usage êFX 'calfr∂usage' '''Loading the module from the command l00000555
+ ine:''' '''      apl -f workspaces/calfr.apl''' '''Loading the module f00000556
+ rom inside APL:''' '''      )LOAD calfr''' '''Dates are vectors of 3 nu00000557
+ mbers YYYY MM DD. e.g.''' '''      DR Ω    8 2 18 ‰ for 18 Brumaire VII00000558
+ I''' '''      DG Ω 1794 7 27 ‰ for 27th July 1794''' '''Gregorian to Fr00000559
+ ench Revolutionary:''' '''      DR Ω calfr∂gr2fr DG''' '''French Revolu00000560
+ tionary to Gregorian:''' '''      DG Ω calfr∂fr2gr DR''' '''Pretty-prin00000561
+ ting:''' '''      STRING Ω calfr∂prtfr DR''' '''Pretty-printing today''00000562
+X''s date:''' '''      STRING Ω calfr∂prtfr calfr∂gr2fr 3∆êTS'''        00000563
+*(2015 12 23 20 52 37 251)                                              00000564
+ Fcalfr∂test0gr2rd êFX 'R  Ω calfr∂test0gr2rd N; LIB; PAR; EXP; GOT; NER00000565
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking calf00000566
+ r∂gr2rd with scalar date '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO' 'GO00000567
+ T  Ω calfr∂gr2rd PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDATA ‰ no need to check dim00000568
+ ension, it is the empty vector' 'LIB, '' Wrong rank: expected '', (ÆÊÊE00000569
+ XP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,EXPÙGOT' '00000570
+ ∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' 'CH00000571
+ KIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '' 00000572
+Xbecame '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'                00000573
+*(2015 12 23 20 52 37 223)                                              00000574
+XFcalfr∂month êFX 'R Ω calfr∂month D' 'R Ω D +.ı 0 1 0'                 00000575
+*(2015 12 23 20 52 37 228)                                              00000576
+ Fcalfr∂prtfr êFX 'R Ω calfr∂prtfr D; DAY; MONTH; CM; êIO' 'êIO Ω 1' 'DA00000577
+ Y Ω 10 8 Ê ''Decadi  Primidi Duodi   Tridi   QuartidiQuintidiSextidi Se00000578
+ ptidi Octidi  Nonidi  ''' 'R Ω DAY[1 + 10 | calfr∂day D;]' 'MONTH Ω 13 00000579
+ 11 Ê ''VendemiaireBrumaire   Frimaire   Nivose     Pluviose   Ventose  00000580
+   Germinal   Floreal    Prairial   Messidor   Thermidor  Fructidor  jou00000581
+ r compl.''' 'R Ω R, '' '', (Æ calfr∂day D), '' '', (MONTH[calfr∂month D00000582
+ ;]), '' '', (calfr∂roman calfr∂year D), '', jour '', calfr∂feasts[˝30 +00000583
+  D +.ı 0 30 1;]' 'CM Ω '' '' Ù R' 'R Ω (CM Î 0,˝1«CM) / R' 'R Ω (ËÎ\ËRÙ00000584
+X'' '')/R'                                                              00000585
+*(2015 12 23 20 52 37 223)                                              00000586
+ Fcalfr∂zerojanvnd êFX 'R Ω calfr∂zerojanvnd Y' 'R Ω Y ¯.ı 1 0 0' 'R Ω R00000587
+X + (ÊR) Ê 0 1 0'                                                       00000588
+*(2015 12 23 20 52 37 257)                                              00000589
+ Fcalfr∂test0gr2fr êFX 'R  Ω calfr∂test0gr2fr N; LIB; PAR; EXP; GOT; NER00000590
+ R' 'êIO Ω 1' 'EXP Ω EXPEC[N;]' 'PAR Ω PARAM[N;]' 'LIB  Ω ''Checking cal00000591
+ fr∂gr2fr with scalar RD value '', (ÆPAR), '' and êIO '', ÆIO' 'êIO Ω IO00000592
+ ' 'GOT  Ω calfr∂gr2fr PAR' '∏ ((ÊÊEXP)=ÊÊGOT)/CHKDIM' 'LIB, '' Wrong ra00000593
+ nk: expected '', (ÆÊÊEXP), '', got '', ÆÊÊGOT' 'R Ω 0' '∏ 0' 'CHKDIM:' 00000594
+ '∏ (^/(ÊEXP)=ÊGOT)/CHKDATA' 'LIB, '' Wrong dimensions: expected '', (ÆÊ00000595
+ EXP), '', got '', ÆÊGOT' 'R Ω 0' '∏ 0' 'CHKDATA:' 'NERR Ω +/,Î/EXPÙGOT'00000596
+  '∏ (NERR=0) / CHKIO' 'LIB, '' Data errors: '', Æ NERR' 'R Ω 0' '∏ 0' '00000597
+ CHKIO:' '∏ (IO=êIO) / SUCCESS' 'LIB, '' êIO clobbered: was '', (ÆIO), '00000598
+X' became '', ÆêIO' 'R Ω 0' '∏ 0' 'SUCCESS:' 'R Ω 1' '∏ 0'              00000599
+*(2015 12 23 20 52 37 257)                                              00000600
+ Fcalfr∂testgr2fr êFX 'calfr∂testgr2fr; IO; êIO; OK; PARAM; EXPEC; RESUL00000601
+ ' 'êIO Ω 1' 'EXPEC Ω calfr∂testdata[;4 5 6]' 'PARAM Ω calfr∂testdata[;100000602
+  2 3]' 'OK Ω 1' 'IO Ω 2' 'LOOP:' 'IO Ω IO - 1' 'êIO Ω IO' 'OK ΩOK ^ cal00000603
+ fr∂test0gr2fr 1' 'OK ΩOK ^ calfr∂test0gr2fr 2' 'OK ΩOK ^ calfr∂test1gr200000604
+ fr 1 ∆ ÊPARAM ‰ checking with the full vector' 'OK ΩOK ^ calfr∂test1gr200000605
+ fr 3 3' 'OK ΩOK ^ calfr∂test1gr2fr 15 3' 'OK ΩOK ^ calfr∂test1gr2fr 2 300000606
+  3' 'OK ΩOK ^ calfr∂test1gr2fr 6 Ê 2 ‰ checking max allowed rank' '∏ IO00000607
+  / LOOP' '∏ (OK=0) / 0 ‰ exit if the errors are already reported' '''Ch00000608
+Xecking calfr∂gr2fr : no errors'''                                      00000609

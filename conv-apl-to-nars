@@ -1,0 +1,4 @@
+#!/usr/local/bin/apl --noColor
+)load calfrnars
+)out calfrnars
+)off
