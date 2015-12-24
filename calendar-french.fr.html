@@ -21,6 +21,7 @@
 <br /><a href='#Utilisation'>Utilisation</a>
 <br /><a href='#calfr∆usage'><tt>calfr∆usage</tt></a>
 <br /><a href='#Ordres supérieurs'>Ordres supérieurs</a>
+<br /><a href='#Utilisation de "enclose"'>Utilisation de "enclose"</a>
 <br /><a href='#Implémentation'>Implémentation</a>
 <br /><a href='#Éléments de date'>Éléments de date</a>
 <br /><a href='#calfr∆year'><tt>calfr∆year</tt></a>
@@ -359,14 +360,34 @@ Par contre, la fonction <tt>calfr∆prtfr</tt> n'est pas compatible avec les vec
 de dates ou les tableaux de dates. Elle accepte seulement les dates scalaires.
 </p>
 
+<h3><a name='Utilisation de "enclose"'>Utilisation de "enclose"</a></h3>
 <p>
-Remarque&nbsp;: je sais que APL permet d'inclure des objets dans d'autres, avec
+Je sais que APL permet d'inclure des objets dans d'autres, avec
 les opérateurs <tt>⊂</tt> et <tt>⊃</tt>. Mais cela n'existait pas lorsque j'ai appris APL
-il y a plus de trente ans. Dans un premier temps, j'écris le présent script qui s'en
-passera. Peut-être que dans un deuxième temps j'écrirai un nouveau script utilisant
-les nouveautés d'APL sur les objets inclus.
+il y a plus de trente ans. J'ai donc écrit le présent script sans chercher à utiliser
+ces opérateurs. J'avais l'intention d'écrire dans un deuxième temps un nouveau script
+qui reposerait sur <tt>⊂</tt> et <tt>⊃</tt>.</p>
+
+<p>
+Mais j'ai fait quelques expériences avec le script dans l'état actuel.
+En utilisant la fonction <tt>¨</tt> (<i lang='en'>each</i>), les fonctions
+deviennent compatibles avec les objets «&nbsp;enclosed&nbsp;». Exemple&nbsp;:
 </p>
 
+<pre>
+     V ← 2 2 ⍴ (1792 9 22) (1795 10 5) (1799 11 9), ⊂ 3↑⎕TS
+     V
+1792 9 22  1795 10 5  
+1799 11 9  2015 12 24 
+     ⍴V
+2 2
+     V1 ← calfr∆prtfr ¨ calfr∆gr2fr ¨ V
+     V1
+Primidi 1 Vendémiaire I, jour du Raisin        Tridi 13 Vendémiaire IV, jour du Potiron 
+Octidi 18 Brumaire VIII, jour de la Dentelaire Quartidi 4 Nivôse CCXXIV, jour du Soufre 
+     ⍴V1
+2 2
+</pre>
 <h2><a name='Implémentation'>Implémentation</a></h2>
 <h3><a name='Éléments de date'>Éléments de date</a></h3>
 <p>

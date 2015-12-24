@@ -21,6 +21,7 @@
 <br /><a href='#Basic use'>Basic use</a>
 <br /><a href='#calfr∆usage'><tt>calfr∆usage</tt></a>
 <br /><a href='#Higher Orders'>Higher Orders</a>
+<br /><a href='#Enclosed Values'>Enclosed Values</a>
 <br /><a href='#Implementation'>Implementation</a>
 <br /><a href='#Date Elements'>Date Elements</a>
 <br /><a href='#calfr∆year'><tt>calfr∆year</tt></a>
@@ -342,14 +343,33 @@ On the other hand, the <tt>calfr∆prtfr</tt> function is not compatible with da
 or date arrays. It works only with scalar dates.
 </p>
 
+<h3><a name='Enclosed Values'>Enclosed Values</a></h3>
 <p>
-Remark: I know that APL allow to embed objects into others, using the
+I know that APL allow to embed objects into others, using the
 <tt>⊂</tt> and <tt>⊃</tt> operators. But when I learnt APL more than thirty
-years ago, these operators did not exist. So, the first step will be writing
-a script with pure vectors without embedded objects. Maybe there will be a second
-step where I will write another script with a more modern APL and embedded objects.
+years ago, these operators did not exist. So, I have written the present script
+as a first version which does not use these operations. I had the intention of
+writing a second version which would rely on <tt>⊂</tt> et <tt>⊃</tt>.</p>
+
+<p>
+But I tried some experiments with the script <i>as is</i>. By using the <tt>¨</tt>
+(each) operator, the functions become compatible with enclosed objects. For example:
 </p>
 
+<pre>
+     V ← 2 2 ⍴ (1792 9 22) (1795 10 5) (1799 11 9), ⊂ 3↑⎕TS
+     V
+1792 9 22  1795 10 5  
+1799 11 9  2015 12 24 
+     ⍴V
+2 2
+     V1 ← calfr∆prtfr ¨ calfr∆gr2fr ¨ V
+     V1
+Primidi 1 Vendémiaire I, jour du Raisin        Tridi 13 Vendémiaire IV, jour du Potiron 
+Octidi 18 Brumaire VIII, jour de la Dentelaire Quartidi 4 Nivôse CCXXIV, jour du Soufre 
+     ⍴V1
+2 2
+</pre>
 <h2><a name='Implementation'>Implementation</a></h2>
 <h3><a name='Date Elements'>Date Elements</a></h3>
 <p>
