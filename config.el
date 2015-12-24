@@ -46,8 +46,8 @@
                      ("neq"    . "≠") ("transp" . "⍉")
                      ("leq"    . "≤")
                      ("geq"    . "≥") ("each"   . "¨")
-                     ("or"     . "∨")
-                     ("and"    . "∧")
+                     ("or"     . "∨") ("enclose". "⊂")
+                     ("and"    . "∧") ("disclose" . "⊃")
                      ("delta"  . "∆")
                      ))
           (ch1 (cdr (assoc (completing-read "Car ? "
