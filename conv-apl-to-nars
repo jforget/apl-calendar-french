@@ -2,7 +2,7 @@
 ⍝ -*- encoding: utf-8; indent-tabs-mode: nil -*-
 ⍝
 ⍝     Script to convert an APL script into an ATF file
-⍝     Copyright (C) 2015 Jean Forget
+⍝     Copyright (C) 2015, 2016 Jean Forget
 ⍝
 ⍝     This program is distributed under the GNU Public License version 1 or later
 ⍝
