@@ -36,7 +36,6 @@ use HTML::TokeParser;
 my $script_av    = 'calendar-french.apl-1';
 my $script_ap    = 'workspaces/calfr.apl';
 my $script_nars  = 'workspaces/calfrnars.apl';
-my $html         = 'calfr.apl.html';
 my $testdata     = 'testapl';
 my $teststring   = 'testapl1';
 my $feasts       = 'feasts';
@@ -47,24 +46,19 @@ open my $ap, '>:encoding(UTF-8)', $script_ap
   or die "opening $script_ap $!";
 open my $nars, '>:encoding(UTF-8)', $script_nars
   or die "opening $script_nars $!";
-open my $ht, '>:encoding(UTF-8)', $html
-  or die "opening $html $!";
 
-intro_html();
 # Portability issue: maybe apl is installed in another directory
 print $ap   "#!/usr/bin/apl -f\n";
 print $nars "#!/usr/bin/apl -f\n";
 
 while (<$av>) {
   print $ap $_;
-  print $ht to_html($_);
   print $nars remove_accents($_);
   if (/include here the contents of testapl(?!1)/) {
     open my $sc, '<:encoding(UTF-8)', $testdata
       or die "opening $testdata $!";
     while (<$sc>) {
       print $ap $_;
-      print $ht to_html($_);
       print $nars remove_accents($_);
     }
     close $sc
@@ -75,7 +69,6 @@ while (<$av>) {
       or die "opening $teststring $!";
     while (<$sc>) {
       print $ap $_;
-      print $ht to_html($_);
       print $nars remove_accents($_);
     }
     close $sc
@@ -86,7 +79,6 @@ while (<$av>) {
       or die "opening $feasts $!";
     while (<$sc>) {
       print $ap $_;
-      print $ht to_html($_);
       print $nars remove_accents($_);
     }
     close $sc
@@ -94,35 +86,9 @@ while (<$av>) {
   }
   elsif (/^∇$/) {
     print $ap   "\n";
-    print $ht   "\n";
     print $nars "\n";
   }
 }
-print $ht <<'EOF';
-</pre>
-]NEXTFILE
-<h1><a name='en'>English</a></h1>
-EOF
-
-copy_html("calendar-french.en.html", "en");
-
-print $ht <<'EOF';
-</pre>
-]NEXTFILE
-<h1><a name='fr'>Français</a></h1>
-EOF
-
-copy_html("calendar-french.fr.html", "fr");
-
-print $ht <<'EOF';
-</pre>
-]NEXTFILE
-<h1><a name='GPL'>GPL License</a></h1>
-EOF
-
-copy_txt("LICENSE");
-
-close_html();
 
 close $av
   or die "Closing $script_av $!";
@@ -130,15 +96,6 @@ close $ap
   or die "Closing $script_ap $!";
 close $nars
   or die "Closing $script_nars $!";
-close $ht
-  or die "Closing $html $!";
-
-sub to_html {
-  my ($ln) = @_;
-  my %transco = qw( < &lt > &gt & &amp);
-  $ln =~ s/([<>\&])/$transco{$1};/g;
-  $ln;
-}
 
 sub remove_accents {
   my ($ln) = @_;
@@ -146,109 +103,5 @@ sub remove_accents {
   $ln =~ s/Œ(.*) '/Oe$1'/;
   $ln =~ tr/ÂÉàâèéêëîïôû/AEaaeeeeiiou/;
   $ln;
-}
-
-sub intro_html {
-  my $dt = DateTime->today->strftime("%Y-%m-%d");
-  print $ht <<"EOF";
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                      "http://www.w3.org/TR/html4/strict.dtd">
-<html><head><title>calfr.apl</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="author"      content="Jean Forget">
-<meta name="copyright"   content="© 2015 by Jean Forget">
-<meta name="date"        content="$dt">
-<meta name="description" content="Converting Gregorian dates to French Revolutionary and vice-versa">
-<meta name="keywords"    lang=""en" content="calendar, Gregorian, French Revolutionary, APL, GNU">
-<style>
-<!--
-.insert    { background-color: skyblue}
-.call      { background-color: yellow}
-.condcode  { background-color: lightgrey }
-.condition { font-size-adjust: .5 }
--->
-</style>
-</head><body><pre>
-#!/usr/bin/apl -f
-⍝ Explanations <a href='#en'>in English</a> <a href='#fr'>en français</a>.
-⍝ Full text of the <a href='#GPL'>GPL License</a>
-EOF
-}
-
-sub close_html {
-  print $ht <<'EOF';
-</body></html>
-EOF
-}
-
-sub copy_html {
-  my ($name, $prefix) = @_;
-  my $go = 0;
-
-  open my $inp, '<:encoding(UTF-8)', $name
-    or die "Opening $name $!";
-  my $p = HTML::TokeParser->new($inp)
-    or die "Opening $name $!";
-  while (my $token = $p->get_token) {
-    if ($token->[0] eq 'S' && lc($token->[1]) eq 'body') {
-      $go = 1;
-      next;
-    }
-    if ($token->[0] eq 'E' && lc($token->[1]) eq 'body') {
-      $go = 0;
-      next;
-    }
-    if ($go) {
-      given ($token->[0]) {
-        when ('T') {
-          print $ht $token->[1];
-        }
-        when ('S') {
-          if (uc($token->[1]) ne 'A') {
-            print $ht $token->[4];
-          }
-          else {
-            my %att = %{$token->[2]};
-            if (1 == keys %att && defined $att{name}) {
-              $att{name} = "$prefix." . $att{name};
-              $token->[4] = qq(<a name="$att{name}">);
-            }
-            elsif (1 == keys %att && defined $att{href} && substr($att{href}, 0, 1) eq '#') {
-              $att{href} = "#$prefix." . substr($att{href}, 1);
-              $token->[4] = qq(<a href="$att{href}">);
-            }
-            elsif (2 == keys %att && defined $att{class} && defined $att{href} && substr($att{href}, 0, 1) eq '#') {
-              $att{href} = "#$prefix." . substr($att{href}, 1);
-              $token->[4] = qq(<a href="$att{href}" class="$att{class}">);
-            }
-            elsif (1 != keys %{$token->[2]}) {
-              say "complex a tag $token->[4]";
-            }
-            print $ht $token->[4];
-          }
-        }
-        default {
-          print $ht $token->[-1];
-        }
-      }
-    }
-  }
-  close $inp
-    or die "Closing $name $!";
-}
-
-
-sub copy_txt {
-  my ($name) = @_;
-  open my $inp, '<:encoding(UTF-8)', $name
-    or die "Opening $name $!";
-  print $ht "<pre>\n";
-  while (my $ln = <$inp>) {
-    print $ht $ln
-      unless $ln =~ /^\s*-\*-/;
-  }
-  print $ht "</pre>\n";
-  close $inp
-    or die "Closing $name $!";
 }
 

@@ -1,0 +1,195 @@
+#!/usr/bin/perl
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+#     Script to merge the APL script with the HTML documentation files
+#     Copyright (C) 2016 Jean Forget
+#
+#     This program is distributed under the GNU Public License version 1 or later
+#
+#     You can find the text of the license in the F<LICENSE> file or at
+#     L<http://www.gnu.org/licenses/gpl-1.0.html>.
+#
+#     Here is the summary of GPL:
+#
+#     This program is free software; you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation; either version 1, or (at your option)
+#     any later version.
+#
+#     This program is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+#
+#     You should have received a copy of the GNU General Public License
+#     along with this program; if not, write to the Free Software Foundation,
+#     Inc., L<http://www.fsf.org/>.
+#
+
+use utf8;
+use v5.10;
+use strict;
+use warnings;
+use DateTime;
+use HTML::TokeParser;
+
+my $script       = 'workspaces/calfr.apl';
+my $html         = 'calfr.apl.html';
+my $testdata     = 'testapl';
+my $teststring   = 'testapl1';
+my $feasts       = 'feasts';
+
+open my $av, '<:encoding(UTF-8)', $script
+  or die "opening $script $!";
+open my $ht, '>:encoding(UTF-8)', $html
+  or die "opening $html $!";
+
+intro_html();
+# Portability issue: maybe apl is installed in another directory
+
+while (<$av>) {
+  print $ht to_html($_);
+}
+print $ht <<'EOF';
+</pre>
+]NEXTFILE
+<h1><a name='en'>English</a></h1>
+EOF
+
+copy_html("calendar-french.en.html", "en");
+
+print $ht <<'EOF';
+</pre>
+]NEXTFILE
+<h1><a name='fr'>Français</a></h1>
+EOF
+
+copy_html("calendar-french.fr.html", "fr");
+
+print $ht <<'EOF';
+</pre>
+]NEXTFILE
+<h1><a name='GPL'>GPL License</a></h1>
+EOF
+
+copy_txt("LICENSE");
+
+close_html();
+
+close $av
+  or die "Closing $script $!";
+close $ht
+  or die "Closing $html $!";
+
+sub to_html {
+  my ($ln) = @_;
+  my %transco = qw( < &lt > &gt & &amp);
+  $ln =~ s/([<>\&])/$transco{$1};/g;
+  $ln;
+}
+
+
+sub intro_html {
+  my $dt = DateTime->today->strftime("%Y-%m-%d");
+  print $ht <<"EOF";
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+                      "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>calfr.apl</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="author"      content="Jean Forget">
+<meta name="copyright"   content="© 2015, 2016 by Jean Forget">
+<meta name="date"        content="$dt">
+<meta name="description" content="Converting Gregorian dates to French Revolutionary and vice-versa">
+<meta name="keywords"    lang=""en" content="calendar, Gregorian, French Revolutionary, APL, GNU">
+<style>
+<!--
+.insert    { background-color: skyblue}
+.call      { background-color: yellow}
+.condcode  { background-color: lightgrey }
+.condition { font-size-adjust: .5 }
+-->
+</style>
+</head><body><pre>
+#!/usr/bin/apl -f
+⍝ Explanations <a href='#en'>in English</a> <a href='#fr'>en français</a>.
+⍝ Full text of the <a href='#GPL'>GPL License</a>
+EOF
+}
+
+sub close_html {
+  print $ht <<'EOF';
+</body></html>
+EOF
+}
+
+sub copy_html {
+  my ($name, $prefix) = @_;
+  my $go = 0;
+
+  open my $inp, '<:encoding(UTF-8)', $name
+    or die "Opening $name $!";
+  my $p = HTML::TokeParser->new($inp)
+    or die "Opening $name $!";
+  while (my $token = $p->get_token) {
+    if ($token->[0] eq 'S' && lc($token->[1]) eq 'body') {
+      $go = 1;
+      next;
+    }
+    if ($token->[0] eq 'E' && lc($token->[1]) eq 'body') {
+      $go = 0;
+      next;
+    }
+    if ($go) {
+      given ($token->[0]) {
+        when ('T') {
+          print $ht $token->[1];
+        }
+        when ('S') {
+          if (uc($token->[1]) ne 'A') {
+            print $ht $token->[4];
+          }
+          else {
+            my %att = %{$token->[2]};
+            if (1 == keys %att && defined $att{name}) {
+              $att{name} = "$prefix." . $att{name};
+              $token->[4] = qq(<a name="$att{name}">);
+            }
+            elsif (1 == keys %att && defined $att{href} && substr($att{href}, 0, 1) eq '#') {
+              $att{href} = "#$prefix." . substr($att{href}, 1);
+              $token->[4] = qq(<a href="$att{href}">);
+            }
+            elsif (2 == keys %att && defined $att{class} && defined $att{href} && substr($att{href}, 0, 1) eq '#') {
+              $att{href} = "#$prefix." . substr($att{href}, 1);
+              $token->[4] = qq(<a href="$att{href}" class="$att{class}">);
+            }
+            elsif (1 != keys %{$token->[2]}) {
+              say "complex a tag $token->[4]";
+            }
+            print $ht $token->[4];
+          }
+        }
+        default {
+          print $ht $token->[-1];
+        }
+      }
+    }
+  }
+  close $inp
+    or die "Closing $name $!";
+}
+
+
+sub copy_txt {
+  my ($name) = @_;
+  open my $inp, '<:encoding(UTF-8)', $name
+    or die "Opening $name $!";
+  print $ht "<pre>\n";
+  while (my $ln = <$inp>) {
+    print $ht $ln
+      unless $ln =~ /^\s*-\*-/;
+  }
+  print $ht "</pre>\n";
+  close $inp
+    or die "Closing $name $!";
+}
+
