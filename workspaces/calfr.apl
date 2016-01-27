@@ -3,7 +3,7 @@
 'APL program to convert Gregorian dates'
 'to French Revolutionary dates and the other way'
 ''
-'Copyright (C) 2015 Jean Forget  (JFORGET at cpan dot org)'
+'Copyright (C) 2015, 2016 Jean Forget  (JFORGET at cpan dot org)'
 ''
 ' This program is distributed under the GNU Public License version 1 or later'
 ''
