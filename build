@@ -30,8 +30,8 @@
 
 ./merge-scripts
 
-diff workspaces/calfrnars.apl workspaces/cafrnars.ref         \
+diff workspaces/calfrnars.apl workspaces/calfrnars.ref         \
 || ( ./conv-apl-to-nars                                       \
-    &&  cp workspaces/calfrnars.apl workspaces/cafrnars.ref)
+    &&  cp workspaces/calfrnars.apl workspaces/calfrnars.ref)
 
 exit 0
