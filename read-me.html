@@ -33,16 +33,16 @@ Revolutionary calendar or the other way. E.g.:
 
 <pre>
      ⍝ converting 18 Brumaire VIII
-     fr2gr 8 2 18
+     calfr∆fr2gr 8 2 18
   1799 11 9
      ⍝ converting back 9 November 1799
-     gr2fr 1799 11 9
+     calfr∆gr2fr 1799 11 9
   8 2 18
      ⍝ pretty-print the date
-     prtfr 8 2 18
+     calfr∆prtfr 8 2 18
   18 Brumaire 8, jour de la dentelaire
      ⍝ Printing today
-     prtfr gr2rd 3↑⎕TS
+     calfr∆prtfr calfr∆gr2fr 3↑⎕TS
 </pre>
 
 <p>
