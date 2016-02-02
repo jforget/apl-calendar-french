@@ -5,6 +5,8 @@
 ''
 'Copyright (C) 2015, 2016 Jean Forget  (JFORGET at cpan dot org)'
 ''
+'Build date: 2016-02-02'
+''
 ' This program is distributed under the GNU Public License version 1 or later'
 ''
 ' You can find the text of the license in the LICENSE file or at'

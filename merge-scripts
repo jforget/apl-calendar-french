@@ -52,6 +52,9 @@ print $ap   "#!/usr/bin/apl -f\n";
 print $nars "#!/usr/bin/apl -f\n";
 
 while (<$av>) {
+  if (/build date/i) {
+    s/'$/DateTime->now->strftime(" %Y-%m-%d'")/e;
+  }
   print $ap $_;
   print $nars remove_accents($_);
   if (/include here the contents of testapl(?!1)/) {
