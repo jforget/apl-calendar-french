@@ -7,6 +7,8 @@
 ''
 'Build date: 2016-02-02'
 ''
+'Portability: L1 (tested with GNU-APL and NARS2000)'
+''
 ' This program is distributed under the GNU Public License version 1 or later'
 ''
 ' You can find the text of the license in the LICENSE file or at'
@@ -30,9 +32,10 @@
 ∇
 
 ⍝ Installing from GitHub (https://github.com/jforget/apl-calendar-french):
-⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your APL directory
+⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your GNU-APL directory
+⍝                         or copy "workspaces/calfrnars.atf" to some place where NARS2000 will find it
 ⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
-⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
+⍝     save the webpage as simple text into the "workspaces" sub-directory of your GNU-APL directory
 ∇ calfr∆usage
 'Loading the module from the command line (for GNU-APL):'
 '      apl -f workspaces/calfr.apl'

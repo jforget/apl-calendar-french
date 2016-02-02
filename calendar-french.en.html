@@ -91,6 +91,8 @@ description of the program and the summary of the GPL. Here it is.
 ''
 'Build date:'
 ''
+'Portability: L1 (tested with GNU-APL and NARS2000)'
+''
 ' This program is distributed under the GNU Public License version 1 or later'
 ''
 ' You can find the text of the license in the LICENSE file or at'
@@ -117,6 +119,14 @@ description of the program and the summary of the GPL. Here it is.
 As you can see, this summary is executable code included in the software.
 So, after you have logged into APL and initialised your workspace with
 my script, you can display this summary at any moment.
+</p>
+
+<p>
+Portability: by converting the script file to ATF, the programs can
+be loaded into NARS2000. The only glitch is that any vowel with diacritic
+or any "c" with cedilla triggers a syntax error. So the build tool convert
+these characters to plain vowels and plain "c". After that, the
+ATF file gives programs that function correctly under NARS2000.
 </p>
 
 <h2><a name='Conversion between calendars'>Conversion between calendars</a></h2>
@@ -268,9 +278,10 @@ And here is the embedded help, callable from APL.
 
 <pre>
 ⍝ Installing from GitHub (https://github.com/jforget/apl-calendar-french):
-⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your APL directory
+⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your GNU-APL directory
+⍝                         or copy "workspaces/calfrnars.atf" to some place where NARS2000 will find it
 ⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
-⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
+⍝     save the webpage as simple text into the "workspaces" sub-directory of your GNU-APL directory
 ∇ calfr∆usage
 'Loading the module from the command line (for GNU-APL):'
 '      apl -f workspaces/calfr.apl'

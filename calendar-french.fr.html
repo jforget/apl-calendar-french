@@ -100,6 +100,8 @@ pas assez calé pour traduire en français un texte de teneur juridique).
 ''
 'Build date:'
 ''
+'Portability: L1 (tested with GNU-APL and NARS2000)'
+''
 ' This program is distributed under the GNU Public License version 1 or later'
 ''
 ' You can find the text of the license in the LICENSE file or at'
@@ -127,6 +129,15 @@ Comme vous pouvez le deviner, ce résumé fait partie intégrante du
 logiciel. Donc, une fois que vous êtes entrés sous APL et que vous
 avez initialisé votre espace de travail avec mon script, vous pouvez
 à tout moment afficher ce résumé.
+</p>
+
+<p>
+Portabilité&nbsp;: en convertissant le fichier script en fichier ATF, on
+peut charger les fonctions sous NARS2000. Juste un hic, les lettres
+accentuées et c-cédille déclenchent une erreur de syntaxe. La chaîne
+de compilation remplace donc ces lettres par des lettres inoffensives,
+voyelles sans accent et «&nbsp;c&nbsp;» sans cédille.
+Avec cette précaution, les programmes fonctionnent parfaitement sous NARS2000.
 </p>
 
 <h2><a name='Conversion entre calendriers'>Conversion entre calendriers</a></h2>
@@ -285,9 +296,10 @@ Voici l'aide en ligne en anglais.
 
 <pre>
 ⍝ Installing from GitHub (https://github.com/jforget/apl-calendar-french):
-⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your APL directory
+⍝     clone the Git repo and copy "workspaces/calfr.apl" to the "workspaces" sub-directory of your GNU-APL directory
+⍝                         or copy "workspaces/calfrnars.atf" to some place where NARS2000 will find it
 ⍝ Installing from browsing https://www.gnu.org/software/apl/Bits_and_Pieces/
-⍝     save the webpage as simple text into the "workspaces" sub-directory of your APL directory
+⍝     save the webpage as simple text into the "workspaces" sub-directory of your GNU-APL directory
 ∇ calfr∆usage
 'Loading the module from the command line (for GNU-APL):'
 '      apl -f workspaces/calfr.apl'

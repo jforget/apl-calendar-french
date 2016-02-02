@@ -36,6 +36,8 @@ calendar-french.apl-1: apl
     ''
     'Build date:'
     ''
+    'Portability: L1 (tested with GNU-APL and NARS2000)'
+    ''
     ' This program is distributed under the GNU Public License version 1 or later'
     ''
     ' You can find the text of the license in the LICENSE file or at'
@@ -66,6 +68,19 @@ calendar-french.apl-1: apl
     As you can see, this summary is executable code included in the software.
     So, after you have logged into APL and initialised your workspace with
     my script, you can display this summary at any moment.
+- fr: |
+    Portabilité&nbsp;: en convertissant le fichier script en fichier ATF, on
+    peut charger les fonctions sous NARS2000. Juste un hic, les lettres
+    accentuées et c-cédille déclenchent une erreur de syntaxe. La chaîne
+    de compilation remplace donc ces lettres par des lettres inoffensives,
+    voyelles sans accent et «&nbsp;c&nbsp;» sans cédille.
+    Avec cette précaution, les programmes fonctionnent parfaitement sous NARS2000.
+- en: |
+    Portability: by converting the script file to ATF, the programs can
+    be loaded into NARS2000. The only glitch is that any vowel with diacritic
+    or any "c" with cedilla triggers a syntax error. So the build tool convert
+    these characters to plain vowels and plain "c". After that, the
+    ATF file gives programs that function correctly under NARS2000.
 - section: 0
   fr: Conversion entre calendriers
   en: Conversion between calendars
