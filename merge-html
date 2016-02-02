@@ -47,6 +47,7 @@ open my $ht, '>:encoding(UTF-8)', $html
 intro_html();
 # Portability issue: maybe apl is installed in another directory
 
+my $discarded_line = <$av>;
 while (<$av>) {
   print $ht to_html($_);
 }
@@ -111,7 +112,8 @@ sub intro_html {
 </style>
 </head><body><pre>
 #!/usr/bin/apl -f
-⍝ Explanations <a href='#en'>in English</a> <a href='#fr'>en français</a>.
+⍝ <a href='https://www.gnu.org/software/apl/Bits_and_Pieces/'>index of Bits and Pieces</a>
+⍝ <a href='#en'>Explanations in English</a> <a href='#fr'>Explications en français</a>.
 ⍝ Full text of the <a href='#GPL'>GPL License</a>
 EOF
 }

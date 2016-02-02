@@ -30,6 +30,8 @@
 
 ./merge-scripts
 
+./merge-html
+
 diff workspaces/calfrnars.apl workspaces/calfrnars.ref         \
 || ( ./conv-apl-to-nars                                       \
     &&  cp workspaces/calfrnars.apl workspaces/calfrnars.ref)
